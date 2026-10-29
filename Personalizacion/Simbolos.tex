@@ -6,9 +6,69 @@
 \DeclareMathOperator{\mcd}{mcd}
 \DeclareMathOperator{\mcm}{mcm}
 \DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\gal}{Gal}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\ev}{ev}
+% Compatibilidad con los nombres de la plantilla; misma notación que arriba.
+\newcommand{\aut}{\Aut}
+\newcommand{\ob}{\Ob}
 \newcommand{\Set}{\mathbf{Set}}
 \newcommand{\Grp}{\mathbf{Grp}}
 \newcommand{\Ab}{\mathbf{Ab}}
+\newcommand{\Vect}{\mathbf{Vect}}
+\newcommand{\cat}[1]{\mathit{#1}}
+\newcommand{\Col}[1]{\operatorname{#1}}
+
+% Utilidades generales recuperadas de la plantilla de Homotopía.
+% Se conservan los símbolos estándar, sin los ajustes de espaciado de aquella.
+\newcommand{\en}{\in}
+\newcommand{\noten}{\notin}
+\newcommand{\cont}{\ni}
+\newcommand{\dotcup}{\mathbin{\dot{\cup}}}
+\newcommand{\colonequiv}{\vcentcolon\equiv}
+\newcommand{\bigforall}{\scalebox{1.2}{$\forall$}}
+\newcommand{\bigexists}{\scalebox{1.2}{$\exists$}}
+\newcommand{\supsub}[3]{{#1}^{\scriptscriptstyle #2}_{\scriptscriptstyle #3}}
+\newcommand{\restr}[2]{\left.#1\right|_{#2}}
+\newcommand{\ubar}[1]{\mathpalette\ubaraux{#1}}
+\newcommand{\ubaraux}[2]{%
+  \tikz[baseline=(X.base)]{%
+    \node[inner sep=0pt,outer sep=0pt] (X) {$#1#2$};
+    \draw[line width=.5pt]
+      ([xshift=1pt,yshift=1pt]X.north west)--
+      ([xshift=-1pt,yshift=1pt]X.north east);
+  }%
+}
+
+% Conjuntos y generadores: \set{ x \given P(x) }, \set*{...}, \set[\Big]{...}.
+% La redefinición de \given es local al argumento de cada delimitador.
+\providecommand{\given}{}
+\newcommand{\SetSymbol}[1][]{%
+  \nonscript\:#1\vert\allowbreak\nonscript\:\mathopen{}%
+}
+\DeclarePairedDelimiterX{\set}[1]{\lbrace}{\rbrace}{%
+  \renewcommand{\given}{\SetSymbol[\delimsize]}#1%
+}
+\DeclarePairedDelimiterX{\ang}[1]{\langle}{\rangle}{%
+  \renewcommand{\given}{\SetSymbol[\delimsize]}#1%
+}
 \DeclarePairedDelimiter{\generado}{\langle}{\rangle}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\Brack}{\lBrack}{\rBrack}
+\DeclarePairedDelimiter{\round}{\lfloor}{\rceil}
+% Como en la plantilla del usuario, \brack es aquí el delimitador [ ].
+% Para una fracción sin barra con corchetes, usar \genfrac{[}{]}{0pt}{}{n}{k}.
+\let\brack\relax
+\DeclarePairedDelimiter{\brack}{[}{]}
 % Anillos, campos, ideales y módulos usarán R, K, \mathfrak a, R/\mathfrak a,
 % \Hom_R(M,N), etc., cuando aparezcan en las pizarras. No anticipar convenciones.

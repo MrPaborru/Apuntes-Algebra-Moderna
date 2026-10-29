@@ -24,6 +24,37 @@ Se consultó el [Manual Básico de Imagen del CIMAT](https://www.cimat.mx/wp-con
 
 ## Símbolos
 
-`Simbolos.tex` define sólo operadores y categorías utilizados: `\Hom`, `\Aut`, `\Sym`, `\im`, `\mcd`, `\mcm`, `\Ob`, `\Set`, `\Grp`, `\Ab` y el delimitador `\generado`. Se conserva la notación ordinaria `\mathbb Z/n\mathbb Z`, `\varphi`, `\ker`, etc.; no se reemplazan operadores estándar ni se introducen abreviaturas de homotopía.
+`Simbolos.tex` conserva los operadores y categorías del curso y recupera las utilidades generales de la plantilla del usuario. No se importan macros específicas de homotopía ni se modifican `\hom`, `\Re`, `\Im`, `\ker` o `\mathbb`.
+
+| Comandos | Uso |
+| --- | --- |
+| `\set`, `\given`, `\SetSymbol` | Conjuntos por comprensión con separación y barra ajustable |
+| `\ang`, `\generado` | Delimitadores angulares; `\ang` admite `\given` para presentaciones |
+| `\brack`, `\Brack`, `\floor`, `\ceil`, `\round` | Corchetes simples o dobles, piso, techo y delimitadores mixtos |
+| `\restr`, `\supsub`, `\ubar` | Restricción de una expresión, índices pequeños y barra superior de la plantilla |
+| `\en`, `\noten`, `\cont`, `\dotcup` | Pertenencia, no pertenencia, pertenencia inversa y unión disjunta |
+| `\bigforall`, `\bigexists`, `\colonequiv` | Cuantificadores ampliados y equivalencia por definición |
+| `\Hom`, `\Aut`, `\aut`, `\End`, `\Sym`, `\gal`, `\rk`, `\card`, `\coker` | Operadores algebraicos |
+| `\im`, `\mcd`, `\mcm`, `\dom`, `\cod`, `\id`, `\ord`, `\res`, `\supp`, `\ev` | Operadores de funciones y estructuras algebraicas |
+| `\Ob`, `\ob`, `\Set`, `\Grp`, `\Ab`, `\Vect`, `\cat`, `\Col` | Objetos, categorías y colecciones |
+
+Los delimitadores admiten tamaño normal, automático con `*` y explícito con `[...]`, por ejemplo:
+
+```latex
+\set{x \in G \given x^2=e}
+\set*{\frac{a}{b} \given a\in\mathbb Z,\ b\ne0}
+\set[\Big]{x\in R \given x\ne0}
+\ang{x,y \given x^2=y^3=e}
+\floor*{\frac{n}{2}}
+\restr{f}{H}
+```
+
+La redefinición de `\given` queda localizada dentro de `\set` y `\ang`, incluso al anidarlos. `\en`, `\noten` y `\cont` usan los glifos y el espaciado estándar de esta tipografía, en vez de los ajustes particulares de la plantilla anterior. `\restr` adapta automáticamente la altura de la barra. Se conserva el significado de `\ubar` en la plantilla: **barra superior**. `\aut` y `\ob` son alias de `\Aut` y `\Ob` para evitar notaciones duplicadas.
+
+Como en la plantilla del usuario, `\brack{...}` representa corchetes simples: es una sustitución intencional del comando antiguo de TeX para fracciones sin barra. Si se necesita ese otro uso, escribir `\genfrac{[}{]}{0pt}{}{n}{k}`. No se añaden redefiniciones globales de los operadores estándar.
+
+`Referencias.tex` recupera `\myref{etiqueta}` (tipo y número, más nombre si existe) y `\abvref{etiqueta}` (tipo abreviado y número), mediante `cleveref` y `refcount`. `aliascnt` permite distinguir teoremas, proposiciones, lemas y corolarios aunque compartan numeración. Reconocen los entornos de este curso y llaman «clase» al capítulo. `sol` admite un título opcional, como `\begin{sol}[Otra solución]`. Las notas y observaciones sin número no deben citarse como resultados numerados.
+
+En la portada, el guion corto se compone en una caja propia, fuera de las abreviaturas ordinales y con un pequeño espacio a cada lado, para que permanezca visible.
 
 Las clases iniciales no fijan aún convenciones sobre anillos unitarios, cuerpos, ideales o módulos. En su momento se usarán expresiones explícitas como `R`, `K`, `\mathfrak a`, `R/\mathfrak a` y `\Hom_R(M,N)`, contrastando siempre los materiales. No anticipar hipótesis de conmutatividad, unidad o lateralidad.

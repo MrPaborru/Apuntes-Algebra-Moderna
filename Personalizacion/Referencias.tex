@@ -1,0 +1,31 @@
+% Referencias de la plantilla, adaptadas a los entornos de Álgebra Moderna.
+\crefname{teo}{teorema}{teoremas}
+\crefname{prop}{proposición}{proposiciones}
+\crefname{lema}{lema}{lemas}
+\crefname{coro}{corolario}{corolarios}
+\crefname{defi}{definición}{definiciones}
+\crefname{ejem}{ejemplo}{ejemplos}
+\crefname{ejercicio}{ejercicio}{ejercicios}
+\crefname{chapter}{clase}{clases}
+\crefname{section}{sección}{secciones}
+\crefname{subsection}{subsección}{subsecciones}
+\newcommand{\myref}[1]{%
+  \cref{#1}%
+  \begingroup
+  \edef\nombrereferencia{\getrefbykeydefault{#1}{name}{}}%
+  \ifx\nombrereferencia\empty\else~(\nameref{#1})\fi
+  \endgroup
+}
+\newcommand{\abvref}[1]{%
+  \begingroup
+  \crefname{teo}{teo.}{teos.}%
+  \crefname{prop}{prop.}{props.}%
+  \crefname{coro}{cor.}{cors.}%
+  \crefname{defi}{def.}{defs.}%
+  \crefname{ejem}{ej.}{ejs.}%
+  \crefname{ejercicio}{ejerc.}{ejercs.}%
+  \crefname{section}{sec.}{secs.}%
+  \crefname{subsection}{subsec.}{subsecs.}%
+  \cref{#1}%
+  \endgroup
+}

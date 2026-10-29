@@ -25,7 +25,7 @@ El documento actualizado se encuentra en [**build/main.pdf**](build/main.pdf). P
 
 Los auxiliares se guardan en `build/aux/`. El PDF de lectura es `build/main.pdf`.
 
-Se necesita TeX Live o equivalente, con **pdfLaTeX, latexmk, Perl y BibTeX**. Los paquetes incluyen `newtxtext`, `newtxmath`, `microtype`, `babel` con español, AMS, `mathtools`, TikZ/`tikz-cd`, `tcolorbox`, `titlesec`, `tocloft`, `fancyhdr`, `hyperref` y `natbib`. La bibliografía utiliza BibTeX con `plainnat`.
+Se necesita TeX Live o equivalente, con **pdfLaTeX, latexmk, Perl y BibTeX**. Los paquetes incluyen `newtxtext`, `newtxmath`, `microtype`, `babel` con español, AMS, `mathtools`, TikZ/`tikz-cd`, `tcolorbox`, `titlesec`, `tocloft`, `fancyhdr`, `hyperref`, `natbib`, `cleveref`, `aliascnt` y `refcount`. La bibliografía utiliza BibTeX con `plainnat`.
 
 Desde la raíz del proyecto:
 
