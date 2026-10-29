@@ -3,11 +3,11 @@
 \newcommand{\triangulo}[5]{%
 \begin{tikzpicture}[scale=.65,baseline=0]
 \coordinate (A) at (0,0);\coordinate (B) at (2,0);\coordinate (C) at (1,1.732);
-\draw[fill=azulAlgebra!8,draw=azulAlgebra,thick] (A)--(B)--(C)--cycle;
+\draw[fill=grisCIMAT!12,thick] (A)--(B)--(C)--cycle;
 \node[below left] at (A) {#1};\node[below right] at (B) {#2};\node[above] at (C) {#3};
-\ifnum#4=1 \draw[rojoCIMAT,dashed,thick] (A)--(1.5,.866);\fi
-\ifnum#4=2 \draw[rojoCIMAT,dashed,thick] (B)--(.5,.866);\fi
-\ifnum#4=3 \draw[rojoCIMAT,dashed,thick] (C)--(1,0);\fi
+\ifnum#4=1 \draw[rojoDiagramaCIMAT,dashed,thick] (A)--(1.5,.866);\fi
+\ifnum#4=2 \draw[rojoDiagramaCIMAT,dashed,thick] (B)--(.5,.866);\fi
+\ifnum#4=3 \draw[rojoDiagramaCIMAT,dashed,thick] (C)--(1,0);\fi
 \node at (1,-.75) {$#5$};
 \end{tikzpicture}}
 \begin{tabular}{ccc}

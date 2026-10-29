@@ -22,10 +22,10 @@ $s$&$rs$&$r^2s$&$r^3s$&$r^4s$&$r^5s$
 \end{tabular}
 \par\medskip
 \begin{tikzpicture}[scale=.75]
-\draw[thick,azulAlgebra] (0:1.2)--(60:1.2)--(120:1.2)--(180:1.2)--(240:1.2)--(300:1.2)--cycle;
-\foreach \ang in {0,30,60,90,120,150}{\draw[rojoCIMAT,dashed] (\ang:1.6)--(\ang+180:1.6);}
-\draw[-{Stealth},azulAlgebra,thick] (15:1.8) arc[start angle=15,end angle=65,radius=1.8];
-\node[azulAlgebra] at (45:2.15) {$r$};
+\draw[thick] (0:1.2)--(60:1.2)--(120:1.2)--(180:1.2)--(240:1.2)--(300:1.2)--cycle;
+\foreach \ang in {0,30,60,90,120,150}{\draw[rojoDiagramaCIMAT,dashed] (\ang:1.6)--(\ang+180:1.6);}
+\draw[-{Stealth},thick] (15:1.8) arc[start angle=15,end angle=65,radius=1.8];
+\node at (45:2.15) {$r$};
 \end{tikzpicture}
 \hspace{1cm}
 \begin{tikzpicture}[scale=.6,every node/.style={font=\small,fill=white,inner sep=2pt}]
@@ -33,9 +33,9 @@ $s$&$rs$&$r^2s$&$r^3s$&$r^4s$&$r^5s$
 \foreach \k/\ang/\lab in {0/270/e,1/330/r,2/30/r^2,3/90/r^3,4/150/r^4,5/210/r^5}{
 \node (R\k) at (\ang:1.8) {$\lab$};}
 \foreach \a/\b in {0/1,1/2,2/3,3/4,4/5,5/0}{
-\draw[azulAlgebra,-{Stealth}] (R\a)--(R\b);}
+\draw[-{Stealth}] (R\a)--(R\b);}
 \foreach \k/\lab in {0/s,1/rs,2/r^2s,3/r^3s,4/r^4s,5/r^5s}{
 \node (S\k) at ({-3.3+1.32*\k},-4) {$\lab$};
-\draw[azulAlgebra] (R0)--(S\k);}
+\draw (R0)--(S\k);}
 \end{tikzpicture}
 \endgroup

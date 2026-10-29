@@ -1,12 +1,11 @@
 % Institución: #6F263D, sin intensificar ni sustituir el color institucional.
 \definecolor{rojoCIMAT}{RGB}{111,38,61}
 \definecolor{grisCIMAT}{RGB}{136,139,141}
-% Azul de la escritura: estructura y flechas de los diagramas.
+% Variante de énfasis usada en la plantilla de referencia; no sustituye rojoCIMAT.
+\definecolor{rojoDiagramaCIMAT}{RGB}{138,30,67} % #8A1E43
+% Colores auxiliares sólo para distinguir sectores geométricos, no para flechas.
 \definecolor{azulAlgebra}{HTML}{244A73}
-% Rojo de las anotaciones: mediadores, recorridos y elementos destacados.
-% Se adapta al burdeos institucional; no significa siempre «mapa canónico».
-\colorlet{acentoAlgebra}{rojoCIMAT}
-% Tono auxiliar para distinguir sectores en figuras de simetrías.
 \definecolor{verdeAlgebra}{HTML}{376B63}
 \definecolor{ocreAlgebra}{HTML}{9A6B25}
-\tikzcdset{estructura/.style={azulAlgebra},destacado/.style={acentoAlgebra}}
+% Las flechas ordinarias son negras; sólo se colorea un énfasis matemático.
+\tikzcdset{estructura/.style={black},destacado/.style={rojoDiagramaCIMAT}}
