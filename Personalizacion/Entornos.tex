@@ -1,0 +1,18 @@
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}[teo]{Proposición}
+\newtheorem{lema}[teo]{Lema}
+\newtheorem{coro}[teo]{Corolario}
+\theoremstyle{definition}
+\newtheorem{defi}{Definición}[section]
+\newtheorem{ejem}{Ejemplo}[section]
+\newcounter{ejercicio}
+\newenvironment{ejer}[1][]{\refstepcounter{ejercicio}%
+  \begin{tcolorbox}[enhanced,breakable,colback=rojoCIMAT!3,
+    colframe=rojoCIMAT,colbacktitle=rojoCIMAT,coltitle=white,
+    fonttitle=\bfseries,boxrule=.8pt,
+    title={Ejercicio \theejercicio\if\relax\detokenize{#1}\relax\else\ (#1)\fi}]}{\end{tcolorbox}}
+\theoremstyle{remark}
+\newtheorem*{nota}{Nota}
+\newtheorem*{obs}{Observación}
+\newenvironment{sol}{\begin{proof}[Solución]}{\end{proof}}
+\renewcommand{\qedsymbol}{\textcolor{rojoCIMAT}{\ensuremath{\square}}}

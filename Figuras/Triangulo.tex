@@ -1,0 +1,17 @@
+% Configuraciones de las etiquetas de C3, P02, sin imágenes externas.
+\begingroup
+\newcommand{\triangulo}[5]{%
+\begin{tikzpicture}[scale=.65,baseline=0]
+\coordinate (A) at (0,0);\coordinate (B) at (2,0);\coordinate (C) at (1,1.732);
+\draw[fill=azulAlgebra!8,draw=azulAlgebra,thick] (A)--(B)--(C)--cycle;
+\node[below left] at (A) {#1};\node[below right] at (B) {#2};\node[above] at (C) {#3};
+\ifnum#4=1 \draw[rojoCIMAT,dashed,thick] (A)--(1.5,.866);\fi
+\ifnum#4=2 \draw[rojoCIMAT,dashed,thick] (B)--(.5,.866);\fi
+\ifnum#4=3 \draw[rojoCIMAT,dashed,thick] (C)--(1,0);\fi
+\node at (1,-.75) {$#5$};
+\end{tikzpicture}}
+\begin{tabular}{ccc}
+\triangulo{1}{2}{3}{0}{e}&\triangulo{3}{1}{2}{0}{r}&\triangulo{2}{3}{1}{0}{r^2}\\[8pt]
+\triangulo{1}{3}{2}{1}{(2\ 3)}&\triangulo{3}{2}{1}{2}{(1\ 3)}&\triangulo{2}{1}{3}{3}{(1\ 2)}
+\end{tabular}
+\endgroup

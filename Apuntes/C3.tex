@@ -1,0 +1,385 @@
+% Fuente única de clase: Recursos/2025-08-19.pdf, páginas 1--14.
+En la clase 3 estudiamos acciones y homomorfismos, sus efectos sobre el orden y las propiedades que preservan los isomorfismos. La categoría de grupos abelianos permite sumar homomorfismos y usar el producto como coproducto finito. Finalmente construimos el grupo libre mediante palabras y verificamos su propiedad universal.
+
+Los fragmentos de \citet{aluffi2009} reproducidos en las páginas 5--6 y 11--14 incluyen II.4.1, II.4.3, II.4.5--8, el lema II.5.1 y el ejemplo II.5.3. Para completar la justificación de la reducción sin cambiar la construcción, puede consultarse también \citet[cap.~2, proposiciones 2.1--2.3, pp.~32--33]{milne2025}, donde se demuestran la unicidad de la forma reducida y la propiedad universal; son pruebas desarrolladas, no ejercicios propuestos.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Acciones y ejemplos de homomorfismos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Objeto cero y acciones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01--P02.
+Una categoría con un objeto inicial y terminal a la vez se llama \emph{punteada}; dicho objeto se denomina \emph{objeto cero}. En $\Grp$ es el grupo trivial. Para dos grupos $A,B$, el compuesto que pasa por él define el homomorfismo trivial:
+\[
+\begin{tikzcd}[column sep=large]
+A\arrow[r]\arrow[rr,bend right=25,"0_{A,B}"']&\{*\}\arrow[r]&B.
+\end{tikzcd}
+\]
+Este homomorfismo envía cada $a\in A$ a $e_B$.
+
+\begin{defi}
+Una \emph{acción} de un grupo $G$ sobre un objeto $A$ de una categoría $\mathcal C$ es un homomorfismo $\alpha:G\to\Aut_{\mathcal C}(A)$. Si $\alpha_g=\alpha(g)$, la condición es $\alpha_{hg}=\alpha_h\circ\alpha_g$ y $\alpha_e=1_A$.
+\end{defi}
+Cuando $A=X$ es un conjunto, podemos expresar una acción izquierda como una función
+\[
+G\times X\to X,\qquad (g,x)\mapsto g\cdot x,
+\]
+con $e\cdot x=x$ y $h\cdot(g\cdot x)=(hg)\cdot x$. En efecto, cada función $\alpha_g(x)=g\cdot x$ es biyectiva, con inversa $\alpha_{g^{-1}}$; la segunda igualdad garantiza que $g\mapsto\alpha_g$ sea un homomorfismo hacia $\Sym(X)$.
+
+\begin{ejem}
+Etiquetemos los vértices de un triángulo equilátero por $X=\{1,2,3\}$, con $1$ abajo a la izquierda, $2$ abajo a la derecha y $3$ arriba. Cada simetría de $D_6$ permuta los vértices. Si $r$ es el giro de $120^\circ$ que envía $1$ a $2$, entonces
+\[
+e\longmapsto\begin{pmatrix}1&2&3\\1&2&3\end{pmatrix},\quad
+r\longmapsto\begin{pmatrix}1&2&3\\2&3&1\end{pmatrix},\quad
+r^2\longmapsto\begin{pmatrix}1&2&3\\3&1&2\end{pmatrix}.
+\]
+Las tres reflexiones inducen las transposiciones $(2\ 3)$, $(1\ 3)$ y $(1\ 2)$, según el vértice que dejen fijo. La figura muestra las seis configuraciones de las etiquetas y los tres ejes correspondientes.
+\begin{center}\input{Figuras/Triangulo}\end{center}
+\end{ejem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{El homomorfismo exponencial y las reducciones módulo un divisor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P03--P04.
+Para $g\in G$, la función exponencial
+\[
+\varepsilon_g:\mathbb Z\to G,\qquad m\mapsto g^m,
+\]
+es un homomorfismo porque $g^{m+n}=g^mg^n$. Su imagen es el subgrupo cíclico $\generado{g}=\{g^m:m\in\mathbb Z\}$. En notación aditiva, el ejemplo fundamental es
+\[
+\pi_n:\mathbb Z\to\mathbb Z/n\mathbb Z,\qquad
+m\mapsto m[1]_n=[m]_n.
+\]
+Es sobreyectivo, de modo que $[1]_n$ genera el cociente.
+
+Si $m,n>0$ y $m\mid n$, definimos
+\[
+\pi_m^n:\mathbb Z/n\mathbb Z\to\mathbb Z/m\mathbb Z,
+\qquad [a]_n\mapsto[a]_m.
+\]
+Está bien definido: $[a]_n=[a']_n$ implica $n\mid(a-a')$ y, como $m\mid n$, también $m\mid(a-a')$. Conserva la suma por la regla de suma de clases y satisface
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathbb Z\arrow[d,estructura,"\pi_n"']\arrow[dr,estructura,"\pi_m"]&\\
+\mathbb Z/n\mathbb Z\arrow[r,destacado,"\pi_m^n"']&\mathbb Z/m\mathbb Z.
+\end{tikzcd}
+\]
+Si $m_1\mid n$ y $m_2\mid n$, la propiedad universal del producto de la clase 2 da un único homomorfismo
+\[
+\rho:\mathbb Z/n\mathbb Z\to
+ (\mathbb Z/m_1\mathbb Z)\times(\mathbb Z/m_2\mathbb Z),\qquad
+\rho([a]_n)=([a]_{m_1},[a]_{m_2}),
+\]
+que hace conmutar el diagrama
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+&&\mathbb Z/m_1\mathbb Z\\
+\mathbb Z/n\mathbb Z\arrow[r,dashed,destacado,"\rho"]
+\arrow[urr,bend left=12,estructura,"\pi_{m_1}^n"]
+\arrow[drr,bend right=12,estructura,"\pi_{m_2}^n"']
+&(\mathbb Z/m_1\mathbb Z)\times(\mathbb Z/m_2\mathbb Z)
+\arrow[ur,estructura,"\pi_1"']\arrow[dr,estructura,"\pi_2"]&\\
+&&\mathbb Z/m_2\mathbb Z.
+\end{tikzcd}
+\]
+Por ejemplo, para $n=6$, $m_1=2$ y $m_2=3$, sus valores son
+\[
+\begin{array}{c|c@{\qquad}c|c}
+[a]_6&\rho([a]_6)&[a]_6&\rho([a]_6)\\\hline
+{[0]_6}&([0]_2,[0]_3)&[3]_6&([1]_2,[0]_3)\\
+{[1]_6}&([1]_2,[1]_3)&[4]_6&([0]_2,[1]_3)\\
+{[2]_6}&([0]_2,[2]_3)&[5]_6&([1]_2,[2]_3)
+\end{array}
+\]
+Las seis imágenes son distintas y agotan el producto; en este ejemplo $\rho$ es una biyección. La construcción general anterior sólo afirma la existencia y unicidad del homomorfismo hacia el producto, sin suponer que sea siempre un isomorfismo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Isomorfismos y grupos abelianos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Orden y propiedades invariantes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P05--P06.
+\begin{prop}\label{prop:C3-orden-imagen}
+Todo homomorfismo $\varphi:G\to H$ satisface $|\varphi(g)|\mid |g|$ cuando $g$ tiene orden finito.
+\end{prop}
+\begin{proof}
+Los homomorfismos conservan potencias e identidad; por tanto,
+\[
+\varphi(g)^{|g|}=\varphi(g^{|g|})=\varphi(e_G)=e_H.
+\]
+Aplicamos el lema~\ref{lema:C2-orden} al elemento $\varphi(g)$.
+\end{proof}
+\begin{ejem}
+Todo homomorfismo $\varphi:C_4\to C_7$ es trivial. Para $g\in C_4$, tenemos $g^4=e$, por lo que $|g|\mid4$. Además, $\varphi(g)^7=e$ porque $\varphi(g)$ pertenece al grupo cíclico de orden siete. Así, $|\varphi(g)|$ divide a $7$ y también a $4$, usando la proposición anterior. Como estos enteros son coprimos, $|\varphi(g)|=1$ y $\varphi(g)=e$ para todo $g$.
+\end{ejem}
+
+\begin{prop}\label{prop:C3-iso}
+Un homomorfismo $\varphi:G\to H$ es un isomorfismo de grupos si y sólo si es una función biyectiva.
+\end{prop}
+\begin{proof}
+Una inversa en $\Grp$ es, en particular, una inversa de funciones; por tanto, $\varphi$ es biyectiva. A la inversa, supongamos que $\varphi$ es biyectiva y sea $\psi$ su inversa como función. Para $x,y\in H$, escribimos $x=\varphi(a)$ e $y=\varphi(b)$. Entonces
+\[
+\psi(xy)=\psi(\varphi(a)\varphi(b))
+=\psi(\varphi(ab))=ab=\psi(x)\psi(y).
+\]
+Así, la función inversa también es un homomorfismo.
+\end{proof}
+La relación $G\cong H$ es una equivalencia: la identidad prueba reflexividad, invertir un isomorfismo prueba simetría y componerlos prueba transitividad. Escribimos $\Aut(G)$ para el grupo de automorfismos de $G$.
+
+Un grupo es \emph{cíclico} si es isomorfo a $\mathbb Z$ o a $C_n=\mathbb Z/n\mathbb Z$ para algún $n>0$. Equivalentemente, está generado por un elemento $g$. Para comprobar la equivalencia usamos $\varepsilon_g$: si $g$ tiene orden infinito es inyectivo, y si tiene orden $d$ induce una biyección $[m]_d\mapsto g^m$. En ambos casos la imagen es exactamente $\generado{g}$.
+
+\begin{prop}
+Un isomorfismo $\varphi:G\to H$ conserva el orden de cada elemento. Además, $G$ es abeliano si y sólo si $H$ es abeliano.
+\end{prop}
+\begin{proof}
+Para todo entero positivo $n$, la igualdad $\varphi(g)^n=e_H$ equivale a $g^n=e_G$, aplicando $\varphi$ o su inversa. Los conjuntos de exponentes que anulan ambos elementos coinciden: tienen el mismo mínimo o ambos son vacíos. Esto incluye el orden infinito.
+
+Si $G$ es abeliano y $x,y\in H$, elegimos $a,b\in G$ con $x=\varphi(a)$ e $y=\varphi(b)$. Entonces
+\[
+xy=\varphi(a)\varphi(b)=\varphi(ab)=\varphi(ba)
+=\varphi(b)\varphi(a)=yx.
+\]
+El argumento aplicado a $\varphi^{-1}$ demuestra la recíproca.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Productos que también son coproductos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P07.
+Denotamos por $\Ab$ la categoría de grupos abelianos y homomorfismos de grupos. Su objeto cero es $\{0\}$ y su producto binario es $G\times H$ con suma componente a componente. Las proyecciones siguen siendo homomorfismos entre grupos abelianos.
+
+El concepto dual de producto es el \emph{coproducto}: dados $G,H$, buscamos un objeto con flechas desde ellos, inicial entre tales diagramas. Es decir, para cada $f_G:G\to Z$ y $f_H:H\to Z$ debe existir un único $\sigma$ que haga conmutar
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G\arrow[dr,estructura,"i_G"']\arrow[drr,bend left=15,estructura,"f_G"]&&\\
+&G\oplus H\arrow[r,dashed,destacado,"\exists!\,\sigma"]&Z.\\
+H\arrow[ur,estructura,"i_H"]\arrow[urr,bend right=15,estructura,"f_H"']&&
+\end{tikzcd}
+\]
+En $\Ab$ podemos tomar el mismo grupo $G\times H$, escrito $G\oplus H$ al destacar el coproducto, con $i_G(g)=(g,0)$ e $i_H(h)=(0,h)$. Definimos
+\[
+\sigma(g,h)=f_G(g)+f_H(h).
+\]
+Es un homomorfismo porque $Z$ es abeliano:
+\[
+\begin{aligned}
+\sigma(g+g',h+h')
+&=f_G(g)+f_G(g')+f_H(h)+f_H(h')\\
+&=\sigma(g,h)+\sigma(g',h').
+\end{aligned}
+\]
+Cumple $\sigma i_G=f_G$ y $\sigma i_H=f_H$. Es único, ya que cualquier homomorfismo con esas restricciones satisface
+\[
+\sigma(g,h)=\sigma((g,0)+(0,h))
+=\sigma(i_G(g))+\sigma(i_H(h))=f_G(g)+f_H(h).
+\]
+La afirmación se refiere al producto de dos grupos, y por iteración a familias finitas; no identifica productos y coproductos de familias infinitas.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{La suma de homomorfismos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P08.
+Para $G,H\in\Ab$, el conjunto $\Hom_{\Ab}(G,H)$ es un grupo abeliano con la operación puntual
+\[
+(\varphi+\psi)(g)=\varphi(g)+\psi(g).
+\]
+La suma vuelve a ser un homomorfismo. En efecto,
+\[
+\begin{aligned}
+(\varphi+\psi)(g_1+g_2)
+&=\varphi(g_1)+\varphi(g_2)+\psi(g_1)+\psi(g_2)\\
+&=\varphi(g_1)+\psi(g_1)+\varphi(g_2)+\psi(g_2)\\
+&=(\varphi+\psi)(g_1)+(\varphi+\psi)(g_2).
+\end{aligned}
+\]
+La identidad es el homomorfismo trivial, y $(-\varphi)(g)=-\varphi(g)$. Esta función es un homomorfismo porque
+\[
+-\varphi(g_1+g_2)=-\varphi(g_1)-\varphi(g_2).
+\]
+La asociatividad y conmutatividad de la suma de homomorfismos se verifican evaluando en cada $g$ y usando las propiedades de $H$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{La propiedad universal del grupo libre}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{El problema de extender una función}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P09--P10.
+Sea $A$ un conjunto. Queremos un grupo $F(A)$ que permita interpretar cualquier elección de imágenes de los elementos de $A$ como un homomorfismo. Para formalizarlo, consideremos la categoría $\mathcal G^A$: sus objetos son pares $(j,G)$, donde $G$ es un grupo y $j:A\to G$ es una función; un morfismo $(j_1,G_1)\to(j_2,G_2)$ es un homomorfismo $\varphi:G_1\to G_2$ tal que $\varphi j_1=j_2$.
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G_1\arrow[r,"\varphi"]&G_2\\
+A\arrow[u,"j_1"]\arrow[ur,"j_2"']&
+\end{tikzcd}
+\]
+
+\begin{defi}
+Un \emph{grupo libre sobre $A$} es un grupo $F(A)$ junto con una función $j:A\to F(A)$ que constituye un objeto inicial de $\mathcal G^A$. Para cada función $f:A\to G$ existe, pues, un único homomorfismo $\varphi:F(A)\to G$ tal que $\varphi j=f$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+F(A)\arrow[r,dashed,destacado,"\exists!\,\varphi"]&G\\
+A\arrow[u,estructura,"j"]\arrow[ur,estructura,"f"']&
+\end{tikzcd}
+\]
+\end{defi}
+La inicialidad incluye la función $j$, no sólo el grupo que aparece como su codominio. Dos pares que cumplen la propiedad universal son isomorfos por un único isomorfismo compatible con sus funciones desde $A$, por la unicidad de objetos iniciales de la clase 2.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Alfabetos y palabras}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P09 y P11.
+Construimos una copia disjunta $A'$ de $A$ y denotamos por $a^{-1}$ la copia formal de $a$. El alfabeto es $\Sigma=A\sqcup A'$. En él, la operación de invertir símbolos intercambia $a$ y $a^{-1}$.
+
+Una \emph{palabra} es una lista finita $w=a_1\cdots a_n$ de letras de $\Sigma$. Su longitud es $n$; la lista vacía $()$ tiene longitud cero. Denotamos por $W(A)$ el conjunto de palabras. La concatenación de listas es asociativa y tiene por identidad la palabra vacía, pero todavía no permite cancelar símbolos.
+
+Por ejemplo, si $A=\{a\}$, una palabra es
+\[
+a^{-1}a^{-1}aaaa^{-1}aa^{-1}.
+\]
+Si $A=\{x,y\}$, podemos formar
+\[
+xxx^{-1}yy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x.
+\]
+Las listas $xyy^{-1}x$ y $xx$ son distintas; en el grupo buscado representarán el mismo elemento.
+
+\begin{nota}
+La descripción de la página 9 llama inicialmente a $F(A)$ el grupo de «todas las palabras». Las páginas 11--12 precisan la construcción: todas las palabras forman $W(A)$; los elementos de $F(A)$ son las palabras reducidas, con producto dado por concatenar y reducir. Usamos esta distinción desde el principio.
+\end{nota}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Reducción y construcción concreta}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Reducción elemental y comprobaciones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P12.
+Definimos $r:W(A)\to W(A)$ cancelando, de izquierda a derecha, la primera pareja contigua de la forma $aa^{-1}$ o $a^{-1}a$. Si no existe tal pareja, ponemos $r(w)=w$ y decimos que $w$ es \emph{reducida}.
+
+\begin{lema}
+Si $w$ tiene longitud $n$, entonces $r^{\lfloor n/2\rfloor}(w)$ es una palabra reducida.
+\end{lema}
+\begin{proof}
+Cada aplicación que modifica la palabra elimina dos letras. No pueden producirse más de $\lfloor n/2\rfloor$ eliminaciones; una vez que no quedan parejas cancelables, las siguientes aplicaciones dejan la palabra fija.
+\end{proof}
+Definimos $R(w)=r^{\lfloor n/2\rfloor}(w)$. En particular, $R(w)=w$ para una palabra reducida, y $R(R(w))=R(w)$.
+
+\begin{ejer}[Reducciones de palabras]\label{ejer:C3-reducciones}
+Compruebe las reducciones de la página 12, incluida la segunda, que el fragmento propone al lector:
+\[
+\begin{aligned}
+R(a^{-1}a^{-1}aaaa^{-1}aa^{-1})&=(),\\
+R(xxx^{-1}yy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x)
+&=xxxy^{-1}y^{-1}x.
+\end{aligned}
+\]
+\end{ejer}
+\begin{sol}
+En la primera palabra, siguiendo siempre la primera cancelación disponible,
+\[
+\begin{aligned}
+a^{-1}a^{-1}aaaa^{-1}aa^{-1}
+&\longmapsto a^{-1}aaa^{-1}aa^{-1}\\
+&\longmapsto aa^{-1}aa^{-1}
+\longmapsto aa^{-1}\longmapsto().
+\end{aligned}
+\]
+En la segunda, cancelamos en este orden $xx^{-1}$, $yy^{-1}$, la siguiente pareja $yy^{-1}$ y la pareja $x^{-1}x$ que queda contigua:
+\[
+\begin{aligned}
+xxx^{-1}yy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x
+&\longmapsto xyy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x\\
+&\longmapsto xxxy^{-1}x^{-1}yy^{-1}xy^{-1}x\\
+&\longmapsto xxxy^{-1}x^{-1}xy^{-1}x\\
+&\longmapsto xxxy^{-1}y^{-1}x.
+\end{aligned}
+\]
+La última palabra no contiene parejas de letras inversas contiguas; las aplicaciones restantes de $r$ la dejan fija.
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{La operación de grupo y su asociatividad}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P12--P13; complemento explícito para justificar la operación.
+Sea $F(A)$ el conjunto de palabras reducidas. Definimos
+\[
+w\cdot w'=R(ww').
+\]
+La palabra vacía será la identidad. Si $w=a_1\cdots a_n$ está reducida, su inversa será
+\[
+w^{-1}=a_n^{-1}\cdots a_1^{-1},
+\]
+donde se invierte cada símbolo formal.
+
+\begin{nota}
+La página 13 da estas operaciones, pero no escribe una prueba de asociatividad. Para que la construcción quede justificada, añadimos el argumento de unicidad de la reducción que permite asociar el producto. Se conserva el método de concatenar y cancelar empleado en clase.
+\end{nota}
+
+\begin{lema}\label{lema:C3-unicidad-reduccion}
+Toda sucesión de cancelaciones de parejas contiguas que termina en una palabra reducida da el mismo resultado.
+\end{lema}
+\begin{proof}
+Procedemos por inducción sobre la longitud. Si no hay cancelaciones posibles, no hay nada que probar. Comparemos las primeras cancelaciones de dos sucesiones. Si eliminan la misma pareja, aplicamos la inducción a la palabra más corta obtenida. Si las parejas no comparten letras, podemos realizar las dos cancelaciones en cualquiera de los dos órdenes y obtenemos una misma palabra más corta; la inducción compara las formas reducidas de las palabras intermedias.
+
+Si las parejas se solapan, las tres letras involucradas tienen forma $aa^{-1}a$ o $a^{-1}aa^{-1}$. Cancelar la pareja izquierda o la derecha deja la misma letra. Las palabras resultantes coinciden, por lo que volvemos a aplicar inducción. Estos casos agotan las posibles primeras cancelaciones y prueban la unicidad.
+\end{proof}
+En particular, podemos reducir primero una parte de una concatenación. Para cualesquiera palabras $u,v$,
+\[
+R(R(u)v)=R(uv)=R(uR(v)).
+\]
+En efecto, cancelar dentro de $u$ o dentro de $v$ es una sucesión válida de cancelaciones de $uv$, y la forma final es única. Por ello,
+\[
+(u\cdot v)\cdot w=R(R(uv)w)=R(uvw)
+=R(uR(vw))=u\cdot(v\cdot w).
+\]
+La palabra vacía actúa como identidad porque $R(w)=w$ para $w\in F(A)$. La palabra $w^{-1}$ también es reducida; en $ww^{-1}$ y $w^{-1}w$ cancelamos desde el centro hasta obtener $()$. Hemos comprobado todos los axiomas de grupo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Extensión universal y casos básicos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+La función canónica $j:A\to F(A)$ envía $a$ a la palabra de una letra $a$, y es inyectiva. Dada una función $f:A\to G$, la extendemos primero a letras por
+\[
+\widetilde\varphi(a)=f(a),\qquad
+\widetilde\varphi(a^{-1})=f(a)^{-1},
+\]
+y a todas las palabras por multiplicación ordenada:
+\[
+\widetilde\varphi(a_1\cdots a_n)
+=\widetilde\varphi(a_1)\cdots\widetilde\varphi(a_n),
+\qquad\widetilde\varphi(())=e_G.
+\]
+Eliminar una pareja $aa^{-1}$ o $a^{-1}a$ no modifica este valor. Así,
+\[
+\widetilde\varphi(R(w))=\widetilde\varphi(w).
+\]
+La restricción $\varphi:F(A)\to G$ satisface
+\[
+\varphi(w\cdot w')=\widetilde\varphi(R(ww'))
+=\widetilde\varphi(ww')=\varphi(w)\varphi(w'),
+\]
+y es un homomorfismo con $\varphi j=f$. El diagrama de la construcción es
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+W(A)\arrow[r,destacado,"R"]\arrow[rr,bend left=24,destacado,"\widetilde\varphi"]
+&F(A)\arrow[r,destacado,"\varphi"]&G\\
+&A\arrow[u,estructura,"j"]\arrow[ur,estructura,"f"']&
+\end{tikzcd}
+\]
+Cualquier homomorfismo que extienda $f$ debe enviar $a^{-1}$ a $f(a)^{-1}$ y una palabra al producto de las imágenes de sus letras. Por tanto, coincide con $\varphi$. Esto prueba la propiedad universal.
+
+Si $A=\varnothing$, sólo existe la palabra vacía, de modo que $F(\varnothing)=\{e\}$. Si $A=\{x\}$, una palabra reducida no puede mezclar $x$ y $x^{-1}$: en el primer cambio de tipo aparecería una pareja cancelable. Sus elementos son, por tanto,
+\[
+\ldots,x^{-2},x^{-1},e,x,x^2,\ldots.
+\]
+Las potencias son palabras distintas y $x^mx^n=x^{m+n}$. Así, $\varepsilon_x:\mathbb Z\to F(\{x\})$ es un isomorfismo.
+
+% Mantener la introducción y la figura del árbol en una misma página.
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{El árbol de dos generadores}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P14.
+Para $A=\{x,y\}$, representamos las palabras reducidas como vértices de un grafo. Desde una palabra $w$ trazamos aristas hacia $R(wx)$, $R(wx^{-1})$, $R(wy)$ y $R(wy^{-1})$. Desde $e$, las direcciones derecha, izquierda, arriba y abajo corresponden a $x,x^{-1},y,y^{-1}$; al continuar, evitamos volver por la arista inversa. Los segmentos se acortan para que quepan las primeras generaciones.
+\begin{center}\input{Figuras/ArbolLibre}\end{center}
+La ruta destacada representa $e\to x\to xy\to xyx$, como en la página 14. No hay ciclos sin retroceso: sus etiquetas formarían una palabra reducida no vacía igual a la identidad, lo cual contradice la construcción de $F(\{x,y\})$. El dibujo es una porción finita del árbol infinito; los extremos de la figura admiten nuevas continuaciones.

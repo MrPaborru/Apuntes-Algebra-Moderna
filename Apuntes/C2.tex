@@ -1,0 +1,244 @@
+% Fuente única de clase: Recursos/2025-08-14.pdf, páginas 1--13.
+En la clase 2 interpretamos los grupos como grupoides con un objeto y recuperamos sus axiomas usuales. Estudiamos el orden de elementos, las permutaciones y las simetrías de polígonos; después caracterizamos los homomorfismos y los productos e introducimos los objetos iniciales y terminales.
+
+Los fragmentos de \citet{aluffi2009} visibles en las páginas 1--6 incluyen II.1.2, II.1.9, II.1.10 y II.1.12--14, con demostraciones del cálculo de órdenes. La nota sobre el producto de permutaciones de la página 5 debe leerse junto con el ejemplo de la página 6: allí se usa la convención de acción por la derecha del libro, mientras que aquí conservamos la composición de funciones de la clase.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Grupos y orden de elementos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{De un grupoide a una operación}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01--P02.
+Consideremos un grupoide $\mathcal C$ con un único objeto $*$. Todos sus morfismos pertenecen a $\Hom_{\mathcal C}(*,*)$ y son invertibles; por tanto,
+\[
+\Hom_{\mathcal C}(*,*)=\Aut_{\mathcal C}(*).
+\]
+La composición proporciona una operación asociativa, la identidad $1_*$ actúa como elemento neutro y cada morfismo tiene inversa. Estas propiedades conducen a la definición usual.
+
+\begin{defi}
+Un \emph{grupo} es un conjunto no vacío $G$ con una operación $G\times G\to G$, $(g,h)\mapsto gh$, tal que
+\begin{enumerate}[label=\roman*)]
+\item $(gh)k=g(hk)$ para cualesquiera $g,h,k\in G$;
+\item existe $e\in G$ con $ge=eg=g$ para todo $g\in G$;
+\item para cada $g\in G$ existe $g^{-1}\in G$ con $gg^{-1}=g^{-1}g=e$.
+\end{enumerate}
+Es \emph{abeliano} o \emph{conmutativo} si $gh=hg$ para todo par de elementos.
+\end{defi}
+La identidad y los inversos son únicos: si $e'$ también es neutro, $e=ee'=e'$; si $h$ y $k$ son inversos de $g$, entonces $h=h(gk)=(hg)k=k$. Recíprocamente, un grupo determina un grupoide con un objeto, usando el producto como composición.
+
+\begin{nota}
+La página 1 escribe $f\mathbin{\bullet}g=g\circ f$ y mezcla ambos órdenes en una cadena de asociatividad. Con esa operación, la comprobación correcta es
+\[
+(f\mathbin{\bullet}g)\mathbin{\bullet}h
+=h\circ(g\circ f)=(h\circ g)\circ f
+=f\mathbin{\bullet}(g\mathbin{\bullet}h).
+\]
+También se obtiene un grupo tomando directamente $fg=f\circ g$. Fijamos esta última convención para automorfismos y permutaciones, sin intercambiar ambas durante un cálculo.
+\end{nota}
+
+\begin{ejem}
+El conjunto $\{e\}$ es el grupo trivial. Los conjuntos $\mathbb Z$, $\mathbb Q$, $\mathbb R$ y $\mathbb C$ son grupos con la suma. El conjunto $\mathbb R^*=\mathbb R\setminus\{0\}$ es un grupo con la multiplicación. El grupo $\mathrm{GL}_n(\mathbb R)$ consta de las matrices reales invertibles de tamaño $n\times n$, con el producto de matrices.
+\end{ejem}
+En notación aditiva, la identidad se escribe $0$ y el inverso de $a$ se escribe $-a$. En notación multiplicativa se usan $e$ y $a^{-1}$. El tipo de notación no sustituye la comprobación de los axiomas.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Potencias y órdenes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P03--P04.
+Por asociatividad podemos omitir los paréntesis en un producto de varios elementos. Para $n>0$, $g^n$ denota el producto de $n$ copias de $g$; ponemos $g^0=e$ y $g^{-n}=(g^{-1})^n$. La asociatividad y las cancelaciones dan
+\[
+g^{m+n}=g^mg^n,\qquad (g^m)^n=g^{mn}\qquad(m,n\in\mathbb Z).
+\]
+\begin{defi}
+El \emph{orden} de $g\in G$, denotado $|g|$, es el menor entero positivo $d$ tal que $g^d=e$, si existe. En otro caso escribimos $|g|=\infty$. El orden $|G|$ del grupo es su número de elementos si es finito, y se escribe $\infty$ si es infinito.
+\end{defi}
+Son nociones distintas: $|g|$ se refiere a las potencias de un elemento; $|G|$, al conjunto completo.
+
+\begin{lema}\label{lema:C2-orden}
+Si $g^n=e$ para algún entero positivo $n$, entonces $|g|$ divide a $n$.
+\end{lema}
+\begin{proof}
+Sea $d=|g|$. El algoritmo de la división da $n=pd+q$, con $0\le q<d$. Entonces
+\[
+e=g^n=(g^d)^p g^q=g^q.
+\]
+Si $q>0$, contradice la minimalidad de $d$. Luego $q=0$, de donde $d\mid n$. Recíprocamente, si $n=kd$, entonces $g^n=(g^d)^k=e$. La equivalencia vale también para $n\le0$, por la misma igualdad.
+\end{proof}
+
+\begin{prop}\label{prop:C2-potencias}
+Si $|g|=d<\infty$ y $m>0$, entonces
+\[
+|g^m|=\frac{\mcm(m,d)}m=\frac d{\mcd(m,d)}.
+\]
+Para $m=0$ se tiene $|g^0|=1=d/\mcd(0,d)$.
+\end{prop}
+\begin{proof}
+Para $m>0$, el menor entero positivo $k$ con $(g^m)^k=e$ es el menor $k$ con $d\mid mk$. Así, $mk$ es el menor múltiplo positivo de $m$ que también es múltiplo de $d$: es $\mcm(m,d)$. La segunda igualdad se sigue de $\mcm(m,d)\mcd(m,d)=md$. El caso $m=0$ da $g^0=e$, de orden uno.
+\end{proof}
+\begin{nota}
+El enunciado impreso de la página 4 incluye $m\ge0$ en una fórmula que divide por $m$. Ese cociente sólo tiene sentido para $m>0$; el caso $m=0$ se trata por separado como arriba. La expresión con el máximo común divisor sí cubre ese caso.
+\end{nota}
+
+\begin{prop}\label{prop:C2-producto-orden}
+Si $g,h\in G$ conmutan y tienen orden finito, entonces
+\[
+|gh|\mid\mcm(|g|,|h|).
+\]
+\end{prop}
+\begin{proof}
+Sea $N=\mcm(|g|,|h|)$. Como $g$ y $h$ conmutan, podemos reagrupar los $N$ factores de cada tipo en $(gh)^N$, y obtenemos $(gh)^N=g^Nh^N=e$. El lema~\ref{lema:C2-orden} da la divisibilidad afirmada.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Permutaciones y simetrías}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Grupos de automorfismos y composición}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P05--P06.
+Para cualquier objeto $A$ de una categoría $\mathcal C$, los automorfismos de $A$ forman un grupo $\Aut_{\mathcal C}(A)$ con la composición. El compuesto de dos isomorfismos vuelve a ser invertible, con $(fg)^{-1}=g^{-1}f^{-1}$; las demás propiedades vienen de la categoría.
+
+En $\Set$, este grupo es el \emph{grupo simétrico} o de permutaciones de $A$, denotado $\Sym(A)$. Si $A=\{1,\ldots,n\}$, escribimos $S_n$. La permutación $\sigma$ se representa por
+\[
+\sigma=\begin{pmatrix}1&2&\cdots&n\\\sigma(1)&\sigma(2)&\cdots&\sigma(n)\end{pmatrix}.
+\]
+Nuestro producto satisface $(\tau\sigma)(i)=\tau(\sigma(i))$: primero actúa el factor de la derecha.
+
+\begin{nota}
+La página 5 advierte que Aluffi escribe $xf$ en lugar de $f(x)$ y hace actuar primero el factor de la izquierda. El ejemplo impreso de la página 6 utiliza esa convención. Al trasladarlo a la convención de clase invertimos el orden escrito de los factores para conservar la misma composición.
+\end{nota}
+
+\begin{ejer}[Cálculo de permutaciones]\label{ejer:C2-permutaciones}
+Para
+\[
+x=\begin{pmatrix}1&2&3\\2&1&3\end{pmatrix},\qquad
+y=\begin{pmatrix}1&2&3\\3&1&2\end{pmatrix},
+\]
+compruebe los dos productos y que no conmutan. Esta comprobación aparece propuesta en el fragmento de la página 6.
+\end{ejer}
+\begin{sol}
+Con nuestra convención, $yx=y\circ x$ envía $1\mapsto2\mapsto1$, $2\mapsto1\mapsto3$ y $3\mapsto3\mapsto2$. Por tanto,
+\[
+yx=\begin{pmatrix}1&2&3\\1&3&2\end{pmatrix}.
+\]
+En cambio, $xy=x\circ y$ envía $1\mapsto3\mapsto3$, $2\mapsto1\mapsto2$ y $3\mapsto2\mapsto1$, de modo que
+\[
+xy=\begin{pmatrix}1&2&3\\3&2&1\end{pmatrix}\ne yx.
+\]
+En la convención de Aluffi los nombres de estos dos productos se intercambian; la desigualdad entre ambos permanece.
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Grupos cíclicos y diédricos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P07--P08.
+Las simetrías de un polígono regular de $n\ge3$ lados forman el \emph{grupo diédrico} $D_{2n}$, de orden $2n$: hay $n$ rotaciones y $n$ reflexiones. Conservamos el subíndice de la clase, que indica el número de simetrías. Para el hexágono obtenemos $D_{12}$; si $r$ gira $60^\circ$ y $s$ es una reflexión fija, sus elementos son
+\[
+e,r,r^2,r^3,r^4,r^5,\quad s,rs,r^2s,r^3s,r^4s,r^5s.
+\]
+La figura conserva la distinción de las doce imágenes mediante sectores y una marca asimétrica. Los ejes de reflexión son las tres rectas que unen vértices opuestos y las tres que unen puntos medios de lados opuestos. El ciclo reúne las rotaciones sucesivas; el abanico agrupa las seis reflexiones a partir de la identidad.
+\begin{center}\input{Figuras/Hexagono}\end{center}
+Una simetría queda determinada por la imagen de un vértice y la elección de cuál de los dos vecinos será la imagen del siguiente. Existen, por ello, a lo sumo $2n$ posibilidades; las rotaciones y reflexiones descritas realizan todas ellas.
+
+Para $n>0$, la congruencia en $\mathbb Z$ se define por $a\equiv b\pmod n$ si $n\mid(a-b)$. El cociente $\mathbb Z/n\mathbb Z$ es un grupo con
+\[
+[a]_n+[b]_n=[a+b]_n.
+\]
+La operación no depende de los representantes porque una suma de múltiplos de $n$ vuelve a ser múltiplo de $n$. Denotamos por $C_n$ un grupo cíclico de orden $n$, escrito multiplicativamente como $\{e,x,\ldots,x^{n-1}\}$, donde $x$ tiene orden $n$. En notación aditiva, el modelo es $\mathbb Z/n\mathbb Z$, generado por $[1]_n$. Por ejemplo, en $\mathbb Z/3\mathbb Z$,
+\[
+[0]_3+[1]_3=[1]_3,\qquad [1]_3+[2]_3=[3]_3=[0]_3.
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Homomorfismos y propiedades universales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{La categoría de grupos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P08--P09.
+\begin{defi}
+Un \emph{homomorfismo de grupos} $\varphi:G\to H$ es una función tal que $\varphi(ab)=\varphi(a)\varphi(b)$ para todo $a,b\in G$.
+\end{defi}
+Si $m_G$ y $m_H$ denotan las multiplicaciones, esta igualdad equivale a la conmutatividad del cuadrado
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G\times G\arrow[r,estructura,"\varphi\times\varphi"]\arrow[d,estructura,"m_G"']
+&H\times H\arrow[d,estructura,"m_H"]\\
+G\arrow[r,estructura,"\varphi"']&H.
+\end{tikzcd}
+\]
+Además, $\varphi(e_G)=e_H$: de $\varphi(e_G)=\varphi(e_G)^2$ cancelamos $\varphi(e_G)$. También $\varphi(g^{-1})=\varphi(g)^{-1}$, al aplicar $\varphi$ a $gg^{-1}=g^{-1}g=e_G$.
+
+Los grupos y sus homomorfismos forman la categoría $\Grp$. Las identidades son homomorfismos; si $\varphi:G\to H$ y $\psi:H\to K$ son homomorfismos, el diagrama
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G\times G\arrow[r,estructura,"\varphi\times\varphi"]
+\arrow[rr,bend left=22,destacado,"(\psi\circ\varphi)\times(\psi\circ\varphi)"]
+\arrow[d,estructura,"m_G"']
+&H\times H\arrow[r,estructura,"\psi\times\psi"]\arrow[d,estructura,"m_H"]
+&K\times K\arrow[d,estructura,"m_K"]\\
+G\arrow[r,estructura,"\varphi"']\arrow[rr,bend right=22,destacado,"\psi\circ\varphi"']
+&H\arrow[r,estructura,"\psi"']&K
+\end{tikzcd}
+\]
+muestra que el compuesto conserva el producto. En términos de elementos,
+\[
+(\psi\circ\varphi)(ab)=\psi(\varphi(a)\varphi(b))
+=(\psi\circ\varphi)(a)(\psi\circ\varphi)(b).
+\]
+La asociatividad es la de la composición de funciones.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Objetos iniciales y terminales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{defi}
+Un objeto $I$ es \emph{inicial} si para todo objeto $A$ hay un único morfismo $I\to A$. Un objeto $T$ es \emph{terminal} o final si para todo $A$ hay un único morfismo $A\to T$.
+\end{defi}
+Dos objetos iniciales son isomorfos por un único isomorfismo: si $u:I\to I'$ y $v:I'\to I$ son los morfismos que da la propiedad universal, entonces $vu=1_I$ y $uv=1_{I'}$ porque en cada caso sólo existe un endomorfismo. El argumento dual vale para objetos terminales.
+
+En $\Set$, el conjunto vacío es inicial y cualquier conjunto con un elemento es terminal. En $\Grp$, el grupo trivial es inicial y terminal: la única función desde él que conserva la identidad envía $e$ a $e_G$, y sólo existe una función hacia él. Ambas funciones son homomorfismos.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Productos como objetos terminales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P10--P13.
+Fijemos $A,B\in\Ob(\mathcal C)$. La categoría $\mathcal C_{A,B}$ tiene como objetos los diagramas $A\xleftarrow{f}Z\xrightarrow{g}B$. Un morfismo de $(Z_1,f_1,g_1)$ a $(Z_2,f_2,g_2)$ es un morfismo $\sigma:Z_1\to Z_2$ con $f_2\sigma=f_1$ y $g_2\sigma=g_1$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+&&A\\
+Z_1\arrow[r,estructura,"\sigma"]\arrow[urr,bend left=12,estructura,"f_1"]
+\arrow[drr,bend right=12,estructura,"g_1"']
+&Z_2\arrow[ur,estructura,"f_2"']\arrow[dr,estructura,"g_2"]&\\
+&&B.
+\end{tikzcd}
+\]
+Estas igualdades se conservan al componer y al tomar identidades, lo que define la categoría.
+
+\begin{defi}
+Un \emph{producto} de $A$ y $B$ es un objeto terminal de $\mathcal C_{A,B}$. Se escribe $(A\times B,\pi_A,\pi_B)$. Para todo par $f:Z\to A$, $g:Z\to B$ existe un único $\sigma:Z\to A\times B$ tal que
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+&&A\\
+Z\arrow[r,dashed,destacado,"\exists!\,\sigma"]
+\arrow[urr,bend left=12,estructura,"f"]\arrow[drr,bend right=12,estructura,"g"']
+&A\times B\arrow[ur,estructura,"\pi_A"']\arrow[dr,estructura,"\pi_B"]&\\
+&&B.
+\end{tikzcd}
+\]
+\end{defi}
+En $\Set$, éste es el producto cartesiano, con proyecciones a las coordenadas. El morfismo requerido es $\sigma(z)=(f(z),g(z))$ y es único porque ambas coordenadas están determinadas.
+
+En $\Grp$ damos al conjunto $G\times H$ la operación
+\[
+(g_1,h_1)(g_2,h_2)=(g_1g_2,h_1h_2).
+\]
+Es asociativa, tiene identidad $(e_G,e_H)$ e inversa $(g,h)^{-1}=(g^{-1},h^{-1})$. Las proyecciones son homomorfismos. Para homomorfismos $f:Z\to G$ y $g:Z\to H$, la misma regla $\sigma(z)=(f(z),g(z))$ satisface
+\[
+\sigma(zz')=(f(z)f(z'),g(z)g(z'))=\sigma(z)\sigma(z').
+\]
+Así, también es un homomorfismo y cumple la misma unicidad. Esto prueba la propiedad de producto en $\Grp$.
+
+\begin{nota}
+La página 11 llama «productos finitos» a la existencia de productos binarios. En la terminología completa se requiere además el producto vacío, es decir, un objeto terminal. Ambas categorías estudiadas cumplen esta condición: en $\Set$ es un singleton y en $\Grp$ es el grupo trivial. Por iteración se obtienen todos los productos finitos.
+\end{nota}
