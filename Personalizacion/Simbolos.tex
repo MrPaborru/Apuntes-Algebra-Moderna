@@ -23,6 +23,7 @@
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\ev}{ev}
 \DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Spec}{Spec}
 % Compatibilidad con los nombres de la plantilla; misma notación que arriba.
 \newcommand{\aut}{\Aut}
 \newcommand{\ob}{\Ob}
@@ -30,6 +31,7 @@
 \newcommand{\Grp}{\mathbf{Grp}}
 \newcommand{\Ab}{\mathbf{Ab}}
 \newcommand{\Vect}{\mathbf{Vect}}
+\newcommand{\Ring}{\mathbf{Ring}}
 \newcommand{\cat}[1]{\mathit{#1}}
 \newcommand{\Col}[1]{\operatorname{#1}}
 
@@ -75,5 +77,7 @@
 % Para una fracción sin barra con corchetes, usar \genfrac{[}{]}{0pt}{}{n}{k}.
 \let\brack\relax
 \DeclarePairedDelimiter{\brack}{[}{]}
-% Anillos, campos, ideales y módulos usarán R, K, \mathfrak a, R/\mathfrak a,
-% \Hom_R(M,N), etc., cuando aparezcan en las pizarras. No anticipar convenciones.
+% Desde C11: anillos unitarios, morfismos unitarios, cero permitido.
+% Conmutatividad sólo cuando se indique; campos y dominios no nulos.
+% Ideales bilaterales salvo precisión; módulos izquierdos unitarios desde C13.
+% Notación explícita: R, K, I, R/I, R^\times y \Hom_R(M,N).
