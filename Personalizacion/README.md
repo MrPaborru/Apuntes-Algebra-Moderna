@@ -1,8 +1,10 @@
 # Personalización
 
-La base editorial es el proyecto local de Homotopía Estable: se reutilizan sus títulos, índice, encabezados, banner y los dos gráficos institucionales necesarios. Se mantienen 12 puntos, márgenes de una pulgada, texto NewTX y matemática NewTX con opción `libertine`. La portada conserva «Apuntes de clase», otoño de 2025 y la clave de la materia, con el recuadro del rango casi idéntico al original: ancho de 4 cm, borde de 1.5 pt, relleno de 3 pt, numerales a 49 pt, guion corto y texto espaciado CLASES. El pie recupera «Guanajuato, Gto., `\today`. E-mail:», con el correo azul enlazado. La fecha de compilación se distingue del periodo del curso; no se añade un aviso sobre publicación oficial.
+La base editorial es el proyecto local de Homotopía Estable: se reutilizan sus títulos, índice, encabezados, banner y los dos gráficos institucionales necesarios. Se mantienen 12 puntos, márgenes de una pulgada, texto NewTX y matemática NewTX con opción `libertine`. La portada conserva «Apuntes de clase», otoño de 2025 y la clave de la materia, con el recuadro del rango casi idéntico al original: ancho mínimo de 4 cm, borde de 1.5 pt, relleno de 3 pt, numerales a 49 pt, guion corto y texto espaciado CLASES. El pie recupera «Guanajuato, Gto., `\today`. E-mail:», con el correo azul enlazado. La fecha de compilación se distingue del periodo del curso; no se añade un aviso sobre publicación oficial.
 
 Los entornos conservan la jerarquía de resultados, definiciones, ejemplos, notas y soluciones. Los ejercicios se destacan en un recuadro burdeos. Se usa `amsthm` directamente, con menos dependencias que el preámbulo de referencia. La bibliografía usa natbib y BibTeX porque Biber no pudo ejecutarse en este equipo.
+
+Se conservan también las elecciones de alfabetos matemáticos del referente: `\mathbb` con la familia `lmsb` de LXfonts y `\mathcal` con la caligráfica Euler de `eucal`. La fuente principal sigue siendo NewTX; estas personalizaciones se declaran después de cargarla.
 
 ## Paleta
 
@@ -24,7 +26,7 @@ Se consultó el [Manual Básico de Imagen del CIMAT](https://www.cimat.mx/wp-con
 
 ## Símbolos
 
-`Simbolos.tex` conserva los operadores y categorías del curso y recupera las utilidades generales de la plantilla del usuario. No se importan macros específicas de homotopía ni se modifican `\hom`, `\Re`, `\Im`, `\ker` o `\mathbb`.
+`Simbolos.tex` conserva los operadores y categorías del curso y recupera las utilidades generales de la plantilla del usuario. No se importan macros específicas de homotopía ni se modifican `\hom`, `\Re`, `\Im` o `\ker`. La fuente personalizada de `\mathbb` sí se conserva exactamente mediante `\DeclareMathAlphabet{\mathbb}{U}{lmsb}{m}{n}`: la familia `lmsb` y la fuente `lmsbm8` pertenecen a **LXfonts**. El comentario antiguo del referente la llamaba Latin Modern, pero el archivo `ulmsb.fd` identifica su procedencia. Esta elección tipográfica se aplica a todo el documento y requiere que LXfonts esté instalado.
 
 | Comandos | Uso |
 | --- | --- |
@@ -50,13 +52,17 @@ Los delimitadores admiten tamaño normal, automático con `*` y explícito con `
 \restr{f}{H}
 ```
 
-La redefinición de `\given` queda localizada dentro de `\set` y `\ang`, incluso al anidarlos. `\en`, `\noten` y `\cont` usan los glifos y el espaciado estándar de esta tipografía, en vez de los ajustes particulares de la plantilla anterior. `\restr` adapta automáticamente la altura de la barra. Se conserva el significado de `\ubar` en la plantilla: **barra superior**. `\aut` y `\ob` son alias de `\Aut` y `\Ob` para evitar notaciones duplicadas.
+La redefinición de `\given` queda localizada dentro de `\set` y `\ang`, incluso al anidarlos. Los conjuntos por comprensión se escriben con `\set{...\given...}` desde la clase 1, usando `*` o un tamaño explícito cuando el contenido lo necesita; las clases iniciales también se revisan al recuperar una utilidad de la plantilla. `\en`, `\noten` y `\cont` usan los glifos y el espaciado estándar de esta tipografía, en vez de los ajustes particulares de la plantilla anterior. `\restr` adapta automáticamente la altura de la barra. Se conserva el significado de `\ubar` en la plantilla: **barra superior**. `\aut` y `\ob` son alias de `\Aut` y `\Ob` para evitar notaciones duplicadas.
 
 Como en la plantilla del usuario, `\brack{...}` representa corchetes simples: es una sustitución intencional del comando antiguo de TeX para fracciones sin barra. Si se necesita ese otro uso, escribir `\genfrac{[}{]}{0pt}{}{n}{k}`. No se añaden redefiniciones globales de los operadores estándar.
 
 `Referencias.tex` recupera `\myref{etiqueta}` (tipo y número, más nombre si existe) y `\abvref{etiqueta}` (tipo abreviado y número), mediante `cleveref` y `refcount`. `aliascnt` permite distinguir teoremas, proposiciones, lemas y corolarios aunque compartan numeración. Reconocen los entornos de este curso y llaman «clase» al capítulo. `sol` admite un título opcional, como `\begin{sol}[Otra solución]`. Las notas y observaciones sin número no deben citarse como resultados numerados.
 
 En la portada, el guion corto se compone en una caja propia, fuera de las abreviaturas ordinales y con un pequeño espacio a cada lado, para que permanezca visible.
+
+El recuadro del rango conserva 4 cm como ancho mínimo. Cuando el rango necesita más espacio, se mide con sus numerales de 49 pt y se amplían conjuntamente la caja burdeos y la caja «CLASES», dejando holgura interior. Así caben las cifras y los ordinales de `1ª-10ª` y de rangos posteriores sin desbordamiento ni reducción de la tipografía.
+
+La separación de ese bloque respecto de la temporada/clave y de «Docente» usa una misma longitud, `\SeparacionRangoPortada`, fijada en 2 cm. La separación superior se aumentó para equilibrarla con la inferior.
 
 Las clases iniciales no fijan aún convenciones sobre anillos unitarios, cuerpos, ideales o módulos. En su momento se usarán expresiones explícitas como `R`, `K`, `\mathfrak a`, `R/\mathfrak a` y `\Hom_R(M,N)`, contrastando siempre los materiales. No anticipar hipótesis de conmutatividad, unidad o lateralidad.
 

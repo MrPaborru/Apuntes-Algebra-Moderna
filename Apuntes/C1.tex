@@ -12,10 +12,10 @@ Los fragmentos originales de \citet{aluffi2009} incorporados a las pizarras cont
 % P01--P02.
 Un conjunto puede describirse por \emph{extensión}, enumerando sus elementos, o por \emph{comprensión}, mediante una condición que los caracteriza. Por ejemplo,
 \[
-\{1,2,3,4\}=\{x\in\mathbb Z:1\le x\le4\},
+\set{1,2,3,4}=\set{x\in\mathbb Z\given1\le x\le4},
 \qquad \mathbb Z=\{\ldots,-2,-1,0,1,2,\ldots\}.
 \]
-En una expresión $\{x\in U:P(x)\}$ fijamos un conjunto ambiente $U$ y seleccionamos los elementos que satisfacen el predicado $P$.
+En una expresión $\set{x\in U\given P(x)}$ fijamos un conjunto ambiente $U$ y seleccionamos los elementos que satisfacen el predicado $P$.
 
 Los conectivos lógicos $\land$, $\lor$, $\Rightarrow$, $\neg$ y $\Leftrightarrow$ expresan, respectivamente, conjunción, disyunción, implicación, negación y equivalencia. La disyunción es inclusiva. Los cuantificadores $\forall$ y $\exists$ significan «para todo» y «existe». Las abreviaturas con dominio se interpretan como
 \[
@@ -47,25 +47,25 @@ La segunda demostración ilustra la prueba de una implicación universal: fijamo
 % P03.
 Si $A,B\subseteq U$, definimos
 \[
-A\cup B=\{x\in U:x\in A\lor x\in B\},\qquad
-A\cap B=\{x\in U:x\in A\land x\in B\}.
+A\cup B=\set{x\in U\given x\in A\lor x\in B},\qquad
+A\cap B=\set{x\in U\given x\in A\land x\in B}.
 \]
 Para una familia $(A_i)_{i\in I}$ de subconjuntos de $U$,
 \[
 \begin{aligned}
-\bigcup_{i\in I}A_i&=\{x\in U:(\exists i\in I)\ x\in A_i\},\\
-\bigcap_{i\in I}A_i&=\{x\in U:(\forall i\in I)\ x\in A_i\}.
+\bigcup_{i\in I}A_i&=\set{x\in U\given(\exists i\in I)\ x\in A_i},\\
+\bigcap_{i\in I}A_i&=\set{x\in U\given(\forall i\in I)\ x\in A_i}.
 \end{aligned}
 \]
 El producto cartesiano registra elecciones ordenadas:
 \[
-A\times B=\{(a,b):a\in A,\ b\in B\}.
+A\times B=\set{(a,b)\given a\in A,\ b\in B}.
 \]
 Un par $(a,b)$ también puede verse como la función $f:\{1,2\}\to A\cup B$ con $f(1)=a$ y $f(2)=b$. Generalizando esta interpretación,
 \[
 \prod_{i\in I}A_i=
-\left\{f:I\longrightarrow\bigcup_{i\in I}A_i:
-                 (\forall i\in I)\ f(i)\in A_i\right\}.
+\set*{f:I\longrightarrow\bigcup_{i\in I}A_i\given
+                 (\forall i\in I)\ f(i)\in A_i}.
 \]
 Un elemento del producto elige un elemento de cada factor y conserva su índice.
 
@@ -86,8 +86,8 @@ a\sim a,\qquad a\sim b\Rightarrow b\sim a,
 \]
 La \emph{clase de equivalencia} de $a$ y el \emph{conjunto cociente} son
 \[
-[a]_R=\{b\in S:b\sim_R a\},\qquad
-S/{\sim_R}=\{[a]_R:a\in S\}.
+[a]_R=\set{b\in S\given b\sim_R a},\qquad
+S/{\sim_R}=\set{[a]_R\given a\in S}.
 \]
 \end{defi}
 La simetría permite escribir indistintamente $b\sim a$ o $a\sim b$ en la definición de $[a]$. Dos clases son iguales o disjuntas: si $c\in[a]\cap[b]$, entonces $a\sim c\sim b$, y la transitividad muestra que todo elemento relacionado con $a$ también está relacionado con $b$, y recíprocamente.
