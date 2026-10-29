@@ -1,0 +1,344 @@
+% Fuente única de clase: Recursos/2025-09-23.pdf, páginas 1--14.
+En la clase 10 distinguimos productos directos, extensiones y productos semidirectos. Después comenzamos la clasificación de los grupos abelianos finitos, primero separando sus subgrupos de Sylow y luego sus factores cíclicos.
+
+Los localizadores de los fragmentos originales de \citet{aluffi2009} se verificaron en las pizarras: III.5.1--3, III.5.5--13, III.6.1--6 y el ejemplo III.6.8. La comprobación manual sugerida en III.5.13 se resuelve como ejercicio. Las pruebas de existencia de la descomposición están desarrolladas en las pizarras; la unicidad se enuncia en III.6.6 y su demostración se añade explícitamente al final.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Productos directos y extensiones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Normales con intersección trivial}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01--P03.
+Para subconjuntos $A,B\subseteq G$, escribimos
+\[
+[A,B]=\generado{[a,b]\given a\in A,\ b\in B}.
+\]
+\begin{lema}\label{lema:C10-conmutan}
+Si $N,H\trianglelefteq G$, entonces $[N,H]\subseteq N\cap H$. En particular, si $N\cap H=\{e\}$, cada elemento de $N$ conmuta con cada elemento de $H$.
+\end{lema}
+\begin{proof}
+Para $n\in N$ y $h\in H$, el elemento $[n,h]=n(hn^{-1}h^{-1})$ pertenece a $N$ por su normalidad. También $[n,h]=(nhn^{-1})h^{-1}\in H$. La intersección es subgrupo y contiene los generadores de $[N,H]$, luego contiene todo ese subgrupo. Si es trivial, cada conmutador es neutro y los elementos conmutan.
+\end{proof}
+
+\begin{prop}\label{prop:C10-directo}
+Si $N,H\trianglelefteq G$ y $N\cap H=\{e\}$, la aplicación
+\[
+\mu:N\times H\longrightarrow NH,\qquad (n,h)\longmapsto nh
+\]
+es un isomorfismo. Si además $NH=G$, realiza $G$ como producto directo de esos subgrupos.
+\end{prop}
+\begin{proof}
+El conjunto $NH$ es subgrupo por el \cref{lema:C8-cocientes}. El lema anterior da
+\[
+\mu(n_1,h_1)\mu(n_2,h_2)=n_1h_1n_2h_2
+=n_1n_2h_1h_2=\mu(n_1n_2,h_1h_2).
+\]
+La aplicación es sobreyectiva por definición de $NH$. Si $nh=e$, entonces $n=h^{-1}\in N\cap H$, luego $n=h=e$. Su núcleo es trivial y es un isomorfismo.
+\end{proof}
+
+\begin{ejem}[Otro argumento para el orden $pq$]
+Sean $q<p$ primos y $|G|=pq$. Si \mbox{$p\not\equiv1\pmod q$}, ambos subgrupos de Sylow son únicos: $n_p\mid q$ y $n_p\equiv1\pmod p$ fuerzan $n_p=1$, porque $q<p$; por otra parte, $n_q\mid p$ deja los candidatos $1,p$, y la hipótesis excluye $p$.
+
+Sean $P,Q$ esos subgrupos normales. Por Lagrange, $P\cap Q=\{e\}$, pues su orden divide a $p$ y a $q$. La proposición da $PQ\cong P\times Q$, de orden $pq$, así que $PQ=G$. Como $P\cong C_p$ y $Q\cong C_q$, obtenemos $G\cong C_p\times C_q\cong C_{pq}$. La última identificación se justifica porque un par de generadores tiene orden $\mcm(p,q)=pq$.
+\end{ejem}
+\begin{nota}[Corrección de la hipótesis del ejemplo]
+La página 2 supone $q<p$ y $q\not\equiv1\pmod p$, y de ahí afirma también la unicidad del $q$-subgrupo de Sylow. La congruencia que necesita excluirse es $p\equiv1\pmod q$, pues $n_q$ puede ser $p$. Por ejemplo, $S_3$ con $q=2$, $p=3$ satisface la condición escrita $2\not\equiv1\pmod3$ y no es cíclico. El ejemplo corregido coincide con el criterio de la clase 7, tras intercambiar los nombres de los primos. Además, $PQ$ se identifica con $P\times Q$ mediante $\mu$; no son literalmente el mismo conjunto.
+\end{nota}
+
+\begin{ejem}
+En $S_3$, tomemos $N=\generado{(1\,2\,3)}$ y $H=\generado{(1\,2)}$. El primero es normal, por ser $A_3$; el segundo no lo es, ya que
+\[
+(1\,2\,3)(1\,2)(1\,2\,3)^{-1}=(2\,3)\notin H.
+\]
+Tenemos $N\cap H=\{e\}$ y $NH=S_3$: los seis productos $nh$ son distintos, pues $nh=n'h'$ implica $n'^{-1}n=h'h^{-1}\in N\cap H$. Sin embargo, $S_3\not\cong N\times H$. El producto directo tiene el elemento $((1\,2\,3),(1\,2))$ de orden seis, mientras que en $S_3$ los tipos posibles sólo dan órdenes uno, dos o tres. La normalidad de ambos factores es esencial para la proposición.
+\end{ejem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sucesiones exactas y escisiones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P03--P05.
+\begin{defi}
+Una sucesión de homomorfismos es \emph{exacta} en un término si la imagen de la flecha que llega es el núcleo de la que sale. Una \emph{extensión de $H$ por $N$} es una sucesión exacta
+\[
+\begin{tikzcd}[column sep=large]
+1\arrow[r]&N\arrow[r,"i"]&G\arrow[r,"p"]&H\arrow[r]&1.
+\end{tikzcd}
+\]
+Esto equivale a que $i$ sea inyectiva, $p$ sobreyectiva e $i(N)=\ker p$. Identificamos entonces $N$ con su imagen normal en $G$. La extensión \emph{se escinde} si existe un homomorfismo $s:H\to G$ tal que $p\circ s=\id_H$, llamado \emph{sección}.
+\end{defi}
+Toda sección es inyectiva: $s(h)=e$ implica $h=p(s(h))=e$. Su imagen es un subgrupo $H_0\le G$ y satisface
+\[
+N\cap H_0=\{e\},\qquad NH_0=G.
+\]
+En efecto, si $s(h)\in N$, entonces $h=p(s(h))=e$. Para cada $g\in G$, tomando $h=p(g)$, el elemento $gs(h)^{-1}$ está en $N$, así que $g\in NH_0$.
+
+El producto directo siempre produce la sucesión exacta
+\[
+\begin{tikzcd}[column sep=large]
+1\arrow[r]&N\arrow[r,"{n\mapsto(n,e)}"]&N\times H\arrow[r,"{(n,h)\mapsto h}"]&H\arrow[r]&1.
+\end{tikzcd}
+\]
+La inclusión es inyectiva, la proyección es sobreyectiva y su núcleo es $N\times\{e\}$. La sección es $h\mapsto(e,h)$. Una sucesión exacta cualquiera no implica un producto directo: por ejemplo,
+\[
+1\longrightarrow A_3\longrightarrow S_3
+\overset{\varepsilon}{\longrightarrow}\{1,-1\}\longrightarrow1
+\]
+es exacta y $S_3\not\cong C_3\times C_2$. Incluso se escinde, enviando $-1$ a $(1\,2)$; escindirse tampoco basta para ser producto directo.
+
+\begin{lema}\label{lema:C10-escision}
+Si $N\trianglelefteq G$, $H\le G$, $G=NH$ y $N\cap H=\{e\}$, entonces $G$ es una extensión escindida de $H$ por $N$.
+\end{lema}
+\begin{proof}
+La restricción $\alpha:H\to G/N$, $h\mapsto hN$, es sobreyectiva: si $g=nh$, entonces $gN=h(h^{-1}nh)N=hN$, por normalidad de $N$. Su núcleo es $H\cap N=\{e\}$, por lo que es un isomorfismo. La aplicación $p=\alpha^{-1}\circ\pi:G\to H$ es sobreyectiva y tiene núcleo $N$. La inclusión $H\hookrightarrow G$ es una sección de $p$, de modo que la sucesión resultante es exacta y se escinde.
+\end{proof}
+\begin{nota}[Identificación del complemento]
+En la definición del fragmento de la página 4, identificar $H$ con un subgrupo de $G$ debe hacerse de forma compatible con la proyección de la extensión. La formulación mediante una sección lo precisa; equivale a tener un complemento $H_0$ con intersección trivial y $NH_0=G$, como acabamos de comprobar. La intersección trivial por sí sola no impone esa última igualdad.
+\end{nota}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Construcción y reconocimiento del producto semidirecto}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{La operación determinada por una acción}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P05--P08.
+En la situación del lema anterior, la conjugación da un homomorfismo
+\[
+\gamma:H\longrightarrow\Aut(N),\qquad \gamma_h(n)=hnh^{-1}.
+\]
+La normalidad asegura que cada conjugación preserva $N$, su inversa es conjugar por $h^{-1}$, y $\gamma_{h_1h_2}=\gamma_{h_1}\circ\gamma_{h_2}$. Además,
+\[
+(n_1h_1)(n_2h_2)=\bigl(n_1\gamma_{h_1}(n_2)\bigr)(h_1h_2).
+\]
+Esto motiva la construcción abstracta siguiente.
+
+\begin{prop}\label{prop:C10-construccion}
+Sean $N,H$ grupos y $\theta:H\to\Aut(N)$ un homomorfismo. La operación en $N\times H$ dada por
+\[
+(n_1,h_1)\cdot_\theta(n_2,h_2)
+=\bigl(n_1\theta_{h_1}(n_2),h_1h_2\bigr)
+\]
+define un grupo con neutro $(e_N,e_H)$ e inverso
+\[
+(n,h)^{-1}=\bigl(\theta_{h^{-1}}(n^{-1}),h^{-1}\bigr).
+\]
+\end{prop}
+\begin{proof}
+La operación está bien definida porque $\theta_h$ es un automorfismo de $N$. Para la asociatividad, el producto asociado a la izquierda es
+\[
+\bigl(n_1\theta_{h_1}(n_2)\theta_{h_1h_2}(n_3),h_1h_2h_3\bigr).
+\]
+El asociado a la derecha es
+\[
+\bigl(n_1\theta_{h_1}(n_2\theta_{h_2}(n_3)),h_1h_2h_3\bigr).
+\]
+Coinciden porque $\theta_{h_1}$ preserva productos y $\theta_{h_1h_2}=\theta_{h_1}\theta_{h_2}$. Como $\theta_{e_H}=\id_N$ y $\theta_h(e_N)=e_N$, multiplicar por $(e_N,e_H)$ a cualquiera de los dos lados deja el elemento intacto.
+
+Para el inverso indicado, las primeras coordenadas de los productos en los dos órdenes son, respectivamente,
+\[
+n\theta_h(\theta_{h^{-1}}(n^{-1}))=nn^{-1}=e_N,
+\qquad
+\theta_{h^{-1}}(n^{-1})\theta_{h^{-1}}(n)=e_N.
+\]
+En ambos casos la segunda coordenada es $e_H$.
+\end{proof}
+\begin{defi}
+El grupo de la proposición se llama \emph{producto semidirecto} y se denota $N\rtimes_\theta H$. Si $\theta$ es trivial, la operación es la del producto directo $N\times H$.
+\end{defi}
+
+\begin{prop}\label{prop:C10-propiedades}
+En $G=N\rtimes_\theta H$, las aplicaciones $i(n)=(n,e_H)$ y $s(h)=(e_N,h)$ identifican copias de $N$ y $H$. La proyección $p(n,h)=h$ produce una extensión escindida, y esas copias cumplen $N\cap H=\{e_G\}$ y $NH=G$. La acción $\theta$ se realiza por conjugación en $G$.
+\end{prop}
+\begin{proof}
+La fórmula de multiplicación muestra que $i$ y $s$ son homomorfismos inyectivos. También muestra que $p$ es un homomorfismo sobreyectivo con núcleo $i(N)$ y que $p\circ s=\id_H$. Así,
+\[
+\begin{tikzcd}[column sep=large]
+1\arrow[r]&N\arrow[r,"i"]&N\rtimes_\theta H\arrow[r,"p"]&H\arrow[l,bend left=35,destacado,"s"]\arrow[r]&1
+\end{tikzcd}
+\]
+expresa la sucesión exacta y su sección. Las dos copias se intersectan sólo en $(e_N,e_H)$ y todo $(n,h)$ es $(n,e_H)(e_N,h)$. Finalmente,
+\begin{align*}
+(e_N,h)(n,e_H)(e_N,h)^{-1}
+&=(\theta_h(n),h)(e_N,h^{-1})\\
+&=(\theta_h(n),e_H),
+\end{align*}
+que es la copia de $\theta_h(n)$ en $N$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Producto interno y ejemplo de orden seis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P09.
+\begin{prop}\label{prop:C10-interno}
+Si $N\trianglelefteq G$, $H\le G$, $G=NH$ y $N\cap H=\{e\}$, entonces $G\cong N\rtimes_\gamma H$, donde $\gamma$ es la acción por conjugación.
+\end{prop}
+\begin{proof}
+Definimos $\varphi:N\rtimes_\gamma H\to G$ por $\varphi(n,h)=nh$. Es sobreyectiva por $G=NH$. Si $nh=n'h'$, entonces $n'^{-1}n=h'h^{-1}\in N\cap H$, así que $n=n'$ y $h=h'$; es biyectiva. Además,
+\begin{align*}
+\varphi\bigl((n_1,h_1)\cdot_\gamma(n_2,h_2)\bigr)
+&=n_1(h_1n_2h_1^{-1})h_1h_2\\
+&=(n_1h_1)(n_2h_2).
+\end{align*}
+Por tanto es un isomorfismo.
+\end{proof}
+Esta realización dentro de $G$ se llama \emph{producto semidirecto interno}. Si $N$ y $H$ conmutan, $\gamma$ es trivial y recuperamos el producto directo. En particular ocurre cuando ambos son normales y su intersección es trivial.
+
+\begin{ejem}
+Si $C_3=\generado{y}$, un automorfismo está determinado por la imagen de $y$, que debe ser $y$ o $y^2$. Así $\Aut(C_3)=\{\id,\iota\}\cong C_2$, donde $\iota(y)=y^2$ y $\iota^2=\id$. Hay exactamente dos homomorfismos $C_2\to\Aut(C_3)$: el trivial y el que envía su generador a $\iota$. El primero da $C_3\times C_2\cong C_6$; el segundo da un grupo isomorfo a $S_3$.
+\end{ejem}
+\begin{ejer}[Cálculo del producto semidirecto no trivial]
+Comprobar que el producto semidirecto no trivial es $S_3$, como propone III.5.13 en la página 9.
+\end{ejer}
+\begin{sol}
+Escribamos $C_2=\generado{t}$ y elijamos $\theta_t(y)=y^{-1}$. Los seis elementos son $(y^a,t^b)$ con $a\in\{0,1,2\}$ y $b\in\{0,1\}$; su producto es
+\[
+(y^a,t^b)(y^c,t^d)=(y^{a+(-1)^bc},t^{b+d}),
+\]
+con exponentes reducidos módulo $3$ y $2$. En $S_3$ pongamos $r=(1\,2\,3)$ y $s=(1\,2)$. Por conjugación de ciclos, $srs^{-1}=(2\,1\,3)=r^{-1}$. En consecuencia,
+\[
+(r^as^b)(r^cs^d)=r^{a+(-1)^bc}s^{b+d}.
+\]
+La aplicación $(y^a,t^b)\mapsto r^as^b$ preserva los productos. Sus imágenes son $e,r,r^2,s,rs,r^2s$, todas distintas: los tres primeros elementos son pares y los otros impares, y dentro de cada bloque se cancela el mismo factor derecho. Por tanto es un isomorfismo sobre los seis elementos de $S_3$. También se obtiene aplicando la \cref{prop:C10-interno} a $N=A_3$ y $H=\generado{s}$.
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Descomposición de grupos abelianos finitos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Separación de los primos y de un factor cíclico}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P10--P12.
+A partir de aquí usamos notación aditiva para los grupos abelianos: el neutro es $0$, la suma de subgrupos es $H+K$ y los productos directos finitos se escriben también como sumas directas $H\oplus K$. Los órdenes de los elementos se denotan $\ord(g)$, para distinguirlos del orden de un grupo.
+
+\begin{lema}\label{lema:C10-coprimos}
+Si $H,K$ son subgrupos finitos de un grupo abeliano y sus órdenes son coprimos, entonces $H+K\cong H\oplus K$.
+\end{lema}
+\begin{proof}
+Lagrange implica que $|H\cap K|$ divide a ambos órdenes, así que $H\cap K=\{0\}$. Los dos subgrupos son normales por conmutatividad. La \cref{prop:C10-directo}, escrita aditivamente, da el isomorfismo $(h,k)\mapsto h+k$.
+\end{proof}
+
+\begin{coro}\label{coro:C10-primarios}
+Un grupo abeliano finito es la suma directa de sus subgrupos de Sylow no triviales.
+\end{coro}
+\begin{proof}
+Todo subgrupo de Sylow es normal por conmutatividad y, por la clase 7, es único para su primo. Sus órdenes son las potencias primas de la factorización de $|G|$. Sumando sucesivamente, el lema anterior muestra que la suma es directa y su orden es el producto de esos órdenes, es decir, $|G|$. Por tanto la suma es todo $G$. Para el grupo trivial utilizamos la suma vacía.
+\end{proof}
+
+\begin{lema}\label{lema:C10-auxiliar}
+Sea $G$ abeliano no cíclico de orden $p^{r+1}$, con $r\ge1$, y sea $g$ de orden $p^r$. Existe $h\notin\generado{g}$ de orden $p$.
+\end{lema}
+\begin{proof}
+Sea $K=\generado{g}$ y elijamos $h'\notin K$. Como $G/K$ tiene orden $p$, se cumple $ph'\in K$. Ningún elemento de $G$ tiene orden $p^{r+1}$, pues generaría $G$, contra la hipótesis. Por Lagrange, $\ord(h')$ es entonces a lo sumo $p^r$, y $p^{r-1}(ph')=0$.
+
+En el grupo cíclico $K$, los elementos anulados por $p^{r-1}$ son exactamente los múltiplos de $pg$: si $k=ag$ y $p^{r-1}k=0$, entonces $p^r\mid p^{r-1}a$ y $p\mid a$. Así, $ph'=pmg$ para algún entero $m$. Tomamos $h=h'-mg$. Tenemos $ph=0$, pero $h\notin K$, pues de lo contrario $h'=h+mg\in K$. En particular $h\ne0$ y su orden es exactamente $p$.
+\end{proof}
+\begin{nota}[Ajuste del cálculo del elemento de orden $p$]
+En la parte inferior de la página 10, la igualdad que se necesita es $ph'=pmg$, no sólo expresar $ph'$ como un múltiplo cualquiera de $g$. Se ha justificado que $ph'\in pK$ usando la no ciclicidad. Esto incluye el caso $ph'=0$ y permite concluir $p(h'-mg)=0$ sin suponer que $h'$ tenga orden máximo.
+\end{nota}
+
+\begin{lema}\label{lema:C10-factor-maximo}
+Sea $G$ un $p$-grupo abeliano finito y $g\in G$ un elemento de orden máximo. Existe $L\le G$ con
+\[
+G=\generado{g}+L,\qquad \generado{g}\cap L=\{0\}.
+\]
+En particular, $G\cong\generado{g}\oplus L$ y la sucesión $0\to\generado{g}\to G\to G/\generado{g}\to0$ se escinde.
+\end{lema}
+\begin{proof}
+Hacemos inducción sobre $|G|$. Si $G$ es trivial o $G=K=\generado{g}$, basta tomar $L=\{0\}$. Supongamos $G\ne K$ y $\ord(g)=p^r$, con $r\ge1$. El cociente $G/K$ es un $p$-grupo no trivial. Por Cauchy contiene un subgrupo de orden $p$, cuya preimagen $G_0$ tiene orden $p^{r+1}$ y contiene a $K$.
+
+El grupo $G_0$ no es cíclico: un generador tendría orden $p^{r+1}$, contradiciendo la elección de $g$ en todo $G$. Por el lema anterior existe $h\in G_0\setminus K$ de orden $p$. Sea $H=\generado{h}$. Su intersección con $K$ es trivial: si compartieran un elemento no nulo, éste generaría $H$, por tener orden primo, y entonces $h\in K$.
+
+En $G/H$, el subgrupo $K'=(K+H)/H=\generado{g+H}$ es isomorfo a $K/(K\cap H)\cong K$, luego $g+H$ tiene orden $p^r$. Es de orden máximo, porque para todo $x\in G$ el orden de $x+H$ divide al de $x$, que es a lo sumo $p^r$. Como $|G/H|<|G|$, la inducción produce $L'\le G/H$ con
+\[
+G/H=K'+L',\qquad K'\cap L'=\{H\}.
+\]
+Sea $L$ la preimagen de $L'$; en particular $H\subseteq L$. Si $a\in G$, podemos escribir $a+H=mg+H+l+H$ con $l\in L$. Entonces $a-mg-l\in H\subseteq L$, de donde $a\in K+L$. Si $a\in K\cap L$, su imagen está en $K'\cap L'$, luego $a\in H$. Así $a\in K\cap H=\{0\}$. Concluimos la descomposición y la escisión por el \cref{lema:C10-escision}, en notación aditiva.
+\end{proof}
+El diagrama de cocientes empleado en la inducción puede reunirse así:
+\[
+\begin{tikzcd}[column sep=large]
+K \arrow[r,hook] \arrow[d,"\cong"'] & G \arrow[d,two heads,"\pi"] & L \arrow[l,hook'] \arrow[d,two heads] \\
+K' \arrow[r,hook] & G/H & L' \arrow[l,hook'].
+\end{tikzcd}
+\]
+
+\begin{coro}\label{coro:C10-existencia-ciclicos}
+Todo grupo abeliano finito es suma directa de grupos cíclicos, que pueden elegirse de orden potencia de primo.
+\end{coro}
+\begin{proof}
+Por el \cref{coro:C10-primarios} basta tratar un $p$-grupo $P$. Hacemos inducción sobre su orden. Para $P=\{0\}$ usamos la suma vacía. En otro caso elegimos $g$ de orden máximo. El lema anterior da $P\cong\generado{g}\oplus L$, donde $\generado{g}$ es un grupo cíclico no trivial de orden potencia de $p$ y $|L|<|P|$. Por inducción, $L$ es suma directa de cíclicos de órdenes potencias de $p$, lo que completa la prueba.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Divisores elementales, factores invariantes y unicidad}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P13--P14; prueba de unicidad y equivalencia añadida.
+\begin{teo}[Clasificación de grupos abelianos finitos]\label{teo:C10-clasificacion}
+Todo grupo abeliano finito no trivial admite las dos formas siguientes:
+\begin{enumerate}
+\item Una suma directa de grupos $\mathbb Z/p^{a}\mathbb Z$, con $p$ primo y $a\ge1$. Las potencias primas que aparecen, con sus multiplicidades, se llaman \emph{divisores elementales} y están determinadas por $G$.
+\item Una suma directa
+\[
+G\cong\mathbb Z/d_1\mathbb Z\oplus\cdots\oplus\mathbb Z/d_s\mathbb Z,
+\qquad 1<d_1\mid d_2\mid\cdots\mid d_s.
+\]
+Los números $d_i$, llamados \emph{factores invariantes}, también están determinados por $G$.
+\end{enumerate}
+En ambas formas, el producto de los órdenes de los sumandos es $|G|$.
+\end{teo}
+\begin{proof}
+La existencia de la primera forma está probada en el corolario anterior. Explicamos su unicidad. Para cada primo $p$, el Sylow $P$ de $G$ es único. Intrínsecamente,
+\[
+P=\set{x\in G\given p^k x=0\text{ para algún }k\ge0}.
+\]
+Una inclusión es Lagrange; para la otra, $\generado{x}$ es un $p$-subgrupo y está contenido en el único Sylow. Por ello todo isomorfismo de grupos identifica estas partes para cada primo.
+
+Supongamos $P\cong\bigoplus_j\mathbb Z/p^{a_j}\mathbb Z$. Para $k\ge1$, definimos $p^kP=\{p^kx\mid x\in P\}$. En un factor de exponente $a$, el cociente $p^{k-1}C_{p^a}/p^kC_{p^a}$ tiene orden $p$ si $a\ge k$ y orden uno en otro caso. Por productos de cardinales,
+\[
+|p^{k-1}P/p^kP|=p^{b_k},\qquad
+b_k=\#\set{j\given a_j\ge k}.
+\]
+El cardinal del lado izquierdo depende sólo de $P$, así que también $b_k$. El número de factores con exponente exactamente $k$ es $b_k-b_{k+1}$. Se recuperan todos los exponentes y multiplicidades, probando la unicidad de los divisores elementales.
+
+Para construir los factores invariantes, ordenamos de menor a mayor los exponentes para cada primo y completamos las listas con ceros \emph{a la izquierda} hasta darles una longitud común $s$, igual a la máxima cantidad de factores de una parte primaria. Sean $a_{p,1}\le\cdots\le a_{p,s}$ esas listas, y pongamos
+\[
+d_j=\prod_p p^{a_{p,j}}.
+\]
+Entonces $d_j\mid d_{j+1}$ y todos los $d_j$ son mayores que uno, pues al menos una lista tiene $s$ exponentes positivos. Reagrupamos los factores por columnas. Para órdenes coprimos $a,b$, el homomorfismo
+\[
+\mathbb Z/ab\mathbb Z\longrightarrow
+\mathbb Z/a\mathbb Z\oplus\mathbb Z/b\mathbb Z,
+\qquad [x]_{ab}\longmapsto([x]_a,[x]_b)
+\]
+es inyectivo: su núcleo exige $a\mid x$ y $b\mid x$, y por coprimalidad $ab\mid x$. Ambos grupos tienen orden $ab$, luego es un isomorfismo. Aplicándolo sucesivamente a cada columna, su suma directa es $\mathbb Z/d_j\mathbb Z$.
+
+Por último, cualquier lista de factores invariantes puede descomponerse por sus potencias primas usando el mismo isomorfismo. La divisibilidad obliga a que, para cada primo, los exponentes estén ordenados de menor a mayor; los ceros sólo pueden preceder a los positivos. Como $d_1>1$, algún primo aparece en todos los $s$ factores, así que $s$ es necesariamente la máxima longitud de las listas primarias. La unicidad ya probada de esas listas determina cada columna y, por tanto, cada $d_j$.
+\end{proof}
+\begin{nota}[Prueba añadida de unicidad]
+El teorema III.6.6 se enuncia en la página 13 con ambas unicidades, pero estas páginas sólo desarrollan la existencia de factores cíclicos. La prueba mediante $p^{k-1}P/p^kP$ y la conversión entre las dos formas se añaden para completar ese enunciado. Los factores se determinan como tipos de isomorfismo; no se afirma que los subgrupos concretos de una descomposición sean únicos.
+\end{nota}
+
+\begin{ejem}[Los seis grupos abelianos de orden $360$]
+Como $360=2^3\cdot3^2\cdot5$, los exponentes para la parte de $2$ tienen las tres particiones $[3]$, $[2,1]$, $[1,1,1]$; para la de $3$, las dos particiones $[2]$, $[1,1]$; para la de $5$ sólo está $[1]$. Hay, pues, $3\cdot2\cdot1=6$ posibilidades. La tabla reúne las seis tablas de divisores elementales de la página 14 y sus factores invariantes:
+\[
+\begin{array}{c|c|c|c}
+\text{parte de }2&\text{parte de }3&\text{parte de }5&\text{factores invariantes}\\\hline
+2^3&3^2&5&360\\
+2,2^2&3^2&5&2,180\\
+2,2,2&3^2&5&2,2,90\\
+2^3&3,3&5&3,120\\
+2,2^2&3,3&5&6,60\\
+2,2,2&3,3&5&2,6,30
+\end{array}
+\]
+Por ejemplo, al alinear las listas $(1,1,1)$ para $2$, $(0,1,1)$ para $3$ y $(0,0,1)$ para $5$, se obtienen $2,6,30$. Los seis grupos, sin repeticiones por la unicidad del teorema, son
+\begin{gather*}
+C_{360},\qquad C_2\oplus C_{180},\qquad C_2\oplus C_2\oplus C_{90},\\
+C_3\oplus C_{120},\qquad C_6\oplus C_{60},\qquad C_2\oplus C_6\oplus C_{30}.
+\end{gather*}
+Cada lista tiene producto $360$ y cada término divide al siguiente.
+\end{ejem}
+\begin{obs}[Anotación administrativa de la fuente]
+Al final de la página 14 se anota: «Examen: 6 octubre, 2--4 pm. Salón D-702». Se conserva como información histórica de la pizarra, sin convertirla en una fecha de clase adicional.
+\end{obs}

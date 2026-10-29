@@ -1,0 +1,298 @@
+% Fuente única de clase: Recursos/2025-09-11.pdf, páginas 1--16.
+En la clase 8 estudiamos series normales y factores simples. El teorema de Jordan--Hölder permite comparar las series de composición; después, los conmutadores proporcionan un criterio para reconocer grupos resolubles.
+
+Los fragmentos originales de \citet{aluffi2009} reproducidos en las pizarras contienen la definición III.3.1, el teorema III.3.2, el ejemplo III.3.3 y las proposiciones III.3.4--5; para conmutadores y resolubilidad, III.3.6--13. Estos localizadores se cotejaron en los fragmentos, sin consulta del libro completo. Se desarrollan sus demostraciones y se identifican los pasos añadidos para justificar el uso de correspondencias e isomorfismos.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Series normales y teorema de Jordan--Hölder}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Series de composición y herramientas de cocientes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01--P03; complementos de cocientes usados también en P05 y P08--P11.
+\begin{defi}
+Una \emph{serie normal} finita de $G$ es una cadena
+\[
+G=G_0\supseteq G_1\supseteq\cdots\supseteq G_n,
+\qquad G_{i+1}\trianglelefteq G_i.
+\]
+Su longitud es el número de inclusiones estrictas. Es una \emph{serie de composición} si termina en $\{e\}$, todas las inclusiones son estrictas y cada factor $G_i/G_{i+1}$ es simple. La normalidad exigida es en el término anterior, no necesariamente en todo $G$.
+\end{defi}
+Para un grupo finito, denotamos por $\ell(G)$ la máxima longitud de una serie normal. Existe ese máximo porque cada inclusión estricta disminuye el orden. Así, $\ell(G)=0$ equivale a $G=\{e\}$ y $\ell(G)=1$ equivale a que $G$ sea simple.
+
+\begin{lema}[Correspondencia e isomorfismos de cocientes]\label{lema:C8-cocientes}
+Sean $N\trianglelefteq G$ y $\pi:G\to G/N$ la proyección.
+\begin{enumerate}
+\item Los subgrupos de $G/N$ corresponden biyectivamente a los subgrupos de $G$ que contienen a $N$, por $\bar H\mapsto\pi^{-1}(\bar H)$ y $H\mapsto H/N$. La correspondencia preserva inclusiones y normalidad en los respectivos grupos ambientes.
+\item Si $A\le G$ y $B\trianglelefteq G$, entonces $AB\le G$ y
+\[
+A/(A\cap B)\cong AB/B.
+\]
+Si además $A\trianglelefteq G$, entonces $AB\trianglelefteq G$.
+\item Si $N\subseteq L\trianglelefteq K\le G$, entonces
+\[
+(K/N)/(L/N)\cong K/L.
+\]
+\end{enumerate}
+\end{lema}
+\begin{proof}
+La preimagen de un subgrupo es subgrupo. Si $N\subseteq H$, entonces $\pi^{-1}(\pi(H))=H$: la igualdad $\pi(g)=\pi(h)$ implica $g\in hN\subseteq H$. La sobreyectividad de $\pi$ da $\pi(\pi^{-1}(\bar H))=\bar H$. Conjugar clases equivale a proyectar conjugados; por ello $H\trianglelefteq G$ equivale a $H/N\trianglelefteq G/N$. El mismo razonamiento vale al restringir la proyección a cualquier subgrupo que contenga a $N$.
+
+Para el segundo punto, $ba=a(a^{-1}ba)\in AB$ y $a^{-1}ba\in B$, así que los productos e inversos de elementos de $AB$ vuelven a estar allí. La aplicación $A\to AB/B$, $a\mapsto aB$, es un homomorfismo sobreyectivo con núcleo $A\cap B$. El primer teorema de isomorfismo da el resultado. Si $A$ es también normal, $g(AB)g^{-1}=(gAg^{-1})(gBg^{-1})=AB$.
+
+Finalmente, $kN\mapsto kL$ define un homomorfismo sobreyectivo $K/N\to K/L$: está bien definido porque $N\subseteq L$. Su núcleo es $L/N$, y se aplica otra vez el primer teorema de isomorfismo.
+\end{proof}
+\begin{nota}[Complemento sobre cocientes]
+Las páginas 2--5 y 8--11 utilizan estas correspondencias, el segundo teorema de isomorfismo y el tercer teorema de isomorfismo. Sus pruebas se añaden aquí para justificar los levantamientos de subgrupos y las identificaciones de factores.
+\end{nota}
+
+\begin{prop}\label{prop:C8-existencia}
+Todo grupo finito tiene una serie de composición. Además, toda serie normal de longitud máxima es de composición.
+\end{prop}
+\begin{proof}
+Para la existencia hacemos inducción sobre $|G|$. El grupo trivial tiene la serie de longitud cero. Si $G$ es simple, sirve $G>\{e\}$. En otro caso elegimos un subgrupo normal propio $M$ maximal entre los normales propios de $G$. Existe por finitud. El cociente $G/M$ es simple: un normal propio no trivial del cociente se levantaría a un normal estrictamente entre $M$ y $G$, contradiciendo la elección. Por inducción, $M$ admite una serie de composición; anteponer $G$ produce la deseada.
+
+Sea ahora una serie de longitud máxima. Su último término debe ser trivial, pues de otro modo podríamos añadir $\{e\}$ y aumentar la longitud. Quitamos repeticiones. Si $G_i/G_{i+1}$ no fuera simple, un normal propio no trivial de este cociente tendría una preimagen $L$ con
+\[
+G_i>L>G_{i+1},\qquad L\trianglelefteq G_i,
+\quad G_{i+1}\trianglelefteq L.
+\]
+Insertar $L$ daría una serie normal más larga. Por tanto todos sus factores son simples.
+\end{proof}
+El argumento de maximalidad de la página 3 se ha completado comprobando también que el término final debe ser trivial.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Unicidad de los factores}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P04--P07.
+\begin{defi}
+Dos series normales estrictas que terminan en el grupo trivial son \emph{equivalentes} si tienen la misma longitud y sus factores son isomorfos después de una permutación. Los \emph{factores de composición} son los tipos de isomorfismo de los factores de una serie de composición, contados con sus multiplicidades.
+\end{defi}
+
+\begin{lema}\label{lema:C8-intersecciones}
+Si $G=G_0>\cdots>G_n=\{e\}$ es una serie de composición y $N\trianglelefteq G$, la cadena $N\cap G_i$, después de eliminar repeticiones, es una serie de composición de $N$.
+\end{lema}
+\begin{proof}
+Es una serie normal: conjugar $N\cap G_{i+1}$ por un elemento de $N\cap G_i$ conserva ambos conjuntos. Consideremos
+\[
+\begin{tikzcd}[column sep=large]
+N\cap G_i \arrow[r,hook] \arrow[dr,destacado,"\varphi_i"'] & G_i \arrow[d,two heads] \\
+& G_i/G_{i+1}.
+\end{tikzcd}
+\]
+El núcleo de $\varphi_i$ es $N\cap G_{i+1}$. Su imagen es normal en $G_i/G_{i+1}$, porque $N\cap G_i\trianglelefteq G_i$. Por simplicidad, esa imagen es trivial o todo el cociente. En consecuencia,
+\[
+(N\cap G_i)/(N\cap G_{i+1})\cong\im\varphi_i
+\]
+es trivial o simple. Al suprimir igualdades, todos los factores restantes son simples; los extremos son $N$ y $\{e\}$.
+\end{proof}
+\begin{nota}[Paso completado en la intersección]
+En la página 5 se toma una serie de composición de $G_1\cap G'_1$ intersectando una serie y suprimiendo repeticiones. El lema anterior justifica ese paso mediante el argumento desarrollado en las páginas 9--10: la normalidad de la imagen permite aplicar la simplicidad del cociente.
+\end{nota}
+
+\begin{teo}[Jordan--Hölder]\label{teo:C8-jh}
+Dos series de composición de un mismo grupo son equivalentes.
+\end{teo}
+\begin{proof}
+Escribamos las dos series como
+\[
+G=G_0>G_1>\cdots>G_n=\{e\},\qquad
+G=G'_0>G'_1>\cdots>G'_m=\{e\}.
+\]
+Hacemos inducción sobre $n$, simultáneamente para todos los grupos que tengan una serie de esa longitud. Para $n=0$, el grupo es trivial y también $m=0$.
+
+Si $G_1=G'_1$, la hipótesis inductiva compara las dos colas de las series. Al añadir el factor común $G/G_1$ obtenemos la equivalencia.
+
+Supongamos $G_1\ne G'_1$. Ambos son normales propios maximales de $G$, por la simplicidad de sus cocientes. No puede contener uno al otro: una inclusión estricta contradiría esa maximalidad. Así $G_1G'_1$ es normal y contiene estrictamente a $G_1$, luego $G_1G'_1=G$. Sea $K=G_1\cap G'_1$. Por el lema anterior, $K$ tiene una serie de composición $K=K_0>K_1>\cdots>K_r=\{e\}$. El segundo teorema de isomorfismo da
+\[
+G_1/K\cong G/G'_1,\qquad G'_1/K\cong G/G_1.
+\]
+Son factores simples. Si $r=0$, las series terminan en $K=\{e\}$; para $r>0$, tienen la forma
+\[
+\begin{tikzcd}[column sep=1.1em,row sep=large]
+G \arrow[r,phantom,"{>}" ] \arrow[d,equal] & G_1 \arrow[r,phantom,"{>}" ] & K \arrow[r,phantom,"{>}" ] \arrow[d,equal] & K_1 \arrow[r,phantom,"\cdots" ] \arrow[d,equal] & \{e\} \arrow[d,equal] \\
+G \arrow[r,phantom,"{>}" ] & G'_1 \arrow[r,phantom,"{>}" ] & K \arrow[r,phantom,"{>}" ] & K_1 \arrow[r,phantom,"\cdots" ] & \{e\}.
+\end{tikzcd}
+\]
+Sus dos primeros factores están intercambiados hasta isomorfismo; los restantes coinciden.
+
+En $G_1$, comparamos la cola original, de longitud $n-1$, con $G_1>K>\cdots>\{e\}$. Por inducción son equivalentes, y $n-1=r+1$. En particular $r+1<n$, así que podemos aplicar la misma hipótesis en $G'_1$, comparando su serie a través de $K$, de longitud $r+1$, con la cola de la segunda serie original. Resulta $m-1=r+1=n-1$, y los factores coinciden con sus multiplicidades. El intercambio de los dos primeros factores completa la comparación en $G$.
+\end{proof}
+\begin{nota}[Equivalencia de series]
+En la página 6 se habla de series «iguales» después de aplicar inducción. Se trata de equivalencia de sus factores, no de igualdad de sus subgrupos. También se hace explícito por qué la segunda aplicación inductiva tiene longitud menor que $n$.
+\end{nota}
+En un grupo finito, la \cref{prop:C8-existencia} y Jordan--Hölder muestran que todas las series de composición tienen longitud $\ell(G)$. Si un grupo cualquiera admite una serie de composición, también escribiremos $\ell(G)$ para su longitud, bien definida por el teorema.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Subgrupos normales, cocientes y refinamientos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P07--P12.
+\begin{ejem}
+En notación aditiva, $G=\mathbb Z/6\mathbb Z$ tiene la serie
+\[
+G>\{[0],[3]\}>\{[0]\},
+\]
+con factores $C_3$ y $C_2$. Tomemos $N=\{[0],[2],[4]\}$. Las intersecciones con $N$ dan $N>\{[0]\}=\{[0]\}$; al suprimir la repetición queda el factor $C_3$. En el cociente, las imágenes son
+\[
+G/N=\{N,[1]+N\}=\{N,[3]+N\}>\{N\},
+\]
+pues $[3]+N=[1]+N$. Sólo queda el factor $C_2$. Así, los factores de $N$ y $G/N$ recuperan los de $G$, con sus multiplicidades.
+\end{ejem}
+
+\begin{prop}\label{prop:C8-factores-normal}
+Sea $N\trianglelefteq G$. El grupo $G$ admite una serie de composición si y sólo si la admiten $N$ y $G/N$. En ese caso,
+\[
+\ell(G)=\ell(N)+\ell(G/N),
+\]
+y los factores de $G$ son los de $N$ y los de $G/N$, reunidos con multiplicidades.
+\end{prop}
+\begin{proof}
+Supongamos primero que $N$ y $G/N$ tienen series de composición. Levantemos la del cociente por $\pi:G\to G/N$:
+\[
+G/N=\bar K_0>\cdots>\bar K_m=\{N\},
+\qquad K_i=\pi^{-1}(\bar K_i).
+\]
+La correspondencia da $G=K_0>\cdots>K_m=N$ y normalidad sucesiva. Por el tercer teorema de isomorfismo,
+\[
+K_i/K_{i+1}\cong(K_i/N)/(K_{i+1}/N)
+=\bar K_i/\bar K_{i+1}.
+\]
+Todos estos factores son simples. Concatenamos con una serie de composición de $N$; resulta una de $G$, cuyos factores son precisamente los de las dos series utilizadas.
+
+Recíprocamente, dada una serie $G=G_0>\cdots>G_n=\{e\}$, el \cref{lema:C8-intersecciones} produce una serie de composición de $N$. En $G/N$ tomamos las imágenes
+\[
+G_iN/N=\pi(G_i).
+\]
+La imagen de un normal por un homomorfismo es normal en la imagen del grupo ambiente: si $x\in G_i$ y $y\in G_{i+1}$, entonces $\pi(x)\pi(y)\pi(x)^{-1}=\pi(xyx^{-1})\in\pi(G_{i+1})$. Por tanto forman una serie normal. Sus factores se identifican con $G_iN/G_{i+1}N$. La aplicación
+\[
+\psi_i:G_i\longrightarrow G_iN/G_{i+1}N,
+\qquad g\longmapsto gG_{i+1}N
+\]
+es sobreyectiva: todo $gn\in G_iN$ tiene la misma clase que $g$, pues $n\in N\subseteq G_{i+1}N$. Su núcleo contiene a $G_{i+1}$, por lo que se factoriza como
+\[
+\begin{tikzcd}[column sep=large]
+G_i \arrow[r,two heads,"\psi_i"] \arrow[d,two heads] & G_iN/G_{i+1}N \\
+G_i/G_{i+1} \arrow[ur,dashed,two heads,destacado,"\bar\psi_i"'] &
+\end{tikzcd}
+\]
+El dominio de $\bar\psi_i$ es simple. Su núcleo es todo el dominio o trivial; por ello el factor de las imágenes es trivial o simple. Al quitar repeticiones obtenemos una serie de composición de $G/N$.
+
+Aplicando ahora la primera parte a las series obtenidas, construimos una serie de $G$ cuyos factores son la unión de ambas listas. Jordan--Hölder la compara con la serie original y da tanto la igualdad de longitudes como la afirmación sobre los factores.
+\end{proof}
+\begin{nota}[Propiedad universal utilizada]
+La página 11 llama «propiedad universal del núcleo» al paso que produce $\bar\psi_i$. La factorización por $G_i/G_{i+1}$ utiliza la propiedad universal del \emph{cociente}, puesto que $G_{i+1}\subseteq\ker\psi_i$.
+\end{nota}
+
+\begin{defi}
+Un \emph{refinamiento} de una serie normal se obtiene insertando subgrupos, conservando los términos originales y la normalidad sucesiva.
+\end{defi}
+\begin{prop}
+Dos series normales de un grupo finito, ambas terminadas en $\{e\}$, admiten refinamientos equivalentes.
+\end{prop}
+\begin{proof}
+Quitamos repeticiones. Para cada factor $G_i/G_{i+1}$ elegimos una serie de composición, que existe por finitud. Levantamos sus términos a $G_i$ mediante la correspondencia. Al hacerlo en cada intervalo refinamos la serie original a una de composición. Hacemos lo mismo con la otra serie y aplicamos Jordan--Hölder a los dos refinamientos.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conmutadores, abelianización y resolubilidad}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{El mayor cociente abeliano}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P12--P14.
+\begin{defi}
+El \emph{conmutador} de $g,h\in G$ es $[g,h]=ghg^{-1}h^{-1}$. El \emph{subgrupo conmutador} es
+\[
+G'=[G,G]=\generado{[g,h]\given g,h\in G}.
+\]
+Un subgrupo es \emph{característico} si lo preserva todo automorfismo de $G$; es \emph{plenamente invariante} si lo preserva todo endomorfismo de $G$.
+\end{defi}
+La igualdad $[g,h]=e$ equivale a $gh=hg$. En particular, $G$ es abeliano si y sólo si $G'=\{e\}$.
+\begin{nota}[Dos precisiones de definición]
+En la página 12 se escribe $G'$ como el conjunto de conmutadores; la definición del fragmento original es el \emph{subgrupo generado} por ellos, es decir, los productos finitos de conmutadores y sus inversos. En la página 13 se denomina característico al subgrupo preservado por todo endomorfismo. Reservamos ese requisito más fuerte para «plenamente invariante» y usamos automorfismos en la definición de característico. Ambos requisitos implican normalidad, pues incluyen las conjugaciones internas.
+\end{nota}
+
+\begin{lema}\label{lema:C8-conmutadores}
+Para un homomorfismo $\varphi:G\to H$ se cumple
+\[
+\varphi([g,h])=[\varphi(g),\varphi(h)],\qquad
+\varphi(G')\subseteq H'.
+\]
+En particular $G'$ es plenamente invariante y, por tanto, normal en $G$.
+\end{lema}
+\begin{proof}
+Aplicamos $\varphi$ al producto $ghg^{-1}h^{-1}$ y usamos que preserva productos e inversos. Las imágenes de los generadores de $G'$ pertenecen a $H'$, así que sus productos e inversos también. Para endomorfismos resulta $\varphi(G')\subseteq G'$. En particular, $gG'g^{-1}\subseteq G'$ para todo $g$; aplicando también la conjugación por $g^{-1}$ obtenemos igualdad.
+\end{proof}
+
+\begin{prop}[Abelianización]\label{prop:C8-abelianizacion}
+El cociente $G^{\mathrm{ab}}=G/G'$ es abeliano. Todo homomorfismo $\alpha:G\to A$ hacia un grupo abeliano satisface $G'\subseteq\ker\alpha$ y se factoriza de manera única por la proyección $\pi:G\to G^{\mathrm{ab}}$.
+\end{prop}
+\begin{proof}
+En el cociente, $[gG',hG']=[g,h]G'=G'$, luego cualesquiera dos clases conmutan. Si $A$ es abeliano, el lema anterior da $\alpha(G')\subseteq A'=\{e\}$. La propiedad universal del cociente produce un único homomorfismo $\bar\alpha$ con $\bar\alpha\pi=\alpha$:
+\[
+\begin{tikzcd}[column sep=large]
+& G \arrow[dl,two heads,"\pi"'] \arrow[dr,"\alpha"] & \\
+G^{\mathrm{ab}} \arrow[rr,dashed,destacado,"\bar\alpha"'] && A.
+\end{tikzcd}
+\]
+Explícitamente, $\bar\alpha(gG')=\alpha(g)$; la inclusión del núcleo asegura que no depende del representante y la sobreyectividad de $\pi$ asegura su unicidad.
+\end{proof}
+La categoría considerada en la página 12 tiene objetos $\alpha:G\to A$ con $A$ abeliano, y flechas $\varphi:A\to B$ que satisfacen $\varphi\alpha=\beta$. Sus triángulos tienen la forma
+\[
+\begin{tikzcd}[column sep=large]
+& G \arrow[dl,"\alpha"'] \arrow[dr,"\beta"] & \\
+A \arrow[rr,"\varphi"'] && B.
+\end{tikzcd}
+\]
+La proyección $G\to G^{\mathrm{ab}}$, junto con su codominio, es un objeto inicial de esta categoría.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Serie derivada y criterios de resolubilidad}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P14--P16.
+\begin{defi}
+La \emph{serie derivada} se define por $G^{(0)}=G$ y $G^{(i+1)}=(G^{(i)})'$. El grupo es \emph{resoluble} si $G^{(r)}=\{e\}$ para algún $r\ge0$. Una serie normal es \emph{cíclica} o \emph{abeliana} cuando todos sus factores tienen esa propiedad.
+\end{defi}
+La serie derivada es normal y todos sus factores son abelianos. Si $G$ es abeliano, $G'=\{e\}$, así que es resoluble. Si $G$ es simple no abeliano, $G'$ es un normal no trivial, luego $G'=G$ y la serie permanece constante; ese grupo no es resoluble.
+
+\begin{prop}\label{prop:C8-resoluble}
+Para un grupo finito $G$ son equivalentes:
+\begin{enumerate}[nosep]
+\item todos sus factores de composición son cíclicos;
+\item admite una serie cíclica terminada en $\{e\}$;
+\item admite una serie abeliana terminada en $\{e\}$;
+\item es resoluble.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+La primera condición implica la segunda tomando una serie de composición, y la segunda implica la tercera porque todo grupo cíclico es abeliano.
+
+Para pasar de la tercera a la primera refinamos cada factor abeliano finito a una serie de composición y levantamos los términos. Sus factores siguen siendo abelianos, pues subgrupos y cocientes de abelianos son abelianos. Un grupo simple abeliano es cíclico de orden primo: si $a\ne e$, el subgrupo $\generado{a}$ es normal no trivial, luego es todo el grupo; un grupo cíclico de orden compuesto tiene un subgrupo propio no trivial. Por Jordan--Hölder, todos los factores de composición de $G$ son esos grupos cíclicos.
+
+La cuarta condición implica la tercera tomando la serie derivada hasta el término trivial. Recíprocamente, sea $G=G_0\supseteq\cdots\supseteq G_n=\{e\}$ una serie abeliana. Probamos inductivamente $G^{(i)}\subseteq G_i$. El caso $i=0$ es inmediato. Como $G_i/G_{i+1}$ es abeliano, la proyección anula todos los conmutadores y $G_i'\subseteq G_{i+1}$. Así,
+\[
+G^{(i+1)}=(G^{(i)})'\subseteq G_i'\subseteq G_{i+1}.
+\]
+Concluimos $G^{(n)}\subseteq G_n=\{e\}$. Este último argumento no necesita finitud.
+\end{proof}
+\begin{nota}[Errata en el cociente inicial]
+En el fragmento de prueba de la página 15 se lee $G'/G_1$ conmutativo. El cociente supuesto abeliano es $G/G_1$; de su proyección se deduce $G'\subseteq G_1$. El cociente $G'/G_1$ ni siquiera está definido si aún no se conoce la inclusión contraria.
+\end{nota}
+
+\begin{ejem}
+Todo $p$-grupo finito es resoluble. Sus factores de composición son $p$-grupos simples. El centro de un $p$-grupo no trivial es no trivial; si además es simple, su centro debe ser todo el grupo. Es entonces simple abeliano, y por el argumento anterior tiene orden $p$. Todos los factores son, por tanto, cíclicos.
+\end{ejem}
+
+\begin{coro}\label{coro:C8-extension-resoluble}
+Si $N\trianglelefteq G$, entonces $G$ es resoluble si y sólo si lo son $N$ y $G/N$. Todo subgrupo de un grupo resoluble es resoluble.
+\end{coro}
+\begin{proof}
+Para grupos finitos, la primera afirmación se deduce de la \cref{prop:C8-factores-normal} y del criterio de factores cíclicos. Damos además el argumento por series derivadas, válido sin finitud, para conservar el alcance del enunciado de la página 16.
+
+Si $\pi:G\to G/N$ es la proyección, la sobreyectividad y la fórmula de conmutadores implican $\pi(G')=(G/N)'$: todo generador del segundo grupo se levanta a un conmutador del primero. Inductivamente, $\pi(G^{(i)})=(G/N)^{(i)}$. También, para cualquier subgrupo $H\le G$, la inclusión induce $H^{(i)}\subseteq G^{(i)}$. Si $G$ es resoluble, estas dos relaciones prueban que lo son $G/N$ y todo $H$, incluido $N$.
+
+Si $(G/N)^{(a)}=\{e\}$ y $N^{(b)}=\{e\}$, la igualdad de imágenes da $G^{(a)}\subseteq N$. Por consiguiente $G^{(a+b)}\subseteq N^{(b)}=\{e\}$, y $G$ es resoluble.
+\end{proof}
+\begin{nota}[Alcance del último fragmento]
+La página 16 menciona el teorema de Feit--Thompson: todo grupo finito de orden impar es resoluble. Se conserva como referencia contextual del fragmento; no se desarrolla su prueba, que no forma parte de estas pizarras. La prueba por series derivadas del corolario anterior es un complemento para el caso no necesariamente finito.
+\end{nota}

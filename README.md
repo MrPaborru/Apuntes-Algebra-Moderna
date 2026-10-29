@@ -8,7 +8,7 @@ Las tareas del curso están en el repositorio [Tareas de Álgebra Moderna](https
 
 ## Contenido
 
-El documento actualizado se encuentra en [**build/main.pdf**](build/main.pdf). Están completas las **clases 1–6**, del **12, 14, 19, 21 y 26 de agosto y del 4 de septiembre de 2025**, elaboradas a partir de las 74 páginas de sus pizarras. Contiene conjuntos, funciones, categorías, grupos, productos, acciones, grupos libres y abelianos libres, subgrupos, cocientes, el primer teorema de isomorfismo, la ecuación de clases, normalizadores y el teorema de Cauchy, con demostraciones, diagramas y soluciones de las comprobaciones propuestas. La numeración de clases es editorial, por orden cronológico de los archivos conservados; no se atribuye a una numeración original del profesor.
+El documento actualizado se encuentra en [**build/main.pdf**](build/main.pdf). Están completas las **clases 1–10**, del **12, 14, 19, 21 y 26 de agosto y del 4, 9, 11, 18 y 23 de septiembre de 2025**, elaboradas a partir de las **127 páginas** de sus pizarras. Contiene conjuntos, funciones, categorías, grupos, productos, acciones, grupos libres y abelianos libres, subgrupos, cocientes e isomorfismos, la ecuación de clases, Cauchy y Sylow, Jordan–Hölder, conmutadores y resolubilidad, grupos simétricos y alternantes, extensiones y productos semidirectos, y la clasificación de grupos abelianos finitos. Incluye demostraciones completas, diagramas y soluciones de las comprobaciones propuestas. Los complementos necesarios y las correcciones de las pizarras se identifican con sus páginas de origen. La numeración de clases es editorial, por orden cronológico de los archivos conservados; no se atribuye a una numeración original del profesor.
 
 ## Organización
 
