@@ -1,0 +1,342 @@
+% Fuente única de clase: Recursos/2025-09-04.pdf, páginas 1--10.
+En la clase 6 estudiamos las acciones transitivas y la categoría de $G$-conjuntos. La relación entre órbitas y estabilizadores conduce a la ecuación de clases. La aplicamos a la conjugación, a los centros de $p$-grupos y a los normalizadores; finalmente demostramos el teorema de Cauchy mediante una acción sobre tuplas.
+
+Los fragmentos originales de \citet{aluffi2009} en las páginas 1--3 corresponden a II.9.3: definiciones II.9.6--8, proposición II.9.9, corolario II.9.10, ejemplo II.9.11 y proposición II.9.12. Las páginas 4--9 pasan a III.1: proposición III.1.1, corolario III.1.3, lema III.1.5, definiciones III.1.6--7 y III.1.11, corolario III.1.9, observación III.1.12, lema III.1.13 y corolario III.1.14. El lema sobre $G/Z(G)$ remite al ejercicio III.1.5, cuya solución se incluye abajo. El resultado final es el teorema III.2.1 (Cauchy), con demostración desarrollada en las pizarras; el encabezado sobre Sylow no viene acompañado todavía de sus enunciados.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Acciones transitivas y órbitas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{La categoría de \texorpdfstring{$G$}{G}-conjuntos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01.
+Una acción izquierda de $G$ en $A$ es una función $G\times A\to A$, $(g,a)\mapsto ga$, con $ea=a$ y $(gh)a=g(ha)$. El mapa $a\mapsto ga$ es biyectivo, con inversa $a\mapsto g^{-1}a$, como vimos en la clase 3.
+
+\begin{defi}
+La acción en un conjunto no vacío $A$ es \emph{transitiva} si, para todos $a,b\in A$, existe $g\in G$ tal que $b=ga$. La \emph{órbita} y el \emph{estabilizador} de $a$ son
+\[
+O_G(a)=\set{ga\given g\in G},\qquad
+\Stab_G(a)=\set{g\in G\given ga=a}.
+\]
+\end{defi}
+El estabilizador es un subgrupo: $ea=a$ y, si $g,h$ fijan a $a$, también $h^{-1}a=a$. Por ello,
+\[
+(gh^{-1})a=g(h^{-1}a)=ga=a.
+\]
+La acción por multiplicación izquierda de $G$ sobre sí mismo es transitiva, pues $b=(ba^{-1})a$.
+
+\begin{defi}
+La categoría $G\text{-}\Set$ tiene como objetos los conjuntos con una acción de $G$. Sus morfismos son las funciones \emph{equivariantes}: $\varphi:A\to A'$ tales que
+\[
+\varphi(ga)=g\varphi(a)\qquad(g\in G,\ a\in A).
+\]
+Si $\rho$ y $\rho'$ son las acciones respectivas, la condición equivale a la conmutatividad del cuadrado
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G\times A\arrow[r,"\id_G\times\varphi"]\arrow[d,"\rho"']&G\times A'\arrow[d,"\rho'"]\\
+A\arrow[r,"\varphi"']&A'.
+\end{tikzcd}
+\]
+\end{defi}
+Las identidades y los compuestos son equivariantes: si $\psi$ también lo es,
+\[
+(\psi\varphi)(ga)=\psi(g\varphi(a))=g\psi(\varphi(a)).
+\]
+Una biyección equivariante es un isomorfismo de $G$-conjuntos. En efecto, escribiendo $b=\varphi(a)$, tenemos
+\[
+\varphi^{-1}(gb)=\varphi^{-1}(\varphi(ga))=ga=g\varphi^{-1}(b).
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Órbita--estabilizador}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P02--P03.
+Las órbitas particionan $A$. En efecto, la relación $a\sim b$ si $b=ga$ para algún $g\in G$ es reflexiva por $e$, simétrica por $g^{-1}$ y transitiva por el producto. Cada órbita es un subconjunto estable, y la acción restringida a ella es transitiva.
+
+Para cualquier $H\le G$, el conjunto $G/H$ de clases izquierdas admite la acción
+\[
+g\cdot(xH)=(gx)H.
+\]
+Está bien definida, pues $xH=yH$ implica $(gx)H=(gy)H$. Los axiomas se heredan de la multiplicación y la acción es transitiva. Aquí $H$ no tiene por qué ser normal: usamos el conjunto de clases, sin afirmar que sea un grupo cociente.
+
+\begin{prop}\label{prop:C6-transitiva}
+Si $G$ actúa transitivamente en $A\ne\varnothing$ y $H=\Stab_G(a)$ para $a\in A$, entonces
+\[
+\varphi:G/H\to A,\qquad gH\mapsto ga,
+\]
+es una biyección equivariante.
+\end{prop}
+\begin{proof}
+Si $g_1H=g_2H$, entonces $g_1^{-1}g_2\in H$, de modo que $(g_1^{-1}g_2)a=a$ y $g_2a=g_1a$. Así $\varphi$ no depende del representante. Además,
+\[
+\varphi(g'\cdot(gH))=\varphi((g'g)H)=(g'g)a
+=g'(ga)=g'\varphi(gH).
+\]
+Por transitividad, todo elemento de $A$ es $ga$. Definimos la inversa por $\psi(ga)=gH$. Si $g_1a=g_2a$, entonces $(g_1^{-1}g_2)a=a$, por lo que $g_1H=g_2H$; la inversa está bien definida. Finalmente,
+\[
+\psi(\varphi(gH))=gH,\qquad \varphi(\psi(ga))=ga.
+\]
+Se trata, por tanto, de un isomorfismo en $G\text{-}\Set$.
+\end{proof}
+
+\begin{coro}[Órbita--estabilizador]\label{coro:C6-orbita}
+Para toda acción de un grupo finito $G$ y todo $a\in A$,
+\[
+|O_G(a)|=[G:\Stab_G(a)],\qquad
+|O_G(a)|\,|\Stab_G(a)|=|G|.
+\]
+En particular, cada órbita es finita y su cardinal divide a $|G|$.
+\end{coro}
+\begin{proof}
+Restringimos la acción a $O_G(a)$ y aplicamos la proposición anterior. La biyección con $G/\Stab_G(a)$ da la primera igualdad; la \cref{prop:C5-lagrange} da la segunda.
+\end{proof}
+\begin{ejem}
+No existe una acción transitiva de $S_3$ sobre un conjunto de cinco elementos. Una acción así tendría una órbita de cardinal $5$, que tendría que dividir a $|S_3|=6$.
+\end{ejem}
+
+\begin{prop}\label{prop:C6-estabilizadores}
+Si $b=ga$, entonces $\Stab_G(b)=g\Stab_G(a)g^{-1}$.
+\end{prop}
+\begin{proof}
+Si $h\in\Stab_G(a)$, entonces
+\[
+(ghg^{-1})b=gh(g^{-1}b)=gha=ga=b.
+\]
+Por ello $g\Stab_G(a)g^{-1}\subseteq\Stab_G(b)$. Como $a=g^{-1}b$, el mismo argumento da
+\[
+g^{-1}\Stab_G(b)g\subseteq\Stab_G(a).
+\]
+Al conjugar por $g$ obtenemos la inclusión opuesta.
+\end{proof}
+Así, elegir otro punto de la misma órbita cambia el estabilizador por un subgrupo conjugado. Los modelos $G/\Stab_G(a)$ describen la misma órbita como $G$-conjunto.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ecuación de clases y conjugación}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Puntos fijos y acciones de \texorpdfstring{$p$}{p}-grupos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P04--P05.
+El conjunto de puntos fijos de una acción en $S$ es
+\[
+S^G=\set{s\in S\given gs=s\text{ para todo }g\in G}.
+\]
+Un elemento es fijo si y sólo si $\Stab_G(s)=G$, y esto equivale a $O_G(s)=\{s\}$. Las órbitas de un solo elemento se denominan \emph{triviales}.
+
+\begin{prop}[Ecuación de clases de una acción]\label{prop:C6-ecuacion}
+Si $S$ es finito y $R\subseteq S$ contiene exactamente un representante de cada órbita no trivial, entonces
+\[
+|S|=|S^G|+\sum_{a\in R}[G:\Stab_G(a)].
+\]
+\end{prop}
+\begin{proof}
+Las órbitas forman una partición de $S$. Las triviales reúnen exactamente los elementos de $S^G$, y cada una de las restantes tiene cardinal $[G:\Stab_G(a)]$, por la biyección de la \cref{prop:C6-transitiva}. Sumamos las cardinalidades de las partes.
+\end{proof}
+\begin{nota}
+La página 5 afirma que esta fórmula expresa $|G|$ en términos de los puntos fijos y los índices. Para una acción general, la cantidad expresada es $|S|$; sólo al actuar en $S=G$, como en la conjugación posterior, coincide con $|G|$. Usamos $R$ para los representantes y $S^G$ para los puntos fijos, evitando las letras $A$ y $Z$ de la pizarra cuando podrían confundirse con el conjunto actuado y con el centro.
+\end{nota}
+
+\begin{defi}
+Un \emph{$p$-grupo} es un grupo finito de orden $p^r$, donde $p$ es primo y $r\ge0$.
+\end{defi}
+\begin{coro}\label{coro:C6-fijos}
+Si un $p$-grupo $G$ actúa sobre un conjunto finito $S$, entonces
+\[
+|S^G|\equiv|S|\pmod p.
+\]
+\end{coro}
+\begin{proof}
+Cada órbita no trivial tiene cardinal mayor que $1$ y divisor de $|G|=p^r$. Por ello su cardinal es una potencia positiva de $p$ y es divisible por $p$. Al reducir la ecuación de clases módulo $p$, sólo queda el término de los puntos fijos.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Centro y centralizadores}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P05--P07.
+La \emph{acción por conjugación} de $G$ sobre sí mismo se define por
+\[
+g\cdot a=gag^{-1}.
+\]
+Es una acción porque $eae^{-1}=a$ y $(gh)a(gh)^{-1}=g(hah^{-1})g^{-1}$. Su homomorfismo asociado es
+\[
+\sigma:G\to\Sym(G),\qquad \sigma(g)(a)=gag^{-1}.
+\]
+El \emph{centro} es el subgrupo
+\[
+Z(G)=\set{g\in G\given ga=ag\text{ para todo }a\in G}.
+\]
+Como $g\in\ker\sigma$ equivale a $gag^{-1}=a$ para todo $a$, tenemos $Z(G)=\ker\sigma$. Por tanto, es normal. A su vez, $Z(G)$ es el conjunto de puntos fijos de la conjugación: sus elementos son exactamente los que todos los elementos de $G$ dejan fijos. Así,
+\[
+G\text{ es abeliano}\quad\Longleftrightarrow\quad Z(G)=G
+\quad\Longleftrightarrow\quad\text{la acción por conjugación es trivial}.
+\]
+
+\begin{ejer}[Cociente por el centro cíclico]\label{ejer:C6-centro}
+Demostrar que todo grupo cuyo cociente por el centro es cíclico es abeliano. Deducir que ese cociente tiene un solo elemento.
+\end{ejer}
+\begin{sol}
+Sea $gZ(G)$ un generador del cociente. Para $a,b\in G$ existen $r,s\in\mathbb Z$ tales que $aZ(G)=g^rZ(G)$ y $bZ(G)=g^sZ(G)$. Esto permite escribir
+\[
+a=g^rz,\qquad b=g^sw,\qquad z,w\in Z(G).
+\]
+Los elementos centrales conmutan entre sí y con las potencias de $g$, de modo que
+\[
+ab=(g^rz)(g^sw)=g^{r+s}zw
+=g^{s+r}wz=(g^sw)(g^rz)=ba.
+\]
+Así $G$ es abeliano, $Z(G)=G$ y el cociente tiene un solo elemento.
+\end{sol}
+\begin{nota}
+El lema III.1.5 reproducido en la página 6 supone $G$ finito y remite al ejercicio III.1.5. Hemos presentado su prueba como solución de esa comprobación; el argumento no utiliza finitud, por lo que el enunciado anterior vale para cualquier grupo.
+\end{nota}
+
+\begin{defi}
+El \emph{centralizador} de $a\in G$ es su estabilizador bajo conjugación:
+\[
+Z_G(a)=\set{g\in G\given gag^{-1}=a}
+=\set{g\in G\given ga=ag}.
+\]
+La \emph{clase de conjugación} de $a$ es su órbita $[a]=\set{gag^{-1}\given g\in G}$. Dos elementos son conjugados si pertenecen a una misma clase.
+\end{defi}
+En particular, $Z(G)\subseteq Z_G(a)$ para todo $a$, y
+\[
+Z(G)=\bigcap_{a\in G}Z_G(a),\qquad
+a\in Z(G)\quad\Longleftrightarrow\quad Z_G(a)=G.
+\]
+En el fragmento de la página 7 también se llama normalizador al estabilizador de un elemento bajo conjugación. Para distinguirlo del normalizador de un subconjunto, definido más adelante, aquí lo llamamos centralizador y mantenemos la notación $Z_G(a)$ del fragmento.
+
+La ecuación de clases para la conjugación en un grupo finito toma la forma
+\begin{equation}\label{eq:C6-conjugacion}
+|G|=|Z(G)|+\sum_{a\in R}[G:Z_G(a)],
+\end{equation}
+donde $R$ contiene un representante de cada clase de conjugación no trivial.
+
+\begin{coro}\label{coro:C6-centro-p}
+Todo $p$-grupo no trivial tiene centro no trivial; más precisamente, $|Z(G)|\ge p$.
+\end{coro}
+\begin{proof}
+Aplicamos el \cref{coro:C6-fijos} a la conjugación: $|Z(G)|\equiv|G|\equiv0\pmod p$. Como $e_G\in Z(G)$, su cardinal es positivo y múltiplo de $p$, de donde es al menos $p$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ejemplo: grupos de orden seis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P07--P08.
+Sea $|G|=6$. Si $G$ es abeliano, $Z(G)=G$ y la ecuación de clases se reduce a $6=6$. Supongamos que $G$ no es abeliano. Si su centro fuera no trivial, Lagrange y $Z(G)\ne G$ darían $|Z(G)|=2$ o $3$. Entonces $G/Z(G)$ tendría orden $3$ o $2$, respectivamente, y sería cíclico: en un grupo de orden primo, cualquier elemento no neutro tiene ese orden por Lagrange y genera todo el grupo. El \cref{ejer:C6-centro} implicaría que $G$ es abeliano, una contradicción. Por tanto $Z(G)=\{e_G\}$.
+
+La ecuación \eqref{eq:C6-conjugacion} queda
+\[
+6=1+d_1+\cdots+d_k,
+\]
+donde cada $d_i>1$ divide a $6$. Además, cada representante $a\notin Z(G)$ es distinto del neutro y pertenece a su centralizador. Así $|Z_G(a)|\ge2$, lo que excluye el índice $6$. Los únicos tamaños posibles son $2$ y $3$, y la única forma de sumar $5$ con ellos es $2+3$. En consecuencia,
+\[
+6=1+2+3.
+\]
+Es la ecuación de clases de $S_3$: el neutro forma una clase, los dos $3$-ciclos otra y las tres transposiciones otra. La conclusión obtenida aquí es la forma de la ecuación para un grupo no abeliano de orden seis; por sí sola no constituye una clasificación de esos grupos.
+\begin{nota}
+En la página 8 se pasa de $d_i>1$ y $d_i\mid6$ a las posibilidades $2$ y $3$. Para excluir el índice $6$ hemos usado $a\in Z_G(a)$ y $a\ne e_G$. Las dos condiciones escritas, por sí solas, no descartan ese índice.
+\end{nota}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Normalizadores y el teorema de Cauchy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Conjugación de subconjuntos y subgrupos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P08--P09.
+El grupo $G$ también actúa por conjugación en su conjunto potencia $2^G$:
+\[
+G\times2^G\to2^G,\qquad(g,A)\mapsto gAg^{-1}
+=\set{gag^{-1}\given a\in A}.
+\]
+Los axiomas se verifican elemento a elemento usando la acción por conjugación en $G$.
+
+\begin{defi}
+El \emph{normalizador} de $A\subseteq G$ es el estabilizador de $A$ en esta acción:
+\[
+N_G(A)=\set{g\in G\given gAg^{-1}=A}.
+\]
+El \emph{centralizador} de $A$ fija cada elemento de $A$:
+\[
+Z_G(A)=\set{g\in G\given gag^{-1}=a\text{ para todo }a\in A}.
+\]
+\end{defi}
+El normalizador es un subgrupo por ser un estabilizador; el centralizador también, pues $Z_G(A)=\bigcap_{a\in A}Z_G(a)$. Se tiene $Z_G(A)\subseteq N_G(A)$. Para un singleton,
+\[
+N_G(\{a\})=Z_G(\{a\})=Z_G(a),
+\]
+pero para conjuntos generales la inclusión puede ser estricta: un elemento puede permutar $A$ sin fijarlo punto por punto.
+
+Si $H\le G$, cada conjugado $gHg^{-1}$ es un subgrupo isomorfo a $H$, mediante $h\mapsto ghg^{-1}$. Esta función conserva productos y tiene inversa $x\mapsto g^{-1}xg$; en particular, los subgrupos conjugados tienen el mismo orden. Además,
+\[
+H\subseteq N_G(H),\qquad
+H\trianglelefteq G\quad\Longleftrightarrow\quad N_G(H)=G.
+\]
+La primera inclusión se sigue de que $hHh^{-1}=H$ para $h\in H$, y la segunda equivalencia es la definición de normalidad. Más generalmente, $N_G(H)$ es el mayor subgrupo de $G$ en el que $H$ es normal: $H\trianglelefteq N_G(H)$, y si $H\trianglelefteq K\le G$, cada $k\in K$ satisface $kHk^{-1}=H$, por lo que $K\subseteq N_G(H)$.
+
+\begin{lema}\label{lema:C6-conjugados}
+El conjunto de subgrupos conjugados a $H\le G$ está en biyección con $G/N_G(H)$. Si su cardinal es finito, es $[G:N_G(H)]$.
+\end{lema}
+\begin{proof}
+Es la órbita de $H$ bajo la conjugación en $2^G$, cuyo estabilizador es $N_G(H)$. La \cref{prop:C6-transitiva} aplicada a esa órbita da la biyección
+\[
+G/N_G(H)\to\set{gHg^{-1}\given g\in G},\qquad
+gN_G(H)\mapsto gHg^{-1}.\qedhere
+\]
+\end{proof}
+\begin{coro}
+Si $[G:H]$ es finito, el número de conjugados de $H$ es un divisor de ese índice.
+\end{coro}
+\begin{proof}
+Como $H\le N_G(H)\le G$, la fórmula de índices \eqref{eq:C5-indices} da
+\[
+[G:H]=[G:N_G(H)]\,[N_G(H):H].
+\]
+El primer factor es el número de conjugados por el lema anterior.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cauchy mediante rotaciones de tuplas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P09--P10.
+\begin{teo}[Cauchy]\label{teo:C6-cauchy}
+Si el primo $p$ divide el orden de un grupo finito $G$, existe $a\in G$ de orden $p$.
+\end{teo}
+\begin{proof}
+Consideremos el conjunto finito
+\[
+S=\set{(a_1,\ldots,a_p)\in G^p\given a_1a_2\cdots a_p=e_G}.
+\]
+Elegidas las primeras $p-1$ entradas, la última queda determinada por
+\[
+a_p=(a_1a_2\cdots a_{p-1})^{-1}.
+\]
+Por tanto $|S|=|G|^{p-1}$ y $p\mid|S|$, pues $p\ge2$.
+
+El grupo $\mathbb Z/p\mathbb Z$ actúa en $S$ por rotación cíclica. Si $T$ es el desplazamiento de una posición a la izquierda, definimos
+\[
+T(a_1,\ldots,a_p)=(a_2,\ldots,a_p,a_1),\qquad
+[m]\cdot\mathbf a=T^m(\mathbf a).
+\]
+Comprobamos que $T$ preserva $S$, incluso cuando $G$ no es abeliano:
+\[
+a_2\cdots a_pa_1=a_1^{-1}(a_1\cdots a_p)a_1=e_G.
+\]
+Además, $T^p=\id$ y las rotaciones se componen sumando sus desplazamientos. La acción está bien definida módulo $p$ y, para $0\le m<p$, tiene la fórmula de la pizarra
+\[
+[m]\cdot(a_1,\ldots,a_p)
+=(a_{m+1},\ldots,a_p,a_1,\ldots,a_m).
+\]
+Sea $Z=S^{\mathbb Z/p\mathbb Z}$ su conjunto de puntos fijos. El \cref{coro:C6-fijos} implica
+\[
+|Z|\equiv|S|\equiv0\pmod p.
+\]
+Una tupla es fija si y sólo si la fija $[1]$, porque este elemento genera el grupo actuante. Ser fija por una rotación exige $a_1=a_2=\cdots=a_p=a$; para que la tupla pertenezca a $S$ hace falta además $a^p=e_G$. Por tanto,
+\[
+Z=\set{(a,\ldots,a)\given a\in G,\ a^p=e_G}.
+\]
+El conjunto $Z$ contiene a $(e_G,\ldots,e_G)$, así que su cardinal es un múltiplo positivo de $p$. Luego $|Z|\ge p>1$ y existe $a\ne e_G$ con $a^p=e_G$. Por el \cref{lema:C2-orden}, el orden de $a$ divide al primo $p$; como $a\ne e_G$, no es $1$ y debe ser $p$.
+\end{proof}
+\begin{nota}[Pasos completados]
+En las páginas 9--10 la acción se escribe directamente y la prueba termina en $a^p=e_G$. Hemos añadido la verificación de que una rotación preserva el producto neutro sin conmutatividad, la independencia del representante módulo $p$ y el último paso que establece el orden exacto. Se conserva la estrategia de contar tuplas y puntos fijos.
+\end{nota}

@@ -1,0 +1,310 @@
+% Fuente única de clase: Recursos/2025-08-26.pdf, páginas 1--13.
+En la clase 5 construimos cocientes de grupos a partir de relaciones de equivalencia compatibles con la multiplicación. Las clases laterales identifican esas relaciones con subgrupos, y la normalidad permite definir el grupo cociente. Su propiedad universal conduce al primer teorema de isomorfismo y a ejemplos con productos.
+
+Los fragmentos originales de \citet{aluffi2009} reproducidos en este archivo corresponden a II.7: definición II.7.1, lema II.7.2, proposiciones II.7.3--4 y II.7.6--8, ejemplo II.7.9, proposición II.7.10 y teorema II.7.12. La factorización final es el teorema II.8.1 y su caso sobreyectivo es el corolario II.8.2. Las pruebas y los ejemplos se desarrollan en estas pizarras; no se enuncian ejercicios nuevos. El recuento de clases laterales se añade explícitamente como preparación para la clase 6.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Normalidad y relaciones compatibles}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Subgrupos normales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01.
+\begin{defi}
+Un subgrupo $N\le G$ es \emph{normal}, escrito $N\trianglelefteq G$, si satisface
+\[
+gng^{-1}\in N\qquad(g\in G,\ n\in N).
+\]
+\end{defi}
+Si $G$ es abeliano, cada subgrupo es normal, pues $gng^{-1}=n$. Para un subconjunto $A\subseteq G$ usamos la notación
+\[
+gA=\set{ga\given a\in A},\qquad
+Ag=\set{ag\given a\in A}.
+\]
+La normalidad admite las siguientes formulaciones equivalentes:
+\begin{align*}
+N\trianglelefteq G
+&\quad\Longleftrightarrow\quad gNg^{-1}\subseteq N\quad\text{para todo }g\in G\\
+&\quad\Longleftrightarrow\quad gNg^{-1}=N\quad\text{para todo }g\in G\\
+&\quad\Longleftrightarrow\quad gN=Ng\quad\text{para todo }g\in G.
+\end{align*}
+En efecto, aplicar la inclusión a $g^{-1}$ da $g^{-1}Ng\subseteq N$ y, al conjugar por $g$, obtenemos $N\subseteq gNg^{-1}$. Multiplicar a la derecha por $g$ transforma la igualdad de conjugados en la igualdad de clases laterales. Incluso la condición $gN\subseteq Ng$ para todo $g$ basta: equivale a $gNg^{-1}\subseteq N$.
+
+\begin{lema}\label{lema:C5-nucleo-normal}
+El núcleo de todo homomorfismo $\varphi:G\to G'$ es un subgrupo normal de $G$.
+\end{lema}
+\begin{proof}
+Ya sabemos que es un subgrupo. Si $n\in\ker\varphi$ y $g\in G$, entonces
+\begin{align*}
+\varphi(gng^{-1})
+&=\varphi(g)\varphi(n)\varphi(g^{-1})\\
+&=\varphi(g)e_{G'}\varphi(g)^{-1}=e_{G'}.
+\end{align*}
+Así $gng^{-1}\in\ker\varphi$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Del cociente de conjuntos al cociente de grupos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P02--P05.
+Si $\sim$ es una relación de equivalencia en el conjunto $G$, la proyección $\pi:G\to G/{\sim}$ envía $g$ a $[g]$. Toda función $f:G\to X$ constante en clases induce una única función $\bar f([g])=f(g)$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G/{\sim}\arrow[r,destacado,"\exists!\,\bar f"]&X\\
+G\arrow[u,two heads,"\pi"]\arrow[ur,"f"']&
+\end{tikzcd}
+\]
+La función está bien definida porque $g\sim g'$ implica $f(g)=f(g')$. La sobreyectividad de $\pi$ da la unicidad. Es decir, $(G/{\sim},\pi)$ es inicial entre las funciones desde $G$ que identifican elementos equivalentes, con flechas dadas por las factorizaciones correspondientes.
+
+Queremos ahora una operación de grupo en el cociente para la cual $\pi$ sea un homomorfismo. Necesariamente debe ser
+\[
+[a][b]=[ab].
+\]
+El punto decisivo es que el resultado no dependa de los representantes.
+
+\begin{prop}\label{prop:C5-compatible}
+La regla $[a][b]=[ab]$ define una estructura de grupo en $G/{\sim}$ si y sólo si, para todos $a,a',g\in G$,
+\begin{equation}\label{eq:C5-compatible}
+a\sim a'\quad\Longrightarrow\quad
+ga\sim ga'\quad\text{y}\quad ag\sim a'g.
+\end{equation}
+En ese caso, $\pi$ es un homomorfismo y todo homomorfismo $\varphi:G\to G'$ constante en clases induce un único homomorfismo $\bar\varphi:G/{\sim}\to G'$ con $\bar\varphi\circ\pi=\varphi$.
+\end{prop}
+\begin{proof}
+Si la regla define una operación, $[a]=[a']$ implica
+\[
+[ga]=[g][a]=[g][a']=[ga'],\qquad
+[ag]=[a][g]=[a'][g]=[a'g].
+\]
+Recíprocamente, supongamos \eqref{eq:C5-compatible}. Si $a\sim a'$ y $b\sim b'$, entonces $ab\sim a'b\sim a'b'$, así que $[ab]=[a'b']$. La operación está bien definida. La asociatividad se hereda de $G$, el neutro es $[e_G]$ y el inverso de $[g]$ es $[g^{-1}]$. La igualdad $\pi(ab)=\pi(a)\pi(b)$ es la propia regla de multiplicación.
+
+La propiedad universal de conjuntos produce $\bar\varphi([a])=\varphi(a)$. Es un homomorfismo, pues
+\[
+\bar\varphi([a][b])=\varphi(ab)
+=\varphi(a)\varphi(b)=\bar\varphi([a])\bar\varphi([b]).
+\]
+La unicidad como función implica la unicidad como homomorfismo.
+\end{proof}
+Decimos que una equivalencia que satisface \eqref{eq:C5-compatible} es \emph{compatible con la estructura de grupo}.
+\begin{nota}
+En la página 3 de la pizarra aparece la cadena $ab=a'b=ab'=a'b'$ al discutir representantes. La condición correcta es la igualdad de sus \emph{clases}, o la equivalencia de esos productos; los elementos de $G$ no tienen por qué coincidir. Por ejemplo, en $\mathbb Z/2\mathbb Z$, $[0]=[2]$ aunque $0\ne2$.
+\end{nota}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Clases laterales y grupos cociente}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Equivalencias invariantes y clases laterales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P06--P08.
+\begin{prop}\label{prop:C5-clases}
+Sea $\sim$ una equivalencia en $G$ invariante por multiplicación a la izquierda. Entonces $H=[e_G]$ es un subgrupo y
+\[
+a\sim b\quad\Longleftrightarrow\quad a^{-1}b\in H
+\quad\Longleftrightarrow\quad aH=bH.
+\]
+En particular, $[a]=aH$.
+\end{prop}
+\begin{proof}
+El conjunto $H$ contiene a $e_G$. Si $a,b\in H$, de $a\sim e_G$ y $b\sim e_G$ obtenemos $a\sim b$. Multiplicando a la izquierda por $a^{-1}$, resulta $e_G\sim a^{-1}b$, por lo que $a^{-1}b\in H$. Esta variante del criterio de subgrupo también basta: tomando $a=b$ se obtiene el neutro; tomando $b=e_G$ se obtienen inversos; y, una vez disponibles, $(a^{-1})^{-1}b=ab\in H$.
+
+Para $a,b$ cualesquiera, multiplicar $a\sim b$ por $a^{-1}$ da $e_G\sim a^{-1}b$, y multiplicar esta última relación por $a$ da el recíproco. Si $a^{-1}b\in H$, escribimos $b=ah$ con $h\in H$; entonces $bH=ahH=aH$, porque $hH=H$. Finalmente, si $aH=bH$, de $b\in aH$ se deduce $b=ah$ para algún $h\in H$, luego $a^{-1}b\in H$. La descripción de la clase de $a$ se sigue de la misma equivalencia.
+\end{proof}
+\begin{nota}
+En la página 6, el argumento para probar que $[e_G]$ es subgrupo utiliza un paso $ab^{-1}\sim ae_G$ que requeriría multiplicar una relación por la derecha. Bajo la única hipótesis de invariancia por la izquierda, usamos $a^{-1}b\in H$ como arriba; así no se presupone la segunda invariancia.
+\end{nota}
+
+\begin{defi}
+Para $H\le G$, los conjuntos $aH$ se llaman \emph{clases laterales izquierdas}, y los conjuntos $Ha$, \emph{clases laterales derechas}.
+\end{defi}
+
+\begin{prop}\label{prop:C5-correspondencias}
+Los subgrupos de $G$ se corresponden biyectivamente con las equivalencias invariantes por multiplicación a la izquierda, mediante
+\[
+H\longmapsto\bigl(a\sim_L b\ \Longleftrightarrow\ a^{-1}b\in H\bigr).
+\]
+También se corresponden con las equivalencias invariantes por multiplicación a la derecha, mediante
+\[
+H\longmapsto\bigl(a\sim_R b\ \Longleftrightarrow\ ab^{-1}\in H\bigr).
+\]
+Las clases de estas relaciones son $aH$ y $Ha$, respectivamente.
+\end{prop}
+\begin{proof}
+Para $\sim_L$, reflexividad, simetría y transitividad se siguen de
+\[
+a^{-1}a=e\in H,\qquad
+b^{-1}a=(a^{-1}b)^{-1},\qquad
+a^{-1}c=(a^{-1}b)(b^{-1}c).
+\]
+Además, $(ga)^{-1}(gb)=a^{-1}b$, lo que da la invariancia por la izquierda. La clase del neutro es $H$ y las demás son $aH$. La proposición anterior muestra que toda equivalencia de este tipo se recupera de su clase del neutro; ambas construcciones son inversas.
+
+Para $\sim_R$, usamos $aa^{-1}=e$, $ba^{-1}=(ab^{-1})^{-1}$ y $ac^{-1}=(ab^{-1})(bc^{-1})$, junto con $(ag)(bg)^{-1}=ab^{-1}$. Sus clases son $Ha$: por ejemplo, $ab^{-1}\in H$ equivale a $a=hb$ para algún $h\in H$, y por tanto a $Ha=Hb$. El mismo argumento, con izquierda y derecha intercambiadas, prueba que la clase del neutro de una equivalencia invariante por la derecha es un subgrupo y recupera la relación.
+\end{proof}
+Para todo $h\in H$ tenemos $hH=Hh=H$. Siempre $a\in aH\cap Ha$; si una clase izquierda $aH$ coincide con una clase derecha $Hb$, entonces, por contener a $a$, esta última es $Ha$, y $aH=Ha$.
+
+\begin{ejem}\label{ejem:C5-S3}
+En $S_3$, sean $H=\{e,(1\ 2)\}$ y $g=(1\ 3\ 2)$. Con nuestra convención de composición, el factor derecho actúa primero y
+\[
+gH=\{(1\ 3\ 2),(2\ 3)\},\qquad
+Hg=\{(1\ 3\ 2),(1\ 3)\}.
+\]
+Son diferentes: $g(1\ 2)$ es la transposición $(2\ 3)$, mientras que $(1\ 2)g$ es la transposición $(1\ 3)$.
+\end{ejem}
+\begin{nota}
+El fragmento del ejemplo II.7.9 en la página 8 usa la convención de productos de permutaciones de Aluffi. Al expresarlo con composición de funciones, los productos escritos se invierten. Las dos listas se intercambian, pero siguen siendo clases laterales diferentes.
+\end{nota}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Normalidad y construcción del cociente}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P08--P10.
+\begin{prop}\label{prop:C5-normal-relaciones}
+Las relaciones $\sim_L$ y $\sim_R$ asociadas a $H\le G$ coinciden si y sólo si $H$ es normal.
+\end{prop}
+\begin{proof}
+Las relaciones coinciden exactamente cuando tienen las mismas clases para cada elemento, es decir, cuando $gH=Hg$ para todo $g\in G$. Esta condición equivale a $H\trianglelefteq G$.
+\end{proof}
+Si $H$ es normal, su relación de clases laterales es invariante tanto por la izquierda como por la derecha. La \cref{prop:C5-compatible} permite entonces definir lo siguiente.
+
+\begin{defi}
+Para $H\trianglelefteq G$, el \emph{grupo cociente} es el conjunto $G/H=\set{gH\given g\in G}$ con la operación
+\[
+(aH)(bH)=(ab)H.
+\]
+Su neutro es $H=e_GH$ y el inverso de $gH$ es $g^{-1}H$.
+\end{defi}
+La proyección $\pi:G\to G/H$, $g\mapsto gH$, es un homomorfismo sobreyectivo, y
+\[
+\ker\pi=\set{g\in G\given gH=H}=H.
+\]
+Así, los subgrupos normales son exactamente los núcleos de homomorfismos de grupos.
+
+\begin{teo}[Propiedad universal del cociente]\label{teo:C5-universal}
+Si $H\trianglelefteq G$ y $\varphi:G\to G'$ es un homomorfismo con $H\subseteq\ker\varphi$, existe un único homomorfismo $\bar\varphi:G/H\to G'$ tal que $\bar\varphi\circ\pi=\varphi$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G\arrow[r,"\varphi"]\arrow[d,two heads,"\pi"']&G'\\
+G/H\arrow[ur,destacado,"\exists!\,\bar\varphi"']&
+\end{tikzcd}
+\]
+\end{teo}
+\begin{proof}
+Si $aH=bH$, entonces $a^{-1}b\in H\subseteq\ker\varphi$ y
+\[
+\varphi(a)^{-1}\varphi(b)=\varphi(a^{-1}b)=e_{G'}.
+\]
+Por ello $\varphi(a)=\varphi(b)$. El homomorfismo es constante en clases, y la \cref{prop:C5-compatible} produce el único mediador, dado por $\bar\varphi(gH)=\varphi(g)$.
+\end{proof}
+En la prueba de la página 9 se utiliza $ab^{-1}\in H$ remitiendo a la caracterización por $a^{-1}b$. Ambas condiciones son equivalentes aquí porque $H$ es normal; arriba usamos directamente la segunda para evitar un cambio implícito de relación.
+
+\begin{ejem}
+Como $\mathbb Z$ es abeliano, $n\mathbb Z$ es normal. En notación aditiva,
+\[
+a\sim b\quad\Longleftrightarrow\quad b-a\in n\mathbb Z
+\quad\Longleftrightarrow\quad n\mid(b-a).
+\]
+Las clases son $[a]_n=a+n\mathbb Z$, y la operación del cociente satisface $[a]_n+[b]_n=[a+b]_n$. Recuperamos así el grupo de clases de congruencia usado en las clases anteriores.
+\end{ejem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Índice y recuento de clases laterales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{nota}[Complemento para la clase siguiente]
+La clase 6 utiliza el índice y el teorema de Lagrange, citando el corolario II.8.14, aunque su prueba no aparece en las pizarras de este bloque. Incluimos aquí el argumento de recuento necesario, sin atribuirlo a una explicación oral de esta clase.
+\end{nota}
+El \emph{índice} $[G:H]$ es el número de clases laterales izquierdas de $H$. Para hablar del conjunto $G/H$ no hace falta que $H$ sea normal; la normalidad es necesaria para su estructura de grupo cociente.
+
+\begin{prop}[Lagrange]\label{prop:C5-lagrange}
+Si $G$ es finito y $H\le G$, entonces $|G|=[G:H]|H|$. En particular, $|H|$ divide a $|G|$.
+\end{prop}
+\begin{proof}
+Las clases laterales forman una partición de $G$, y cada una tiene $|H|$ elementos: la función $H\to gH$, $h\mapsto gh$, es biyectiva, con inversa $x\mapsto g^{-1}x$. Sumamos sus cardinalidades sobre las $[G:H]$ clases.
+\end{proof}
+Si $H\le K\le G$ y $[G:H]$ es finito, también
+\begin{equation}\label{eq:C5-indices}
+[G:H]=[G:K][K:H].
+\end{equation}
+Para verlo, elijamos representantes $g_i$ de las clases de $K$ en $G$ y $k_j$ de las de $H$ en $K$. Los $g_ik_j$ representan todas las clases de $H$ en $G$. Si $g_ik_jH=g_{i'}k_{j'}H$, primero $g_iK=g_{i'}K$, luego $i=i'$; al cancelar $g_i$, se sigue $k_jH=k_{j'}H$ y $j=j'$. Así hay exactamente el producto indicado de clases, incluso si los grupos son infinitos.
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Primer teorema de isomorfismo y productos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P11.
+\begin{teo}[Primer teorema de isomorfismo]\label{teo:C5-primer-iso}
+Si $\varphi:G\to G'$ es un homomorfismo, la siguiente aplicación inducida es un isomorfismo:
+\[
+\widetilde\varphi:G/\ker\varphi\xrightarrow{\ \sim\ }\im\varphi,
+\qquad g\ker\varphi\longmapsto\varphi(g).
+\]
+En consecuencia, se factoriza como
+\[
+\begin{tikzcd}[column sep=large]
+G\arrow[r,two heads,"\pi"]\arrow[rrr,bend left=22,"\varphi"]&
+G/\ker\varphi\arrow[r,destacado,"\widetilde\varphi","\sim"']&
+\im\varphi\arrow[r,hook,"i"]&G'.
+\end{tikzcd}
+\]
+\end{teo}
+\begin{proof}
+El núcleo es normal, de modo que existe el cociente. La propiedad universal, aplicada al homomorfismo con codominio restringido a $\im\varphi$, produce $\widetilde\varphi$. Es sobreyectivo por definición de la imagen. Si dos clases tienen la misma imagen, entonces $\varphi(a)=\varphi(b)$, de donde
+\[
+\varphi(a^{-1}b)=e_{G'},\qquad a^{-1}b\in\ker\varphi.
+\]
+Así $a\ker\varphi=b\ker\varphi$ y $\widetilde\varphi$ es inyectivo. Es un homomorfismo biyectivo y, por la \cref{prop:C3-iso}, es un isomorfismo. Las fórmulas muestran $i\circ\widetilde\varphi\circ\pi=\varphi$.
+\end{proof}
+\begin{coro}\label{coro:C5-iso-sobreyectivo}
+Si $\varphi:G\to G'$ es sobreyectivo, entonces $G/\ker\varphi\cong G'$.
+\end{coro}
+\begin{proof}
+En ese caso $\im\varphi=G'$ y aplicamos el teorema anterior.
+\end{proof}
+
+% P12--P13.
+\begin{ejem}[Cociente de un producto]
+Si $H_1\trianglelefteq G_1$ y $H_2\trianglelefteq G_2$, entonces
+\[
+H_1\times H_2\trianglelefteq G_1\times G_2,\qquad
+\frac{G_1\times G_2}{H_1\times H_2}
+\cong\frac{G_1}{H_1}\times\frac{G_2}{H_2}.
+\]
+La aplicación se obtiene usando las proyecciones $p_i$ y los cocientes $q_i$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+&G_1\arrow[r,two heads,"q_1"]&G_1/H_1\\
+G_1\times G_2\arrow[ur,"p_1"]\arrow[dr,"p_2"']\arrow[rr,destacado,"\Pi"]&&
+(G_1/H_1)\times(G_2/H_2)\arrow[u]\arrow[d]\\
+&G_2\arrow[r,two heads,"q_2"']&G_2/H_2
+\end{tikzcd}
+\]
+Por la propiedad universal del producto, $\Pi$ es el único homomorfismo cuyas componentes son $q_1p_1$ y $q_2p_2$. En concreto,
+\[
+\Pi(g_1,g_2)=(g_1H_1,g_2H_2).
+\]
+Es sobreyectivo, pues cada par de clases tiene un par de representantes. Además,
+\begin{align*}
+\ker\Pi
+&=\set{(g_1,g_2)\given g_1H_1=H_1,\ g_2H_2=H_2}\\
+&=\set{(g_1,g_2)\given g_1\in H_1,\ g_2\in H_2}
+=H_1\times H_2.
+\end{align*}
+Como núcleo, este producto es normal; el \cref{coro:C5-iso-sobreyectivo} da el isomorfismo anunciado. Su fórmula explícita es
+\[
+(g_1,g_2)(H_1\times H_2)\longmapsto(g_1H_1,g_2H_2).
+\]
+\end{ejem}
+
+Tomando $H_1=\{e_{G_1}\}$ y $H_2=G_2$, resulta
+\[
+\frac{G_1\times G_2}{\{e_{G_1}\}\times G_2}
+\cong (G_1/\{e_{G_1}\})\times(G_2/G_2)
+\cong G_1\times\{*\}\cong G_1.
+\]
+El isomorfismo es la proyección sobre la primera coordenada, pasada al cociente. La abreviatura $(G_1\times G_2)/G_2$ de la página 13 se entiende con la inclusión $g_2\mapsto(e_{G_1},g_2)$.
+
+En particular, $C_6\cong C_2\times C_3$ y, al cocientar por el subgrupo de orden $3$, obtenemos $C_6/C_3\cong C_2$. Para hacer explícita esta identificación, el homomorfismo
+\[
+\mathbb Z/6\mathbb Z\to(\mathbb Z/2\mathbb Z)\times(\mathbb Z/3\mathbb Z),
+\qquad [a]_6\mapsto([a]_2,[a]_3),
+\]
+es inyectivo porque su núcleo exige que $2$ y $3$ dividan a $a$, y por tanto que $6$ lo divida. Ambos grupos tienen seis elementos, así que es un isomorfismo. El subgrupo $\generado{[2]_6}$ corresponde a $\{[0]_2\}\times\mathbb Z/3\mathbb Z$, y el cociente conserva la primera coordenada.

@@ -1,0 +1,26 @@
+% Diagrama de las dos correspondencias de la pizarra de la clase 4, P13.
+\begin{tikzpicture}[x=1cm,y=1cm,every node/.style={font=\small}]
+\begin{scope}
+\node (d1) at (0,3) {$1$};
+\node (d2) at (-1,2) {$2$};
+\node (d3) at (1,2) {$3$};
+\node (d4) at (-1,1) {$4$};
+\node (d6) at (1,1) {$6$};
+\node (d12) at (0,0) {$12$};
+\draw (d1)--(d2)--(d4)--(d12)--(d6)--(d3)--(d1);
+\draw (d2)--(d6);
+\node at (0,3.65) {Divisores de $12$};
+\end{scope}
+\draw[<->,draw=rojoDiagramaCIMAT,thick] (1.8,1.5)--(3.2,1.5);
+\begin{scope}[xshift=5cm]
+\node (h1) at (0,3) {$\generado{[1]}=\mathbb Z/12\mathbb Z$};
+\node (h2) at (-1,2) {$\generado{[2]}$};
+\node (h3) at (1,2) {$\generado{[3]}$};
+\node (h4) at (-1,1) {$\generado{[4]}$};
+\node (h6) at (1,1) {$\generado{[6]}$};
+\node (h12) at (0,0) {$\generado{[12]}=\{[0]\}$};
+\draw (h1)--(h2)--(h4)--(h12)--(h6)--(h3)--(h1);
+\draw (h2)--(h6);
+\node at (0,3.65) {Subgrupos};
+\end{scope}
+\end{tikzpicture}

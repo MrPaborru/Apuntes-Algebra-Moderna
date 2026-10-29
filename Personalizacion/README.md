@@ -36,6 +36,7 @@ Se consultó el [Manual Básico de Imagen del CIMAT](https://www.cimat.mx/wp-con
 | `\bigforall`, `\bigexists`, `\colonequiv` | Cuantificadores ampliados y equivalencia por definición |
 | `\Hom`, `\Aut`, `\aut`, `\End`, `\Sym`, `\gal`, `\rk`, `\card`, `\coker` | Operadores algebraicos |
 | `\im`, `\mcd`, `\mcm`, `\dom`, `\cod`, `\id`, `\ord`, `\res`, `\supp`, `\ev` | Operadores de funciones y estructuras algebraicas |
+| `\Stab` | Estabilizadores de acciones; desde la clase 6 |
 | `\Ob`, `\ob`, `\Set`, `\Grp`, `\Ab`, `\Vect`, `\cat`, `\Col` | Objetos, categorías y colecciones |
 
 Los delimitadores admiten tamaño normal, automático con `*` y explícito con `[...]`, por ejemplo:
@@ -58,3 +59,5 @@ Como en la plantilla del usuario, `\brack{...}` representa corchetes simples: es
 En la portada, el guion corto se compone en una caja propia, fuera de las abreviaturas ordinales y con un pequeño espacio a cada lado, para que permanezca visible.
 
 Las clases iniciales no fijan aún convenciones sobre anillos unitarios, cuerpos, ideales o módulos. En su momento se usarán expresiones explícitas como `R`, `K`, `\mathfrak a`, `R/\mathfrak a` y `\Hom_R(M,N)`, contrastando siempre los materiales. No anticipar hipótesis de conmutatividad, unidad o lateralidad.
+
+En las clases 4–6, `F^{\mathrm{ab}}(A)` se modela con `\mathbb Z^{\oplus A}` (funciones de soporte finito). `G/H` designa el conjunto de clases izquierdas para cualquier subgrupo; sólo se le da estructura de grupo cociente si `H` es normal. Se usa `\Stab_G(a)`, `O_G(a)`, `Z(G)`, `Z_G(A)` y `N_G(A)` para estabilizador, órbita, centro, centralizador y normalizador. Los puntos fijos de una acción en `S` se escriben `S^G`, y `R` reúne representantes de órbitas no triviales, para distinguirlos del centro y del conjunto actuado.
