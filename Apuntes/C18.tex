@@ -1,0 +1,275 @@
+% Fuente única de clase: Recursos/2025-10-23.pdf, páginas 1--8.
+En la clase 18 construimos el campo de fracciones de un dominio y comprobamos su propiedad universal. Usamos después ese campo y el contenido para trasladar divisibilidad e irreducibilidad a polinomios sobre un campo. Concluimos que $R[x]$ es factorial siempre que $R$ lo sea.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{El campo de fracciones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{La propiedad universal y las fracciones formales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01.
+Sea $R$ un dominio. Consideremos la categoría cuyos objetos son pares $(i,K)$, con $K$ un campo e $i:R\hookrightarrow K$ un homomorfismo inyectivo. Un morfismo de $(i,K)$ a $(j,L)$ es un homomorfismo de campos $\alpha:K\to L$ tal que $\alpha i=j$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+K\arrow[r,"\alpha"]&L\\
+R\arrow[u,hook,"i"]\arrow[ur,hook,"j"']&
+\end{tikzcd}
+\]
+Las identidades y composiciones conservan esa condición, así que forman una categoría.
+
+\begin{ejer}[Inyectividad entre campos]\label{ejer:C18-morfismo-campos}
+Comprobar que todo homomorfismo unitario entre campos es inyectivo, como se indica al lado del diagrama de la página 1.
+\end{ejer}
+\begin{sol}
+El núcleo es un ideal del campo de partida. No es todo el campo, porque la unidad se envía a una unidad distinta de cero. Como los únicos ideales de un campo son cero y el anillo total, el núcleo es cero. Por tanto, el homomorfismo es inyectivo.
+\end{sol}
+
+\begin{defi}
+Un \emph{campo de fracciones} de $R$ es un objeto inicial de esta categoría. Lo denotamos $K(R)$, con su inclusión $i:R\hookrightarrow K(R)$.
+\end{defi}
+Ser inicial significa que para toda inclusión $j:R\hookrightarrow L$, con $L$ campo, existe un único homomorfismo $\widehat j:K(R)\to L$ con $\widehat ji=j$. La unicidad usual de objetos iniciales determina el campo de fracciones salvo isomorfismo compatible con $R$.
+
+Para construirlo, consideremos los pares $(a,r)$ con $a\in R$, $r\ne0$, y la relación
+\[
+(a,r)\sim(b,s)\quad\Longleftrightarrow\quad as=br.
+\]
+\begin{ejer}[La equivalencia de fracciones]\label{ejer:C18-equivalencia}
+Verificar que $\sim$ es una relación de equivalencia, como pide el fragmento de la página 1.
+\end{ejer}
+\begin{sol}
+La reflexividad es $ar=ar$, y la simetría se obtiene invirtiendo la igualdad. Para la transitividad, si $as=br$ y $bt=cs$, entonces
+\[
+s(at-cr)=ast-crs=brt-crs=r(bt-cs)=0.
+\]
+Como $s\ne0$ y $R$ es dominio, $at=cr$, es decir, $(a,r)\sim(c,t)$.
+\end{sol}
+Denotamos $a/r$ la clase del par $(a,r)$ y ponemos
+\[
+K(R)=\set{a/r\given a,r\in R,\ r\ne0}.
+\]
+Se trata de clases formales, antes de disponer de una división en $R$. Si $s\ne0$, se cumple $as/(rs)=a/r$, porque $(as)r=a(rs)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Las operaciones y los axiomas de campo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P02--P03.
+Definimos
+\[
+\frac ar+\frac bs=\frac{as+br}{rs},\qquad
+\frac ar\frac bs=\frac{ab}{rs}.
+\]
+Los denominadores son no nulos porque $R$ es dominio. Veamos que las operaciones no dependen de los representantes. Si $ar'=a'r$ y $bs'=b's$, entonces
+\[
+\begin{aligned}
+(as+br)r's'
+&=ar'ss'+bs'rr'\\
+&=a'rss'+b'srr'=(a's'+b'r')rs,\\
+(ab)r's'&=(ar')(bs')=(a'r)(b's)=a'b'rs.
+\end{aligned}
+\]
+Son exactamente las igualdades de productos cruzados requeridas para la suma y el producto.
+
+\begin{ejer}[La estructura de campo]\label{ejer:C18-campo}
+Completar la verificación de que estas operaciones hacen de $K(R)$ un campo. La página 3 desarrolla la distributividad y deja indicados los restantes axiomas.
+\end{ejer}
+\begin{sol}
+La suma es conmutativa por $as+br=br+as$. Para tres fracciones, ambos modos de asociar la suma dan
+\[
+\frac{ast+brt+crs}{rst}.
+\]
+El neutro aditivo es $0/1$, y el opuesto de $a/r$ es $-a/r$, pues su suma es $0/r^2=0/1$. La multiplicación es conmutativa y asociativa porque ambos modos de multiplicar tres fracciones dan $abc/(rst)$; su unidad es $1/1$.
+
+La distributividad se comprueba con denominador común:
+\[
+\begin{aligned}
+\frac ar\left(\frac bs+\frac ct\right)
+&=\frac{a(bt+cs)}{rst}
+=\frac{abt+acs}{rst}\\
+&=\frac{ab}{rs}+\frac{ac}{rt}.
+\end{aligned}
+\]
+La última igualdad se verifica multiplicando numerador y denominador por los factores necesarios; la suma de la derecha tiene inicialmente denominador $r^2st$ y numerador $r(abt+acs)$, que representa la misma clase.
+
+Finalmente, $a/r=0/1$ si y sólo si $a=0$. Toda fracción no nula tiene inversa $r/a$, ya que $(a/r)(r/a)=ar/(ra)=1/1$. Además, $1/1\ne0/1$ porque $1_R\ne0_R$. Se cumplen todos los axiomas de campo.
+\end{sol}
+La aplicación
+\[
+i:R\longrightarrow K(R),\qquad a\longmapsto a/1
+\]
+preserva suma, producto y unidad por las fórmulas anteriores. Es inyectiva porque $a/1=b/1$ implica $a=b$. Identificaremos $R$ con esta copia de sí mismo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{El mediador universal y las funciones racionales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P04--P05.
+Dada una inclusión $j:R\hookrightarrow L$ en un campo, la fórmula del posible mediador está forzada por
+\[
+\frac ar=i(a)i(r)^{-1}:
+\qquad \widehat j(a/r)=j(a)j(r)^{-1}.
+\]
+El inverso existe porque $r\ne0$ y $j$ es inyectivo.
+
+\begin{ejer}[El homomorfismo inducido]\label{ejer:C18-mediador}
+Verificar que la fórmula anterior define un homomorfismo unitario $\widehat j:K(R)\to L$, comprobación que el fragmento de la página 4 deja al lector.
+\end{ejer}
+\begin{sol}
+Si $a/r=b/s$, entonces $as=br$ y, al aplicar $j$ y dividir por $j(r)j(s)\ne0$, obtenemos $j(a)j(r)^{-1}=j(b)j(s)^{-1}$. Por tanto, está bien definido. Para la suma,
+\[
+\begin{aligned}
+\widehat j\left(\frac ar+\frac bs\right)
+&=(j(a)j(s)+j(b)j(r))(j(r)j(s))^{-1}\\
+&=j(a)j(r)^{-1}+j(b)j(s)^{-1}.
+\end{aligned}
+\]
+Para el producto, $\widehat j(ab/(rs))=j(a)j(b)j(r)^{-1}j(s)^{-1}$ es el producto de las imágenes. También $\widehat j(1/1)=1_L$ y $\widehat j(a/1)=j(a)$, como se requiere.
+\end{sol}
+\begin{prop}\label{prop:C18-universal}
+El campo construido, con $i$, es un campo de fracciones de $R$.
+\end{prop}
+\begin{proof}
+El ejercicio anterior construye el mediador para cualquier objeto $(j,L)$. Todo homomorfismo que extienda $j$ debe enviar $i(a)i(r)^{-1}$ a $j(a)j(r)^{-1}$, por lo que es único. Así se verifica el diagrama universal de la página 4:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+K(R)\arrow[r,dashed,destacado,"\exists!\,\widehat j"]&L\\
+R\arrow[u,hook,"i"]\arrow[ur,hook,"j"']&
+\end{tikzcd}
+\qedhere
+\]
+\end{proof}
+
+\begin{ejem}
+La construcción para $R=\mathbb Z$ da $K(\mathbb Z)=\mathbb Q$. Si $F$ ya es un campo, la aplicación $a/r\mapsto ar^{-1}$ es inversa de $F\hookrightarrow K(F)$. No se añaden elementos a $\mathbb Q$, $\mathbb R$, $\mathbb C$ o $\mathbb Z/p\mathbb Z$, con $p$ primo, al formar su campo de fracciones.
+\end{ejem}
+\begin{defi}
+El \emph{campo de funciones racionales} con coeficientes en un dominio $R$ es $R(x)=K(R[x])$. Sus elementos son fracciones $p(x)/q(x)$ de polinomios de $R[x]$, con $q\ne0$, identificadas por productos cruzados.
+\end{defi}
+\begin{nota}[Evaluar una fracción formal]
+La página 5 advierte que «función» no es una descripción literal de todos estos elementos. La expresión $p(a)/q(a)$ sólo se evalúa donde $q(a)\ne0$, y, si $R$ no es campo, su valor pertenece en general a $K(R)$, no a $R$: por ejemplo, $1/2\notin\mathbb Z$. Por ello la expresión $R\to R$ del fragmento debe entenderse con esas restricciones de dominio y destino. Además, una función de evaluación puede no determinar la fracción formal.
+\end{nota}
+
+\begin{ejer}[Una función no determina el polinomio]\label{ejer:C18-formal-funcion}
+Comprobar con un ejemplo sobre un campo finito que dos polinomios formales distintos pueden inducir la misma función. Es la dificultad a la que remite la referencia III.2.7 en la página 5; no se dispone aquí del enunciado completo de ese ejercicio del libro.
+\end{ejer}
+\begin{sol}
+En $\mathbb F_2=\mathbb Z/2\mathbb Z$, los polinomios $x^2-x$ y $0$ son distintos: el primero tiene coeficiente principal $1$. Sin embargo, ambos valen cero en los dos elementos $0,1$. También son elementos distintos de $\mathbb F_2(x)$, porque la inclusión del dominio $\mathbb F_2[x]$ en su campo de fracciones es inyectiva. Sus funciones de evaluación coinciden en todo el campo.
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Divisibilidad e irreducibilidad tras pasar a fracciones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Recuperar una divisibilidad sobre el anillo original}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P05.
+En adelante $R$ es DFU y $K=K(R)$. Para $f\in R[x]$, distinguimos $(f)=fR[x]$ y $(f)_K=fK[x]$. Conservamos la notación $c_f$ para el contenido no nulo y $C_f=(c_f)$ para su ideal.
+
+\begin{lema}\label{lema:C18-descenso}
+Sean $f,g\ne0$ en $R[x]$. Si $C_g\subseteq C_f$ y $(g)_K\subseteq(f)_K$, entonces $(g)\subseteq(f)$.
+\end{lema}
+\begin{proof}
+La segunda hipótesis da $g=fh$ con $h\in K[x]$. Podemos escribir
+\[
+h=\frac ab h_0,\qquad a,b\in R\setminus\{0\},\quad h_0\in R[x]\text{ primitivo}.
+\]
+En efecto, el producto de los finitos denominadores de sus coeficientes permite escribir $h=H/b$ con $H\in R[x]$ no nulo; separar el contenido de $H$ da esa expresión.
+
+La igualdad $bg=afh_0$ ocurre ya en $R[x]$. Por Gauss y la primitividad de $h_0$,
+\[
+(b)C_g=(a)C_f.
+\]
+Como $C_g\subseteq C_f$, resulta $(ac_f)\subseteq(bc_f)$. Hay, pues, $c\in R$ con $ac_f=bc_fc$. Cancelando $c_f\ne0$, obtenemos $a=bc$. Entonces $h=ch_0\in R[x]$ y $g=fh\in(f)$, como se quería.
+\end{proof}
+El contenido controla precisamente el posible denominador del cociente: la divisibilidad sobre $K$ por sí sola no lo elimina.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Comparar irreducibilidad en \texorpdfstring{$R[x]$ y $K[x]$}{R[x] y K[x]}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P06--P07.
+\begin{prop}\label{prop:C18-irred-fracciones}
+Sea $f\in R[x]$ de grado positivo. Si es irreducible sobre $R$, entonces es primitivo y también es irreducible sobre el campo de fracciones $K$.
+\end{prop}
+\begin{proof}
+Si $f=c_ff_0$ no fuera primitivo, $c_f$ sería una constante no unidad y $f_0$ seguiría teniendo grado positivo. Ambos serían no unidades de $R[x]$, contradiciendo la irreducibilidad de $f$.
+
+Supongamos ahora $f=gh$ en $K[x]$. Como en la prueba anterior, escribimos $g=cg_0$, $h=dh_0$, con $c,d\in K^\times$ y $g_0,h_0\in R[x]$ primitivos. Su producto es primitivo, y
+\[
+C_f=C_{g_0h_0}=R,\qquad (f)_K=(g_0h_0)_K.
+\]
+El \cref{lema:C18-descenso}, aplicado en ambos sentidos, da $(f)=(g_0h_0)$ en $R[x]$. Por tanto, $f=ug_0h_0$ para una unidad $u\in R[x]$. La irreducibilidad obliga a que $g_0$ o $h_0$ sea unidad. Entonces $g$ o $h$ es unidad en $K[x]$, y $f$ es irreducible allí.
+\end{proof}
+Ser primitivo por sí solo no implica irreducibilidad: $x^2-1=(x-1)(x+1)$ es primitivo y reducible en $\mathbb Z[x]$, como señala la anotación roja de la página 6.
+
+\begin{coro}\label{coro:C18-criterio-irred}
+Un polinomio no constante $f\in R[x]$ es irreducible en $R[x]$ si y sólo si es primitivo e irreducible en $K[x]$.
+\end{coro}
+\begin{proof}
+Una dirección es la proposición. Para la otra, sea $f=gh$ con $g,h\in R[x]$. La irreducibilidad sobre $K$ hace que uno de ellos, digamos $g$, sea una constante no nula. Gauss da
+\[
+R=C_f=(g)C_h\subseteq(g)\subseteq R.
+\]
+Luego $g$ es unidad de $R$, y también de $R[x]$. No puede haber una factorización en dos no unidades.
+\end{proof}
+\begin{nota}[El anillo de la hipótesis de irreducibilidad]
+La primera línea manuscrita de la vuelta en la página 6 escribe irreducibilidad «en $R[x]$». La hipótesis que se usa es irreducibilidad \emph{en $K[x]$}, además de primitividad en $R[x]$, como dice el enunciado impreso. En otro caso se estaría suponiendo la propia conclusión.
+\end{nota}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Factorialidad de los anillos de polinomios}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{El paso de \texorpdfstring{$R$ a $R[x]$}{R a R[x]}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P07--P08.
+\begin{teo}\label{teo:C18-polinomios-DFU}
+Si $R$ es DFU, entonces $R[x]$ es DFU.
+\end{teo}
+\begin{proof}
+Usamos el criterio de la clase 16: condición de cadena ascendente para ideales principales y primalidad de todos los irreducibles.
+
+Sea $(f_1)\subseteq(f_2)\subseteq\cdots$ una cadena de principales. Si todos los generadores son cero, ya se estabiliza. En otro caso, descartamos los términos iniciales nulos. Por el \cref{coro:C17-contenido-inclusion}, se obtiene una cadena
+\[
+C_{f_1}\subseteq C_{f_2}\subseteq\cdots
+\]
+de ideales principales en $R$, que se estabiliza porque $R$ es DFU. También se estabiliza la cadena $(f_1)_K\subseteq(f_2)_K\subseteq\cdots$ en $K[x]$, que es DIP y por tanto DFU. Para índices suficientemente grandes tenemos ambas igualdades consecutivas. El \cref{lema:C18-descenso} da entonces $(f_{i+1})\subseteq(f_i)$; la inclusión contraria ya pertenecía a la cadena. Así se estabiliza la cadena original.
+
+Sea ahora $f\in R[x]$ irreducible. Si es constante, es irreducible en $R$: una factorización por constantes no unidades también lo sería en $R[x]$. Es primo en $R$ porque $R$ es DFU. El \cref{coro:C17-primo-extendido} muestra que $(f)$ es primo en $R[x]$.
+
+Si $f$ no es constante, es primitivo e irreducible en $K[x]$ por la \cref{prop:C18-irred-fracciones}. Como $K[x]$ es DIP, $(f)_K$ es primo. Consideremos
+\[
+\rho:R[x]\hookrightarrow K[x]\longrightarrow K[x]/(f)_K.
+\]
+Su núcleo es $(f)$. Una inclusión es inmediata. Para la otra, si $\rho(g)=0$ y $g\ne0$, entonces $(g)_K\subseteq(f)_K$ y $C_g\subseteq R=C_f$. El \cref{lema:C18-descenso} implica $g\in(f)$; para $g=0$ es inmediato. El primer isomorfismo induce la inclusión
+\[
+\begin{tikzcd}[column sep=large]
+R[x]\arrow[r,hook]\arrow[d,two heads]&K[x]\arrow[d,two heads]\\
+R[x]/(f)\arrow[r,hook,destacado]&K[x]/(f)_K.
+\end{tikzcd}
+\]
+El anillo de abajo a la derecha es dominio, luego también lo es el de la izquierda. Por tanto, $(f)$ es primo. El criterio citado concluye que $R[x]$ es DFU.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Factores y varias indeterminadas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P08: remisiones V.4.23 y V.1.15; ejemplo V.4.18.
+\begin{ejer}[Elegir factores sobre el dominio]\label{ejer:C18-elegir-factores}
+Explicar en qué sentido los factores irreducibles de un polinomio $f\ne0$ de $R[x]$, calculados en $K[x]$, pueden elegirse en $R[x]$. Es la afirmación a la que remite el ejercicio V.4.23 en la página 8.
+\end{ejer}
+\begin{sol}
+Por el teorema, podemos factorizar $f$ en $R[x]$. Separamos los factores constantes, que se vuelven unidades en $K[x]$, de los factores no constantes $p_1,\ldots,p_s$. Estos últimos son primitivos e irreducibles en $K[x]$ por la \cref{prop:C18-irred-fracciones}. Por tanto,
+\[
+f=\lambda p_1\cdots p_s,\qquad \lambda\in K^\times,
+\]
+es una factorización sobre $K$. La unicidad en $K[x]$ dice que cualquier otra lista de factores irreducibles coincide con ésta salvo orden y multiplicación por constantes de $K^\times$. Así, cada factor no constante puede reemplazarse por un asociado que pertenece a $R[x]$, conservando aparte el factor escalar. No se afirma que cada representante inicial tenga ya coeficientes en $R$.
+\end{sol}
+
+\begin{ejem}
+Aplicando repetidamente el teorema, los anillos $\mathbb Z[x_1,\ldots,x_n]$ y $\mathbb C[x_1,\ldots,x_n]$ son DFU. También lo es $B=\mathbb Z[x_1,x_2,\ldots]$, aunque no sea noetheriano.
+
+Para justificar el último caso como propone la página 8, todo $f\ne0$ pertenece a algún $B_n=\mathbb Z[x_1,\ldots,x_n]$. Sus divisores en $B$ ya pertenecen a $B_n$: al escribir $f=gh$, el grado en una variable exterior cumple $0=\deg_{x_j}g+\deg_{x_j}h$, pues los anillos considerados son dominios. Éste es el argumento del \cref{ejer:C16-infinitas}. Una factorización en irreducibles en $B_n$ sigue siendo irreducible en $B$, y dos factorizaciones en $B$ están en ese mismo anillo por la propiedad de los divisores. La unicidad allí da unicidad en $B$. Las unidades son $\pm1$ por el mismo argumento de grados. Finalmente, el \cref{ejer:C15-infinitas} ya mostró un ideal no finitamente generado, así que $B$ no es noetheriano.
+\end{ejem}
+Este ejemplo distingue las regiones DFU y noetheriana del esquema de la clase 15.
+
+\begin{obs}[Orientación bibliográfica]
+Las ocho páginas reproducen de \citet{aluffi2009} la definición V.4.10, la afirmación V.4.11, el ejemplo V.4.12 y la definición V.4.13 sobre fracciones; el lema V.4.15, la proposición V.4.16 y el corolario V.4.17; y el teorema V.4.14 con su prueba, seguido del ejemplo V.4.18. Se resuelven inmediatamente las verificaciones de equivalencia, estructura de campo y homomorfismo del mediador. La remisión III.2.7 motiva la comprobación sobre funciones, sin atribuirle un enunciado completo no visible. Las comprobaciones remitidas a V.4.23 y V.1.15 se resuelven mediante el teorema y el ejercicio de la clase 16, respectivamente.
+\end{obs}

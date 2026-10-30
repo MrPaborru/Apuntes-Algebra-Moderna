@@ -1,0 +1,25 @@
+% Tres perfiles de 2025-10-30.pdf P01: raíz simple, doble y triple en cero.
+% Ejemplos ilustrativos; no son gráficas de polinomios especificados allí.
+\begin{center}
+\begin{tikzpicture}[x=1.35cm,y=1.15cm,line width=.6pt,font=\small]
+\foreach \x/\y/\m in {0/0/1,5/0/2,2.5/-3.5/3}{
+  \begin{scope}[shift={(\x,\y)}]
+  \draw[grisCIMAT] (-.9,0)--(2.05,0);
+  \draw[grisCIMAT] (0,-1)--(0,1.35);
+  \node[below] at (.65,-1.15) {Multiplicidad $\m$};
+  \end{scope}
+}
+\begin{scope}
+\clip (-.9,-1) rectangle (2.05,1.35);
+\draw[black,samples=100,domain=-.9:2.05,smooth] plot (\x,{.8*\x*(\x-1.6)});
+\end{scope}
+\begin{scope}[shift={(5,0)}]
+\clip (-.9,-1) rectangle (2.05,1.35);
+\draw[black,samples=100,domain=-.9:2.05,smooth] plot (\x,{3*\x*\x*(1.2-\x)});
+\end{scope}
+\begin{scope}[shift={(2.5,-3.5)}]
+\clip (-.9,-1) rectangle (2.05,1.35);
+\draw[black,samples=100,domain=-.9:2.05,smooth] plot (\x,{\x*\x*\x*(\x-1.5)});
+\end{scope}
+\end{tikzpicture}
+\end{center}

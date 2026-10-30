@@ -1,0 +1,327 @@
+% Fuente única de clase: Recursos/2025-10-30.pdf, páginas 1--13.
+En la clase 19 relacionamos raíces e irreducibilidad, construimos extensiones que contienen una raíz y caracterizamos los campos algebraicamente cerrados. Estudiamos después los polinomios reales y la reducción módulo un primo para los polinomios enteros. La última pizarra enuncia una forma general del criterio de Eisenstein.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Raíces, multiplicidades e irreducibilidad}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{El número de raíces y la evaluación}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01--P02.
+En esta clase los anillos son conmutativos. Un elemento $a\in R$ es una \emph{raíz} de $f\in R[x]$ si $f(a)=0$. Por la división por $x-a$, esto equivale a $x-a\mid f$. Para $f\ne0$, la raíz tiene \emph{multiplicidad} $r$ si $(x-a)^r\mid f$ pero $(x-a)^{r+1}\nmid f$.
+
+La página 1 ilustra perfiles reales cerca de cero para multiplicidades uno, dos y tres. Conservamos la disposición de sus tres gráficas; los trazos siguientes son ejemplos con esos perfiles locales, sin atribuirles una fórmula especificada en la pizarra.
+\input{Figuras/Multiplicidades}
+
+\begin{lema}\label{lema:C19-numero-raices}
+Un polinomio no nulo de grado $n$ sobre un dominio tiene a lo sumo $n$ raíces, contadas con multiplicidad.
+\end{lema}
+\begin{proof}
+Sea $K$ el campo de fracciones del dominio. Las raíces del anillo original siguen siendo raíces en $K$, y sus multiplicidades se conservan: al dividir por el mónico $(x-a)^r$, el resto calculado sobre el anillo es también el resto sobre $K$, y la inclusión de coeficientes es inyectiva.
+
+En $K[x]$ hay factorización única y las raíces corresponden a los factores irreducibles de grado uno. Los factores $x-a$ de raíces distintas no son asociados. La suma de sus multiplicidades no puede exceder la suma de los grados de todos los factores de $f$, que es $n$.
+\end{proof}
+\begin{ejem}
+El polinomio $2x-1$ no tiene raíces en $\mathbb Z$, pero sí en $\mathbb Q$, donde su raíz es $1/2$. El paso al campo de fracciones puede añadir raíces.
+
+La condición de dominio es necesaria: en $(\mathbb Z/6\mathbb Z)[x]$, el polinomio $x^2+x$ tiene las cuatro raíces $0,2,3,5$, pues los productos $a(a+1)$ correspondientes son $0,6,12,30$ y todos se anulan módulo seis.
+\end{ejem}
+
+\begin{coro}\label{coro:C19-funciones}
+Sobre un dominio infinito, dos polinomios son iguales si y sólo si inducen la misma función de evaluación.
+\end{coro}
+\begin{proof}
+Una igualdad formal da iguales evaluaciones. A la inversa, si $f(a)=g(a)$ para todo $a$, cada elemento del dominio es raíz de $f-g$. Si esta diferencia fuera no nula, tendría infinitas raíces, contra el lema.
+\end{proof}
+Para cada $r\in R$, la evaluación es el único homomorfismo de $R$-álgebras $\varphi_r:R[x]\to R$ que envía $x$ a $r$; en particular,
+\[
+\varphi_r\left(\sum_i a_ix^i\right)=\sum_i a_ir^i.
+\]
+Así, el polinomio formal $f$ determina la función $\widehat f(r)=\varphi_r(f)$. El triángulo manuscrito de la página 2 es
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+R[x]\arrow[r,"\varphi_r"]&R\\
+\{r\}\arrow[u,"j"]\arrow[ur,hook]&
+\end{tikzcd}
+\qquad j(r)=x.
+\]
+La unicidad requiere fijar los coeficientes de $R$ y la imagen de $x$, como en la propiedad universal de la clase 14. El \cref{ejer:C18-formal-funcion} muestra por qué la infinitud importa.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Grados dos y tres y un campo de cuatro elementos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P03--P04.
+\begin{prop}\label{prop:C19-grados-bajos}
+Sobre un campo $k$, un polinomio de grado dos o tres es irreducible si y sólo si no tiene raíces en $k$.
+\end{prop}
+\begin{proof}
+Si $a$ es raíz, escribimos $f=(x-a)g$. Como $\deg g=\deg f-1\geq1$, ninguno de los factores es unidad, así que $f$ es reducible.
+
+Recíprocamente, si $f=gh$ con ambos factores no unidades, sus grados son positivos y suman dos o tres. Alguno tiene grado uno, digamos $g=ux+v$ con $u\ne0$. Como $k$ es campo, $-u^{-1}v$ pertenece a $k$ y es raíz de $g$, y por tanto de $f$.
+\end{proof}
+Más generalmente, un irreducible de grado al menos dos sobre un campo no puede tener una raíz. La vuelta anterior depende tanto del grado como de la hipótesis de campo. Por ejemplo, $x^2+1$ es irreducible en $\mathbb R[x]$ porque no tiene raíces reales.
+
+\begin{ejem}
+En $\mathbb F_2[t]$, el polinomio $t^2+t+1$ toma el valor $1$ en $0$ y en $1$. Es irreducible, su ideal es maximal y
+\[
+F=\mathbb F_2[t]/(t^2+t+1)
+\]
+es un campo con cuatro elementos. Si $\alpha$ es la clase de $t$, cada elemento se escribe de manera única $a+b\alpha$, con $a,b\in\mathbb F_2$. Son $0,1,\alpha,1+\alpha$, y $\alpha^2=\alpha+1$. En particular, $\alpha(\alpha+1)=1$.
+\end{ejem}
+\begin{nota}[El espacio vectorial subyacente]
+La identificación con $\mathbb F_2^{\oplus2}$ al pie de la página 3 es un isomorfismo de espacios vectoriales, mediante los coeficientes del resto. No es un isomorfismo con el producto coordenado de anillos: $F$ es campo, mientras que $(1,0)(0,1)=(0,0)$ en ese producto. El mapa que toma restos es lineal; para multiplicarlos hay que reducir de nuevo usando $\alpha^2=\alpha+1$.
+\end{nota}
+
+\begin{ejem}
+Si $f\in\mathbb Z[x]$ es primitivo y de grado dos o tres, el \cref{coro:C18-criterio-irred} y la proposición dan
+\[
+f\text{ irreducible en }\mathbb Z[x]
+\quad\Longleftrightarrow\quad
+f\text{ no tiene raíces en }\mathbb Q.
+\]
+No basta buscar raíces enteras: $4x^2-1=(2x-1)(2x+1)$ es reducible en $\mathbb Z[x]$ y no tiene raíces enteras, aunque sí las racionales $\pm1/2$.
+
+En grado cuatro, $x^4+2x^2+1=(x^2+1)^2$ es reducible en $\mathbb Q[x]$ y no tiene raíces racionales. El fallo comienza ya en grado cuatro, no sólo en los grados mayores que cuatro que menciona una línea de la página 4.
+\end{ejem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{El criterio de raíces racionales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P04--P05.
+\begin{prop}\label{prop:C19-raices-racionales}
+Sea $R$ un DFU, $K=K(R)$ y $f=a_0+a_1x+\cdots+a_nx^n\in R[x]$ no nulo. Si $p/q\in K$ es raíz, con $q\ne0$ y $\mcd(p,q)$ unidad, entonces $p\mid a_0$ y $q\mid a_n$.
+\end{prop}
+\begin{proof}
+Si $p=0$, se tiene $a_0=0$ y $\mcd(0,q)$ unidad implica que $q$ es unidad; ambas divisibilidades se cumplen. Supongamos $p\ne0$. Multiplicando $f(p/q)=0$ por $q^n$, obtenemos
+\[
+a_0q^n+a_1pq^{n-1}+\cdots+a_np^n=0.
+\]
+Si $n=0$, esto contradiría $f\ne0$, así que $n\geq1$. Reagrupamos como
+\[
+\begin{aligned}
+a_0q^n&=-p(a_1q^{n-1}+\cdots+a_np^{n-1}),\\
+a_np^n&=-q(a_0q^{n-1}+a_1pq^{n-2}+\cdots+a_{n-1}p^{n-1}).
+\end{aligned}
+\]
+Así, $p\mid a_0q^n$ y $q\mid a_np^n$. Como $p,q$ no comparten factores irreducibles, comparar las multiplicidades en el DFU da $p\mid a_0$ y $q\mid a_n$. Si uno de esos coeficientes es cero, su divisibilidad es inmediata.
+\end{proof}
+\begin{nota}[Los dos elementos coprimos]
+En la última línea manuscrita del argumento de la página 5 aparece $\mcd(q,q)=1$. La hipótesis empleada es $\mcd(p,q)=1$ salvo unidades; no se supone que $q$ sea unidad.
+\end{nota}
+
+\begin{ejem}
+Para $f=3-2x+3x^2-2x^3+3x^4-2x^5$, los posibles numeradores de una raíz racional reducida son $\pm1,\pm3$, y los denominadores son $\pm1,\pm2$. La identidad
+\[
+f=(3-2x)(1+x^2+x^4)
+\]
+comprueba el resultado de la página 5: $3/2$ es la única raíz racional, pues $1+x^2+x^4>0$ para todo racional $x$.
+\end{ejem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Adjuntar raíces y cierre algebraico}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Extensiones mediante un cociente}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P06--P08.
+Una \emph{extensión de campos} es un homomorfismo unitario $i:k\to F$. Por el \cref{ejer:C18-morfismo-campos}, es necesariamente inyectivo. Tras identificar $k$ con su imagen escribimos $k\subseteq F$. Esto resuelve también la comprobación III.3.10 citada en la página 6.
+
+\begin{prop}\label{prop:C19-adjuntar}
+Sean $k$ un campo y $f(t)\in k[t]$ irreducible. Entonces $F=k[t]/(f)$ es una extensión de $k$, y la clase $\alpha$ de $t$ es una raíz de $f$ en $F$. Para cualquier extensión $j:k\hookrightarrow K$ y raíz $u\in K$ de $f$, existe un único homomorfismo $\widetilde\varphi_u:F\hookrightarrow K$ que extiende $j$ y envía $\alpha$ a $u$.
+\end{prop}
+\begin{proof}
+Como $k[t]$ es DIP, el ideal de un irreducible es maximal; por tanto, $F$ es campo. La composición $k\hookrightarrow k[t]\twoheadrightarrow F$ es unitaria y es inyectiva por ser un homomorfismo entre campos. Aplicando la proyección a los coeficientes y a las potencias de $t$,
+\[
+f(\alpha)=a_0+a_1\alpha+\cdots+a_n\alpha^n
+=\overline{f(t)}=0.
+\]
+Los coeficientes se entienden mediante la inclusión de $k$.
+
+La propiedad universal de polinomios da la evaluación
+\[
+\varphi_u:k[t]\longrightarrow K,\qquad
+\sum_i a_it^i\longmapsto\sum_i j(a_i)u^i.
+\]
+Como $f(u)=0$, $(f)\subseteq\ker\varphi_u$. La propiedad universal del cociente induce el único homomorfismo $\widetilde\varphi_u$ que cumple el diagrama:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+k[t]\arrow[r,"\varphi_u"]\arrow[d,two heads,"\pi"']&K\\
+F\arrow[ur,dashed,destacado,"\exists!\,\widetilde\varphi_u"']&
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=large,row sep=large]
+k\arrow[r,hook,"j"]\arrow[d,hook,"i"']&K\\
+F\arrow[ur,hook,"\widetilde\varphi_u"']&
+\end{tikzcd}
+\]
+Es inyectivo por ser un homomorfismo entre campos. La elección de $u$ determina los valores sobre todas las clases de polinomios, de donde resulta la unicidad con esa imagen de $\alpha$.
+\end{proof}
+\begin{nota}[La raíz elegida forma parte de los datos]
+La página 7 llama a $\varphi_u$ el único morfismo que extiende $k\hookrightarrow K$. Hace falta exigir además $t\mapsto u$; extender los coeficientes por sí solo no fija una evaluación. Del mismo modo, el morfismo desde $F$ es único para una raíz \emph{elegida}, y puede haber distintos morfismos asociados a raíces distintas.
+\end{nota}
+
+\begin{ejem}
+Para $k=\mathbb R$ y $f=t^2+1$, se recupera $\mathbb C$ con la construcción de la clase 13. Para $k=\mathbb Q$ y $f=t^2-2$, el polinomio es irreducible: una raíz reducida tendría denominador que divide a $1$ y numerador que divide a $2$, y ninguno de $\pm1,\pm2$ es raíz. El cociente es, pues, un campo con una raíz de $t^2-2$.
+
+Hay exactamente dos inclusiones de ese cociente en $\mathbb R$ que fijan $\mathbb Q$, dadas por
+\[
+\overline{a+bt}\longmapsto a+b\sqrt2,
+\qquad
+\overline{a+bt}\longmapsto a-b\sqrt2.
+\]
+Son distintas y cualquier otra debe enviar la clase de $t$ a una de las dos raíces reales. Esto ilustra por qué no hay unicidad sin elegir la raíz.
+\end{ejem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Campos algebraicamente cerrados}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P08--P09.
+\begin{defi}
+Un campo $k$ es \emph{algebraicamente cerrado} si todos los polinomios irreducibles de $k[x]$ tienen grado uno.
+\end{defi}
+\begin{lema}\label{lema:C19-cerrado}
+Para un campo $k$, son equivalentes:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $k$ es algebraicamente cerrado.
+\item Todo polinomio no constante de $k[x]$ es producto de factores lineales.
+\item Todo polinomio no constante de $k[x]$ tiene una raíz en $k$.
+\end{enumerate}
+\end{lema}
+\begin{proof}
+Para (i)$\Rightarrow$(ii), $k[x]$ es DFU, así que un polinomio no constante es producto de irreducibles. Por (i), cada uno tiene grado uno. Reuniendo los coeficientes principales se escribe $f=a\prod_{i=1}^n(x-r_i)$, con $a\in k^\times$.
+
+Para (ii)$\Rightarrow$(iii), hay al menos un factor lineal porque el grado es positivo, y su raíz es raíz de $f$.
+
+Para (iii)$\Rightarrow$(i), sea $f$ irreducible. No es constante, pues las constantes no nulas son unidades y el cero no es irreducible. Por (iii), tiene una raíz $r$, de modo que $f=(x-r)g$. La irreducibilidad hace que $g$ sea unidad, luego constante no nula, y $\deg f=1$.
+\end{proof}
+El fragmento de la página 8 menciona el Nullstellensatz como contexto posterior; no se enuncia ni se demuestra en estas pizarras.
+
+\begin{prop}\label{prop:C19-infinito}
+Todo campo algebraicamente cerrado es infinito.
+\end{prop}
+\begin{proof}
+Si $k=\{c_1,\ldots,c_N\}$ fuera finito, el polinomio
+\[
+P(x)=\prod_{i=1}^N(x-c_i)+1
+\]
+tendría grado $N>0$ y satisfaría $P(c)=1\ne0$ para todo $c\in k$. Contradice el \cref{lema:C19-cerrado}.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Polinomios sobre los complejos y los reales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P10--P11.
+\begin{teo}[Teorema fundamental del álgebra]\label{teo:C19-TFA}
+El campo $\mathbb C$ es algebraicamente cerrado.
+\end{teo}
+La página 10 enuncia este teorema sin demostración. Lo usamos en ese mismo alcance; no se atribuye a la clase una prueba que no aparece en la fuente.
+
+\begin{prop}\label{prop:C19-reales}
+Los irreducibles de $\mathbb R[x]$ son los polinomios de grado uno y los cuadráticos $ax^2+bx+c$ con $b^2-4ac<0$. Todo polinomio real de grado al menos tres es reducible.
+\end{prop}
+\begin{proof}
+Sea $f\in\mathbb R[x]$ no constante. Por el teorema fundamental del álgebra tiene una raíz compleja $z$. Como los coeficientes son reales,
+\[
+f(\overline z)=\overline{f(z)}=0.
+\]
+Si $z\in\mathbb R$, $x-z$ es un factor real. Si $z\ne\overline z$, los factores lineales $x-z$ y $x-\overline z$ son irreducibles no asociados en $\mathbb C[x]$, luego su producto divide a $f$ allí. Ese producto es
+\[
+q=x^2-(z+\overline z)x+z\overline z\in\mathbb R[x].
+\]
+También divide a $f$ en $\mathbb R[x]$: al dividir por el mónico $q$ sobre $\mathbb R$, el resto es el mismo que sobre $\mathbb C$ y, por unicidad, es cero. Este paso completa la justificación de que el factor obtenido es real.
+
+Así, todo polinomio no constante tiene un factor real de grado uno o dos. Si su grado es al menos tres, ese factor y el cociente tienen grados positivos, luego es reducible. Los de grado uno son irreducibles. Por la \cref{prop:C19-grados-bajos}, un cuadrático es irreducible exactamente cuando no tiene raíces reales; por la fórmula cuadrática, esto equivale a discriminante negativo.
+\end{proof}
+
+\begin{ejer}[Grado impar y una raíz real]\label{ejer:C19-impar}
+Probar que todo polinomio real de grado impar tiene una raíz real, como afirma el corolario V.5.14 de la página 11. Dar también el argumento de cálculo al que remite el ejercicio V.5.17 citado allí.
+\end{ejer}
+\begin{sol}
+Factoricemos en irreducibles reales. Por la proposición, sus grados son uno o dos. Si todos fueran cuadráticos, el grado total sería par. Luego hay un factor lineal, cuya raíz también anula al polinomio original.
+
+Para el argumento analítico, escribamos $f(x)=a_nx^n+\cdots+a_0$, con $n$ impar y $a_n\ne0$. Para $|x|$ suficientemente grande, $f(x)/(a_nx^n)$ está tan cerca de $1$ como se desee, pues los cocientes de los términos inferiores tienden a cero. Así, $f$ toma signos opuestos en un número positivo suficientemente grande y en su opuesto. La continuidad y el teorema del valor intermedio producen una raíz entre ambos.
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Reducción modular y criterio de Eisenstein}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Detectar irreducibilidad módulo un primo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P11.
+La proyección $\mathbb Z\to\mathbb F_p$ induce el homomorfismo sobreyectivo
+\[
+\mathbb Z[x]\longrightarrow\mathbb F_p[x],\qquad
+f\longmapsto\overline f=f\bmod p,
+\]
+que reduce los coeficientes. Es el mapa del \cref{ejer:C17-coeficientes}.
+
+\begin{prop}\label{prop:C19-modular}
+Sea $f\in\mathbb Z[x]$ primitivo y $p$ un primo. Si $\overline f$ tiene el mismo grado que $f$ y es irreducible en $\mathbb F_p[x]$, entonces $f$ es irreducible en $\mathbb Z[x]$ y en $\mathbb Q[x]$.
+\end{prop}
+\begin{proof}
+Si $f=gh$ fuera una factorización en no unidades de $\mathbb Z[x]$, la primitividad y Gauss impedirían que alguno de los factores fuera una constante no unidad. Por tanto, $d=\deg g$ y $e=\deg h$ serían positivos y sumarían $\deg f$. Como $\overline f=\overline g\,\overline h$ conserva el grado,
+\[
+d+e=\deg\overline f=\deg\overline g+\deg\overline h,
+\qquad \deg\overline g\leq d,\quad\deg\overline h\leq e.
+\]
+Las dos desigualdades deben ser igualdades. Ambos factores reducidos tienen grado positivo, contradiciendo la irreducibilidad de $\overline f$. La afirmación sobre $\mathbb Q$ sigue del \cref{coro:C18-criterio-irred}.
+\end{proof}
+\begin{ejem}
+El polinomio $x^2+x+1$ es primitivo y su reducción módulo dos es irreducible de grado dos, como vimos al construir el campo de cuatro elementos. Por tanto, es irreducible sobre $\mathbb Z$ y sobre $\mathbb Q$.
+
+En cambio,
+\[
+2x^3+3x^2+3x+1=(2x+1)(x^2+x+1)
+\]
+es reducible, aunque su reducción módulo dos sea $x^2+x+1$. Aquí el grado baja de tres a dos: falta precisamente la hipótesis de conservación del grado, como señala la página 11.
+\end{ejem}
+
+\newpage % Mantener el encabezado con el enunciado del ejercicio siguiente.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Irreducibles de grados arbitrariamente grandes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P12: ejercicio V.5.11 aplicado y demostrado a mano.
+\begin{ejer}[Grados de irreducibles sobre un campo finito]\label{ejer:C19-grados-finitos}
+Probar que sobre un campo finito existen polinomios irreducibles de grados arbitrariamente grandes. Es el caso del ejercicio V.5.11 requerido y desarrollado en la página 12.
+\end{ejer}
+\begin{sol}
+Si todos los irreducibles tuvieran grado a lo sumo $N$, habría sólo finitos irreducibles mónicos $f_1,\ldots,f_m$: hay finitas posibilidades para cada coeficiente y finitos grados posibles. La lista no es vacía porque contiene los polinomios lineales mónicos.
+
+El polinomio $P=f_1\cdots f_m+1$ tiene grado positivo. Como $k[x]$ es DFU, tiene un factor irreducible; normalizándolo, sería alguno de los $f_j$. Pero entonces $f_j$ dividiría tanto a $P$ como a $f_1\cdots f_m$, luego dividiría su diferencia $1$. Esto contradice que tenga grado positivo.
+\end{sol}
+\begin{coro}
+En $\mathbb Z[x]$ y $\mathbb Q[x]$ existen irreducibles de grados arbitrariamente grandes.
+\end{coro}
+\begin{proof}
+Fijemos un primo $p$. Para cada irreducible mónico de $\mathbb F_p[x]$, elegimos representantes enteros de los coeficientes conservando el coeficiente principal $1$. El polinomio obtenido es mónico, luego primitivo, y su reducción conserva el grado. La \cref{prop:C19-modular} da irreducibilidad tanto en $\mathbb Z[x]$ como en $\mathbb Q[x]$. Aplicamos el ejercicio a grados sin cota.
+\end{proof}
+No se afirma aquí que el argumento produzca todos los grados posibles; prueba exactamente la ausencia de una cota superior.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{La forma general de Eisenstein}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P13 sólo enuncia V.5.17. La demostración siguiente es un complemento añadido.
+\begin{prop}[Eisenstein, forma general]\label{prop:C19-Eisenstein}
+Sea $R$ un anillo conmutativo y $\mathfrak p$ un ideal primo. Si $f=a_0+a_1x+\cdots+a_nx^n$ satisface
+\[
+a_n\notin\mathfrak p,\qquad
+a_i\in\mathfrak p\ (0\leq i<n),\qquad
+a_0\notin\mathfrak p^2,
+\]
+entonces $f$ no es producto de dos polinomios de grados menores que $n$ en $R[x]$.
+\end{prop}
+\begin{proof}[Demostración añadida al enunciado de la pizarra]
+Supongamos $f=gh$ con $\deg g,\deg h<n$. En el dominio $D=R/\mathfrak p$, la reducción satisface
+\[
+\overline g\,\overline h=\overline{a_n}x^n\ne0.
+\]
+En particular, los dos factores reducidos son no nulos. Para un polinomio no nulo sobre un dominio, tanto su mayor como su menor exponente con coeficiente no nulo se suman al multiplicar: los coeficientes extremos son productos no nulos. Por tanto, si un producto es un monomio, ambos factores son monomios. Escribamos $\overline g=bx^r$, $\overline h=cx^s$, con $b,c\ne0$ y $r+s=n$.
+
+Como $r\leq\deg g<n$ y $s\leq\deg h<n$, los dos exponentes son positivos. Así, los términos constantes de $g$ y $h$ pertenecen a $\mathfrak p$. Su producto es $a_0$, que entonces pertenece a $\mathfrak p^2$, contra la hipótesis. No existe la factorización supuesta. Si $n=0$, tampoco existen factores no nulos de grado menor que cero, por lo que el enunciado es inmediato.
+\end{proof}
+La página 13 sólo contiene este enunciado; la prueba se incorpora como complemento. Se conserva su conclusión exacta sobre grados, válida incluso si $R$ tiene divisores de cero. En un dominio factorial, para un polinomio primitivo de grado positivo, esa conclusión sí implica irreducibilidad: una factorización en no unidades no puede tener un factor constante no unidad por Gauss, y los grados positivos de ambos factores serían menores que $n$. Las aplicaciones concretas posteriores no se anticipan en estos apuntes.
+
+\begin{obs}[Orientación bibliográfica]
+Las trece páginas reproducen de \citet{aluffi2009} los apartados V.5.1--4 y sus resultados V.5.1--17. Se desarrollan las pruebas de la cota de raíces, los grados dos y tres, las raíces racionales, la adjunción, las equivalencias de cierre algebraico, el caso real y la reducción modular. El teorema V.5.12 se enuncia sin prueba en la fuente y se usa con ese alcance. Se resuelven las remisiones a III.3.10 mediante la clase 18, a V.5.17 para grado impar y a V.5.11 para campos finitos. No confundir el ejercicio V.5.17 con la proposición V.5.17: ésta es Eisenstein y su demostración se añade porque la última página sólo la enuncia. No se consultó el libro completo.
+\end{obs}
