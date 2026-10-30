@@ -1,0 +1,18 @@
+\begin{center}
+\begin{tikzpicture}[scale=1.65,>=Stealth]
+\draw[gray] (0,0) circle (1);
+\draw[gray] (-1.2,0)--(1.65,0);
+\draw (0,0)--(45:1);
+\draw[dashed] (45:1)--({sqrt(2)},0)--(-45:1);
+\draw[dashed] (0,0)--(-45:1);
+\foreach \j in {0,...,7}{\fill ({45*\j}:1) circle (1.1pt);}
+\foreach \j in {1,3,5,7}{\draw[rojoDiagramaCIMAT,line width=.8pt] ({45*\j}:1) circle (.09);}
+\fill (0,0) circle (1.1pt) node[below left=2pt] {$0$};
+\fill ({sqrt(2)},0) circle (1.1pt) node[below=5pt] {$\sqrt2$};
+\node[above right=4pt] at (45:1) {$\zeta$};
+\node[above left=4pt] at (1,0) {$1$};
+\node[left=4pt] at (-1,0) {$-1$};
+\node[above=4pt] at (0,1) {$i$};
+\node[below=4pt] at (0,-1) {$-i$};
+\end{tikzpicture}
+\end{center}

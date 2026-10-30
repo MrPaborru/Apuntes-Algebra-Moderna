@@ -18,7 +18,7 @@ Apuntes en español para consultar y estudiar los fundamentos de grupos, anillos
 
 ## Contenido
 
-La versión actual comprende **22 clases**, del **12 de agosto al 11 de noviembre de 2025**, organizadas en capítulos fechados.
+La versión actual comprende **25 clases**, del **12 de agosto al 20 de noviembre de 2025**, organizadas en capítulos fechados.
 
 | Clases | Temas |
 | --- | --- |
@@ -27,6 +27,7 @@ La versión actual comprende **22 clases**, del **12 de agosto al 11 de noviembr
 | 11–14 | Anillos, polinomios, ideales y cocientes; característica, ideales primos y maximales; módulos, álgebras, submódulos y construcciones libres. |
 | 15–19 | Noetherianidad y teorema de Hilbert; divisibilidad y factorización; dominios euclidianos, Zorn, contenido y lema de Gauss; fracciones, raíces, extensiones e irreducibilidad. |
 | 20–22 | Bases, dimensión, rango y torsión; clasificación de módulos sobre un DIP y forma de Smith; extensiones simples, polinomios mínimos y automorfismos de campos. |
+| 23–25 | Extensiones algebraicas y fórmula de la torre; clausuras algebraicas, campos de descomposición y normalidad; separabilidad, Frobenius y campos perfectos. |
 
 Los ejercicios llevan su solución inmediatamente después del enunciado. La numeración de resultados es global; las definiciones y los ejemplos se numeran por sección. Cada clase cierra con referencias para profundizar en los temas tratados.
 

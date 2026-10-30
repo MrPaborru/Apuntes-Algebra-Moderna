@@ -1,0 +1,235 @@
+% Fuente única de clase: Recursos/2025-11-20.pdf, páginas 1--8.
+En la clase 25 retomamos las extensiones normales y estudiamos la separabilidad. La derivada formal detecta raíces múltiples; el homomorfismo de Frobenius permite caracterizar los campos perfectos. Al final introducimos las extensiones separables y su grado separable.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Normalidad y comparación de raíces}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Una extensión normal y otra que no lo es}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01.
+Una extensión $F/k$ es normal cuando todo irreducible de $k[t]$ con una raíz en $F$ se descompone por completo en $F[t]$. La condición se refiere a irreducibles: un polinomio arbitrario puede tener una raíz en $F$ sin que todas sus raíces pertenezcan a ese campo.
+
+\begin{ejem}
+La extensión $\mathbb Q(\sqrt2)/\mathbb Q$ es normal. Para verlo directamente, sea $f\in\mathbb Q[t]$ irreducible con una raíz $\alpha\in\mathbb Q(\sqrt2)$. Podemos suponerlo mónico. En la torre
+\[
+\mathbb Q\subseteq\mathbb Q(\alpha)\subseteq\mathbb Q(\sqrt2),
+\]
+el grado $\deg f=[\mathbb Q(\alpha):\mathbb Q]$ divide a dos. Si es uno, $f$ ya es lineal. Si es dos, escribimos $f=t^2+bt+c$ y factorizamos en una clausura como $(t-\alpha)(t-\beta)$. Comparar coeficientes da $\alpha+\beta=-b$, luego $\beta=-b-\alpha\in\mathbb Q(\sqrt2)$. En ambos casos $f$ se descompone en ese campo.
+\end{ejem}
+
+\begin{ejem}
+La extensión $\mathbb Q(\sqrt[3]{2})/\mathbb Q$, con la raíz cúbica real, no es normal. El polinomio $t^3-2$ es irreducible por Eisenstein con $2$ y tiene una raíz en ese campo. Si $\omega$ es una raíz cúbica primitiva de la unidad en $\mathbb C$, su factorización es
+\[
+t^3-2=(t-\sqrt[3]{2})(t-\sqrt[3]{2}\,\omega)
+(t-\sqrt[3]{2}\,\omega^2).
+\]
+Las otras raíces no son reales y $\mathbb Q(\sqrt[3]{2})\subseteq\mathbb R$, por lo que el polinomio no se descompone allí.
+\end{ejem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{El diagrama de la caracterización de normalidad}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P02; retoma VII.4.8 de la clase anterior.
+El \cref{teo:C24-normal} caracteriza las extensiones finitas normales como campos de descomposición. En la dirección que parte de una extensión finita normal, basta tomar generadores algebraicos $\alpha_1,\ldots,\alpha_r$ y el producto de sus mínimos: todas sus raíces pertenecen al campo y entre ellas están los generadores.
+
+Para la otra dirección, sean $F/k$ un campo de descomposición de $f\in k[t]$ y $p\in k[t]$ irreducible con raíz $\alpha\in F$. Incluimos $F$ en una clausura $\overline k$ y elegimos otra raíz $\beta\in\overline k$ de $p$. El isomorfismo $\iota:k(\alpha)\to k(\beta)$ que fija a $k$ y envía $\alpha$ a $\beta$ se prolonga al diagrama
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+&k(\alpha)\arrow[r,hook]\arrow[d,"\iota","\sim"']&
+F\arrow[r,hook]\arrow[d,dashed,"\widetilde\iota","\sim"',destacado]&\overline k\\
+k\arrow[ur,hook]\arrow[r,hook]&k(\beta)\arrow[r,hook]&
+F(\beta)\arrow[r,hook]&\overline k.
+\end{tikzcd}
+\]
+En efecto, $F$ es el campo de descomposición de $f$ sobre $k(\alpha)$, y $F(\beta)$ lo es sobre $k(\beta)$. La \cref{prop:C24-descomposicion} proporciona $\widetilde\iota$. Este isomorfismo es $k$-lineal, por lo que $F$ y $F(\beta)$ tienen la misma dimensión finita sobre $k$. La inclusión $F\subseteq F(\beta)$ es, entonces, una igualdad; así $\beta\in F$. Como vale para toda raíz de $p$, se obtiene la normalidad.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Polinomios separables y derivada formal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Un irreducible con una sola raíz distinta}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P03--P04.
+Sobre $\mathbb R$, los irreducibles se descomponen con raíces distintas en $\mathbb C$: tienen grado uno, o grado dos y discriminante negativo. Sin embargo, en característica positiva un irreducible puede tener raíces múltiples.
+
+\begin{ejem}\label{ejem:C25-inseparable}
+Sea $p$ primo y consideremos $k=\mathbb F_p(t)$, el campo de fracciones de $\mathbb F_p[t]$. El polinomio
+\[
+f(x)=x^p-t\in k[x]
+\]
+es irreducible. En efecto, $R=\mathbb F_p[t]$ es un dominio factorial y $(t)$ es un ideal primo. El coeficiente principal $1$ no pertenece a $(t)$, todos los demás pertenecen a $(t)$ y el término constante $-t$ no pertenece a $(t)^2$. Por Eisenstein, el polinomio mónico $f$ es irreducible en $R[x]$ y, por Gauss, también en su campo de fracciones $k[x]$.
+
+Si $u$ es una raíz en una extensión $L/k$, entonces $u^p=t$ y
+\[
+x^p-t=(x-u)^p\quad\text{en }L[x].
+\]
+Así $u$ es la única raíz distinta, con multiplicidad $p$, aunque su mínimo sobre $k$ tiene grado $p$.
+\end{ejem}
+
+\begin{ejer}[La identidad binomial en característica prima]\label{ejer:C25-binomial}
+Justificar la identidad del ejemplo anterior probando que, en característica $p$,
+\[
+(x-u)^p=x^p-u^p.
+\]
+\end{ejer}
+\begin{sol}
+Para $0<j<p$, el entero $\binom pj$ es divisible por $p$: el numerador $p!$ contiene un factor $p$, mientras que $j!(p-j)!$ no contiene ninguno. Esos coeficientes son cero en característica $p$. Por la fórmula binomial sólo quedan $x^p+(-u)^p=x^p-u^p$. Si $p=2$, la última igualdad usa que el opuesto coincide con el propio elemento. Como $u^p=t$, obtenemos la factorización indicada.
+\end{sol}
+Ninguna potencia $(x-u)^m$ con $0<m<p$ puede pertenecer a $k[x]$: sería un factor propio no constante de $x^p-t$, contradiciendo su irreducibilidad. Pasar a un campo mayor revela la raíz repetida sin cambiar el grado del mínimo sobre $k$.
+
+\begin{defi}
+Un polinomio no nulo $f\in k[x]$ es \emph{separable} si en un campo de descomposición no tiene raíces múltiples. Si tiene alguna raíz múltiple, es \emph{inseparable}.
+\end{defi}
+Con esta definición, $x^p-t$ es inseparable. Los polinomios constantes no nulos son separables, pues no tienen raíces.
+
+\begin{ejer}[Independencia del campo de descomposición]\label{ejer:C25-multiplicidades}
+Probar que la separabilidad puede comprobarse en cualquier extensión en la que el polinomio se descomponga en factores lineales.
+\end{ejer}
+\begin{sol}
+Si $L/k$ contiene una factorización completa de $f$, el subcampo $E\subseteq L$ generado por sus raíces es un campo de descomposición. Cualquier otro campo de descomposición es $k$-isomorfo a $E$, por la \cref{prop:C24-descomposicion}. El isomorfismo transforma las raíces y conserva sus multiplicidades: una divisibilidad $(x-\alpha)^m\mid f$ se transforma en la correspondiente divisibilidad por $(x-\sigma(\alpha))^m$.
+
+Además, una factorización lineal en $E[x]$ sigue siendo una factorización en $L[x]$ con los mismos factores y exponentes. Por unicidad de la factorización en $L[x]$, no cambian las multiplicidades. Así el criterio no depende de ninguna de esas elecciones.
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{El criterio del máximo común divisor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P04--P05.
+Para $f(x)=\sum_{i=0}^n a_ix^i\in k[x]$, definimos su \emph{derivada formal} por
+\[
+f'(x)=\sum_{i=1}^n i a_i x^{i-1}.
+\]
+El entero $i$ actúa como un escalar del campo; por eso algunos términos pueden desaparecer en característica positiva. La operación es $k$-lineal y satisface $(fg)'=f'g+fg'$. La regla del producto se comprueba primero en monomios mediante $(x^{r+s})'=(r+s)x^{r+s-1}$ y se extiende a sumas finitas por distributividad.
+
+\begin{lema}\label{lema:C25-derivada}
+Un polinomio no nulo $f\in k[x]$ es separable si y sólo si $\mcd(f,f')=1$, tomando el máximo común divisor mónico.
+\end{lema}
+\begin{proof}
+El algoritmo de Euclides para dos polinomios de $k[x]$ realiza las mismas divisiones al extender coeficientes. Conserva los cocientes, los restos y el último resto mónico. En consecuencia, el mcd es el mismo en $k[x]$ y en un campo de descomposición $F$.
+
+Si $\alpha$ es una raíz múltiple, escribimos $f=(x-\alpha)^m g$ con $m\geq2$. La regla del producto da
+\[
+f'=m(x-\alpha)^{m-1}g+(x-\alpha)^m g'.
+\]
+Ambos sumandos son divisibles por $x-\alpha$, incluso si el escalar $m$ es cero en el campo. Así $f$ y $f'$ tienen un factor común no constante.
+
+Recíprocamente, si el mcd no es uno, en $F[x]$ hay un factor lineal $x-\alpha$ que divide a ambos. Escribamos $f=(x-\alpha)h$. Entonces
+\[
+f'=h+(x-\alpha)h'.
+\]
+Como $x-\alpha$ divide a $f'$, divide también a $h$, y por tanto $(x-\alpha)^2\mid f$. La raíz $\alpha$ es múltiple.
+\end{proof}
+Por ejemplo, para $f=x^p-t$ la derivada es $px^{p-1}=0$ y $\mcd(f,0)=f\ne1$. Podemos detectar así la inseparabilidad sin construir su campo de descomposición.
+
+\begin{lema}\label{lema:C25-irred-derivada}
+Un polinomio irreducible $f\in k[x]$ es inseparable si y sólo si $f'=0$.
+\end{lema}
+\begin{proof}
+Si es inseparable, $f$ y $f'$ tienen un factor irreducible común $q$. Como $f$ es irreducible, $q$ es asociado a $f$. Si $f'\ne0$, tendríamos $\deg q=\deg f>\deg f'$, incompatible con $q\mid f'$. Luego $f'=0$. A la inversa, si $f'=0$, el mcd es el asociado mónico de $f$, que tiene grado positivo; el criterio anterior da inseparabilidad.
+\end{proof}
+
+\begin{coro}\label{coro:C25-caracteristica-cero}
+Sobre un campo de característica cero, todo polinomio irreducible es separable.
+\end{coro}
+\begin{proof}
+Si $f$ tiene grado $n>0$ y coeficiente principal $a_n\ne0$, su derivada tiene término principal $na_nx^{n-1}\ne0$. Aplicamos el lema.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Frobenius, campos perfectos y extensiones separables}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{La forma de los polinomios de derivada cero}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P06.
+En característica $p>0$, la igualdad $f'=0$ equivale a $ia_i=0$ para cada $i\geq1$. Si $p\nmid i$, el escalar $i$ es no nulo e invertible, de modo que $a_i=0$. Si $p\mid i$, el coeficiente de la derivada es automáticamente cero. Por tanto
+\[
+f'=0\quad\Longleftrightarrow\quad
+f(x)=a_0+a_px^p+a_{2p}x^{2p}+\cdots\in k[x^p].
+\]
+En particular, un irreducible inseparable sólo contiene exponentes múltiplos de la característica.
+
+\begin{defi}
+Para un campo $k$ de característica $p>0$, el \emph{homomorfismo de Frobenius} es
+\[
+\operatorname{Frob}_k:k\longrightarrow k,\qquad a\longmapsto a^p.
+\]
+\end{defi}
+Es un homomorfismo: preserva $1$, satisface $(ab)^p=a^pb^p$ y, por la misma cancelación de coeficientes binomiales del \cref{ejer:C25-binomial}, cumple $(a+b)^p=a^p+b^p$. Es inyectivo por ser un homomorfismo de campos, aunque puede no ser sobreyectivo.
+
+\begin{defi}
+Un campo de característica cero es \emph{perfecto}. En característica $p>0$, se llama \emph{perfecto} si Frobenius es sobreyectivo, es decir, si todos sus elementos tienen raíz $p$-ésima.
+\end{defi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Caracterización de los campos perfectos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P06--P08; recíproca remitida a VII.4.12 y desarrollada a mano.
+\begin{ejer}[Un elemento fuera de la imagen de Frobenius]\label{ejer:C25-no-perfecto}
+Sea $k$ de característica $p>0$ y sea $a\in k$ que no tiene raíz $p$-ésima en $k$. Probar que $x^p-a$ es irreducible e inseparable sobre $k$. Deducir que si todos los irreducibles de $k[x]$ son separables, entonces $k$ es perfecto.
+\end{ejer}
+\begin{sol}
+Tomemos una raíz $\beta$ de $x^p-a$ en una extensión. Como $a\ne0$, también $\beta\ne0$, y la identidad binomial da $x^p-a=(x-\beta)^p$. Si hubiera un factor propio mónico $g\in k[x]$ de grado $m$ con $0<m<p$, su factorización en esa extensión sería $g=(x-\beta)^m$, ya que no hay otra raíz. El término constante muestra que $\beta^m\in k$. También $\beta^p=a\in k$.
+
+Como $p$ es primo y $0<m<p$, hay enteros $r,s$ con $rm+sp=1$. Podemos usar potencias negativas porque $\beta\ne0$, y obtenemos
+\[
+\beta=(\beta^m)^r(\beta^p)^s=(\beta^m)^r a^s\in k,
+\]
+contradicción. Por tanto $x^p-a$ es irreducible; es inseparable porque en su campo de descomposición tiene una sola raíz de multiplicidad $p$.
+
+Si todos los irreducibles son separables, no puede existir tal $a$, luego Frobenius es sobreyectivo. Junto con la inclusión de los campos de característica cero en la definición, esto da la conclusión.
+\end{sol}
+
+\begin{prop}\label{prop:C25-perfecto}
+Un campo $k$ es perfecto si y sólo si todos los irreducibles de $k[x]$ son separables.
+\end{prop}
+\begin{proof}
+En característica cero ya lo sabemos. Si $k$ es perfecto de característica $p>0$ y existiera un irreducible inseparable, el \cref{lema:C25-irred-derivada} y la descripción de los exponentes darían
+\[
+f(x)=\sum_{i=0}^m a_i x^{pi}.
+\]
+Por la sobreyectividad de Frobenius, elegimos $b_i\in k$ con $b_i^p=a_i$. Su propiedad de homomorfismo implica
+\[
+f(x)=\sum_i(b_ix^i)^p=\left(\sum_i b_ix^i\right)^p.
+\]
+El polinomio entre paréntesis tiene grado positivo y menor que $\deg f$, de modo que se obtiene una factorización en no unidades, contradiciendo irreducibilidad. La recíproca es la conclusión del ejercicio anterior.
+\end{proof}
+
+\begin{coro}
+Todo campo finito es perfecto; sobre él, todos los irreducibles son separables.
+\end{coro}
+\begin{proof}
+Un campo finito tiene característica prima $p>0$, pues en característica cero contendría al campo infinito $\mathbb Q$. Su Frobenius es inyectivo y, al ser una aplicación de un conjunto finito en sí mismo, también es sobreyectivo. Aplicamos la proposición.
+\end{proof}
+El campo $\mathbb F_p(t)$ del \cref{ejem:C25-inseparable} es infinito y no es perfecto: su polinomio $x^p-t$ es irreducible inseparable, y $t$ no tiene raíz $p$-ésima en ese campo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Extensiones separables y grado separable}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P08.
+\begin{defi}
+Un elemento algebraico $\alpha$ sobre $k$ es \emph{separable sobre $k$} si su polinomio mínimo es separable; de lo contrario, es \emph{inseparable}. Una extensión algebraica $F/k$ es \emph{separable} si todos sus elementos lo son sobre $k$.
+\end{defi}
+
+\begin{prop}
+Un campo $k$ es perfecto si y sólo si toda extensión algebraica de $k$ es separable.
+\end{prop}
+\begin{proof}
+Si $k$ es perfecto, todos los polinomios mínimos de elementos algebraicos son separables por la \cref{prop:C25-perfecto}. Recíprocamente, sea $f\in k[x]$ irreducible y sea $\alpha=x+(f)$ en la extensión algebraica $k[x]/(f)$. Si toda extensión algebraica es separable, el mínimo de $\alpha$, que es el asociado mónico de $f$, es separable. Así lo son todos los irreducibles y $k$ es perfecto.
+\end{proof}
+En particular, las extensiones algebraicas de $\mathbb Q$, de cualquier campo de característica cero y de cualquier campo finito son separables.
+
+\par\noindent\begin{minipage}{\linewidth}
+\begin{defi}
+Para una extensión finita $F/k$ y una clausura algebraica $\overline k$, el \emph{grado separable} es
+\[
+[F:k]_s=\card\Hom_k(F,\overline k),
+\]
+donde $\Hom_k(F,\overline k)$ reúne los homomorfismos de campos que fijan a $k$.
+\end{defi}
+Estos homomorfismos son inyectivos. Existe al menos uno por el \cref{lema:C24-inmersion}. Su número es finito: una familia finita de generadores algebraicos determina cada homomorfismo, y cada generador debe enviarse a una de las finitas raíces de su mínimo. El número no depende de la clausura elegida, pues componer con un isomorfismo entre dos clausuras que fija a $k$ da una biyección entre los conjuntos de homomorfismos.
+\begin{obs}[Referencias de lectura]
+Para normalidad y el diagrama de comparación, véase \citet[cap.~VII, definición 4.7 y teorema 4.8]{aluffi2009}. La separabilidad, Frobenius y los campos perfectos se desarrollan en VII.4.11--15/17--21. Las comprobaciones de la identidad binomial, la independencia del campo de descomposición y la recíproca sobre campos perfectos corresponden a los ejercicios VII.4.8, VII.4.1 y VII.4.12, respectivamente. Eisenstein y Gauss se aplican en las formas estudiadas en las clases 18--19.
+\end{obs}
+\end{minipage}\par
