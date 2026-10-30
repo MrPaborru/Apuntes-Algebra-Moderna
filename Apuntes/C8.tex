@@ -194,7 +194,7 @@ Quitamos repeticiones. Para cada factor $G_i/G_{i+1}$ elegimos una serie de comp
 \begin{defi}
 El \emph{conmutador} de $g,h\in G$ es $[g,h]=ghg^{-1}h^{-1}$. El \emph{subgrupo conmutador} es
 \[
-G'=[G,G]=\generado{[g,h]\given g,h\in G}.
+G'=[G,G]=\ang{[g,h]\given g,h\in G}.
 \]
 Un subgrupo es \emph{característico} si lo preserva todo automorfismo de $G$; es \emph{plenamente invariante} si lo preserva todo endomorfismo de $G$.
 \end{defi}
@@ -258,7 +258,7 @@ Para un grupo finito $G$ son equivalentes:
 \begin{proof}
 La primera condición implica la segunda tomando una serie de composición, y la segunda implica la tercera porque todo grupo cíclico es abeliano.
 
-Para pasar de la tercera a la primera refinamos cada factor abeliano finito a una serie de composición y levantamos los términos. Sus factores siguen siendo abelianos, pues subgrupos y cocientes de abelianos son abelianos. Un grupo simple abeliano es cíclico de orden primo: si $a\ne e$, el subgrupo $\generado{a}$ es normal no trivial, luego es todo el grupo; un grupo cíclico de orden compuesto tiene un subgrupo propio no trivial. Por Jordan--Hölder, todos los factores de composición de $G$ son esos grupos cíclicos.
+Para pasar de la tercera a la primera refinamos cada factor abeliano finito a una serie de composición y levantamos los términos. Sus factores siguen siendo abelianos, pues subgrupos y cocientes de abelianos son abelianos. Un grupo simple abeliano es cíclico de orden primo: si $a\ne e$, el subgrupo $\ang{a}$ es normal no trivial, luego es todo el grupo; un grupo cíclico de orden compuesto tiene un subgrupo propio no trivial. Por Jordan--Hölder, todos los factores de composición de $G$ son esos grupos cíclicos.
 
 La cuarta condición implica la tercera tomando la serie derivada hasta el término trivial. Recíprocamente, sea $G=G_0\supseteq\cdots\supseteq G_n=\{e\}$ una serie abeliana. Probamos inductivamente $G^{(i)}\subseteq G_i$. El caso $i=0$ es inmediato. Como $G_i/G_{i+1}$ es abeliano, la proyección anula todos los conmutadores y $G_i'\subseteq G_{i+1}$. Así,
 \[

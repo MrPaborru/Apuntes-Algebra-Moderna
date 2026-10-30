@@ -8,7 +8,7 @@ La clase 9 estudia las permutaciones mediante sus ciclos y sus clases de conjuga
 \subsection{Descomposición en ciclos disjuntos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % P01--P03.
-Dada $\sigma\in S_n$, restringimos la acción natural a $\generado{\sigma}$. Sus órbitas particionan $\{1,\ldots,n\}$: dos elementos están relacionados si $a=\sigma^k(b)$ para algún entero $k$.
+Dada $\sigma\in S_n$, restringimos la acción natural a $\ang{\sigma}$. Sus órbitas particionan $\{1,\ldots,n\}$: dos elementos están relacionados si $a=\sigma^k(b)$ para algún entero $k$.
 \begin{defi}
 Un \emph{ciclo no trivial} es una permutación con una sola órbita no trivial. Si $a_1,\ldots,a_r$ son distintos, el ciclo $(a_1\,a_2\,\cdots\,a_r)$ envía $a_i$ a $a_{i+1}$, envía $a_r$ a $a_1$ y fija los demás elementos. Su longitud es $r$. Dos ciclos son \emph{disjuntos} si sus órbitas no triviales son disjuntas.
 \end{defi}
@@ -22,15 +22,10 @@ La permutación
 \[
 \sigma=\begin{pmatrix}1&2&3&4&5\\2&3&1&5&4\end{pmatrix}
 \]
-tiene órbitas $\{1,2,3\}$ y $\{4,5\}$. Sus recorridos son
+tiene órbitas $\{1,2,3\}$ y $\{4,5\}$. Sus recorridos bajo $\sigma$ son
 \[
-\begin{tikzcd}[column sep=small]
-1\arrow[r,"\sigma"] &2\arrow[r,"\sigma"] &3\arrow[r,"\sigma"] &1,
-\end{tikzcd}
-\qquad
-\begin{tikzcd}[column sep=small]
-4\arrow[r,"\sigma"] &5\arrow[r,"\sigma"] &4.
-\end{tikzcd}
+1\mapsto2\mapsto3\mapsto1,
+\qquad 4\mapsto5\mapsto4.
 \]
 Por tanto $\sigma=(1\,2\,3)(4\,5)$.
 \end{ejem}
@@ -41,7 +36,7 @@ Los ciclos disjuntos conmutan. Toda permutación distinta de la identidad es pro
 \begin{proof}
 Si dos ciclos son disjuntos, un punto pertenece al soporte de uno de ellos o de ninguno. En cada caso aplicar los dos en cualquier orden da el mismo resultado: el otro ciclo fija tanto el punto como su imagen. Por tanto conmutan.
 
-Para construir la descomposición tomamos las órbitas no triviales de $\generado{\sigma}$. En una órbita, partimos de $a$ y listamos $a,\sigma(a),\ldots,\sigma^{r-1}(a)$ hasta el primer retorno a $a$. No hay repeticiones anteriores: si $\sigma^i(a)=\sigma^j(a)$, aplicar una potencia inversa daría un retorno anterior. El ciclo así formado coincide con $\sigma$ en esa órbita. El producto de los ciclos coincide con $\sigma$ en todas las órbitas y fija sus puntos fijos. La unicidad se comprueba en el ejercicio siguiente.
+Para construir la descomposición tomamos las órbitas no triviales de $\ang{\sigma}$. En una órbita, partimos de $a$ y listamos $a,\sigma(a),\ldots,\sigma^{r-1}(a)$ hasta el primer retorno a $a$. No hay repeticiones anteriores: si $\sigma^i(a)=\sigma^j(a)$, aplicar una potencia inversa daría un retorno anterior. El ciclo así formado coincide con $\sigma$ en esa órbita. El producto de los ciclos coincide con $\sigma$ en todas las órbitas y fija sus puntos fijos. La unicidad se comprueba en el ejercicio siguiente.
 \end{proof}
 \begin{ejer}[Unicidad de los ciclos disjuntos]\label{ejer:C9-unicidad}
 Demostrar la unicidad de la descomposición del \cref{lema:C9-ciclos}.

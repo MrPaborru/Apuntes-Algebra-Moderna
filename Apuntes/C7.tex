@@ -27,7 +27,7 @@ El recuento también puede expresarse con una acción por potencias. Sea $U_p$ e
 \[
 [m]\cdot(a,\ldots,a)=(a^m,\ldots,a^m).
 \]
-La regla no depende del representante porque $a^p=e_G$, y la composición de las potencias corresponde al producto de las clases. Cada $[m]\ne[0]$ tiene un inverso módulo $p$, de modo que actúa biyectivamente. La órbita de una tupla no neutra reúne los $p-1$ generadores de $\generado{a}$, pues $a^m=a$ implica $m\equiv1\pmod p$. Así se recupera la misma igualdad contando órbitas.
+La regla no depende del representante porque $a^p=e_G$, y la composición de las potencias corresponde al producto de las clases. Cada $[m]\ne[0]$ tiene un inverso módulo $p$, de modo que actúa biyectivamente. La órbita de una tupla no neutra reúne los $p-1$ generadores de $\ang{a}$, pues $a^m=a$ implica $m\equiv1\pmod p$. Así se recupera la misma igualdad contando órbitas.
 \begin{obs}
 El grupo de escalares que actúa es $U_p$, con multiplicación y neutro $[1]$. Para $p>2$, su único punto fijo es la tupla neutra; para $p=2$, la acción es trivial y todas las tuplas son fijas. En ambos casos sigue siendo válido el recuento $1+N(p-1)$.
 \end{obs}
@@ -54,7 +54,7 @@ Supongamos ahora que $p$ divide al índice de todo subgrupo propio de $G$. Para 
 |G|=|Z(G)|+\sum_{a\in R}[G:Z_G(a)]
 \quad\Longrightarrow\quad p\mid|Z(G)|.
 \]
-Por Cauchy existe $a\in Z(G)$ de orden $p$. El subgrupo $N=\generado{a}$ es central y, por tanto, normal: cada conjugación fija sus elementos. Además $|N|=p$, y
+Por Cauchy existe $a\in Z(G)$ de orden $p$. El subgrupo $N=\ang{a}$ es central y, por tanto, normal: cada conjugación fija sus elementos. Además $|N|=p$, y
 \[
 |G/N|=\frac{|G|}{p}<|G|,\qquad p^{k-1}\mid|G/N|.
 \]
@@ -254,7 +254,7 @@ El orden de $\im\gamma$ divide a $|G|=pq$, por el primer teorema de isomorfismo 
 
 El índice $[G:Z(G)]$ divide a $[G:H]=q$, por lo que es $1$ o $q$. Así, $G/Z(G)$ es trivial o de orden primo; en ambos casos es cíclico. La solución del \cref{ejer:C6-centro} implica que $G$ es abeliano.
 
-Por Cauchy existen $a,b\in G$ de órdenes $p$ y $q$. Como conmutan, $(ab)^{pq}=e_G$. Si $(ab)^t=e_G$, entonces $a^t=b^{-t}$ pertenece a $\generado{a}\cap\generado{b}$. El orden de esta intersección divide tanto a $p$ como a $q$, luego es trivial. Por ello $a^t=b^t=e_G$, lo que implica $p\mid t$ y $q\mid t$, y por tanto $pq\mid t$. El elemento $ab$ tiene orden $pq$ y genera todo $G$.
+Por Cauchy existen $a,b\in G$ de órdenes $p$ y $q$. Como conmutan, $(ab)^{pq}=e_G$. Si $(ab)^t=e_G$, entonces $a^t=b^{-t}$ pertenece a $\ang{a}\cap\ang{b}$. El orden de esta intersección divide tanto a $p$ como a $q$, luego es trivial. Por ello $a^t=b^t=e_G$, lo que implica $p\mid t$ y $q\mid t$, y por tanto $pq\mid t$. El elemento $ab$ tiene orden $pq$ y genera todo $G$.
 \end{proof}
 \begin{obs}
 Que la conjugación sea trivial sobre $H$ significa $H\subseteq Z(G)$; el centro puede ser mayor.

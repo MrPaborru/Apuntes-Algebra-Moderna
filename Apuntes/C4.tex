@@ -152,33 +152,33 @@ F(A)\arrow[r,destacado,"\varphi_A"]&G\\
 A\arrow[u,"j"]\arrow[ur,hook]&
 \end{tikzcd}
 \]
-Su imagen es el \emph{subgrupo generado por $A$}, denotado por $\generado{A}$. Mediante palabras,
+Su imagen es el \emph{subgrupo generado por $A$}, denotado por $\ang{A}$. Mediante palabras,
 \[
-\generado{A}=\set{a_1^{\varepsilon_1}\cdots a_m^{\varepsilon_m}
+\ang{A}=\set{a_1^{\varepsilon_1}\cdots a_m^{\varepsilon_m}
 \given m\ge0,\ a_i\in A,\ \varepsilon_i\in\{1,-1\}}.
 \]
-El producto vacío es $e_G$. Esto incluye el caso $A=\varnothing$, para el cual $\generado{A}=\{e_G\}$.
+El producto vacío es $e_G$. Esto incluye el caso $A=\varnothing$, para el cual $\ang{A}=\{e_G\}$.
 
 \begin{prop}\label{prop:C4-generado}
-El subgrupo $\generado{A}$ es el menor subgrupo de $G$ que contiene a $A$; en concreto,
+El subgrupo $\ang{A}$ es el menor subgrupo de $G$ que contiene a $A$; en concreto,
 \[
-\generado{A}=\bigcap_{\substack{H\le G\\A\subseteq H}}H.
+\ang{A}=\bigcap_{\substack{H\le G\\A\subseteq H}}H.
 \]
 \end{prop}
 \begin{proof}
-La imagen de $\varphi_A$ es un subgrupo y contiene cada $a\in A$. Si $H\le G$ contiene a $A$, contiene sus inversos y todos los productos finitos de éstos; por la descripción anterior, $\generado{A}\subseteq H$. Así está contenido en la intersección. A su vez, como $\generado{A}$ es uno de los subgrupos que se intersectan, la intersección está contenida en él.
+La imagen de $\varphi_A$ es un subgrupo y contiene cada $a\in A$. Si $H\le G$ contiene a $A$, contiene sus inversos y todos los productos finitos de éstos; por la descripción anterior, $\ang{A}\subseteq H$. Así está contenido en la intersección. A su vez, como $\ang{A}$ es uno de los subgrupos que se intersectan, la intersección está contenida en él.
 \end{proof}
 
 Si $G$ es abeliano, en notación aditiva la extensión pasa por $F^{\mathrm{ab}}(A)$ y obtenemos
 \[
-\generado{A}=\set*{\sum_{i=1}^m n_i a_i\given
+\ang{A}=\set*{\sum_{i=1}^m n_i a_i\given
 m\ge0,\ a_i\in A,\ n_i\in\mathbb Z}.
 \]
 Si $A=\{a\}$, el grupo libre $F(A)$ es isomorfo a $\mathbb Z$, y $\varphi_A$ se identifica con el homomorfismo exponencial $m\mapsto a^m$. Así,
 \[
-\generado{a}=\{\ldots,a^{-2},a^{-1},e,a,a^2,\ldots\}.
+\ang{a}=\{\ldots,a^{-2},a^{-1},e,a,a^2,\ldots\}.
 \]
-Un grupo es \emph{finitamente generado} si $G=\generado{A}$ para algún subconjunto finito $A\subseteq G$.
+Un grupo es \emph{finitamente generado} si $G=\ang{A}$ para algún subconjunto finito $A\subseteq G$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Subgrupos cíclicos y monomorfismos}
@@ -187,7 +187,7 @@ Un grupo es \emph{finitamente generado} si $G=\generado{A}$ para algún subconju
 \subsection{Subgrupos de los enteros y de sus cocientes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % P11--P13.
-Para $d\in\mathbb Z$ escribimos $d\mathbb Z=\generado{d}=\set{m\in\mathbb Z\given d\mid m}$.
+Para $d\in\mathbb Z$ escribimos $d\mathbb Z=\ang{d}=\set{m\in\mathbb Z\given d\mid m}$.
 
 \begin{prop}\label{prop:C4-subgrupos-Z}
 Todo subgrupo $H\le\mathbb Z$ es $d\mathbb Z$ para un único entero $d\ge0$.
@@ -201,7 +201,7 @@ Pero $r=h-qd\in H$; la minimalidad de $d$ fuerza $r=0$, de modo que $h\in d\math
 \end{proof}
 
 \begin{prop}\label{prop:C4-subgrupos-Zn}
-Si $n>0$ y $H\le\mathbb Z/n\mathbb Z$, existe un único divisor positivo $d$ de $n$ tal que $H=\generado{[d]_n}$.
+Si $n>0$ y $H\le\mathbb Z/n\mathbb Z$, existe un único divisor positivo $d$ de $n$ tal que $H=\ang{[d]_n}$.
 \end{prop}
 \begin{proof}
 La preimagen de $H$ bajo $\pi_n:\mathbb Z\to\mathbb Z/n\mathbb Z$ es un subgrupo de $\mathbb Z$, luego es $d\mathbb Z$ para algún $d\ge0$:
@@ -213,9 +213,9 @@ La preimagen de $H$ bajo $\pi_n:\mathbb Z\to\mathbb Z/n\mathbb Z$ es un subgrupo
 \]
 Como $n\mathbb Z\subseteq\pi_n^{-1}(H)$, tenemos $n\in d\mathbb Z$, de donde $d>0$ y $d\mid n$. La sobreyectividad de $\pi_n$ implica
 \[
-H=\pi_n(d\mathbb Z)=\generado{[d]_n}.
+H=\pi_n(d\mathbb Z)=\ang{[d]_n}.
 \]
-Recíprocamente, si $d>0$ divide a $n$, entonces $\pi_n^{-1}(\generado{[d]_n})=d\mathbb Z$: la congruencia $x\equiv kd\pmod n$ implica que $x$ es múltiplo de $d$. La unicidad se reduce así a la del subgrupo de enteros.
+Recíprocamente, si $d>0$ divide a $n$, entonces $\pi_n^{-1}(\ang{[d]_n})=d\mathbb Z$: la congruencia $x\equiv kd\pmod n$ implica que $x$ es múltiplo de $d$. La unicidad se reduce así a la del subgrupo de enteros.
 \end{proof}
 Como todo grupo cíclico es isomorfo a $\mathbb Z$ o a $\mathbb Z/n\mathbb Z$, sus subgrupos son también cíclicos.
 
@@ -223,7 +223,7 @@ Como todo grupo cíclico es isomorfo a $\mathbb Z$ o a $\mathbb Z/n\mathbb Z$, s
 La tabla muestra los seis subgrupos de $\mathbb Z/12\mathbb Z$, escribiendo $[a]$ en lugar de $[a]_{12}$.
 \[
 \begin{array}{c|l}
-d&\generado{[d]}\\\hline
+d&\ang{[d]}\\\hline
 1&\{[0],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11]\}\\
 2&\{[0],[2],[4],[6],[8],[10]\}\\
 3&\{[0],[3],[6],[9]\}\\
@@ -235,7 +235,7 @@ d&\generado{[d]}\\\hline
 La correspondencia invierte divisibilidad e inclusión:
 \[
 d\mid d'\quad\Longleftrightarrow\quad
-\generado{[d']_{12}}\subseteq\generado{[d]_{12}}.
+\ang{[d']_{12}}\subseteq\ang{[d]_{12}}.
 \]
 El esquema coloca los subgrupos mayores arriba. Las líneas indican inclusiones inmediatas; en el lado de los divisores, el número superior divide al inferior.
 \begin{center}\input{Figuras/SubgruposZ12}\end{center}

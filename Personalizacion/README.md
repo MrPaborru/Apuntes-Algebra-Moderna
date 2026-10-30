@@ -33,7 +33,7 @@ La identidad gráfica toma como referencia el [Manual Básico de Imagen del CIMA
 | Comandos | Uso |
 | --- | --- |
 | `\set`, `\given`, `\SetSymbol` | Conjuntos por comprensión y barra separadora ajustable |
-| `\ang`, `\generado` | Delimitadores angulares; `\ang` admite `\given` |
+| `\ang`, `\generado` | Delimitadores angulares con `\given`; `\generado` es un alias de `\ang` |
 | `\brack`, `\Brack`, `\floor`, `\ceil`, `\round` | Corchetes, piso, techo y delimitadores mixtos |
 | `\restr`, `\supsub`, `\ubar` | Restricción, índices pequeños y barra superior |
 | `\en`, `\noten`, `\cont`, `\dotcup` | Pertenencia, no pertenencia, pertenencia inversa y unión disjunta |
@@ -55,6 +55,8 @@ Los delimitadores admiten tamaño normal, automático con `*` y explícito con `
 ```
 
 La definición de `\given` es local a cada uso de `\set` y `\ang`, incluso al anidarlos. `\restr` ajusta la altura de su barra. `\ubar` representa una **barra superior**. `\aut` y `\ob` son alias de `\Aut` y `\Ob`.
+
+Los subgrupos y submódulos generados se escriben con `\ang{A}`; si los generadores llevan una condición, se utiliza `\ang{a_i\given i\in I}`. Las imágenes de elementos bajo una aplicación se indican con `\mapsto`, también en los recorridos de permutaciones.
 
 `\brack{...}` representa corchetes simples. Para una fracción sin barra con corchetes puede utilizarse `\genfrac{[}{]}{0pt}{}{n}{k}`.
 

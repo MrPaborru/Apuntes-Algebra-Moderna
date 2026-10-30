@@ -10,7 +10,7 @@ En la clase 10 distinguimos productos directos, extensiones y productos semidire
 % P01--P03.
 Para subconjuntos $A,B\subseteq G$, escribimos
 \[
-[A,B]=\generado{[a,b]\given a\in A,\ b\in B}.
+[A,B]=\ang{[a,b]\given a\in A,\ b\in B}.
 \]
 \begin{lema}\label{lema:C10-conmutan}
 Si $N,H\trianglelefteq G$, entonces $[N,H]\subseteq N\cap H$. En particular, si $N\cap H=\{e\}$, cada elemento de $N$ conmuta con cada elemento de $H$.
@@ -45,7 +45,7 @@ Para $q<p$, la condición que excluye $n_q=p$ es $p\not\equiv1\pmod q$. La condi
 \end{obs}
 
 \begin{ejem}
-En $S_3$, tomemos $N=\generado{(1\,2\,3)}$ y $H=\generado{(1\,2)}$. El primero es normal, por ser $A_3$; el segundo no lo es, ya que
+En $S_3$, tomemos $N=\ang{(1\,2\,3)}$ y $H=\ang{(1\,2)}$. El primero es normal, por ser $A_3$; el segundo no lo es, ya que
 \[
 (1\,2\,3)(1\,2)(1\,2\,3)^{-1}=(2\,3)\notin H.
 \]
@@ -183,13 +183,13 @@ Por tanto es un isomorfismo.
 Esta realización dentro de $G$ se llama \emph{producto semidirecto interno}. Si $N$ y $H$ conmutan, $\gamma$ es trivial y recuperamos el producto directo. En particular ocurre cuando ambos son normales y su intersección es trivial.
 
 \begin{ejem}
-Si $C_3=\generado{y}$, un automorfismo está determinado por la imagen de $y$, que debe ser $y$ o $y^2$. Así $\Aut(C_3)=\{\id,\iota\}\cong C_2$, donde $\iota(y)=y^2$ y $\iota^2=\id$. Hay exactamente dos homomorfismos $C_2\to\Aut(C_3)$: el trivial y el que envía su generador a $\iota$. El primero da $C_3\times C_2\cong C_6$; el segundo da un grupo isomorfo a $S_3$.
+Si $C_3=\ang{y}$, un automorfismo está determinado por la imagen de $y$, que debe ser $y$ o $y^2$. Así $\Aut(C_3)=\{\id,\iota\}\cong C_2$, donde $\iota(y)=y^2$ y $\iota^2=\id$. Hay exactamente dos homomorfismos $C_2\to\Aut(C_3)$: el trivial y el que envía su generador a $\iota$. El primero da $C_3\times C_2\cong C_6$; el segundo da un grupo isomorfo a $S_3$.
 \end{ejem}
 \begin{ejer}[Cálculo del producto semidirecto no trivial]
 Comprobar que el producto semidirecto no trivial es $S_3$.
 \end{ejer}
 \begin{sol}
-Escribamos $C_2=\generado{t}$ y elijamos $\theta_t(y)=y^{-1}$. Los seis elementos son $(y^a,t^b)$ con $a\in\{0,1,2\}$ y $b\in\{0,1\}$; su producto es
+Escribamos $C_2=\ang{t}$ y elijamos $\theta_t(y)=y^{-1}$. Los seis elementos son $(y^a,t^b)$ con $a\in\{0,1,2\}$ y $b\in\{0,1\}$; su producto es
 \[
 (y^a,t^b)(y^c,t^d)=(y^{a+(-1)^bc},t^{b+d}),
 \]
@@ -197,7 +197,7 @@ con exponentes reducidos módulo $3$ y $2$. En $S_3$ pongamos $r=(1\,2\,3)$ y $s
 \[
 (r^as^b)(r^cs^d)=r^{a+(-1)^bc}s^{b+d}.
 \]
-La aplicación $(y^a,t^b)\mapsto r^as^b$ preserva los productos. Sus imágenes son $e,r,r^2,s,rs,r^2s$, todas distintas: los tres primeros elementos son pares y los otros impares, y dentro de cada bloque se cancela el mismo factor derecho. Por tanto es un isomorfismo sobre los seis elementos de $S_3$. También se obtiene aplicando la \cref{prop:C10-interno} a $N=A_3$ y $H=\generado{s}$.
+La aplicación $(y^a,t^b)\mapsto r^as^b$ preserva los productos. Sus imágenes son $e,r,r^2,s,rs,r^2s$, todas distintas: los tres primeros elementos son pares y los otros impares, y dentro de cada bloque se cancela el mismo factor derecho. Por tanto es un isomorfismo sobre los seis elementos de $S_3$. También se obtiene aplicando la \cref{prop:C10-interno} a $N=A_3$ y $H=\ang{s}$.
 \end{sol}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -224,10 +224,10 @@ Todo subgrupo de Sylow es normal por conmutatividad y, por la clase 7, es único
 \end{proof}
 
 \begin{lema}\label{lema:C10-auxiliar}
-Sea $G$ abeliano no cíclico de orden $p^{r+1}$, con $r\ge1$, y sea $g$ de orden $p^r$. Existe $h\notin\generado{g}$ de orden $p$.
+Sea $G$ abeliano no cíclico de orden $p^{r+1}$, con $r\ge1$, y sea $g$ de orden $p^r$. Existe $h\notin\ang{g}$ de orden $p$.
 \end{lema}
 \begin{proof}
-Sea $K=\generado{g}$ y elijamos $h'\notin K$. Como $G/K$ tiene orden $p$, se cumple $ph'\in K$. Ningún elemento de $G$ tiene orden $p^{r+1}$, pues generaría $G$, contra la hipótesis. Por Lagrange, $\ord(h')$ es entonces a lo sumo $p^r$, y $p^{r-1}(ph')=0$.
+Sea $K=\ang{g}$ y elijamos $h'\notin K$. Como $G/K$ tiene orden $p$, se cumple $ph'\in K$. Ningún elemento de $G$ tiene orden $p^{r+1}$, pues generaría $G$, contra la hipótesis. Por Lagrange, $\ord(h')$ es entonces a lo sumo $p^r$, y $p^{r-1}(ph')=0$.
 
 En el grupo cíclico $K$, los elementos anulados por $p^{r-1}$ son exactamente los múltiplos de $pg$: si $k=ag$ y $p^{r-1}k=0$, entonces $p^r\mid p^{r-1}a$ y $p\mid a$. Así, $ph'=pmg$ para algún entero $m$. Tomamos $h=h'-mg$. Tenemos $ph=0$, pero $h\notin K$, pues de lo contrario $h'=h+mg\in K$. En particular $h\ne0$ y su orden es exactamente $p$.
 \end{proof}
@@ -235,16 +235,16 @@ En el grupo cíclico $K$, los elementos anulados por $p^{r-1}$ son exactamente l
 \begin{lema}\label{lema:C10-factor-maximo}
 Sea $G$ un $p$-grupo abeliano finito y $g\in G$ un elemento de orden máximo. Existe $L\le G$ con
 \[
-G=\generado{g}+L,\qquad \generado{g}\cap L=\{0\}.
+G=\ang{g}+L,\qquad \ang{g}\cap L=\{0\}.
 \]
-En particular, $G\cong\generado{g}\oplus L$ y la sucesión $0\to\generado{g}\to G\to G/\generado{g}\to0$ se escinde.
+En particular, $G\cong\ang{g}\oplus L$ y la sucesión $0\to\ang{g}\to G\to G/\ang{g}\to0$ se escinde.
 \end{lema}
 \begin{proof}
-Hacemos inducción sobre $|G|$. Si $G$ es trivial o $G=K=\generado{g}$, basta tomar $L=\{0\}$. Supongamos $G\ne K$ y $\ord(g)=p^r$, con $r\ge1$. El cociente $G/K$ es un $p$-grupo no trivial. Por Cauchy contiene un subgrupo de orden $p$, cuya preimagen $G_0$ tiene orden $p^{r+1}$ y contiene a $K$.
+Hacemos inducción sobre $|G|$. Si $G$ es trivial o $G=K=\ang{g}$, basta tomar $L=\{0\}$. Supongamos $G\ne K$ y $\ord(g)=p^r$, con $r\ge1$. El cociente $G/K$ es un $p$-grupo no trivial. Por Cauchy contiene un subgrupo de orden $p$, cuya preimagen $G_0$ tiene orden $p^{r+1}$ y contiene a $K$.
 
-El grupo $G_0$ no es cíclico: un generador tendría orden $p^{r+1}$, contradiciendo la elección de $g$ en todo $G$. Por el lema anterior existe $h\in G_0\setminus K$ de orden $p$. Sea $H=\generado{h}$. Su intersección con $K$ es trivial: si compartieran un elemento no nulo, éste generaría $H$, por tener orden primo, y entonces $h\in K$.
+El grupo $G_0$ no es cíclico: un generador tendría orden $p^{r+1}$, contradiciendo la elección de $g$ en todo $G$. Por el lema anterior existe $h\in G_0\setminus K$ de orden $p$. Sea $H=\ang{h}$. Su intersección con $K$ es trivial: si compartieran un elemento no nulo, éste generaría $H$, por tener orden primo, y entonces $h\in K$.
 
-En $G/H$, el subgrupo $K'=(K+H)/H=\generado{g+H}$ es isomorfo a $K/(K\cap H)\cong K$, luego $g+H$ tiene orden $p^r$. Es de orden máximo, porque para todo $x\in G$ el orden de $x+H$ divide al de $x$, que es a lo sumo $p^r$. Como $|G/H|<|G|$, la inducción produce $L'\le G/H$ con
+En $G/H$, el subgrupo $K'=(K+H)/H=\ang{g+H}$ es isomorfo a $K/(K\cap H)\cong K$, luego $g+H$ tiene orden $p^r$. Es de orden máximo, porque para todo $x\in G$ el orden de $x+H$ divide al de $x$, que es a lo sumo $p^r$. Como $|G/H|<|G|$, la inducción produce $L'\le G/H$ con
 \[
 G/H=K'+L',\qquad K'\cap L'=\{H\}.
 \]
@@ -262,7 +262,7 @@ K' \arrow[r,hook] & G/H & L' \arrow[l,hook'].
 Todo grupo abeliano finito es suma directa de grupos cíclicos, que pueden elegirse de orden potencia de primo.
 \end{coro}
 \begin{proof}
-Por el \cref{coro:C10-primarios} basta tratar un $p$-grupo $P$. Hacemos inducción sobre su orden. Para $P=\{0\}$ usamos la suma vacía. En otro caso elegimos $g$ de orden máximo. El lema anterior da $P\cong\generado{g}\oplus L$, donde $\generado{g}$ es un grupo cíclico no trivial de orden potencia de $p$ y $|L|<|P|$. Por inducción, $L$ es suma directa de cíclicos de órdenes potencias de $p$, lo que completa la prueba.
+Por el \cref{coro:C10-primarios} basta tratar un $p$-grupo $P$. Hacemos inducción sobre su orden. Para $P=\{0\}$ usamos la suma vacía. En otro caso elegimos $g$ de orden máximo. El lema anterior da $P\cong\ang{g}\oplus L$, donde $\ang{g}$ es un grupo cíclico no trivial de orden potencia de $p$ y $|L|<|P|$. Por inducción, $L$ es suma directa de cíclicos de órdenes potencias de $p$, lo que completa la prueba.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -287,7 +287,7 @@ La existencia de la primera forma está probada en el corolario anterior. Explic
 \[
 P=\set{x\in G\given p^k x=0\text{ para algún }k\ge0}.
 \]
-Una inclusión es Lagrange; para la otra, $\generado{x}$ es un $p$-subgrupo y está contenido en el único Sylow. Por ello todo isomorfismo de grupos identifica estas partes para cada primo.
+Una inclusión es Lagrange; para la otra, $\ang{x}$ es un $p$-subgrupo y está contenido en el único Sylow. Por ello todo isomorfismo de grupos identifica estas partes para cada primo.
 
 Supongamos $P\cong\bigoplus_j\mathbb Z/p^{a_j}\mathbb Z$. Para $k\ge1$, definimos $p^kP=\set{p^kx\given x\in P}$. En un factor de exponente $a$, el cociente $p^{k-1}C_{p^a}/p^kC_{p^a}$ tiene orden $p$ si $a\ge k$ y orden uno en otro caso. Por productos de cardinales,
 \[
