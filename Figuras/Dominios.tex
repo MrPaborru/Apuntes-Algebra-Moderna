@@ -1,0 +1,20 @@
+% Esquema orientativo de 2025-10-09.pdf P05 y 2025-10-14.pdf P02.
+% Los óvalos DFU y noetherianos se intersectan, sin contenerse mutuamente.
+\begin{center}
+\begin{tikzpicture}[font=\small,line width=.6pt]
+\filldraw[fill=grisCIMAT!30] (0,0) ellipse (7cm and 4cm);
+\filldraw[fill=grisCIMAT!15] (0,-.35) ellipse (6.5cm and 3.4cm);
+\draw[fill=white,fill opacity=.35,draw opacity=1] (-1.2,-.85) ellipse (4.5cm and 2.8cm);
+\draw[fill=white,fill opacity=.35,draw opacity=1] (1.2,-.85) ellipse (4.5cm and 2.8cm);
+\filldraw[fill=grisCIMAT!10] (0,-1.6) ellipse (2.5cm and 1.8cm);
+\filldraw[fill=white] (0,-2) ellipse (1.9cm and 1.2cm);
+\filldraw[fill=grisCIMAT!8] (0,-2.5) ellipse (1.1cm and .55cm);
+\node[font=\normalsize\itshape] at (0,3.35) {Dominios enteros};
+\node[font=\normalsize\itshape] at (0,2.4) {Dominios con factorización};
+\node[rotate=18] at (-3.65,1.1) {DFU};
+\node[rotate=-18] at (3.3,1.08) {Dominios noetherianos};
+\node at (0,-.35) {DIP};
+\node[font=\footnotesize] at (0,-1.45) {Dominios euclidianos};
+\node at (0,-2.5) {Campos};
+\end{tikzpicture}
+\end{center}

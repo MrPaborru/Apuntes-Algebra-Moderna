@@ -7,7 +7,7 @@ En la clase 12 construimos productos y anillos de endomorfismos. Los ideales per
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{El producto en la categoría de anillos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% P01, apartado IV.2.4 y comprobación IV.2.13.
+% P01, apartado III.2.4 y comprobación III.2.13.
 Para anillos $R_1,R_2$, el conjunto $R_1\times R_2$ es anillo con operaciones por componentes:
 \[
 \begin{aligned}
@@ -18,7 +18,7 @@ Para anillos $R_1,R_2$, el conjunto $R_1\times R_2$ es anillo con operaciones po
 Los axiomas se verifican en cada coordenada. Su cero es $(0,0)$ y su unidad es $(1_{R_1},1_{R_2})$.
 
 \begin{ejer}[Propiedad universal del producto]\label{ejer:C12-producto}
-Comprobar que este anillo, con sus proyecciones, es el producto categórico de $R_1$ y $R_2$ en $\Ring$. Es la comprobación del ejercicio IV.2.13 citada en la página 1.
+Comprobar que este anillo, con sus proyecciones, es el producto categórico de $R_1$ y $R_2$ en $\Ring$. Es la comprobación del ejercicio III.2.13 citada en la página 1.
 \end{ejer}
 \begin{sol}
 Cada proyección $p_i$ preserva suma, producto y unidad, por lo que es morfismo. Dados homomorfismos $f_i:T\to R_i$, la única función con $p_i f=f_i$ es
@@ -104,7 +104,7 @@ En particular, $\{0\}$ y $R$ son ideales de $R$.
 \end{ejem}
 
 \begin{ejer}[Preimagen de un ideal]\label{ejer:C12-preimagen}
-Si $\varphi:R\to S$ es homomorfismo y $J$ es ideal de $S$, probar que $\varphi^{-1}(J)$ es ideal de $R$. Es la verificación IV.3.2 propuesta en el fragmento de la página 3.
+Si $\varphi:R\to S$ es homomorfismo y $J$ es ideal de $S$, probar que $\varphi^{-1}(J)$ es ideal de $R$. Es la verificación III.3.2 propuesta en el fragmento de la página 3.
 \end{ejer}
 \begin{sol}
 La preimagen contiene cero y, si $a,b$ pertenecen a ella, $\varphi(a-b)=\varphi(a)-\varphi(b)\in J$. Así es subgrupo aditivo. Para $r\in R$ y $a\in\varphi^{-1}(J)$,
@@ -217,7 +217,7 @@ Este detalle se usará en el criterio de maximalidad de la clase 13. La preimage
 Para $a\in R$, $Ra=\set{ra\given r\in R}$ es ideal izquierdo y $aR$ es ideal derecho: son subgrupos aditivos, y la absorción se sigue de $s(ra)=(sr)a$ y $(ar)s=a(rs)$. Si $R$ es conmutativo, coinciden y se denotan $(a)$, el \emph{ideal principal generado por $a$}. En particular, $(0)=\{0\}$ y $(1)=R$.
 
 \begin{ejer}[Suma de ideales]\label{ejer:C12-suma}
-Para una familia $(I_\alpha)_{\alpha\in A}$ de ideales de un anillo $R$, probar que su suma es un ideal. Es la verificación IV.4.1 citada en la página 8.
+Para una familia $(I_\alpha)_{\alpha\in A}$ de ideales de un anillo $R$, probar que su suma es un ideal. Es la verificación III.4.1 citada en la página 8.
 \end{ejer}
 \begin{sol}
 Definimos la suma mediante \emph{sumas finitas} de elementos de los ideales:
@@ -327,5 +327,5 @@ Identificamos $r=a_0+a_1x+\cdots+a_{d-1}x^{d-1}$ con $(a_0,\ldots,a_{d-1})$. La 
 Este isomorfismo describe la suma. Para multiplicar clases se multiplican sus representantes y se toma el resto del producto; en general, esto difiere del producto por componentes.
 
 \begin{obs}[Orientación bibliográfica]
-Se consultaron los fragmentos originales de \citet{aluffi2009} incluidos en las doce páginas: IV.2.4--5 y las proposiciones IV.2.6--7; la definición IV.3.1, el ejemplo IV.3.3, el apartado IV.3.2 y los resultados IV.3.8--11; el apartado IV.4.1, el ejemplo IV.4.1, las definiciones IV.4.2--3, la proposición IV.4.4, el lema IV.4.5 y la proposición IV.4.6. Las comprobaciones referidas como ejercicios IV.2.13, IV.3.2 y IV.4.1 se resuelven aquí como ejercicios. El algoritmo de división se desarrolla a partir de la estrategia indicada en la página 11; la correspondencia de ideales se añade para justificar su uso posterior.
+Se consultaron los fragmentos originales de \citet{aluffi2009} incluidos en las doce páginas: III.2.4--5 y las proposiciones III.2.6--7; la definición III.3.1, el ejemplo III.3.3, el apartado III.3.2 y los resultados III.3.8--11; el apartado III.4.1, el ejemplo III.4.1, las definiciones III.4.2--3, la proposición III.4.4, el lema III.4.5 y la proposición III.4.6. Las comprobaciones referidas como ejercicios III.2.13, III.3.2 y III.4.1 se resuelven aquí como ejercicios. El algoritmo de división se desarrolla a partir de la estrategia indicada en la página 11; la correspondencia de ideales se añade para justificar su uso posterior.
 \end{obs}

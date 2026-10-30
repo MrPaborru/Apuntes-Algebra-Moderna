@@ -8,7 +8,7 @@ En la clase 13 calculamos ejemplos de cocientes de polinomios y caracterizamos i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Evaluación y la construcción de los complejos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% P01--P02: repetición de IV.4.6, ejemplo IV.4.7 y cálculo con x^2+1.
+% P01--P02: repetición de III.4.6, ejemplo III.4.7 y cálculo con x^2+1.
 En esta sección los anillos son conmutativos. La \cref{prop:C12-restos}, recordada al inicio de la pizarra, identifica el grupo aditivo de un cociente por un mónico con los coeficientes de sus restos. La multiplicación depende del polinomio usado para reducirlos.
 
 \begin{ejem}[El resto al dividir por $x-a$]\label{ejem:C13-evaluacion}
@@ -119,7 +119,7 @@ En $\mathbb Z$, para $n>0$, el ideal $(n)$ es primo si y sólo si es maximal, y 
 Cada $(p)$ contiene a $(0)$, y no hay inclusiones entre dos ideales maximales distintos.
 
 \begin{ejer}[Los polinomios sobre un campo forman un DIP]\label{ejer:C13-Kx}
-Probar que, si $K$ es un campo, $K[x]$ es un dominio de ideales principales. La página 5 desarrolla esta comprobación y el fragmento de la página 6 remite a ella como ejercicio IV.4.4.
+Probar que, si $K$ es un campo, $K[x]$ es un dominio de ideales principales. La página 5 desarrolla esta comprobación y el fragmento de la página 6 remite a ella como ejercicio III.4.4.
 \end{ejer}
 \begin{sol}
 El producto de dos polinomios no nulos tiene coeficiente principal igual al producto de sus coeficientes principales, que es no nulo en el campo. Así, $K[x]$ es dominio.
@@ -140,7 +140,7 @@ Un campo es \emph{algebraicamente cerrado} si todo polinomio no constante con co
 El fragmento afirma, sin demostrarlo aquí, que $\mathbb C$ es algebraicamente cerrado. Usamos ese hecho en la comprobación siguiente, tal como pide el texto, sin incorporar una prueba del teorema fundamental del álgebra.
 
 \begin{ejer}[{Ideales maximales de $\mathbb C[x]$}]\label{ejer:C13-complejos}
-Suponiendo que $\mathbb C$ es algebraicamente cerrado, demostrar que los ideales maximales de $\mathbb C[x]$ son exactamente $(x-z)$, $z\in\mathbb C$. Es el ejercicio IV.4.21 citado en la página 6.
+Suponiendo que $\mathbb C$ es algebraicamente cerrado, demostrar que los ideales maximales de $\mathbb C[x]$ son exactamente $(x-z)$, $z\in\mathbb C$. Es el ejercicio III.4.21 citado en la página 6.
 \end{ejer}
 \begin{sol}
 Cada $(x-z)$ es maximal porque su cociente es $\mathbb C$. Recíprocamente, un maximal $M$ no puede ser $(0)$, como acabamos de ver. Por el \cref{ejer:C13-Kx}, $M=(f)$ con $f$ no nulo y no constante: una constante no nula generaría todo el anillo.
@@ -194,7 +194,7 @@ Recíprocamente, dada la función de acción, definimos $\sigma(r)(m)=rm$. El pr
 \end{proof}
 
 \begin{ejer}[Cero y negativos en un módulo]\label{ejer:C13-cero}
-Demostrar $0_Rm=0_M$ y $(-1_R)m=-m$, las propiedades propuestas al inicio del apartado IV.5.2 en la página 8.
+Demostrar $0_Rm=0_M$ y $(-1_R)m=-m$, las propiedades propuestas al inicio del apartado III.5.2 en la página 8.
 \end{ejer}
 \begin{sol}
 La igualdad $0_R=0_R+0_R$ da $0_Rm=0_Rm+0_Rm$. Cancelar en el grupo aditivo de $M$ produce $0_Rm=0_M$. Después,
@@ -332,5 +332,5 @@ Estas identidades puntuales verifican todos los axiomas del módulo.
 \end{proof}
 
 \begin{obs}[Orientación bibliográfica]
-Los fragmentos originales de \citet{aluffi2009} permiten verificar IV.4.6--7, el apartado IV.4.3, la definición IV.4.9, los ejemplos IV.4.10 y IV.4.14, las proposiciones IV.4.11--13 y los apartados IV.5.1--2, incluida la afirmación IV.5.1, la definición IV.5.2, la proposición IV.5.3, los ejemplos IV.5.4--6 y la definición IV.5.7. Las comprobaciones IV.4.4 y IV.4.21, las propiedades elementales de módulos y la pregunta sobre $\mathbb Z$-álgebras llevan solución aquí. La cerradura algebraica de $\mathbb C$ se usa como el hecho citado por el fragmento, no como un resultado demostrado en esta clase. Se revisaron las trece páginas del archivo; la última está en blanco. No se consultó el libro completo.
+Los fragmentos originales de \citet{aluffi2009} permiten verificar III.4.6--7, el apartado III.4.3, la definición III.4.9, los ejemplos III.4.10 y III.4.14, las proposiciones III.4.11--13 y los apartados III.5.1--2, incluida la afirmación III.5.1, la definición III.5.2, la proposición III.5.3, los ejemplos III.5.4--6 y la definición III.5.7. Las comprobaciones III.4.4 y III.4.21, las propiedades elementales de módulos y la pregunta sobre $\mathbb Z$-álgebras llevan solución aquí. La cerradura algebraica de $\mathbb C$ se usa como el hecho citado por el fragmento, no como un resultado demostrado en esta clase. Se revisaron las trece páginas del archivo; la última está en blanco. No se consultó el libro completo.
 \end{obs}

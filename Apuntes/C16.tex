@@ -1,0 +1,243 @@
+% Fuente única de clase: Recursos/2025-10-14.pdf, páginas 1--10.
+En la clase 16 distinguimos existencia y unicidad de factorización en irreducibles. Interpretamos la divisibilidad mediante multiplicidades, construimos máximos comunes divisores en dominios factoriales y probamos que todo dominio euclidiano es de ideales principales, y todo dominio de ideales principales es factorial.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Existencia de factorizaciones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Primos no nulos e irreducibles}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01.
+Durante esta clase $R$ es un dominio entero. Conservamos la convención de la clase 15: «primo» significa que el ideal principal es primo, por lo que el cero puede ser primo; la comparación con irreducibilidad necesita excluirlo.
+
+\begin{lema}\label{lema:C16-primo-irreducible}
+Todo elemento primo no nulo de un dominio es irreducible.
+\end{lema}
+\begin{proof}
+Si $a$ es primo, $(a)$ es propio, así que $a$ no es unidad. Dada una factorización $a=bc$, la primalidad implica $b\in(a)$ o $c\in(a)$. En el primer caso $b=ad$, luego $a=adc$; cancelar $a\ne0$ da $dc=1$, y $c$ es unidad. En el segundo caso el mismo argumento muestra que $b$ es unidad. Por tanto, $a$ es irreducible.
+\end{proof}
+
+\begin{defi}
+Una \emph{factorización en irreducibles} de un elemento no nulo y no unidad $r$ es una expresión $r=q_1\cdots q_n$ con todos los $q_i$ irreducibles. Es \emph{única salvo orden y asociados} si toda otra expresión $r=q'_1\cdots q'_m$ tiene $m=n$ y, después de reordenar, cada $q'_i$ es asociado de $q_i$.
+
+Un \emph{dominio con factorización} es aquel en que todo elemento no nulo y no unidad admite tal expresión. Un \emph{dominio factorial}, o \emph{dominio de factorización única} (DFU, UFD en los fragmentos), es aquel en que esas factorizaciones existen y son únicas en el sentido anterior.
+\end{defi}
+Al elegir representantes fijos de las clases de asociados se escribe un factor unidad separado, $r=u\prod_i q_i$. Es equivalente a la definición: se puede absorber $u$ en uno de los irreducibles sin cambiar su clase de asociado. Para una unidad se toma una lista vacía de factores y se conserva la unidad misma.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cadenas de ideales principales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P01--P02.
+\begin{prop}\label{prop:C16-existencia}
+Sea $r\ne0$ una no unidad. Si toda cadena ascendente de ideales principales que comienza en $(r)$ se estabiliza, $r$ admite una factorización en irreducibles.
+\end{prop}
+\begin{proof}
+Supongamos que $r$ no tiene factorización. Entonces no es irreducible, porque él mismo sería una factorización de longitud uno. Existen no unidades $r_1,s_1$ con $r=r_1s_1$. Ambos factores son no nulos porque $R$ es dominio. Si los dos tuvieran factorización, multiplicarlas daría una de $r$; elegimos como $r_1$ un factor que no la tenga.
+
+La inclusión $(r)\subseteq(r_1)$ es estricta. Si fueran iguales, $r_1=rt$ daría $r=rts_1$ y, cancelando $r\ne0$, $ts_1=1$, contradiciendo que $s_1$ no es unidad. Repetir el argumento produce
+\[
+(r)\subsetneq(r_1)\subsetneq(r_2)\subsetneq\cdots,
+\]
+sin estabilización, contra la hipótesis.
+\end{proof}
+
+\begin{coro}\label{coro:C16-noetheriano}
+En todo dominio noetheriano existen factorizaciones en irreducibles.
+\end{coro}
+\begin{proof}
+La \cref{prop:C15-cadenas} aplicada al módulo regular implica estabilización de todas las cadenas de ideales; en particular, de las principales. Aplicamos la proposición a cada elemento no nulo y no unidad.
+\end{proof}
+
+\begin{ejer}[Factorización sin noetherianidad]\label{ejer:C16-infinitas}
+Comprobar que $B=\mathbb Z[x_1,x_2,\ldots]$ satisface la condición de cadena ascendente para ideales principales y, por tanto, tiene factorizaciones, aunque no es noetheriano. Es la comprobación a la que remite el ejercicio V.1.15 citado en la página 2.
+\end{ejer}
+\begin{sol}
+Cada polinomio no nulo $f$ pertenece a algún $B_n=\mathbb Z[x_1,\ldots,x_n]$. Todo divisor suyo en $B$ pertenece al mismo $B_n$: si $f=gh$, para una variable $x_j$ con $j>n$ el grado en $x_j$ satisface
+\[
+0=\deg_{x_j}f=\deg_{x_j}g+\deg_{x_j}h.
+\]
+Esta igualdad vale porque los coeficientes pertenecen a un dominio; por tanto, ninguno de los factores utiliza $x_j$. El argumento se aplica a cada variable exterior que aparezca en ellos. Los anillos de polinomios considerados son dominios por el producto de coeficientes principales, iterado sobre las finitas variables de cada expresión.
+
+En una cadena $(f_1)\subseteq(f_2)\subseteq\cdots$, si todos los $f_i$ son cero no hay nada que probar. En otro caso descartamos los términos iniciales nulos y fijamos un primer $f_k\ne0$ en algún $B_n$. Todos los $f_i$ posteriores dividen a $f_k$, de modo que están en $B_n$. Los cocientes que expresan $f_i=f_{i+1}h_i$ también están en $B_n$ por el mismo argumento de grados. La cadena es, por tanto, una cadena de ideales principales en $B_n$.
+
+Por Hilbert y porque $\mathbb Z$ es noetheriano, $B_n$ es noetheriano y la cadena se estabiliza allí. Las igualdades de ideales se conservan al generar ideales en $B$. Así se estabiliza la cadena original. La \cref{prop:C16-existencia} da las factorizaciones. Por el \cref{ejer:C15-infinitas}, $B$ tiene un ideal no finitamente generado y no es noetheriano.
+\end{sol}
+El ejemplo justifica la inclusión propia de los dominios noetherianos entre los dominios con factorización en el esquema de la clase 15. Los contornos coloreados de la página 2 distinguen esas regiones; aquí conservamos su propósito mediante esta separación entre existencia y noetherianidad.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Multiplicidades, divisibilidad y máximo común divisor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Multiconjuntos de irreducibles}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P03--P05.
+Un \emph{multiconjunto} asigna a cada elemento una multiplicidad entera no negativa. Para una factorización finita sólo hay finitas multiplicidades positivas. En un DFU elegimos representantes $q$ de las clases de asociados de irreducibles y escribimos
+\[
+r=u\prod_q q^{v_q(r)},\qquad
+u\in R^\times,\quad v_q(r)\geq0,
+\]
+con soporte finito. Las unidades tienen todas las multiplicidades cero. Un multiconjunto está contenido en otro si cada multiplicidad es menor o igual; al comparar soportes distintos, se extienden por cero a una misma base de representantes.
+\begin{nota}[El dato que determinan las multiplicidades]
+La página 3 dice que el elemento queda determinado por su multiconjunto de factores. Las multiplicidades determinan su \emph{clase de asociado}: aún falta el factor unidad. Por ejemplo, $2$ y $-2$ tienen las mismas multiplicidades en $\mathbb Z$. También hay que comparar clases de asociados, y no tratar dos representantes asociados como factores distintos. La unión de factores de un producto suma multiplicidades; no es una unión ordinaria que elimine repeticiones.
+\end{nota}
+
+\begin{lema}\label{lema:C16-multiplicidades}
+En un DFU, para elementos no nulos $a,b,c$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $(a)\subseteq(b)$, o equivalentemente $b\mid a$, si y sólo si $v_q(b)\leq v_q(a)$ para todo $q$.
+\item $a,b$ son asociados si y sólo si sus multiplicidades coinciden.
+\item $v_q(bc)=v_q(b)+v_q(c)$ para todo $q$.
+\end{enumerate}
+\end{lema}
+\begin{proof}
+Multiplicar las factorizaciones de $b$ y $c$ da una factorización de $bc$; la unicidad obliga a que sus multiplicidades sean las sumas. Esto prueba (iii), incluyendo factores unidades con multiconjunto vacío.
+
+Si $a=bc$, (iii) da $v_q(a)=v_q(b)+v_q(c)\geq v_q(b)$. Recíprocamente, si todas las diferencias son no negativas, escribiendo $a=u\prod q^{\alpha_q}$, $b=v\prod q^{\beta_q}$ se tiene
+\[
+a=b\left(uv^{-1}\prod_q q^{\alpha_q-\beta_q}\right),
+\]
+lo que prueba (i). Finalmente, ser asociados equivale a las dos inclusiones de ideales; por (i), equivale a las dos desigualdades opuestas y, por tanto, a igualdad de multiplicidades.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Existencia de máximo común divisor}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P05--P06.
+\begin{defi}
+Un \emph{máximo común divisor} de $a,b$ en un dominio es un elemento $d$ tal que $d\mid a$, $d\mid b$, y todo divisor común $c$ de $a,b$ divide a $d$. Equivale a que $(d)$ sea el menor ideal principal que contiene $(a,b)$.
+\end{defi}
+Se extiende la definición a cualquier familia finita. Si hay dos máximos comunes divisores, se dividen mutuamente y son asociados; por ello $\mcd(a,b)$ designa una elección de representante, salvo que se fije una normalización. No tiene por qué existir en todo dominio.
+
+\begin{ejem}[Un dominio sin cierto máximo común divisor]
+Sea
+\[
+R=\mathbb Z[x^2,x^3]
+=\set{a_0+a_2x^2+\cdots+a_nx^n\given a_i\in\mathbb Z}.
+\]
+Es el subanillo de $\mathbb Z[x]$ formado por polinomios sin término lineal y es dominio. Los divisores comunes de $x^5$ y $x^6$ en $R$ son exactamente $\pm1$, $\pm x^2$ y $\pm x^3$.
+
+Para completar la comprobación de la página 5, si $gh=x^5$ en $\mathbb Z[x]$, comparemos los grados mayores y los menores exponentes presentes. Ambos se suman en el producto y ambos dan cinco. Como para cada factor el mayor grado es al menos el menor, deben coincidir en cada factor; así, $g,h$ son monomios. Sus coeficientes enteros multiplican a uno, luego son $\pm1$. Aplicando esto a un divisor común, éste es $\pm x^k$. La pertenencia del divisor y de los cocientes $x^{5-k},x^{6-k}$ a $R$ deja sólo $k=0,2,3$.
+
+Los divisores $x^2,x^3$ son incomparables: $x^3/x^2=x\notin R$, y $x^2/x^3$ ni siquiera es polinomio. Ninguno de los divisores comunes de la lista es múltiplo de ambos. Por tanto, $x^5,x^6$ no tienen máximo común divisor en $R$.
+\end{ejem}
+
+\begin{lema}\label{lema:C16-mcd}
+En un DFU, dos elementos no nulos tienen máximo común divisor. Si
+\[
+a=u\prod_{i=1}^t q_i^{\alpha_i},\qquad
+b=v\prod_{i=1}^t q_i^{\beta_i},
+\]
+con representantes no asociados entre sí y exponentes no negativos, uno de esos divisores es $d=\prod_i q_i^{\min(\alpha_i,\beta_i)}$.
+\end{lema}
+\begin{proof}
+Sus multiplicidades no exceden las de $a$ ni las de $b$, luego divide a ambos por el \cref{lema:C16-multiplicidades}. Todo divisor común $c$ es no nulo y tiene $v_{q_i}(c)\leq\alpha_i,\beta_i$; tampoco puede tener otros factores. Así, sus multiplicidades no exceden $\min(\alpha_i,\beta_i)$, lo que prueba $c\mid d$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Un dominio noetheriano que no es factorial}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P06: ejemplo con cuatro variables y una relación.
+\begin{ejem}\label{ejem:C16-determinante}
+Consideremos $T=\mathbb C[x,y,z,\omega]/(x\omega-yz)$ y denotemos las clases de las variables con las mismas letras. Es un dominio noetheriano, pero no es DFU: $x,y,z,\omega$ son irreducibles no asociados dos a dos y
+\[
+x\omega=yz\ne0
+\]
+da dos factorizaciones distintas salvo orden y asociados.
+\end{ejem}
+\begin{proof}[Detalles añadidos al ejemplo de la pizarra]
+La noetherianidad se sigue de Hilbert: es un cociente de un anillo de polinomios sobre el campo $\mathbb C$. Para justificar también que es dominio, consideremos
+\[
+\theta:\mathbb C[x,y,z,\omega]\longrightarrow\mathbb C[s,t,u,v],
+\quad x\mapsto su,\ y\mapsto sv,\ z\mapsto tu,\ \omega\mapsto tv.
+\]
+Anula $x\omega-yz$, por lo que induce un homomorfismo desde $T$. Mostraremos que es inyectivo. Usando $x\omega=yz$, todo monomio tiene en $T$ un representante $x^ay^bz^c\omega^d$ con $\min(a,d)=0$: se reemplazan parejas $x\omega$ hasta que uno de los exponentes se anule. Su imagen es
+\[
+s^{a+b}t^{c+d}u^{a+c}v^{b+d}.
+\]
+Si dos monomios de esa forma tuvieran la misma imagen, la diferencia de sus cuádruplas de exponentes sería $(k,-k,-k,k)$. Si $k>0$, la primera cuádrupla tendría sus exponentes de $x$ y $\omega$ positivos; si $k<0$, los tendría la segunda. Ambos casos contradicen la forma elegida. Por tanto, $k=0$ y son el mismo monomio.
+
+Las imágenes de los monomios reducidos son monomios distintos de un anillo de polinomios, luego son linealmente independientes sobre $\mathbb C$. Si una clase tiene imagen cero, su expresión reducida tiene todos los coeficientes cero. La aplicación inducida es inyectiva y $T$ se identifica con un subanillo de un dominio. Así, $T$ es dominio y el producto $x\omega$, cuya imagen es $stuv$, es no nulo.
+
+La relación es homogénea de grado dos, por lo que el cociente conserva una graduación por grado total: las componentes de grados distintos no se identifican entre sí. En este dominio graduado el grado máximo de un producto no nulo es la suma de los grados máximos: el producto de sus componentes superiores no se anula. En consecuencia, una factorización de cualquiera de las cuatro variables, que tienen grado uno, tiene un factor de grado cero, es decir, una constante compleja no nula y por tanto una unidad. Las variables no son unidades, pues una inversa tendría que hacer que un producto de grado positivo tuviera grado cero. Son irreducibles.
+
+El mismo argumento muestra que todas las unidades son constantes no nulas. Las clases de $x,y,z,\omega$ son linealmente independientes en grado uno: el ideal generado por la relación de grado dos no contiene un polinomio lineal no nulo. Ninguna es múltiplo constante de otra, así que no son asociadas. Las dos factorizaciones indicadas son diferentes y $T$ no es DFU.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Factorialidad, ideales principales y división euclidiana}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Un criterio de factorización única}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P07--P08.
+\begin{lema}\label{lema:C16-irreducible-primo}
+En un DFU todo irreducible es primo.
+\end{lema}
+\begin{proof}
+Sea $a$ irreducible. No es unidad. Si $a\mid bc$ y uno de $b,c$ es cero, $a$ divide a ese factor y la conclusión es inmediata. Si ambos son no nulos, la clase de asociado de $a$ aparece con multiplicidad al menos uno en $bc$. Por el \cref{lema:C16-multiplicidades}, aparece en $b$ o en $c$, de modo que $a\mid b$ o $a\mid c$. Éste es el criterio de primalidad.
+\end{proof}
+
+\begin{teo}\label{teo:C16-criterio}
+Un dominio es DFU si y sólo si satisface la condición de cadena ascendente para ideales principales y todo irreducible es primo.
+\end{teo}
+\begin{proof}
+Si es DFU, ya vimos que sus irreducibles son primos. Para una cadena $(r_1)\subseteq(r_2)\subseteq\cdots$, descartamos los términos iniciales nulos si aparece alguno no nulo; si no aparece, la cadena es constante. En el resto de la cadena, cada multiconjunto de factores está contenido en el anterior. La suma de las multiplicidades es un entero no negativo y disminuye en cada inclusión estricta de ideales, por el \cref{lema:C16-multiplicidades}. Sólo puede disminuir finitamente muchas veces. Después las multiplicidades coinciden y también los ideales, luego la cadena se estabiliza.
+
+Recíprocamente, la condición de cadena proporciona existencia por la \cref{prop:C16-existencia}. Para probar unicidad, supongamos que un mismo elemento tiene expresiones $u q_1\cdots q_n=v p_1\cdots p_m$, con $u,v$ unidades y todos los demás factores irreducibles. Si $n>0$, el primo $q_1$ divide al producto de la derecha; no divide a la unidad $v$, por lo que divide a algún $p_j$. Reordenando, $p_1=q_1c$, y la irreducibilidad de $p_1$ fuerza que $c$ sea unidad, ya que $q_1$ no lo es.
+
+Cancelamos $q_1\ne0$ y absorbemos $c$ en el factor unidad. Repetimos el argumento con una lista más corta. No puede agotarse una lista antes que la otra: eso igualaría una unidad a un producto no vacío de irreducibles, pero si un producto es unidad, cada factor lo es. Por tanto, $m=n$ y, después de reordenar, cada pareja de factores es asociada. Esto prueba la unicidad requerida.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Los dominios de ideales principales son factoriales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P09.
+Recordemos que un DIP es noetheriano y que $\mathbb Z$ y $K[x]$, para $K$ campo, son DIP. Para $K[x]$ la comprobación sugerida como ejercicio III.4.4 ya se resolvió en el \cref{ejer:C13-Kx}.
+
+En un DIP, $d$ es máximo común divisor de $a,b$ si y sólo si $(a,b)=(d)$. En efecto, escribimos $(a,b)=(c)$; este generador divide a $a,b$, y cualquier divisor común $e$ hace que $(a,b)\subseteq(e)$, luego $e\mid c$. Así $c$ es un máximo común divisor, y cualquier otro es asociado. En particular, se obtiene una identidad de Bézout $d=ra+sb$.
+
+\begin{prop}\label{prop:C16-DIP}
+Todo dominio de ideales principales es DFU.
+\end{prop}
+\begin{proof}
+Por noetherianidad satisface la condición de cadena ascendente. Sea $a$ irreducible. El \cref{ejer:C15-irreducible} muestra que $(a)$ es maximal entre ideales principales propios. Como \emph{todos} los ideales son principales, es un ideal maximal de $R$. Todo maximal es primo, así que $a$ es primo. Aplicamos el \cref{teo:C16-criterio}.
+\end{proof}
+En particular, $\mathbb Z$ y $K[x]$ son DFU. También recordamos la \cref{prop:C13-primo-maximal}: en un DIP todo ideal primo no nulo es maximal. No hay conflicto con el ideal cero, que puede ser primo sin ser maximal.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dominios euclidianos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% P10.
+\begin{defi}
+Una \emph{función euclidiana} en un dominio $R$ es una función $v:R\setminus\{0\}\to\mathbb Z_{\geq0}$ tal que, para todo $a\in R$ y $b\ne0$, existen $q,r\in R$ con
+\[
+a=qb+r,\qquad r=0\ \text{o}\ v(r)<v(b).
+\]
+Un dominio que admite esa función es \emph{euclidiano}. Los elementos $q,r$ se llaman cociente y resto de esa división.
+\end{defi}
+El fragmento usa «valuación» para esta función de tamaño. Aquí no se le atribuyen otros axiomas de las valuaciones: sólo se requiere la propiedad de división indicada. No se evalúa $v(0)$ y no se afirma unicidad del cociente o del resto.
+
+\begin{ejem}
+En $\mathbb Z$ sirve $v(n)=|n|$. La división entera da $a=qb+r$ con $0\leq r<|b|$, incluso para $b<0$ ajustando el signo del cociente. Si $r\ne0$, $v(r)<v(b)$.
+
+En $K[x]$ sirve $v(f)=\deg f$. Para dividir por $b\ne0$, multiplicamos $b$ por el inverso de su coeficiente principal y obtenemos un mónico. La \cref{prop:C12-division} produce un resto de grado menor que $\deg b$; ajustar el cociente por esa constante da $a=qb+r$. Así, $K[x]$ es euclidiano. Un campo mismo también lo es con función constante cero, tomando $q=ab^{-1}$ y resto cero.
+\end{ejem}
+
+\begin{prop}\label{prop:C16-euclidiano}
+Todo dominio euclidiano es un dominio de ideales principales.
+\end{prop}
+\begin{proof}
+El ideal cero es principal. Para un ideal $I\ne0$, los tamaños $v(b)$ de sus elementos no nulos forman un conjunto no vacío de enteros no negativos. Elegimos $b\in I\setminus\{0\}$ con tamaño mínimo. Entonces $(b)\subseteq I$.
+
+Para $a\in I$, dividimos $a=qb+r$, con $r=0$ o $v(r)<v(b)$. El resto $r=a-qb$ pertenece a $I$. Si fuera no nulo, su tamaño contradiría la minimalidad de $v(b)$. Luego $r=0$ y $a\in(b)$. Esto demuestra $I=(b)$.
+\end{proof}
+Quedan probadas las inclusiones
+\[
+\text{campos}\ \subseteq\ \text{dominios euclidianos}
+\ \subseteq\ \text{DIP}\ \subseteq\ \text{DFU},
+\]
+junto con la noetherianidad de los DIP y la existencia de factorizaciones en los dominios noetherianos. Son las relaciones desarrolladas en este bloque del esquema de la clase 15.
+
+\begin{obs}[Orientación bibliográfica]
+Los fragmentos originales de \citet{aluffi2009} en estas diez páginas contienen el lema V.1.7, las definiciones V.1.8--10, la proposición V.1.11 y el corolario V.1.12; los apartados V.2.1, V.2.3--4, los lemas V.2.1, V.2.3--4, la definición V.2.2, el teorema V.2.5, la proposición V.2.6, la definición V.2.7 y la proposición V.2.8. La comprobación remitida a V.1.15 se resuelve inmediatamente; la de III.4.4 ya está resuelta en la clase 13. La prueba de que el cociente del ejemplo de cuatro variables es dominio y de la irreducibilidad de sus variables se añade, pues la página 6 sólo afirma esas propiedades. Se conservan las estrategias de cadenas, multiplicidades y tamaño mínimo de las demás pruebas.
+\end{obs}
