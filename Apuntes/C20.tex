@@ -30,9 +30,9 @@ I\arrow[u,"j"]\arrow[ur,"u"']&
 \]
 Ambas sumas tienen soporte finito, incluso cuando $I$ es infinito.
 
-\begin{nota}[El anillo cero]
-La página 1 llama inyección a $j$. Como se comprobó en la clase 14, esto exige $R\ne0$ si $I$ tiene más de un elemento. Para $R=0$, todo módulo unitario es cero y las familias se entienden como familias indexadas, sin identificar necesariamente sus índices con elementos distintos. En las afirmaciones sobre bases como subconjuntos supondremos $R\ne0$; los dominios y campos ya cumplen esa condición.
-\end{nota}
+\begin{obs}
+La función canónica $j$ es inyectiva si $R\ne0$. Para $R=0$, todo módulo unitario es cero y una familia indexada puede repetir elementos. Al identificar una base con un subconjunto supondremos $R\ne0$; dominios y campos ya cumplen esta condición.
+\end{obs}
 
 \begin{defi}
 La familia $(m_i)_{i\in I}$ es \emph{linealmente independiente} si $\varphi$ es inyectiva, y \emph{dependiente} en caso contrario. Es \emph{generadora} si $\varphi$ es sobreyectiva y es una \emph{base} si $\varphi$ es un isomorfismo.
@@ -52,7 +52,7 @@ El subconjunto $\{2\}\subseteq\mathbb Z$ es linealmente independiente como famil
 \[
 (-n)\,2+2\,n=0
 \]
-tiene coeficientes no todos nulos. Para $n=5$, la pizarra escribe $(-5)2+2(5)=0$. Sin embargo, $\ang{2}=2\mathbb Z\ne\mathbb Z$, por lo que esa familia maximal no es una base.
+tiene coeficientes no todos nulos. Para $n=5$, obtenemos $(-5)2+2(5)=0$. Sin embargo, $\ang{2}=2\mathbb Z\ne\mathbb Z$, por lo que esa familia maximal no es una base.
 \end{ejem}
 
 \begin{lema}\label{lema:C20-libre-base}
@@ -86,14 +86,13 @@ Los elementos de $B$ también pertenecen a su generado; de aquí $V=\ang{B}$.
 \begin{prop}\label{prop:C20-extension-base}
 Todo subconjunto linealmente independiente $S$ de un espacio vectorial $V$ se extiende a una base de $V$. En particular, todo espacio vectorial es un módulo libre.
 \end{prop}
-\begin{proof}[Demostración con la aplicación de Zorn explicitada]
+\begin{proof}
 Consideremos el conjunto ordenado por inclusión
 \[
 \mathcal L=\set{A\subseteq V\given S\subseteq A,\ A\text{ linealmente independiente}}.
 \]
 Es no vacío, pues contiene a $S$. La unión de una cadena no vacía es independiente: una relación utiliza sólo finitos vectores, que pertenecen simultáneamente a un miembro de la cadena. La cadena vacía tiene a $S$ como cota. Por Zorn existe un elemento maximal $B$ de $\mathcal L$; cualquier extensión independiente de $B$ seguiría conteniendo a $S$, de modo que $B$ es maximal entre todos los subconjuntos independientes de $V$. Aplicamos el lema anterior y el \cref{lema:C20-libre-base}.
 \end{proof}
-El fragmento de la página 2 remite al lema 1.2 sin reproducir su enunciado. La aplicación de Zorn anterior se añade para completar ese paso, usando la formulación estudiada en la clase 17.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Cardinalidad de las bases y rango}
@@ -105,7 +104,7 @@ El fragmento de la página 2 remite al lema 1.2 sin reproducir su enunciado. La 
 \begin{prop}\label{prop:C20-cardinal}
 Sea $R$ un dominio y $M$ un $R$-módulo libre. Si $B$ es un subconjunto linealmente independiente maximal de $M$ y $S$ es linealmente independiente, entonces $|S|\leq|B|$. En consecuencia, dos subconjuntos independientes maximales de $M$ tienen la misma cardinalidad.
 \end{prop}
-\begin{proof}[Demostración, con el caso infinito completado]
+\begin{proof}
 \emph{Paso al campo de fracciones.} Elijamos una base $E$ de $M$ e identifiquemos $M$ con $R^{\oplus E}\subseteq K^{\oplus E}=V$, donde $K=K(R)$. Una familia de elementos de $M$ es independiente sobre $R$ si y sólo si lo es sobre $K$: una relación sobre $R$ es también una relación sobre $K$; una relación finita sobre $K$ se convierte en una sobre $R$ multiplicando por el producto no nulo de sus denominadores. Si los coeficientes resultantes son cero, también lo eran los originales.
 
 Además, $B$ genera $V$ sobre $K$. Para $m\in M\setminus B$, la maximalidad da
@@ -125,16 +124,16 @@ b=c_b^{-1}\left(v-\sum_s c_ss-\sum_{b'\ne b}c_{b'}b'\right).
 \]
 Así, la nueva familia genera; también es independiente, porque al sustituir $v$ en una relación, el coeficiente de $b$ obliga a anular el de $v$, y luego todos los demás. Este proceso asigna a cada vector considerado un elemento distinto de $B$. Si $B$ tiene $n$ elementos, no pueden existir $n+1$ vectores independientes: después de $n$ reemplazos, éstos ya generan $V$. Concluimos $|S|\leq n$.
 
-\emph{Base infinita: complemento al argumento de la pizarra.} Para cada $s\in S$, sea $E_s\subseteq B$ el soporte finito de su expresión en la base. Para un conjunto finito fijo $E_0\subseteq B$, los vectores con $E_s=E_0$ son independientes en el espacio generado por $E_0$; el caso finito muestra que hay a lo sumo $|E_0|$ de ellos. El conjunto de subconjuntos finitos de una base infinita $B$ tiene cardinalidad $|B|$, y una unión de $|B|$ conjuntos finitos tiene cardinalidad a lo sumo $|B|$. Agrupando $S$ por sus soportes obtenemos $|S|\leq|B|$. Usamos aquí elección, como en el buen orden de la pizarra.
+\emph{Base infinita.} Para cada $s\in S$, sea $E_s\subseteq B$ el soporte finito de su expresión en la base. Para un conjunto finito fijo $E_0\subseteq B$, los vectores con $E_s=E_0$ son independientes en el espacio generado por $E_0$; el caso finito muestra que hay a lo sumo $|E_0|$ de ellos. El conjunto de subconjuntos finitos de una base infinita $B$ tiene cardinalidad $|B|$, y una unión de $|B|$ conjuntos finitos tiene cardinalidad a lo sumo $|B|$. Agrupando $S$ por sus soportes obtenemos $|S|\leq|B|$. Usamos aquí el axioma de elección.
 
 Si $S$ también es maximal, intercambiamos sus papeles con $B$ y obtenemos ambas desigualdades; Cantor--Bernstein da la igualdad de cardinales.
 \end{proof}
 
-\begin{nota}[Dos precisiones a las páginas 3--5]
-El manuscrito inferior de la página 3 trata a $M$ como módulo sobre $K(R)$. Esa estructura no existe en general: $\mathbb Z$ no es un espacio vectorial sobre $\mathbb Q$. El argumento correcto incluye $M=R^{\oplus E}$ en el espacio $K(R)^{\oplus E}$.
+\begin{obs}[Ampliación de escalares y bases infinitas]
+El módulo $M$ no es necesariamente un espacio vectorial sobre $K(R)$; por ejemplo, $\mathbb Z$ no lo es sobre $\mathbb Q$. Para ampliar escalares se incluye $M=R^{\oplus E}$ en $K(R)^{\oplus E}$.
 
-Las páginas 4--5 proponen continuar el intercambio por inducción transfinita, manteniendo una base después de todos los reemplazos anteriores. Falta justificar los pasos límite, y esa propiedad puede perderse: en un espacio con base $e_0,e_1,\ldots$, los vectores $s_n=e_n-e_{n+1}$ son independientes. Reemplazar sucesivamente $e_n$ por $s_n$ conserva una base en cada etapa finita, pero al límite quedan sólo los $s_n$, que no generan $e_0$ (toda combinación finita de ellos tiene suma de coordenadas cero). Por eso se conserva el intercambio finito y se añade el argumento de soportes para el caso infinito. La conclusión de la proposición sí es válida.
-\end{nota}
+En dimensión infinita, una sucesión de intercambios finitos puede perder la generación al pasar al límite. Si $e_0,e_1,\ldots$ es una base, los vectores $s_n=e_n-e_{n+1}$ son independientes. Reemplazar sucesivamente $e_n$ por $s_n$ conserva una base en cada etapa finita, pero los $s_n$ juntos no generan $e_0$: toda combinación finita de ellos tiene suma de coordenadas cero.
+\end{obs}
 
 \begin{ejem}
 Como espacio vectorial sobre $\mathbb C$, el anillo $\mathbb C[x]$ tiene la base numerable $1,x,x^2,\ldots$. La proposición implica que cualquier subconjunto no numerable de $\mathbb C[x]$ es linealmente dependiente.
@@ -150,7 +149,7 @@ Sea $R$ un dominio. Demostrar que $F^R(A)\cong F^R(B)$ si y sólo si existe una 
 \begin{sol}
 Un isomorfismo transporta bases a bases. La imagen de la base canónica de $F^R(A)$ y la base canónica de $F^R(B)$ tienen igual cardinalidad por la \cref{prop:C20-cardinal}; por tanto $|A|=|B|$.
 
-A la inversa, una biyección $f:A\to B$ induce el homomorfismo $\widetilde f(e_a)=e_{f(a)}$. El inducido por $f^{-1}$ es su inverso, pues las composiciones fijan todos los generadores. Se conserva así el cuadrado de la pizarra:
+A la inversa, una biyección $f:A\to B$ induce el homomorfismo $\widetilde f(e_a)=e_{f(a)}$. El inducido por $f^{-1}$ es su inverso, pues las composiciones fijan todos los generadores. El isomorfismo se expresa en el cuadrado:
 \[
 \begin{tikzcd}[row sep=large,column sep=large]
 F^R(A)\arrow[r,"\widetilde f","\sim"']&F^R(B)\\
@@ -204,19 +203,19 @@ Además, para $a\in R$, se tiene $r(am)=a(rm)=0$, lo que incluye a $-m$ tomando 
 Los submódulos y las sumas directas de módulos libres de torsión son libres de torsión. En particular, todo módulo libre sobre un dominio es libre de torsión.
 \end{lema}
 \begin{proof}
-Una igualdad $rm=0$ en un submódulo vale también en el módulo ambiente, y allí $r\ne0$ fuerza $m=0$. En una suma directa, si $r(m_i)_i=0$ con $r\ne0$, entonces $rm_i=0$ para cada $i$, y todas las coordenadas son cero. Esto incluye el cálculo de $M\oplus N$ de la página 6 y funciona para familias arbitrarias. Finalmente, $R$ es libre de torsión y todo módulo libre es isomorfo a una suma directa de copias de $R$.
+Una igualdad $rm=0$ en un submódulo vale también en el módulo ambiente, y allí $r\ne0$ fuerza $m=0$. En una suma directa, si $r(m_i)_i=0$ con $r\ne0$, entonces $rm_i=0$ para cada $i$, y todas las coordenadas son cero. El argumento funciona para familias arbitrarias. Finalmente, $R$ es libre de torsión y todo módulo libre es isomorfo a una suma directa de copias de $R$.
 \end{proof}
 
 \begin{ejem}\label{ejem:C20-ideal-no-libre}
 Un ideal no principal $I$ de un dominio $R$ es libre de torsión pero no es un módulo libre. En efecto, $I\subseteq R$ es libre de torsión. Si tuviera una base $B$, sería independiente en $R$, cuyo rango es uno. Como un ideal no principal es no nulo, su base tendría exactamente un elemento y el ideal sería principal, contradicción.
 
-La pizarra toma $I=(2,x)\subseteq\mathbb Z[x]$. Para verificar que no es principal, si $I=(f)$ entonces $f\mid2$, luego $f$ es constante; además $f\mid x$ fuerza $f=\pm1$. Pero $I$ es propio: la evaluación en cero seguida de reducción módulo dos anula a $2$ y a $x$, y no anula a $1$. Así, $I$ no puede ser todo el anillo.
+Consideremos $I=(2,x)\subseteq\mathbb Z[x]$. Para verificar que no es principal, si $I=(f)$ entonces $f\mid2$, luego $f$ es constante; además $f\mid x$ fuerza $f=\pm1$. Pero $I$ es propio: la evaluación en cero seguida de reducción módulo dos anula a $2$ y a $x$, y no anula a $1$. Así, $I$ no puede ser todo el anillo.
 \end{ejem}
-El último argumento sobre $(2,x)$ se explicita para completar el ejemplo. En particular, un submódulo de un módulo libre sobre un dominio puede no ser libre. Sobre un campo sí lo es, porque todo espacio vectorial admite base.
+En particular, un submódulo de un módulo libre sobre un dominio puede no ser libre. Sobre un campo sí lo es, porque todo espacio vectorial admite base.
 
-\begin{nota}[Dimensión posiblemente infinita]
-La parte superior de la página 7 escribe que todo espacio vectorial es isomorfo a $K^n$ para algún $n$. Esto sólo vale si su dimensión es finita. La formulación general es $V\cong K^{\oplus B}$ para una base $B$; por ejemplo, $K[x]$ no tiene dimensión finita.
-\end{nota}
+\begin{obs}
+Todo espacio vectorial con base $B$ es isomorfo a $K^{\oplus B}$. Sólo en dimensión finita puede escribirse como $K^n$ con $n$ entero; por ejemplo, $K[x]$ tiene dimensión infinita.
+\end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Un lema sobre dominios de ideales principales}
@@ -265,10 +264,6 @@ Si $z\in M$, tenemos $\alpha(z)=ca$ para algún $c\in R$ y entonces
 Por ello $M=Ry+M'$. Finalmente, si $dy\in M'$, se cumple $0=\alpha(dy)=da$. Como $a\ne0$, resulta $d=0$, y la suma también es directa.
 \end{proof}
 
-\begin{nota}[Corrección de la hipótesis usada]
-En la página 7, al justificar la maximalidad de $\alpha(M)$, aparece «$M$ es DIP» y «$M$ es noetheriano». Debe decir $R$: se usa que sus ideales satisfacen la condición de cadena ascendente. El símbolo $\varnothing$ en ese paso debe leerse como submódulo cero. En la página 8, la corrección roja identifica $(b)=(a,\varphi(y))$.
-\end{nota}
-
-\begin{obs}[Orientación bibliográfica]
-Los fragmentos de \citet{aluffi2009} son VI.1.1/4--7/9--11/13--14 (páginas 1--5), VI.4.1--3 y el lema VI.5.2 (páginas 6--9), cuya prueba manuscrita se desarrolla. Se resuelven las remisiones VI.1.8 y VI.4.1; VI.1.2 sólo se menciona y la aplicación de Zorn se completa como añadido. Las correcciones y ampliaciones se señalan en el texto. La consulta se limita a esos fragmentos originales.
+\begin{obs}[Referencias de lectura]
+Para bases, rango y torsión, véase \citet[cap.~VI, 1.1/4--7/9--11/13--14 y 4.1--3]{aluffi2009}. El lema de separación es VI.5.2 y los ejercicios corresponden a VI.1.8 y VI.4.1.
 \end{obs}

@@ -1,8 +1,6 @@
 % Fuente única de clase: Recursos/2025-08-14.pdf, páginas 1--13.
 En la clase 2 interpretamos los grupos como grupoides con un objeto y recuperamos sus axiomas usuales. Estudiamos el orden de elementos, las permutaciones y las simetrías de polígonos; después caracterizamos los homomorfismos y los productos e introducimos los objetos iniciales y terminales.
 
-Los fragmentos de \citet{aluffi2009} visibles en las páginas 1--6 incluyen II.1.2, II.1.9, II.1.10 y II.1.12--14, con demostraciones del cálculo de órdenes. La nota sobre el producto de permutaciones de la página 5 debe leerse junto con el ejemplo de la página 6: allí se usa la convención de acción por la derecha del libro, mientras que aquí conservamos la composición de funciones de la clase.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Grupos y orden de elementos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -27,15 +25,15 @@ Es \emph{abeliano} o \emph{conmutativo} si $gh=hg$ para todo par de elementos.
 \end{defi}
 La identidad y los inversos son únicos: si $e'$ también es neutro, $e=ee'=e'$; si $h$ y $k$ son inversos de $g$, entonces $h=h(gk)=(hg)k=k$. Recíprocamente, un grupo determina un grupoide con un objeto, usando el producto como composición.
 
-\begin{nota}
-La página 1 escribe $f\mathbin{\bullet}g=g\circ f$ y mezcla ambos órdenes en una cadena de asociatividad. Con esa operación, la comprobación correcta es
+\begin{obs}[Convención de composición]
+También puede definirse la composición opuesta $f\mathbin{\bullet}g=g\circ f$, que es asociativa:
 \[
 (f\mathbin{\bullet}g)\mathbin{\bullet}h
 =h\circ(g\circ f)=(h\circ g)\circ f
 =f\mathbin{\bullet}(g\mathbin{\bullet}h).
 \]
-También se obtiene un grupo tomando directamente $fg=f\circ g$. Fijamos esta última convención para automorfismos y permutaciones, sin intercambiar ambas durante un cálculo.
-\end{nota}
+En estos apuntes fijamos $fg=f\circ g$: el factor derecho actúa primero.
+\end{obs}
 
 \begin{ejem}
 El conjunto $\{e\}$ es el grupo trivial. Los conjuntos $\mathbb Z$, $\mathbb Q$, $\mathbb R$ y $\mathbb C$ son grupos con la suma. El conjunto $\mathbb R^*=\mathbb R\setminus\{0\}$ es un grupo con la multiplicación. El grupo $\mathrm{GL}_n(\mathbb R)$ consta de las matrices reales invertibles de tamaño $n\times n$, con el producto de matrices.
@@ -76,9 +74,6 @@ Para $m=0$ se tiene $|g^0|=1=d/\mcd(0,d)$.
 \begin{proof}
 Para $m>0$, el menor entero positivo $k$ con $(g^m)^k=e$ es el menor $k$ con $d\mid mk$. Así, $mk$ es el menor múltiplo positivo de $m$ que también es múltiplo de $d$: es $\mcm(m,d)$. La segunda igualdad se sigue de $\mcm(m,d)\mcd(m,d)=md$. El caso $m=0$ da $g^0=e$, de orden uno.
 \end{proof}
-\begin{nota}
-El enunciado impreso de la página 4 incluye $m\ge0$ en una fórmula que divide por $m$. Ese cociente sólo tiene sentido para $m>0$; el caso $m=0$ se trata por separado como arriba. La expresión con el máximo común divisor sí cubre ese caso.
-\end{nota}
 
 \begin{prop}\label{prop:C2-producto-orden}
 Si $g,h\in G$ conmutan y tienen orden finito, entonces
@@ -105,17 +100,13 @@ En $\Set$, este grupo es el \emph{grupo simétrico} o de permutaciones de $A$, d
 \]
 Nuestro producto satisface $(\tau\sigma)(i)=\tau(\sigma(i))$: primero actúa el factor de la derecha.
 
-\begin{nota}
-La página 5 advierte que Aluffi escribe $xf$ en lugar de $f(x)$ y hace actuar primero el factor de la izquierda. El ejemplo impreso de la página 6 utiliza esa convención. Al trasladarlo a la convención de clase invertimos el orden escrito de los factores para conservar la misma composición.
-\end{nota}
-
 \begin{ejer}[Cálculo de permutaciones]\label{ejer:C2-permutaciones}
 Para
 \[
 x=\begin{pmatrix}1&2&3\\2&1&3\end{pmatrix},\qquad
 y=\begin{pmatrix}1&2&3\\3&1&2\end{pmatrix},
 \]
-compruebe los dos productos y que no conmutan. Esta comprobación aparece propuesta en el fragmento de la página 6.
+compruebe los dos productos y que no conmutan.
 \end{ejer}
 \begin{sol}
 Con nuestra convención, $yx=y\circ x$ envía $1\mapsto2\mapsto1$, $2\mapsto1\mapsto3$ y $3\mapsto3\mapsto2$. Por tanto,
@@ -126,7 +117,6 @@ En cambio, $xy=x\circ y$ envía $1\mapsto3\mapsto3$, $2\mapsto1\mapsto2$ y $3\ma
 \[
 xy=\begin{pmatrix}1&2&3\\3&2&1\end{pmatrix}\ne yx.
 \]
-En la convención de Aluffi los nombres de estos dos productos se intercambian; la desigualdad entre ambos permanece.
 \end{sol}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -239,6 +229,10 @@ Es asociativa, tiene identidad $(e_G,e_H)$ e inversa $(g,h)^{-1}=(g^{-1},h^{-1})
 \]
 Así, también es un homomorfismo y cumple la misma unicidad. Esto prueba la propiedad de producto en $\Grp$.
 
-\begin{nota}
-La página 11 llama «productos finitos» a la existencia de productos binarios. En la terminología completa se requiere además el producto vacío, es decir, un objeto terminal. Ambas categorías estudiadas cumplen esta condición: en $\Set$ es un singleton y en $\Grp$ es el grupo trivial. Por iteración se obtienen todos los productos finitos.
-\end{nota}
+\begin{obs}
+La existencia de todos los productos finitos requiere productos binarios y un producto vacío, es decir, un objeto terminal. En $\Set$ el producto vacío es un singleton y en $\Grp$ es el grupo trivial; los demás productos finitos se obtienen por iteración.
+\end{obs}
+
+\begin{obs}[Referencias de lectura]
+Para grupos, órdenes y productos, véase \citet[cap.~II, definición 1.2, resultados 1.9--10 y 1.12--14]{aluffi2009}.
+\end{obs}

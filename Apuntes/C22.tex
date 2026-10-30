@@ -16,7 +16,7 @@ El único homomorfismo unitario $j:\mathbb Z\to k$ viene dado por $j(n)=n1_k$. L
 \operatorname{char}\mathbb F_p=p,\qquad
 \mathbb F_p=\mathbb Z/p\mathbb Z.
 \]
-La característica se conserva al extender campos. En efecto, en el cuadrado de la página 1,
+La característica se conserva al extender campos. En efecto, en el cuadrado
 \[
 \begin{tikzcd}[column sep=large,row sep=large]
 \mathbb Z\arrow[r,"\id"]\arrow[d,"j"']&\mathbb Z\arrow[d,"j'"]\\
@@ -74,10 +74,6 @@ f(\alpha)=f\bigl(t+(f)\bigr)=f(t)+(f)=0,
 \]
 y la inclusión del campo base es la composición $k\hookrightarrow k[t]\twoheadrightarrow k[t]/(f)$.
 
-\begin{nota}[Sentido de la inclusión]
-En la parte manuscrita superior de la página 4, después de observar que un subcampo $F'$ contiene todas las clases polinómicas, aparece la inclusión $F'\subseteq k(\alpha)$. Lo que prueba ese argumento es $F\subseteq F'$. Como ya $F'\subseteq F$, resulta $F'=F$ y por tanto $k(\alpha)=F$.
-\end{nota}
-
 \begin{samepage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{La dicotomía de la evaluación}
@@ -116,7 +112,6 @@ El denominador es no nulo por inyectividad. La imagen de $\widetilde\epsilon$ es
 
 Si el núcleo es no nulo, por ser $k[t]$ DIP hay un único generador mónico $p$. Es irreducible porque genera un ideal primo no nulo, y no es constante porque el núcleo es propio. El cociente $k[t]/(p)$ es campo; por tanto $\im\epsilon$ es un subcampo de $k(\alpha)$ que contiene a $k$ y a $\alpha$, y nuevamente es todo $k(\alpha)$. La \cref{prop:C22-grado-cociente} da el grado y la base de potencias. Como todo polinomio que se anula en $\alpha$ es múltiplo de $p$, ninguno no nulo puede tener grado menor. Si otro mónico del mismo grado se anula, el cociente de la división es $1$ y el resto cero, así que coincide con $p$.
 \end{proof}
-El grado que se calcula al final de la página 5 debe escribirse $[k(\alpha):k]$, como en el enunciado impreso. Allí la última línea manuscrita pone $k[t]$ en el segundo lugar, pero éste no es el campo base de esa dimensión.
 
 \begin{defi}
 En el caso finito, el polinomio $p$ anterior es el \emph{polinomio mínimo de $\alpha$ sobre $k$}. Depende del campo base y es mónico por definición.
@@ -135,7 +130,7 @@ Son las inclusiones estudiadas en la clase 19. La imagen de la positiva es $\mat
 \[
 \mathbb Q(\sqrt2)=\set{a+b\sqrt2\given a,b\in\mathbb Q}.
 \]
-La evaluación y el paso al cociente conservan el diagrama de la página 6:
+La evaluación induce el siguiente diagrama:
 \[
 \begin{tikzcd}[column sep=large,row sep=large]
 \mathbb Q[t]\arrow[r,"\epsilon_\pm"]\arrow[d,two heads,"\pi"']&\mathbb R\\
@@ -155,7 +150,7 @@ La inclusión $(t^2-2)\subseteq\ker\epsilon_\pm$ permite inducir el mapa; como e
 Sean $F_1=k_1(\alpha_1)$ y $F_2=k_2(\alpha_2)$ extensiones simples finitas, con polinomios mínimos $p_1$ y $p_2$. Si $i:k_1\to k_2$ es un isomorfismo que transforma los coeficientes de $p_1$ en los de $p_2$, existe un único isomorfismo $j:F_1\to F_2$ que extiende a $i$ y satisface $j(\alpha_1)=\alpha_2$.
 \end{prop}
 \begin{proof}
-La transformación de coeficientes define un isomorfismo de anillos $\widehat i:k_1[t]\to k_2[t]$, que fija $t$. Por hipótesis lleva $(p_1)$ sobre $(p_2)$. La composición con la proyección a $k_2[t]/(p_2)$ es sobreyectiva y tiene núcleo $(p_1)$, de modo que induce un isomorfismo de cocientes. Identificándolos con $F_1$ y $F_2$ obtenemos el cuadrado de la página 7:
+La transformación de coeficientes define un isomorfismo de anillos $\widehat i:k_1[t]\to k_2[t]$, que fija $t$. Por hipótesis lleva $(p_1)$ sobre $(p_2)$. La composición con la proyección a $k_2[t]/(p_2)$ es sobreyectiva y tiene núcleo $(p_1)$, de modo que induce un isomorfismo de cocientes. Identificándolos con $F_1$ y $F_2$ obtenemos el cuadrado:
 \[
 \begin{tikzcd}[column sep=large,row sep=large]
 k_1[t]/(p_1)\arrow[r,"\overline i","\sim"']\arrow[d,"\sim"']&k_2[t]/(p_2)\arrow[d,"\sim"]\\
@@ -172,7 +167,7 @@ j(x)=i(c_0)+i(c_1)\alpha_2+\cdots+i(c_{n-1})\alpha_2^{n-1},
 \]
 lo que determina toda la aplicación.
 \end{proof}
-Decimos que $j$ \emph{extiende} o \emph{levanta} a $i$. El diagrama de extensiones de la página 8 es
+Decimos que $j$ \emph{extiende} o \emph{levanta} a $i$. El diagrama de extensiones es
 \[
 \begin{tikzcd}[column sep=large,row sep=large]
 k_1(\alpha_1)\arrow[r,"j","\sim"',destacado]&k_2(\alpha_2)\\
@@ -204,11 +199,11 @@ p\bigl(\sigma(\alpha)\bigr)=\sigma\bigl(p(\alpha)\bigr)=\sigma(0)=0.
 \]
 Por tanto $\sigma\mapsto\sigma(\alpha)$ es una aplicación inyectiva hacia el conjunto de raíces de $p$ en $F$.
 
-Si $\beta\in F$ es otra raíz, su polinomio mínimo sobre $k$ es también $p$: su ideal de evaluación contiene al irreducible $p$, y el generador mónico mínimo debe ser ese mismo polinomio. La \cref{prop:C22-extender-iso} da un isomorfismo $k(\alpha)\to k(\beta)$ que fija $k$ y envía $\alpha$ a $\beta$. Como $k(\beta)\subseteq F$ y ambos tienen dimensión $\deg p$ sobre $k$, se tiene $k(\beta)=F$. Así, el isomorfismo es un automorfismo de $F$, y toda raíz se obtiene de esa manera. Se ha explicitado este paso de sobreyectividad de la prueba impresa.
+Si $\beta\in F$ es otra raíz, su polinomio mínimo sobre $k$ es también $p$: su ideal de evaluación contiene al irreducible $p$, y el generador mónico mínimo debe ser ese mismo polinomio. La \cref{prop:C22-extender-iso} da un isomorfismo $k(\alpha)\to k(\beta)$ que fija $k$ y envía $\alpha$ a $\beta$. Como $k(\beta)\subseteq F$ y ambos tienen dimensión $\deg p$ sobre $k$, se tiene $k(\beta)=F$. Así, el isomorfismo es un automorfismo de $F$, y toda raíz se obtiene de esa manera.
 
 Finalmente, $p$ tiene a lo sumo $\deg p=[F:k]$ raíces distintas. Alcanza esa cantidad exactamente cuando se descompone por completo en factores lineales distintos, por la división sucesiva entre $t-\beta$ y la igualdad de grados.
 \end{proof}
 
-\begin{obs}[Orientación bibliográfica]
-Los fragmentos de \citet{aluffi2009} en las ocho páginas pertenecen a la apertura de VII y a VII.1.1--2: definición VII.1.1 de grado, definición VII.1.2 de extensión simple, proposición VII.1.3, ejemplo VII.1.4, proposición VII.1.5 y corolario VII.1.7. Se desarrollan la característica, los objetos iniciales, el grado del cociente, la evaluación en sus dos casos, el transporte de isomorfismos y el conteo de automorfismos. La remisión inicial a V.4.17 no reproduce su enunciado; se justifican las propiedades de característica efectivamente usadas, sin reconstruir un ejercicio no visible. La remisión a V.5.7 corresponde a la adjunción ya estudiada en la clase 19. Las precisiones a las páginas 4--5 y el paso dimensional del corolario se indican en el texto. No se consultó el libro completo.
+\begin{obs}[Referencias de lectura]
+Para extensiones simples, polinomios mínimos y automorfismos, véase \citet[cap.~VII, apartados 1.1--2, definiciones 1.1--2, proposiciones 1.3/5, ejemplo 1.4 y corolario 1.7]{aluffi2009}. La construcción de una extensión que contiene una raíz se trata en V.5.7.
 \end{obs}

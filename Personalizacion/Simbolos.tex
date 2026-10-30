@@ -1,4 +1,4 @@
-% Fuente personalizada de \mathbb, idéntica a la plantilla de Homotopía.
+% Alfabeto de doble trazo: familia lmsb de LXfonts.
 % La familia U/lmsb pertenece a LXfonts (lmsbm8), no a Latin Modern.
 \DeclareMathAlphabet{\mathbb}{U}{lmsb}{m}{n}
 
@@ -24,7 +24,7 @@
 \DeclareMathOperator{\ev}{ev}
 \DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\Spec}{Spec}
-% Compatibilidad con los nombres de la plantilla; misma notación que arriba.
+% Alias de operadores.
 \newcommand{\aut}{\Aut}
 \newcommand{\ob}{\Ob}
 \newcommand{\Set}{\mathbf{Set}}
@@ -35,8 +35,8 @@
 \newcommand{\cat}[1]{\mathit{#1}}
 \newcommand{\Col}[1]{\operatorname{#1}}
 
-% Utilidades generales recuperadas de la plantilla de Homotopía.
-% Se conservan los símbolos estándar, sin los ajustes de espaciado de aquella.
+% Delimitadores y utilidades generales.
+% Los símbolos estándar conservan su espaciado.
 \newcommand{\en}{\in}
 \newcommand{\noten}{\notin}
 \newcommand{\cont}{\ni}
@@ -73,7 +73,7 @@
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \DeclarePairedDelimiter{\Brack}{\lBrack}{\rBrack}
 \DeclarePairedDelimiter{\round}{\lfloor}{\rceil}
-% Como en la plantilla del usuario, \brack es aquí el delimitador [ ].
+% \brack representa el delimitador [ ].
 % Para una fracción sin barra con corchetes, usar \genfrac{[}{]}{0pt}{}{n}{k}.
 \let\brack\relax
 \DeclarePairedDelimiter{\brack}{[}{]}

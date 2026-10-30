@@ -17,7 +17,7 @@ Para el módulo regular izquierdo $R$, los submódulos son exactamente los ideal
 Si $f:M\to M'$ es lineal, $\ker f$ e $\im f$ son submódulos. Son subgrupos aditivos y, para $m\in\ker f$, $f(rm)=rf(m)=0$. Para $y=f(z)$, se tiene $ry=rf(z)=f(rz)\in\im f$.
 \end{ejem}
 
-La estabilidad de $N$ también se expresa restringiendo la acción $\sigma:R\to\End_{\Ab}(M)$. Para precisar el diagrama de la página 1, pongamos
+La estabilidad de $N$ también se expresa restringiendo la acción $\sigma:R\to\End_{\Ab}(M)$. Pongamos
 \[
 E=\set{u\in\End_{\Ab}(M)\given u(N)\subseteq N}.
 \]
@@ -29,9 +29,9 @@ R\arrow[r,"\sigma"]\arrow[dr,dashed,destacado,"\sigma_N"']
 &\End_{\Ab}(N)&
 \end{tikzcd}
 \]
-\begin{nota}[Restricción de endomorfismos]
-La página 1 dibuja una inclusión de $\End_{\Ab}(N)$ en $\End_{\Ab}(M)$. Un endomorfismo de $N$ no tiene por qué extenderse a $M$, ni hay una inclusión natural de esos anillos. La flecha pertinente es la \emph{restricción} desde los endomorfismos de $M$ que preservan $N$. Tampoco tiene por qué ser inyectiva. En la comprobación de la imagen, la conclusión es $ry=f(rz)\in\im f$; la última expresión manuscrita $rz\in\im f$ debe sustituirse por $f(rz)\in\im f$.
-\end{nota}
+\begin{obs}
+Un endomorfismo de $N$ no tiene por qué extenderse a $M$. La restricción parte de los endomorfismos de $M$ que preservan $N$, y no tiene por qué ser inyectiva.
+\end{obs}
 
 \begin{ejem}
 Si $r\in Z(R)$, el conjunto $rM=\set{rm\given m\in M}$ es submódulo: es subgrupo aditivo y $a(rm)=r(am)$ para $a\in R$. Más generalmente, para un ideal izquierdo $I$,
@@ -48,7 +48,7 @@ es submódulo. Las sumas son finitas; sumar o negar conserva la forma, y $r\sum 
 Si $N\subseteq M$ es submódulo, el grupo aditivo cociente $M/N$ existe porque $M$ es abeliano. Para que la proyección sea lineal, su acción debe satisfacer $r(m+N)=rm+N$.
 
 \begin{ejer}[La acción en un cociente]\label{ejer:C14-cociente}
-Comprobar que esta regla define una estructura de $R$-módulo en $M/N$, como propone la afirmación III.5.11 reproducida en la página 2, y que la proyección $\pi:M\to M/N$ es lineal con núcleo $N$.
+Comprobar que esta regla define una estructura de $R$-módulo en $M/N$, y que la proyección $\pi:M\to M/N$ es lineal con núcleo $N$.
 \end{ejer}
 \begin{sol}
 Si $m-m'\in N$, entonces $rm-rm'=r(m-m')\in N$, por lo que la clase no depende del representante. Los axiomas se heredan de $M$:
@@ -134,7 +134,6 @@ Para submódulos $N,P\subseteq M$, $N+P$ y $N\cap P$ son submódulos y
 \begin{proof}
 La suma y la intersección son subgrupos aditivos. Las igualdades $r(n+p)=rn+rp$ y la estabilidad simultánea en ambos submódulos prueban que son submódulos. El morfismo $P\to(N+P)/N$, $p\mapsto p+N$, es sobreyectivo: toda clase de $n+p$ coincide con la de $p$. Su núcleo es $N\cap P$, así que aplicamos el \cref{teo:C14-primer-iso}.
 \end{proof}
-El producto $NP$ escrito a mano junto a la proposición de la página 5 debe leerse como la suma $N+P$: la operación de estos módulos es aditiva, sin un producto entre elementos.
 
 Para cualquier familia $(N_\alpha)$ de submódulos, su intersección y su suma son submódulos. La suma consiste en sumas finitas de elementos de los $N_\alpha$: suma, negativos y escalares preservan esa forma. La intersección es estable porque cada $N_\alpha$ lo es. La suma vacía es cero y la intersección vacía es $M$.
 
@@ -162,7 +161,7 @@ Dados $g_M:M\to P$ y $g_N:N\to P$, el mediador desde el coproducto debe satisfac
 \[
 g(m,n)=g((m,0)+(0,n))=g_M(m)+g_N(n).
 \]
-Esta fórmula es aditiva porque $P$ es abeliano, y es compatible con escalares porque lo son $g_M,g_N$. Las condiciones sobre las inclusiones fuerzan la fórmula y dan unicidad. Los dos diagramas de las pizarras son
+Esta fórmula es aditiva porque $P$ es abeliano, y es compatible con escalares porque lo son $g_M,g_N$. Las condiciones sobre las inclusiones fuerzan la fórmula y dan unicidad. Las propiedades universales se expresan mediante los diagramas
 \[
 \begin{tikzcd}[column sep=large]
 &M\\
@@ -214,11 +213,8 @@ Si $f$ es mono, $fi=f0$ para $i:\ker f\to M$ implica $i=0$ y, como es inclusión
 
 Si $f$ es epi, la proyección $\pi:N\to\coker f$ satisface $\pi f=0f$. Cancelar $f$ da $\pi=0$. Como $\pi$ es sobreyectiva, $\coker f=0$. Esto equivale a $\im f=N$, es decir, a sobreyectividad. Toda función sobreyectiva permite cancelar por la derecha: si $uf=vf$, para $n=f(m)$ se tiene $u(n)=u(f(m))=v(f(m))=v(n)$.
 \end{proof}
-\begin{nota}[Mismo destino para cancelar]
-En la parte inferior de la página 7, la flecha trivial $\alpha$ se dibuja con destino $0$, mientras que $\pi$ tiene destino $\coker f$. Para cancelar un epimorfismo deben compararse dos morfismos con el \emph{mismo} destino: la comparación correcta es entre $\pi$ y el morfismo cero $N\to\coker f$.
-\end{nota}
 
-Todo submódulo $L\subseteq M$ es el núcleo de $M\to M/L$. Más precisamente, si $a:P\to M$ tiene imagen en $L$, la única factorización por la inclusión es $p\mapsto a(p)$ considerado como elemento de $L$, que sigue siendo lineal. Esto conserva el diagrama de la página 3:
+Todo submódulo $L\subseteq M$ es el núcleo de $M\to M/L$. Más precisamente, si $a:P\to M$ tiene imagen en $L$, la única factorización por la inclusión es $p\mapsto a(p)$ considerado como elemento de $L$, que sigue siendo lineal. La factorización se expresa en el diagrama:
 \[
 \begin{tikzcd}[column sep=large,row sep=large]
 L\arrow[r,hook,"i"]&M\arrow[r,"\pi"]&M/L\\
@@ -227,7 +223,7 @@ P\arrow[u,dashed,destacado,"\exists!\,\bar a"]\arrow[ur,"a"']&&
 \]
 Todo monomorfismo se identifica así con un núcleo mediante el isomorfismo entre su dominio y su imagen. Dualmente, todo epimorfismo se identifica con el conúcleo de la inclusión de su núcleo, por el primer teorema de isomorfismo.
 
-Los conjuntos $\Hom_R(M,N)$ son grupos abelianos y la composición es distributiva respecto de la suma puntual. Junto con el objeto cero y los productos/coproductos finitos, esto da la estructura que el fragmento llama \emph{categoría aditiva}. Las propiedades de núcleos, conúcleos, monomorfismos y epimorfismos anteriores explican allí el término \emph{categoría abeliana}. No desarrollamos una teoría general de esas categorías en esta clase.
+Los conjuntos $\Hom_R(M,N)$ son grupos abelianos y la composición es distributiva respecto de la suma puntual. Junto con el objeto cero y los productos/coproductos finitos, esto hace de $R\text{-}\mathbf{Mod}$ una \emph{categoría aditiva}. Además, todo monomorfismo es un núcleo y todo epimorfismo es un conúcleo, por lo que es una \emph{categoría abeliana}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Objetos libres}
@@ -272,16 +268,16 @@ A\arrow[u,"j"]\arrow[ur,"f"']&
 Si $A=\{1,\ldots,n\}$, se obtiene $R^{\oplus A}=R^n$ y $e_i$ tiene un uno en la coordenada $i$ y ceros en las demás. Para $A$ vacío, el módulo libre es cero.
 
 \begin{ejer}[Inyectividad de los generadores libres]\label{ejer:C14-generadores}
-Suponiendo $R\ne0$, comprobar que la función $j$ de un módulo libre es inyectiva. Es la comprobación análoga al ejercicio II.5.3 a la que remite la página 8. Examinar también el caso del anillo cero.
+Suponiendo $R\ne0$, comprobar que la función $j$ de un módulo libre es inyectiva. Examinar también el caso del anillo cero.
 \end{ejer}
 \begin{sol}
 En el modelo construido, si $a\ne b$, entonces $e_a(a)=1_R\ne0=e_b(a)$, luego $e_a\ne e_b$. La unicidad del objeto libre transporta la inyectividad a cualquier otro modelo. También se deduce directamente de la propiedad universal eligiendo $f:A\to R$ con $f(a)=1_R$, $f(b)=0$: si $j(a)=j(b)$, toda extensión daría $f(a)=f(b)$, contradicción.
 
 Si $R=0$, cualquier módulo unitario es cero, porque $m=1_Rm=0_Rm=0$. El módulo libre sigue existiendo y es cero para cualquier $A$. En ese caso, $j$ es inyectiva exactamente cuando $|A|\leq1$.
 \end{sol}
-\begin{nota}[Anillo cero]
-La afirmación de inyectividad en la página 8 necesita $1_R\ne0_R$, salvo los conjuntos de a lo sumo un elemento. La excepción debe indicarse porque las convenciones admiten el anillo cero. La construcción libre también vale sobre ese anillo.
-\end{nota}
+\begin{obs}
+La construcción libre también vale para $R=0$. En ese caso $R^{\oplus A}=0$, y la función de generadores $j:A\to0$ sólo es inyectiva cuando $|A|\leq1$.
+\end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Álgebras conmutativas libres}
@@ -292,11 +288,11 @@ Supongamos $R$ conmutativo y $A=\{1,\ldots,n\}$. Ponemos $R[A]=R[x_1,\ldots,x_n]
 Para toda $R$-álgebra \emph{conmutativa} $(S,\alpha)$ y función $f:A\to S$, existe un único homomorfismo de $R$-álgebras $\varphi:R[A]\to S$ con $\varphi(x_i)=f(i)$.
 \end{prop}
 \begin{proof}
-Seguimos la extensión sucesiva de las páginas 10--11. Primero, la fórmula
+Extendemos el homomorfismo sucesivamente. Primero, la fórmula
 \[
 \varphi_1\left(\sum_k r_kx_1^k\right)=\sum_k\alpha(r_k)f(1)^k
 \]
-extiende $\alpha$ a $R[x_1]$: preserva suma, producto y unidad porque $f(1)$ conmuta con los coeficientes. Es única porque fija los coeficientes y envía $x_1$ a $f(1)$. En el binomio de la pizarra:
+extiende $\alpha$ a $R[x_1]$: preserva suma, producto y unidad porque $f(1)$ conmuta con los coeficientes. Es única porque fija los coeficientes y envía $x_1$ a $f(1)$. La compatibilidad con el producto se comprueba expandiendo:
 \[
 \varphi_1(r_0+r_1x_1^{k_1})=\alpha(r_0)+\alpha(r_1)f(1)^{k_1}.
 \]
@@ -318,7 +314,7 @@ A\arrow[u,"j"]\arrow[ur,"f"']&
 \end{proof}
 
 \begin{ejer}[Linealidad del mediador polinómico]\label{ejer:C14-linealidad}
-Verificar que el homomorfismo anterior es también $R$-lineal, como propone el fragmento de la página 10.
+Verificar que el homomorfismo anterior es también $R$-lineal.
 \end{ejer}
 \begin{sol}
 Es aditivo porque es homomorfismo de anillos. Para $r\in R$ y $p\in R[A]$,
@@ -327,10 +323,10 @@ Es aditivo porque es homomorfismo de anillos. Para $r\in R$ y $p\in R[A]$,
 \]
 Así, la compatibilidad con la estructura de álgebra implica la linealidad del mediador.
 \end{sol}
-\begin{nota}[Imagen central y conmutatividad del destino]
-En la página 10 se escribe $R\subseteq Z(S)$. No se presupone que el homomorfismo estructural sea inyectivo: la condición correcta es $\alpha(R)\subseteq Z(S)$. Además, para extender sucesivamente varias indeterminadas hace falta que sus imágenes conmuten entre sí. El fragmento original sí supone $S$ conmutativo; ése es el alcance de la propiedad universal demostrada, no el de todas las $R$-álgebras con destino posiblemente no conmutativo.
-\end{nota}
+\begin{obs}
+El homomorfismo estructural $\alpha:R\to S$ no tiene por qué ser inyectivo: la condición central es $\alpha(R)\subseteq Z(S)$. Para evaluar varias indeterminadas, sus imágenes deben conmutar entre sí. Por eso la propiedad universal de $R[A]$ se formula aquí para álgebras conmutativas.
+\end{obs}
 
-\begin{obs}[Orientación bibliográfica]
-Los fragmentos originales de \citet{aluffi2009} reproducidos en las once páginas corresponden a III.5.8--18 y III.6.1--3: submódulos, cocientes e isomorfismos, producto/coproducto, núcleos/conúcleos y construcciones libres. Se desarrollan los detalles necesarios de correspondencia y de las propiedades universales. La afirmación III.5.11 dejada al lector, la remisión a II.5.3 y la linealidad propuesta al construir el álgebra libre llevan soluciones inmediatas. Los últimos fragmentos de la prueba de álgebras libres no muestran su número de proposición; se cita el apartado III.6.3, sin inventar ese número. No se consultó el libro completo.
+\begin{obs}[Referencias de lectura]
+Para submódulos, cocientes y construcciones libres, véase \citet[cap.~III, 5.8--18 y apartados 6.1--3]{aluffi2009}. La acción del cociente corresponde a III.5.11 y la inyectividad de los generadores es análoga a la comprobación II.5.3.
 \end{obs}

@@ -1,8 +1,6 @@
 % Fuente única de clase: Recursos/2025-09-04.pdf, páginas 1--10.
 En la clase 6 estudiamos las acciones transitivas y la categoría de $G$-conjuntos. La relación entre órbitas y estabilizadores conduce a la ecuación de clases. La aplicamos a la conjugación, a los centros de $p$-grupos y a los normalizadores; finalmente demostramos el teorema de Cauchy mediante una acción sobre tuplas.
 
-Los fragmentos originales de \citet{aluffi2009} en las páginas 1--3 corresponden a II.9.3: definiciones II.9.6--8, proposición II.9.9, corolario II.9.10, ejemplo II.9.11 y proposición II.9.12. Las páginas 4--9 pasan a IV.1: proposición IV.1.1, corolario IV.1.3, lema IV.1.5, definiciones IV.1.6--7 y IV.1.11, corolario IV.1.9, observación IV.1.12, lema IV.1.13 y corolario IV.1.14. El lema sobre $G/Z(G)$ remite al ejercicio IV.1.5, cuya solución se incluye abajo. El resultado final es el teorema IV.2.1 (Cauchy), con demostración desarrollada en las pizarras; el encabezado sobre Sylow no viene acompañado todavía de sus enunciados.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acciones transitivas y órbitas}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -132,9 +130,9 @@ Si $S$ es finito y $R\subseteq S$ contiene exactamente un representante de cada 
 \begin{proof}
 Las órbitas forman una partición de $S$. Las triviales reúnen exactamente los elementos de $S^G$, y cada una de las restantes tiene cardinal $[G:\Stab_G(a)]$, por la biyección de la \cref{prop:C6-transitiva}. Sumamos las cardinalidades de las partes.
 \end{proof}
-\begin{nota}
-La página 5 afirma que esta fórmula expresa $|G|$ en términos de los puntos fijos y los índices. Para una acción general, la cantidad expresada es $|S|$; sólo al actuar en $S=G$, como en la conjugación posterior, coincide con $|G|$. Usamos $R$ para los representantes y $S^G$ para los puntos fijos, evitando las letras $A$ y $Z$ de la pizarra cuando podrían confundirse con el conjunto actuado y con el centro.
-\end{nota}
+\begin{obs}
+Para una acción general, la fórmula calcula $|S|$. Cuando $S=G$, como en la acción por conjugación, calcula el orden del grupo.
+\end{obs}
 
 \begin{defi}
 Un \emph{$p$-grupo} es un grupo finito de orden $p^r$, donde $p$ es primo y $r\ge0$.
@@ -186,9 +184,6 @@ ab=(g^rz)(g^sw)=g^{r+s}zw
 \]
 Así $G$ es abeliano, $Z(G)=G$ y el cociente tiene un solo elemento.
 \end{sol}
-\begin{nota}
-El lema IV.1.5 reproducido en la página 6 supone $G$ finito y remite al ejercicio IV.1.5. Hemos presentado su prueba como solución de esa comprobación; el argumento no utiliza finitud, por lo que el enunciado anterior vale para cualquier grupo.
-\end{nota}
 
 \begin{defi}
 El \emph{centralizador} de $a\in G$ es su estabilizador bajo conjugación:
@@ -203,7 +198,7 @@ En particular, $Z(G)\subseteq Z_G(a)$ para todo $a$, y
 Z(G)=\bigcap_{a\in G}Z_G(a),\qquad
 a\in Z(G)\quad\Longleftrightarrow\quad Z_G(a)=G.
 \]
-En el fragmento de la página 7 también se llama normalizador al estabilizador de un elemento bajo conjugación. Para distinguirlo del normalizador de un subconjunto, definido más adelante, aquí lo llamamos centralizador y mantenemos la notación $Z_G(a)$ del fragmento.
+El estabilizador de un elemento bajo conjugación se llama \emph{centralizador} y se denota $Z_G(a)$.
 
 La ecuación de clases para la conjugación en un grupo finito toma la forma
 \begin{equation}\label{eq:C6-conjugacion}
@@ -233,9 +228,9 @@ donde cada $d_i>1$ divide a $6$. Además, cada representante $a\notin Z(G)$ es d
 6=1+2+3.
 \]
 Es la ecuación de clases de $S_3$: el neutro forma una clase, los dos $3$-ciclos otra y las tres transposiciones otra. La conclusión obtenida aquí es la forma de la ecuación para un grupo no abeliano de orden seis; por sí sola no constituye una clasificación de esos grupos.
-\begin{nota}
-En la página 8 se pasa de $d_i>1$ y $d_i\mid6$ a las posibilidades $2$ y $3$. Para excluir el índice $6$ hemos usado $a\in Z_G(a)$ y $a\ne e_G$. Las dos condiciones escritas, por sí solas, no descartan ese índice.
-\end{nota}
+\begin{obs}
+Si $a\ne e_G$, el centralizador $Z_G(a)$ contiene al subgrupo no trivial generado por $a$. Por tanto su índice es estrictamente menor que $|G|$.
+\end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Normalizadores y el teorema de Cauchy}
@@ -322,7 +317,7 @@ Comprobamos que $T$ preserva $S$, incluso cuando $G$ no es abeliano:
 \[
 a_2\cdots a_pa_1=a_1^{-1}(a_1\cdots a_p)a_1=e_G.
 \]
-Además, $T^p=\id$ y las rotaciones se componen sumando sus desplazamientos. La acción está bien definida módulo $p$ y, para $0\le m<p$, tiene la fórmula de la pizarra
+Además, $T^p=\id$ y las rotaciones se componen sumando sus desplazamientos. La acción está bien definida módulo $p$ y, para $0\le m<p$, tiene la fórmula
 \[
 [m]\cdot(a_1,\ldots,a_p)
 =(a_{m+1},\ldots,a_p,a_1,\ldots,a_m).
@@ -337,6 +332,7 @@ Z=\set{(a,\ldots,a)\given a\in G,\ a^p=e_G}.
 \]
 El conjunto $Z$ contiene a $(e_G,\ldots,e_G)$, así que su cardinal es un múltiplo positivo de $p$. Luego $|Z|\ge p>1$ y existe $a\ne e_G$ con $a^p=e_G$. Por el \cref{lema:C2-orden}, el orden de $a$ divide al primo $p$; como $a\ne e_G$, no es $1$ y debe ser $p$.
 \end{proof}
-\begin{nota}[Pasos completados]
-En las páginas 9--10 la acción se escribe directamente y la prueba termina en $a^p=e_G$. Hemos añadido la verificación de que una rotación preserva el producto neutro sin conmutatividad, la independencia del representante módulo $p$ y el último paso que establece el orden exacto. Se conserva la estrategia de contar tuplas y puntos fijos.
-\end{nota}
+
+\begin{obs}[Referencias de lectura]
+Para acciones, conjugación y ecuación de clases, véase \citet[cap.~II, 9.6--12, y cap.~IV, 1.1/3/5--7/9/11--14]{aluffi2009}. Cauchy es el teorema IV.2.1; el ejercicio sobre $G/Z(G)$ corresponde a IV.1.5.
+\end{obs}

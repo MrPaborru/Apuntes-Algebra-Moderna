@@ -18,7 +18,7 @@ R\arrow[u,hook,"i"]\arrow[ur,hook,"j"']&
 Las identidades y composiciones conservan esa condición, así que forman una categoría.
 
 \begin{ejer}[Inyectividad entre campos]\label{ejer:C18-morfismo-campos}
-Comprobar que todo homomorfismo unitario entre campos es inyectivo, como se indica al lado del diagrama de la página 1.
+Comprobar que todo homomorfismo unitario entre campos es inyectivo.
 \end{ejer}
 \begin{sol}
 El núcleo es un ideal del campo de partida. No es todo el campo, porque la unidad se envía a una unidad distinta de cero. Como los únicos ideales de un campo son cero y el anillo total, el núcleo es cero. Por tanto, el homomorfismo es inyectivo.
@@ -34,7 +34,7 @@ Para construirlo, consideremos los pares $(a,r)$ con $a\in R$, $r\ne0$, y la rel
 (a,r)\sim(b,s)\quad\Longleftrightarrow\quad as=br.
 \]
 \begin{ejer}[La equivalencia de fracciones]\label{ejer:C18-equivalencia}
-Verificar que $\sim$ es una relación de equivalencia, como pide el fragmento de la página 1.
+Verificar que $\sim$ es una relación de equivalencia.
 \end{ejer}
 \begin{sol}
 La reflexividad es $ar=ar$, y la simetría se obtiene invirtiendo la igualdad. Para la transitividad, si $as=br$ y $bt=cs$, entonces
@@ -70,7 +70,7 @@ Los denominadores son no nulos porque $R$ es dominio. Veamos que las operaciones
 Son exactamente las igualdades de productos cruzados requeridas para la suma y el producto.
 
 \begin{ejer}[La estructura de campo]\label{ejer:C18-campo}
-Completar la verificación de que estas operaciones hacen de $K(R)$ un campo. La página 3 desarrolla la distributividad y deja indicados los restantes axiomas.
+Verificar que estas operaciones hacen de $K(R)$ un campo.
 \end{ejer}
 \begin{sol}
 La suma es conmutativa por $as+br=br+as$. Para tres fracciones, ambos modos de asociar la suma dan
@@ -110,7 +110,7 @@ Dada una inclusión $j:R\hookrightarrow L$ en un campo, la fórmula del posible 
 El inverso existe porque $r\ne0$ y $j$ es inyectivo.
 
 \begin{ejer}[El homomorfismo inducido]\label{ejer:C18-mediador}
-Verificar que la fórmula anterior define un homomorfismo unitario $\widehat j:K(R)\to L$, comprobación que el fragmento de la página 4 deja al lector.
+Verificar que la fórmula anterior define un homomorfismo unitario $\widehat j:K(R)\to L$.
 \end{ejer}
 \begin{sol}
 Si $a/r=b/s$, entonces $as=br$ y, al aplicar $j$ y dividir por $j(r)j(s)\ne0$, obtenemos $j(a)j(r)^{-1}=j(b)j(s)^{-1}$. Por tanto, está bien definido. Para la suma,
@@ -127,7 +127,7 @@ Para el producto, $\widehat j(ab/(rs))=j(a)j(b)j(r)^{-1}j(s)^{-1}$ es el product
 El campo construido, con $i$, es un campo de fracciones de $R$.
 \end{prop}
 \begin{proof}
-El ejercicio anterior construye el mediador para cualquier objeto $(j,L)$. Todo homomorfismo que extienda $j$ debe enviar $i(a)i(r)^{-1}$ a $j(a)j(r)^{-1}$, por lo que es único. Así se verifica el diagrama universal de la página 4:
+El ejercicio anterior construye el mediador para cualquier objeto $(j,L)$. Todo homomorfismo que extienda $j$ debe enviar $i(a)i(r)^{-1}$ a $j(a)j(r)^{-1}$, por lo que es único. Así se verifica el diagrama universal:
 \[
 \begin{tikzcd}[column sep=large,row sep=large]
 K(R)\arrow[r,dashed,destacado,"\exists!\,\widehat j"]&L\\
@@ -143,12 +143,12 @@ La construcción para $R=\mathbb Z$ da $K(\mathbb Z)=\mathbb Q$. Si $F$ ya es un
 \begin{defi}
 El \emph{campo de funciones racionales} con coeficientes en un dominio $R$ es $R(x)=K(R[x])$. Sus elementos son fracciones $p(x)/q(x)$ de polinomios de $R[x]$, con $q\ne0$, identificadas por productos cruzados.
 \end{defi}
-\begin{nota}[Evaluar una fracción formal]
-La página 5 advierte que «función» no es una descripción literal de todos estos elementos. La expresión $p(a)/q(a)$ sólo se evalúa donde $q(a)\ne0$, y, si $R$ no es campo, su valor pertenece en general a $K(R)$, no a $R$: por ejemplo, $1/2\notin\mathbb Z$. Por ello la expresión $R\to R$ del fragmento debe entenderse con esas restricciones de dominio y destino. Además, una función de evaluación puede no determinar la fracción formal.
-\end{nota}
+\begin{obs}[Evaluación de fracciones]
+La expresión $p(a)/q(a)$ sólo se evalúa donde $q(a)\ne0$. Si $R$ no es campo, su valor pertenece en general a $K(R)$ y no a $R$; por ejemplo, $1/2\notin\mathbb Z$. Además, una función de evaluación puede no determinar la fracción formal.
+\end{obs}
 
 \begin{ejer}[Una función no determina el polinomio]\label{ejer:C18-formal-funcion}
-Comprobar con un ejemplo sobre un campo finito que dos polinomios formales distintos pueden inducir la misma función. Es la dificultad a la que remite la referencia III.2.7 en la página 5; no se dispone aquí del enunciado completo de ese ejercicio del libro.
+Comprobar con un ejemplo sobre un campo finito que dos polinomios formales distintos pueden inducir la misma función.
 \end{ejer}
 \begin{sol}
 En $\mathbb F_2=\mathbb Z/2\mathbb Z$, los polinomios $x^2-x$ y $0$ son distintos: el primero tiene coeficiente principal $1$. Sin embargo, ambos valen cero en los dos elementos $0,1$. También son elementos distintos de $\mathbb F_2(x)$, porque la inclusión del dominio $\mathbb F_2[x]$ en su campo de fracciones es inyectiva. Sus funciones de evaluación coinciden en todo el campo.
@@ -197,7 +197,7 @@ C_f=C_{g_0h_0}=R,\qquad (f)_K=(g_0h_0)_K.
 \]
 El \cref{lema:C18-descenso}, aplicado en ambos sentidos, da $(f)=(g_0h_0)$ en $R[x]$. Por tanto, $f=ug_0h_0$ para una unidad $u\in R[x]$. La irreducibilidad obliga a que $g_0$ o $h_0$ sea unidad. Entonces $g$ o $h$ es unidad en $K[x]$, y $f$ es irreducible allí.
 \end{proof}
-Ser primitivo por sí solo no implica irreducibilidad: $x^2-1=(x-1)(x+1)$ es primitivo y reducible en $\mathbb Z[x]$, como señala la anotación roja de la página 6.
+Ser primitivo por sí solo no implica irreducibilidad: $x^2-1=(x-1)(x+1)$ es primitivo y reducible en $\mathbb Z[x]$.
 
 \begin{coro}\label{coro:C18-criterio-irred}
 Un polinomio no constante $f\in R[x]$ es irreducible en $R[x]$ si y sólo si es primitivo e irreducible en $K[x]$.
@@ -209,9 +209,6 @@ R=C_f=(g)C_h\subseteq(g)\subseteq R.
 \]
 Luego $g$ es unidad de $R$, y también de $R[x]$. No puede haber una factorización en dos no unidades.
 \end{proof}
-\begin{nota}[El anillo de la hipótesis de irreducibilidad]
-La primera línea manuscrita de la vuelta en la página 6 escribe irreducibilidad «en $R[x]$». La hipótesis que se usa es irreducibilidad \emph{en $K[x]$}, además de primitividad en $R[x]$, como dice el enunciado impreso. En otro caso se estaría suponiendo la propia conclusión.
-\end{nota}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Factorialidad de los anillos de polinomios}
@@ -253,7 +250,7 @@ El anillo de abajo a la derecha es dominio, luego también lo es el de la izquie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % P08: remisiones V.4.23 y V.1.15; ejemplo V.4.18.
 \begin{ejer}[Elegir factores sobre el dominio]\label{ejer:C18-elegir-factores}
-Explicar en qué sentido los factores irreducibles de un polinomio $f\ne0$ de $R[x]$, calculados en $K[x]$, pueden elegirse en $R[x]$. Es la afirmación a la que remite el ejercicio V.4.23 en la página 8.
+Explicar en qué sentido los factores irreducibles de un polinomio $f\ne0$ de $R[x]$, calculados en $K[x]$, pueden elegirse en $R[x]$.
 \end{ejer}
 \begin{sol}
 Por el teorema, podemos factorizar $f$ en $R[x]$. Separamos los factores constantes, que se vuelven unidades en $K[x]$, de los factores no constantes $p_1,\ldots,p_s$. Estos últimos son primitivos e irreducibles en $K[x]$ por la \cref{prop:C18-irred-fracciones}. Por tanto,
@@ -266,10 +263,10 @@ es una factorización sobre $K$. La unicidad en $K[x]$ dice que cualquier otra l
 \begin{ejem}
 Aplicando repetidamente el teorema, los anillos $\mathbb Z[x_1,\ldots,x_n]$ y $\mathbb C[x_1,\ldots,x_n]$ son DFU. También lo es $B=\mathbb Z[x_1,x_2,\ldots]$, aunque no sea noetheriano.
 
-Para justificar el último caso como propone la página 8, todo $f\ne0$ pertenece a algún $B_n=\mathbb Z[x_1,\ldots,x_n]$. Sus divisores en $B$ ya pertenecen a $B_n$: al escribir $f=gh$, el grado en una variable exterior cumple $0=\deg_{x_j}g+\deg_{x_j}h$, pues los anillos considerados son dominios. Éste es el argumento del \cref{ejer:C16-infinitas}. Una factorización en irreducibles en $B_n$ sigue siendo irreducible en $B$, y dos factorizaciones en $B$ están en ese mismo anillo por la propiedad de los divisores. La unicidad allí da unicidad en $B$. Las unidades son $\pm1$ por el mismo argumento de grados. Finalmente, el \cref{ejer:C15-infinitas} ya mostró un ideal no finitamente generado, así que $B$ no es noetheriano.
+En el último caso, todo $f\ne0$ pertenece a algún $B_n=\mathbb Z[x_1,\ldots,x_n]$. Sus divisores en $B$ ya pertenecen a $B_n$: al escribir $f=gh$, el grado en una variable exterior cumple $0=\deg_{x_j}g+\deg_{x_j}h$, pues los anillos considerados son dominios. Éste es el argumento del \cref{ejer:C16-infinitas}. Una factorización en irreducibles en $B_n$ sigue siendo irreducible en $B$, y dos factorizaciones en $B$ están en ese mismo anillo por la propiedad de los divisores. La unicidad allí da unicidad en $B$. Las unidades son $\pm1$ por el mismo argumento de grados. Finalmente, el \cref{ejer:C15-infinitas} ya mostró un ideal no finitamente generado, así que $B$ no es noetheriano.
 \end{ejem}
 Este ejemplo distingue las regiones DFU y noetheriana del esquema de la clase 15.
 
-\begin{obs}[Orientación bibliográfica]
-Las ocho páginas reproducen de \citet{aluffi2009} la definición V.4.10, la afirmación V.4.11, el ejemplo V.4.12 y la definición V.4.13 sobre fracciones; el lema V.4.15, la proposición V.4.16 y el corolario V.4.17; y el teorema V.4.14 con su prueba, seguido del ejemplo V.4.18. Se resuelven inmediatamente las verificaciones de equivalencia, estructura de campo y homomorfismo del mediador. La remisión III.2.7 motiva la comprobación sobre funciones, sin atribuirle un enunciado completo no visible. Las comprobaciones remitidas a V.4.23 y V.1.15 se resuelven mediante el teorema y el ejercicio de la clase 16, respectivamente.
+\begin{obs}[Referencias de lectura]
+Para fracciones y factorialidad de polinomios, véase \citet[cap.~V, 4.10--18]{aluffi2009}. Los ejercicios de elección de factores e infinitas variables se relacionan con V.4.23 y V.1.15.
 \end{obs}

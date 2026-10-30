@@ -1,8 +1,6 @@
 % Fuente única de clase: Recursos/2025-09-09.pdf, páginas 1--10.
 En la clase 7 pasamos del teorema de Cauchy a los tres teoremas de Sylow. Las acciones sobre clases laterales permiten estudiar la contención y el número de subgrupos de Sylow. Aplicamos estos resultados para descartar grupos simples de ciertos órdenes y para probar que algunos grupos de orden $pq$ son cíclicos.
 
-Los fragmentos originales de \citet{aluffi2009} reproducidos en las pizarras corresponden a IV.2: afirmación IV.2.2, definición IV.2.3, teorema IV.2.5, proposición IV.2.6 y resultados IV.2.8--16. Incluyen las pruebas y los ejemplos desarrollados aquí. La comprobación de puntos fijos, propuesta como ejercicio IV.1.1 en la página 3, se presenta con solución antes de usarla en el segundo teorema de Sylow. Los localizadores se verificaron en los fragmentos originales de las pizarras.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{De Cauchy a la existencia de subgrupos de Sylow}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -30,9 +28,9 @@ El recuento también puede expresarse con una acción por potencias. Sea $U_p$ e
 [m]\cdot(a,\ldots,a)=(a^m,\ldots,a^m).
 \]
 La regla no depende del representante porque $a^p=e_G$, y la composición de las potencias corresponde al producto de las clases. Cada $[m]\ne[0]$ tiene un inverso módulo $p$, de modo que actúa biyectivamente. La órbita de una tupla no neutra reúne los $p-1$ generadores de $\generado{a}$, pues $a^m=a$ implica $m\equiv1\pmod p$. Así se recupera la misma igualdad contando órbitas.
-\begin{nota}[Corrección de la acción por potencias]
-En la página 1 se escribe $\mathbb Z/(p-1)\mathbb Z$ actuando por $[m]\cdot(a,\ldots,a)=(a^m,\ldots,a^m)$. Con la suma como operación y esa fórmula, no es una acción: $[0]$ enviaría toda tupla a la neutra. La fórmula anterior utiliza $U_p$, con multiplicación, cuyo neutro es $[1]$. No se necesita identificarlo con un grupo cíclico para este recuento. Para $p>2$, su único punto fijo es la tupla neutra; para $p=2$, la acción es trivial y todas las tuplas son fijas, aunque el recuento $1+N(p-1)$ sigue siendo válido.
-\end{nota}
+\begin{obs}
+El grupo de escalares que actúa es $U_p$, con multiplicación y neutro $[1]$. Para $p>2$, su único punto fijo es la tupla neutra; para $p=2$, la acción es trivial y todas las tuplas son fijas. En ambos casos sigue siendo válido el recuento $1+N(p-1)$.
+\end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Primer teorema de Sylow}
@@ -72,9 +70,6 @@ El conjunto $P$ es subgrupo por el \cref{lema:C4-preimagen}; contiene a $N$ y la
 |P|=|N|\,|P/N|=p\,p^{k-1}=p^k.\qedhere
 \]
 \end{proof}
-\begin{nota}[La preimagen en el paso inductivo]
-En la página 3, después de obtener un subgrupo del cociente, aparece $G/N=P/N$. En general se necesita $\bar P=P/N\le G/N$, con $P=\pi^{-1}(\bar P)$; la igualdad con todo $G/N$ sólo corresponde al caso $\bar P=G/N$. El diagrama hace explícita la preimagen que permite levantar el subgrupo y calcular su orden.
-\end{nota}
 
 \begin{teo}[Primer teorema de Sylow]\label{teo:C7-sylow-I}
 Todo grupo finito contiene un $p$-subgrupo de Sylow para cada primo $p$.
@@ -96,7 +91,6 @@ Sea $H$ un $p$-grupo que actúa en un conjunto finito $X$ de cardinal no divisib
 \begin{sol}
 El \cref{coro:C6-fijos} da $|X^H|\equiv|X|\pmod p$. Como $|X|\not\equiv0\pmod p$, también $|X^H|\not\equiv0\pmod p$; en particular $|X^H|\ne0$. Existe entonces un elemento de $X$ fijado por todo $H$. En términos de la ecuación de clases, las órbitas no triviales aportan múltiplos de $p$, de modo que no pueden reunir por sí solas todos los elementos de $X$.
 \end{sol}
-En el ejercicio IV.1.1 reproducido en la página 3, la condición sobre $|X|$ se expresa mediante congruencias; aquí hacemos explícita la finitud del conjunto para aplicar el recuento.
 
 \begin{teo}[Segundo teorema de Sylow]\label{teo:C7-sylow-II}
 Si $P$ es un $p$-subgrupo de Sylow de un grupo finito $G$ y $H\le G$ es un $p$-subgrupo, existe $g\in G$ tal que $H\subseteq gPg^{-1}$.
@@ -196,7 +190,7 @@ Usamos $n_p$ para el número de subgrupos y $N_G(P)$ para el normalizador; esta 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Definición en P02; aplicaciones P07--P09.
 \begin{defi}
-Un grupo es \emph{simple} si es no trivial y carece de subgrupos normales propios no triviales.
+Un grupo $G\ne\{e\}$ es \emph{simple} si sus únicos subgrupos normales son $\{e\}$ y $G$.
 \end{defi}
 
 \begin{prop}\label{prop:C7-no-simple}
@@ -205,9 +199,9 @@ Si $|G|=mp^r$, con $p$ primo, $r\ge1$ y $1<m<p$, entonces $G$ no es simple.
 \begin{proof}
 Por el tercer teorema, $n_p\mid m$ y $n_p\equiv1\pmod p$. Como $1\le n_p\le m<p$, se sigue $n_p=1$. El único $p$-subgrupo de Sylow es normal; tiene orden $p^r>1$ y es propio porque su índice es $m>1$. Es, por tanto, un subgrupo normal no trivial y propio.
 \end{proof}
-\begin{nota}[Hipótesis sobre el exponente]
-La afirmación IV.2.12 reproducida en la página 7 escribe el orden como $mp^r$ con $1<m<p$. Para concluir mediante un subgrupo normal no trivial se requiere $r\ge1$, que dejamos explícito. Si se permitiera $r=0$, el grupo simple $C_2$ tendría orden $2\cdot3^0$ y cumpliría $1<2<3$, contradiciendo el enunciado sin esa precisión.
-\end{nota}
+\begin{obs}
+La condición $r\ge1$ es necesaria: si se permitiera $r=0$, el grupo simple $C_2$ tendría orden $2\cdot3^0$ y cumpliría $1<2<3$.
+\end{obs}
 
 \begin{ejem}[Orden $2002$]
 Como $2002=2\cdot7\cdot11\cdot13$, el número $n_{11}$ divide a $182=2\cdot7\cdot13$ y es congruente con $1$ módulo $11$. Sus posibles divisores y sus residuos son
@@ -231,9 +225,6 @@ Si $n_3=1$, el subgrupo de orden $3$ es normal. Supongamos $n_3=4$ y denotemos e
 \]
 Quedan exactamente tres elementos distintos del neutro fuera de esa unión. Un $2$-subgrupo de Sylow tiene orden $4$ y ninguno de sus elementos puede tener orden $3$, por Lagrange. Sus tres elementos no neutros deben ser precisamente los tres restantes. Así, todo $2$-subgrupo de Sylow coincide con ese mismo conjunto de cuatro elementos, luego $n_2=1$ y es normal. En ambos casos existe un subgrupo normal no trivial y propio; $G$ no es simple.
 \end{ejem}
-\begin{nota}[Precisión del recuento]
-En la página 9 se atribuye orden $2$ o $4$ a los tres elementos restantes. Lo justificamos al mostrar que pertenecen a un $2$-subgrupo de Sylow, completando el mismo argumento por recuento.
-\end{nota}
 
 \begin{ejem}[Orden $24$]
 Si $|G|=24=2^3\cdot3$, entonces $n_2\mid3$ y $n_2\equiv1\pmod2$, de modo que $n_2=1$ o $3$. Si es $1$, el único subgrupo de orden $8$ es normal. Si es $3$, la conjugación actúa en el conjunto $X=\{P_1,P_2,P_3\}$ de subgrupos de Sylow y define
@@ -242,14 +233,13 @@ Si $|G|=24=2^3\cdot3$, entonces $n_2\mid3$ y $n_2\equiv1\pmod2$, de modo que $n_
 \]
 Por el segundo teorema esta acción es transitiva y, al tener $X$ tres elementos, no es trivial. Así $\ker\varphi\ne G$. Tampoco puede ser trivial: de serlo, $\varphi$ sería inyectivo por la \cref{prop:C4-mono}, pero $24>6=|S_3|$. Su núcleo es entonces un subgrupo normal propio y no trivial, y $G$ no es simple.
 \end{ejem}
-La página 9 concluye que el núcleo es normal. Hemos completado la comprobación de que es propio y no trivial, necesaria para descartar la simplicidad.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Un criterio de ciclicidad para el orden \texorpdfstring{$pq$}{pq}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % P10.
 \begin{prop}\label{prop:C7-pq}
-Sea $G$ un grupo de orden $pq$, con $p<q$ primos. Si $q\not\equiv1\pmod p$, entonces $G$ es cíclico.
+Un grupo de orden $pq$, con $p<q$ primos y $q\not\equiv1\pmod p$, es cíclico.
 \end{prop}
 \begin{proof}
 Por Sylow, $n_p\mid q$ y $n_p\equiv1\pmod p$. Los únicos candidatos son $1$ y $q$; la hipótesis excluye $q$. Existe, por tanto, un único subgrupo $H$ de orden $p$, y es normal.
@@ -266,6 +256,10 @@ El índice $[G:Z(G)]$ divide a $[G:H]=q$, por lo que es $1$ o $q$. Así, $G/Z(G)
 
 Por Cauchy existen $a,b\in G$ de órdenes $p$ y $q$. Como conmutan, $(ab)^{pq}=e_G$. Si $(ab)^t=e_G$, entonces $a^t=b^{-t}$ pertenece a $\generado{a}\cap\generado{b}$. El orden de esta intersección divide tanto a $p$ como a $q$, luego es trivial. Por ello $a^t=b^t=e_G$, lo que implica $p\mid t$ y $q\mid t$, y por tanto $pq\mid t$. El elemento $ab$ tiene orden $pq$ y genera todo $G$.
 \end{proof}
-\begin{nota}[Centro y pasos completados]
-En la página 10 se escribe $H=Z(G)$ después de probar que la conjugación es trivial en $H$. La conclusión inmediata es $H\subseteq Z(G)$; el centro puede ser mayor. El argumento de índices anterior trata ambas posibilidades y conserva la estrategia del cociente por el centro. También hemos explicitado el recuento de $\Aut(H)$, por qué el núcleo del homomorfismo al grupo simétrico sirve en el ejemplo de orden $24$ y el paso final de abeliano a cíclico para el orden $pq$.
-\end{nota}
+\begin{obs}
+Que la conjugación sea trivial sobre $H$ significa $H\subseteq Z(G)$; el centro puede ser mayor.
+\end{obs}
+
+\begin{obs}[Referencias de lectura]
+Para los teoremas de Sylow y sus aplicaciones, véase \citet[cap.~IV, 2.2--3/5--6/8--16]{aluffi2009}. La comprobación de puntos fijos es el ejercicio IV.1.1.
+\end{obs}

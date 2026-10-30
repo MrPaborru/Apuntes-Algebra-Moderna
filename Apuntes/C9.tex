@@ -1,8 +1,6 @@
 % Fuente única de clase: Recursos/2025-09-18.pdf, páginas 1--13.
 La clase 9 estudia las permutaciones mediante sus ciclos y sus clases de conjugación. El signo distingue las permutaciones pares; después comparamos conjugación en $S_n$ y en $A_n$ para demostrar la simplicidad de los grupos alternantes y la no resolubilidad de $S_n$ cuando $n\ge5$.
 
-Los fragmentos originales de \citet{aluffi2009} incluidos en las pizarras corresponden a IV.4.1--4, IV.4.6, IV.4.8--21. La unicidad de la descomposición se remite al ejercicio IV.4.2 y se resuelve aquí. En la página 4 aparece además una proposición numerada 10 sobre conjugación de ciclos, sin datos bibliográficos suficientes para atribuir ese recorte a una edición concreta. Conservamos su contenido y su prueba, sin inventar la referencia.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Ciclos, tipos y clases de conjugación}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -46,7 +44,7 @@ Si dos ciclos son disjuntos, un punto pertenece al soporte de uno de ellos o de 
 Para construir la descomposición tomamos las órbitas no triviales de $\generado{\sigma}$. En una órbita, partimos de $a$ y listamos $a,\sigma(a),\ldots,\sigma^{r-1}(a)$ hasta el primer retorno a $a$. No hay repeticiones anteriores: si $\sigma^i(a)=\sigma^j(a)$, aplicar una potencia inversa daría un retorno anterior. El ciclo así formado coincide con $\sigma$ en esa órbita. El producto de los ciclos coincide con $\sigma$ en todas las órbitas y fija sus puntos fijos. La unicidad se comprueba en el ejercicio siguiente.
 \end{proof}
 \begin{ejer}[Unicidad de los ciclos disjuntos]\label{ejer:C9-unicidad}
-Demostrar la unicidad de la descomposición del \cref{lema:C9-ciclos}, propuesta como ejercicio IV.4.2 en el fragmento de la página 2.
+Demostrar la unicidad de la descomposición del \cref{lema:C9-ciclos}.
 \end{ejer}
 \begin{sol}
 En cualquier producto de ciclos disjuntos, la órbita de un punto movido es exactamente el conjunto de entradas del único ciclo que lo mueve. Por ello dos descomposiciones de $\sigma$ deben utilizar los mismos conjuntos de entradas, ya que las órbitas de $\sigma$ están determinadas por su acción.
@@ -86,7 +84,7 @@ Para $\sigma=(1\,2)(3\,4\,5)(6\,7\,8\,9)$ y $\tau=(1\,3\,5\,7)(2\,4\,6\,8)$, la 
 \tau\sigma\tau^{-1}=(3\,4)(5\,6\,7)(8\,1\,2\,9)
 =(1\,2\,9\,8)(3\,4)(5\,6\,7).
 \]
-La página 4 hace también el cálculo siguiendo puntos a través de los tres factores. Ambos métodos dan los mismos recorridos, por ejemplo $1\mapsto2\mapsto9\mapsto8\mapsto1$.
+También puede comprobarse la conjugación siguiendo cada punto a través de los tres factores; por ejemplo, se obtiene el recorrido $1\mapsto2\mapsto9\mapsto8\mapsto1$.
 
 Para $\sigma_1=(1)(3\,5)(8\,9)(2\,4\,7\,6)$ y $\sigma_2=(3)(4\,7)(8\,1)(5\,2\,6\,9)$, las listas emparejadas son
 \[
@@ -177,14 +175,14 @@ La comprobación se desarrolla a continuación. Junto con la descomposición en 
 Para $(i\,j)$ con $i<j$, el factor $x_i-x_j$ cambia de signo. Los pares de factores que involucran un índice $k$ entre $i$ y $j$ producen dos cambios de signo; los que tienen $k$ fuera de ese intervalo se intercambian sin cambio neto. En total aparecen $1+2(j-i-1)$ cambios, un número impar. Así, $\varepsilon((i\,j))=-1$. La fórmula para un producto sigue del carácter homomorfo.
 \end{proof}
 \begin{ejer}[Descomposición de un ciclo en transposiciones]
-Comprobar la identidad \eqref{eq:C9-transposiciones}, cuya verificación sobre cada punto se propone en la página 7.
+Comprobar la identidad \eqref{eq:C9-transposiciones} verificando la imagen de cada punto.
 \end{ejer}
 \begin{sol}
 El factor derecho actúa primero. El punto $a_1$ pasa a $a_2$ por el primer factor aplicado y los demás lo fijan. Para $2\le j<r$, los factores anteriores a $(a_1\,a_j)$ fijan $a_j$; ese factor lo envía a $a_1$ y el siguiente, $(a_1\,a_{j+1})$, lo envía a $a_{j+1}$. Los posteriores lo fijan. Finalmente, $a_r$ permanece fijo hasta el factor izquierdo $(a_1\,a_r)$, que lo envía a $a_1$. Todos los puntos ajenos a la lista quedan fijos. Es exactamente el ciclo del lado izquierdo.
 \end{sol}
-\begin{nota}[Convención de composición]
-Los fragmentos de las páginas 6--7 escriben una acción por la derecha y el producto de transposiciones en el orden correspondiente. Aquí se usa sustitución por la izquierda y el factor derecho actúa primero; por eso se invierte explícitamente el orden del producto del fragmento. Las anotaciones manuscritas de la página 7 ya señalan este ajuste.
-\end{nota}
+\begin{obs}
+Las permutaciones actúan por la izquierda y el factor derecho se aplica primero.
+\end{obs}
 
 \begin{defi}
 El \emph{grupo alternante} es $A_n=\ker\varepsilon$, el subgrupo de las permutaciones pares.
@@ -208,7 +206,7 @@ Los cuatro diagramas con signo positivo representan los tipos pares de $S_5$. Su
 \subsection{Cuándo se divide una clase de conjugación}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % P08--P11.
-Escribimos $[\sigma]_{S_n}$ y $[\sigma]_{A_n}$ para las clases de conjugación de una permutación par en los dos grupos.
+Para una permutación par $\sigma$, denotamos sus clases de conjugación por $[\sigma]_{S_n}$ y $[\sigma]_{A_n}$.
 \begin{lema}\label{lema:C9-centralizador}
 Para $n\ge2$ y $\sigma\in A_n$, si $Z_{S_n}(\sigma)\not\subseteq A_n$, entonces $[\sigma]_{A_n}=[\sigma]_{S_n}$. Si $Z_{S_n}(\sigma)\subseteq A_n$, la primera clase tiene la mitad del cardinal de la segunda y la clase de $S_n$ se divide en dos clases de $A_n$.
 \end{lema}
@@ -279,7 +277,6 @@ La última identidad se verifica sobre $a,b,c,d$: ambos lados intercambian $a,b$
 
 Para $n\ge5$, su tipo $[3,1,\ldots,1]$ contiene al menos dos partes iguales a uno. Por la \cref{prop:C9-division}, su clase de $S_n$ no se divide en $A_n$, de modo que todos son conjugados allí. Un normal que contiene uno contiene todos sus conjugados y, por generación, todo el grupo.
 \end{proof}
-Las identidades de productos de la página 11 se han traducido al factor derecho primero, tal como indican sus anotaciones manuscritas.
 
 \begin{lema}\label{lema:C9-centro}
 Si $n\ge4$, entonces $Z(A_n)=\{e\}$.
@@ -288,7 +285,7 @@ Si $n\ge4$, entonces $Z(A_n)=\{e\}$.
 Sea $\sigma\ne e$ y elijamos $i$ con $\sigma(i)=j\ne i$. Como $n\ge4$, existen dos puntos distintos $k,l$ fuera de $\{i,j\}$. El $3$-ciclo $c=(j\,k\,l)$ fija $i$. Así $(\sigma c)(i)=j$, mientras que $(c\sigma)(i)=k$. Luego $\sigma$ no conmuta con $c$ y no es central.
 \end{proof}
 
-\begin{lema}[Caso base añadido]\label{lema:C9-A6}
+\begin{lema}[Simplicidad de $A_6$]\label{lema:C9-A6}
 El grupo $A_6$ es simple.
 \end{lema}
 \begin{proof}
@@ -307,9 +304,6 @@ Un normal tendría orden $1+40a+45b+90c+72d$, con $a,d\in\{0,1,2\}$ y $b,c\in\{0
 
 Si $d=0$, el orden es congruente con $1$ módulo $5$; los únicos divisores posibles son $1,6,36$, y toda suma no nula añadida a $1$ vale al menos $40$. Sólo sirve $1$. Si $d=1$, los divisores congruentes con $3$ módulo $5$ son $3,8,18$, menores que $73$. Si $d=2$, el orden es $145$ o al menos $185$; el primero no divide a $360$ y el segundo supera $180$. Quedan excluidos todos los normales propios no triviales.
 \end{proof}
-\begin{nota}[Caso base omitido en la pizarra]
-La página 13 usa la simplicidad de $A_6$, pero antes sólo se ha probado la de $A_5$. Este recuento añade el caso base faltante y evita un razonamiento circular.
-\end{nota}
 
 \begin{teo}\label{teo:C9-simple}
 El grupo $A_n$ es simple para todo $n\ge5$.
@@ -321,9 +315,6 @@ Los casos $5$ y $6$ ya están probados. Sea $n\ge7$ y $N\trianglelefteq A_n$ un 
 \]
 Por normalidad, $\rho=\tau(\sigma\tau^{-1}\sigma^{-1})\in N$. Es producto de dos $3$-ciclos y mueve a lo sumo seis puntos. Completamos su soporte a un conjunto $T$ de seis puntos. El subgrupo $A(T)\cong A_6$ fija el complemento de $T$, y $N\cap A(T)$ es normal no trivial porque contiene a $\rho$. La simplicidad de $A_6$ implica $A(T)\subseteq N$. Así $N$ contiene un $3$-ciclo y, por el \cref{lema:C9-tres-ciclos}, $N=A_n$.
 \end{proof}
-\begin{nota}[Soporte usado en la reducción]
-La página 13 afirma $\tau\in N\cap A_6$ usando su soporte. El elemento de soporte a lo sumo seis construido en la página 12 es $\rho=[\tau,\sigma]$, no necesariamente $\tau$; la reducción debe aplicarse a $\rho$.
-\end{nota}
 
 \begin{coro}
 Para $n\ge5$, el grupo $S_n$ no es resoluble.
@@ -331,3 +322,7 @@ Para $n\ge5$, el grupo $S_n$ no es resoluble.
 \begin{proof}
 La cadena $S_n>A_n>\{e\}$ es una serie de composición: el primer factor es $C_2$ y el segundo es el grupo simple $A_n$. Este último no es cíclico; por ejemplo, los $3$-ciclos $(1\,2\,3)$ y $(1\,2\,4)$ no conmutan. El criterio de la \cref{prop:C8-resoluble} excluye la resolubilidad de $S_n$.
 \end{proof}
+
+\begin{obs}[Referencias de lectura]
+Para ciclos, signo y grupos alternantes, véase \citet[cap.~IV, 4.1--4/6/8--21]{aluffi2009}. La unicidad de la descomposición en ciclos es el ejercicio IV.4.2.
+\end{obs}

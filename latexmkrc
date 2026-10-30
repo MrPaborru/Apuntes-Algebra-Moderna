@@ -10,6 +10,6 @@ $pdf_mode = 1;
 $pdflatex = 'pdflatex -interaction=nonstopmode -halt-on-error -file-line-error -synctex=1 %O %S';
 $max_repeat = 6;
 $pdf_previewer = '';
-# Hook de latexmk: sólo publica después de una compilación satisfactoria.
+# Copia el PDF final después de una compilación satisfactoria.
 $success_cmd = 'perl -e "use File::Copy; copy(\'build/aux/main.pdf\',\'build/main.pdf\') or die $!;"';
 $clean_ext = 'synctex.gz run.xml bbl blg';

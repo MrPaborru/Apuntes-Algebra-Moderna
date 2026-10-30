@@ -1,8 +1,6 @@
 % Fuente única de clase: Recursos/2025-08-19.pdf, páginas 1--14.
 En la clase 3 estudiamos acciones y homomorfismos, sus efectos sobre el orden y las propiedades que preservan los isomorfismos. La categoría de grupos abelianos permite sumar homomorfismos y usar el producto como coproducto finito. Finalmente construimos el grupo libre mediante palabras y verificamos su propiedad universal.
 
-Los fragmentos de \citet{aluffi2009} reproducidos en las páginas 5--6 y 11--14 incluyen II.4.1, II.4.3, II.4.5--8, el lema II.5.1 y el ejemplo II.5.3. Para completar la justificación de la reducción sin cambiar la construcción, puede consultarse también \citet[cap.~2, proposiciones 2.1--2.3, pp.~32--33]{milne2025}, donde se demuestran la unicidad de la forma reducida y la propiedad universal; son pruebas desarrolladas, no ejercicios propuestos.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Acciones y ejemplos de homomorfismos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -244,9 +242,9 @@ xxx^{-1}yy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x.
 \]
 Las listas $xyy^{-1}x$ y $xx$ son distintas; en el grupo buscado representarán el mismo elemento.
 
-\begin{nota}
-La descripción de la página 9 llama inicialmente a $F(A)$ el grupo de «todas las palabras». Las páginas 11--12 precisan la construcción: todas las palabras forman $W(A)$; los elementos de $F(A)$ son las palabras reducidas, con producto dado por concatenar y reducir. Usamos esta distinción desde el principio.
-\end{nota}
+\begin{obs}
+Los elementos de $W(A)$ son todas las palabras; los de $F(A)$ son las palabras reducidas. Su producto consiste en concatenar y reducir.
+\end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reducción y construcción concreta}
@@ -266,7 +264,7 @@ Cada aplicación que modifica la palabra elimina dos letras. No pueden producirs
 Definimos $R(w)=r^{\lfloor n/2\rfloor}(w)$. En particular, $R(w)=w$ para una palabra reducida, y $R(R(w))=R(w)$.
 
 \begin{ejer}[Reducciones de palabras]\label{ejer:C3-reducciones}
-Compruebe las reducciones de la página 12, incluida la segunda, que el fragmento propone al lector:
+Compruebe las siguientes reducciones:
 \[
 \begin{aligned}
 R(a^{-1}a^{-1}aaaa^{-1}aa^{-1})&=(),\\
@@ -311,10 +309,6 @@ La palabra vacía será la identidad. Si $w=a_1\cdots a_n$ está reducida, su in
 w^{-1}=a_n^{-1}\cdots a_1^{-1},
 \]
 donde se invierte cada símbolo formal.
-
-\begin{nota}
-La página 13 da estas operaciones, pero no escribe una prueba de asociatividad. Para que la construcción quede justificada, añadimos el argumento de unicidad de la reducción que permite asociar el producto. Se conserva el método de concatenar y cancelar empleado en clase.
-\end{nota}
 
 \begin{lema}\label{lema:C3-unicidad-reduccion}
 Toda sucesión de cancelaciones de parejas contiguas que termina en una palabra reducida da el mismo resultado.
@@ -382,4 +376,8 @@ Las potencias son palabras distintas y $x^mx^n=x^{m+n}$. Así, $\varepsilon_x:\m
 % P14.
 Para $A=\{x,y\}$, representamos las palabras reducidas como vértices de un grafo. Desde una palabra $w$ trazamos aristas hacia $R(wx)$, $R(wx^{-1})$, $R(wy)$ y $R(wy^{-1})$. Desde $e$, las direcciones derecha, izquierda, arriba y abajo corresponden a $x,x^{-1},y,y^{-1}$; al continuar, evitamos volver por la arista inversa. Los segmentos se acortan para que quepan las primeras generaciones.
 \begin{center}\input{Figuras/ArbolLibre}\end{center}
-La ruta destacada representa $e\to x\to xy\to xyx$, como en la página 14. No hay ciclos sin retroceso: sus etiquetas formarían una palabra reducida no vacía igual a la identidad, lo cual contradice la construcción de $F(\{x,y\})$. El dibujo es una porción finita del árbol infinito; los extremos de la figura admiten nuevas continuaciones.
+La ruta destacada representa $e\to x\to xy\to xyx$. No hay ciclos sin retroceso: sus etiquetas formarían una palabra reducida no vacía igual a la identidad, lo cual contradice la construcción de $F(\{x,y\})$. El dibujo es una porción finita del árbol infinito; los extremos de la figura admiten nuevas continuaciones.
+
+\begin{obs}[Referencias de lectura]
+Para acciones y grupos libres, véase \citet[cap.~II, 4.1/3/5--8 y 5.1/3]{aluffi2009}. La reducción de palabras y la propiedad universal se desarrollan también en \citet[cap.~2, proposiciones 2.1--3, pp.~32--33]{milne2025}.
+\end{obs}

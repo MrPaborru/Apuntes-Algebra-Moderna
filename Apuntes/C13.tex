@@ -9,7 +9,7 @@ En la clase 13 calculamos ejemplos de cocientes de polinomios y caracterizamos i
 \subsection{Evaluación y la construcción de los complejos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % P01--P02: repetición de III.4.6, ejemplo III.4.7 y cálculo con x^2+1.
-En esta sección los anillos son conmutativos. La \cref{prop:C12-restos}, recordada al inicio de la pizarra, identifica el grupo aditivo de un cociente por un mónico con los coeficientes de sus restos. La multiplicación depende del polinomio usado para reducirlos.
+En esta sección los anillos son conmutativos. La \cref{prop:C12-restos}, identifica el grupo aditivo de un cociente por un mónico con los coeficientes de sus restos. La multiplicación depende del polinomio usado para reducirlos.
 
 \begin{ejem}[El resto al dividir por $x-a$]\label{ejem:C13-evaluacion}
 Para $a\in R$, la división por $x-a$ tiene resto constante:
@@ -83,9 +83,6 @@ El cociente $R/I$ es conmutativo y no nulo, pues $I$ es propio. La igualdad $(a+
 
 Por el \cref{lema:C12-correspondencia}, los ideales de $R/I$ son exactamente los $J/I$ con $J\supseteq I$. El ideal cero corresponde a $J=I$ y el ideal total a $J=R$. El \cref{lema:C13-campo} demuestra (ii).
 \end{proof}
-\begin{nota}[Hipótesis en el criterio de campo]
-La frase manuscrita al final de la página 3 debe entenderse para un anillo \emph{no nulo}, con dos ideales distintos $(0)$ y $(1)$. El anillo cero no es campo. En la vuelta de la demostración se usa $(a)=(1)$ sólo para $a\ne0$, aunque allí se escribe «para todo $a\in R$»; para $a=0$ se tiene $(a)=(0)$.
-\end{nota}
 
 \begin{prop}\label{prop:C13-primo-maximal}
 Sea $I$ un ideal propio de un anillo conmutativo $R$.
@@ -119,7 +116,7 @@ En $\mathbb Z$, para $n>0$, el ideal $(n)$ es primo si y sólo si es maximal, y 
 Cada $(p)$ contiene a $(0)$, y no hay inclusiones entre dos ideales maximales distintos.
 
 \begin{ejer}[Los polinomios sobre un campo forman un DIP]\label{ejer:C13-Kx}
-Probar que, si $K$ es un campo, $K[x]$ es un dominio de ideales principales. La página 5 desarrolla esta comprobación y el fragmento de la página 6 remite a ella como ejercicio III.4.4.
+Probar que, si $K$ es un campo, $K[x]$ es un dominio de ideales principales.
 \end{ejer}
 \begin{sol}
 El producto de dos polinomios no nulos tiene coeficiente principal igual al producto de sus coeficientes principales, que es no nulo en el campo. Así, $K[x]$ es dominio.
@@ -128,19 +125,16 @@ El ideal cero es principal. Si $I\ne(0)$, los grados de sus polinomios no nulos 
 
 Para $g\in I$, la \cref{prop:C12-division} da $g=fq+r$, con $\deg r<d$. Como $f,g\in I$, también $r=g-fq\in I$. Si $r\ne0$, contradice la minimalidad de $d$. Luego $r=0$, así que $g\in(f)$ y $I\subseteq(f)$. La inclusión opuesta se sigue de $f\in I$. Por tanto, $I=(f)$.
 \end{sol}
-\begin{nota}[Grado mínimo y signo del resto]
-En la página 5, el caso posterior a $d=0$ está escrito como $d>1$; debe incluir $d=1$. En la misma prueba, de $g=fq+r$ se obtiene $r=g-fq$, mientras que la pizarra escribe $r=fq-g$. El signo no altera la pertenencia al ideal, pero sí la igualdad que define el resto. También se consideran sólo polinomios no nulos al tomar el grado mínimo.
-\end{nota}
 
 En consecuencia, los primos no nulos de $K[x]$ son maximales por la \cref{prop:C13-primo-maximal}. El ideal $(0)$ es primo y no maximal: $K[x]$ es dominio y $x$ no tiene inverso polinómico, porque los grados de productos no nulos se suman.
 
 \begin{defi}
 Un campo es \emph{algebraicamente cerrado} si todo polinomio no constante con coeficientes en él tiene una raíz en el campo. Un polinomio no nulo y no unidad es \emph{irreducible} si, en toda factorización suya, al menos uno de los factores es unidad.
 \end{defi}
-El fragmento afirma, sin demostrarlo aquí, que $\mathbb C$ es algebraicamente cerrado. Usamos ese hecho en la comprobación siguiente, tal como pide el texto, sin incorporar una prueba del teorema fundamental del álgebra.
+Usaremos el teorema fundamental del álgebra: $\mathbb C$ es algebraicamente cerrado. Su demostración queda fuera del alcance de estos apuntes.
 
 \begin{ejer}[{Ideales maximales de $\mathbb C[x]$}]\label{ejer:C13-complejos}
-Suponiendo que $\mathbb C$ es algebraicamente cerrado, demostrar que los ideales maximales de $\mathbb C[x]$ son exactamente $(x-z)$, $z\in\mathbb C$. Es el ejercicio III.4.21 citado en la página 6.
+Suponiendo que $\mathbb C$ es algebraicamente cerrado, demostrar que los ideales maximales de $\mathbb C[x]$ son exactamente $(x-z)$, $z\in\mathbb C$.
 \end{ejer}
 \begin{sol}
 Cada $(x-z)$ es maximal porque su cociente es $\mathbb C$. Recíprocamente, un maximal $M$ no puede ser $(0)$, como acabamos de ver. Por el \cref{ejer:C13-Kx}, $M=(f)$ con $f$ no nulo y no constante: una constante no nula generaría todo el anillo.
@@ -153,11 +147,11 @@ contradiciendo la maximalidad. Como $\mathbb C$ es algebraicamente cerrado, exis
 
 Además, distintos valores dan distintos ideales: si $(x-z)=(x-w)$, entonces $x-w$ se anula en $z$, de donde $z=w$.
 \end{sol}
-\begin{nota}[Generador mónico e irreducibilidad]
-La última línea manuscrita de la página 6 identifica los polinomios irreducibles de $\mathbb C[x]$ con los de la forma $x-z$. La afirmación literal requiere normalizar el coeficiente principal: en general son $c(x-z)$ con $c\ne0$. Por ejemplo, $2x$ también es irreducible. Todos ellos generan el mismo ideal que su representante mónico.
-\end{nota}
+\begin{obs}
+Los irreducibles de $\mathbb C[x]$ tienen la forma $c(x-z)$ con $c\ne0$. Cada uno genera el mismo ideal que su representante mónico $x-z$; por ejemplo, $2x$ también es irreducible.
+\end{obs}
 
-Así, $\Spec\mathbb C[x]=\{(0)\}\cup\set{(x-z)\given z\in\mathbb C}$. La figura conserva los dos esquemas de las páginas 4 y 6: un nivel de ideales maximales, todos sobre $(0)$. En el segundo dibujo el plano sólo organiza los parámetros complejos; las líneas indican inclusiones de ideales.
+Así, $\Spec\mathbb C[x]=\{(0)\}\cup\set{(x-z)\given z\in\mathbb C}$. La figura muestra un nivel de ideales maximales, todos sobre $(0)$. En el segundo dibujo el plano sólo organiza los parámetros complejos; las líneas indican inclusiones de ideales.
 \input{Figuras/Espectros}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -194,7 +188,7 @@ Recíprocamente, dada la función de acción, definimos $\sigma(r)(m)=rm$. El pr
 \end{proof}
 
 \begin{ejer}[Cero y negativos en un módulo]\label{ejer:C13-cero}
-Demostrar $0_Rm=0_M$ y $(-1_R)m=-m$, las propiedades propuestas al inicio del apartado III.5.2 en la página 8.
+Demostrar $0_Rm=0_M$ y $(-1_R)m=-m$.
 \end{ejer}
 \begin{sol}
 La igualdad $0_R=0_R+0_R$ da $0_Rm=0_Rm+0_Rm$. Cancelar en el grupo aditivo de $M$ produce $0_Rm=0_M$. Después,
@@ -222,7 +216,7 @@ f(m+n)=f(m)+f(n),\qquad f(rm)=rf(m).
 \]
 Los módulos izquierdos y estos morfismos forman la categoría $R\text{-}\mathbf{Mod}$. Escribimos $\Hom_R(M,N)$ para su conjunto de morfismos.
 \end{defi}
-La identidad es lineal y la composición lo es: para $f:M\to N$, $g:N\to P$, se tiene $gf(rm)=g(rf(m))=rgf(m)$, además de la aditividad. La segunda condición de la definición expresa que conmuta el cuadrado de acciones de la página 9:
+La identidad es lineal y la composición lo es: para $f:M\to N$, $g:N\to P$, se tiene $gf(rm)=g(rf(m))=rgf(m)$, además de la aditividad. La segunda condición de la definición expresa que conmuta el cuadrado de acciones:
 \[
 \begin{tikzcd}[column sep=large,row sep=large]
 R\times M\arrow[r,"\id_R\times f"]\arrow[d,"\rho_M"']
@@ -281,10 +275,10 @@ No se exige que $S$ sea conmutativo. La condición central permite mover los esc
 \]
 En particular, $(r\cdot s)t=r\cdot(st)=s(r\cdot t)$. Esto expresa la compatibilidad del producto con la acción.
 
-Para precisar la categoría $R\text{-}\mathbf{Alg}$ mencionada en la pizarra, un morfismo de $R$-álgebras $(S,\alpha)\to(T,\beta)$ es un homomorfismo de anillos $f:S\to T$ con $f\alpha=\beta$. Esta condición implica $f(r\cdot s)=r\cdot f(s)$.
+En la categoría $R\text{-}\mathbf{Alg}$, un morfismo de $R$-álgebras $(S,\alpha)\to(T,\beta)$ es un homomorfismo de anillos $f:S\to T$ con $f\alpha=\beta$. Esta condición implica $f(r\cdot s)=r\cdot f(s)$.
 
 \begin{ejer}[Álgebras sobre los enteros]\label{ejer:C13-Zalg}
-Explicar por qué $\mathbb Z\text{-}\mathbf{Alg}$ se identifica con $\Ring$, como pregunta el fragmento al inicio de la página 11.
+Explicar por qué $\mathbb Z\text{-}\mathbf{Alg}$ se identifica con $\Ring$.
 \end{ejer}
 \begin{sol}
 Para cualquier anillo $S$, el único homomorfismo $\iota_S:\mathbb Z\to S$ envía $n$ a $n1_S$. Estos elementos son centrales, pues
@@ -296,7 +290,7 @@ Para $n>0$ ambas igualdades se obtienen por distributividad sobre $n$ sumandos, 
 Si $f:S\to T$ es cualquier homomorfismo de anillos, entonces $f(n1_S)=n1_T$, de modo que $f\iota_S=\iota_T$. Es automáticamente morfismo de esas álgebras. Por ello coinciden tanto los objetos, con su estructura única, como los morfismos.
 \end{sol}
 
-Para $R$ conmutativo, los anillos $R[x_1,\ldots,x_n]$ son $R$-álgebras conmutativas mediante la inclusión de constantes. Sus cocientes por cualquier ideal también lo son, usando la composición de esa inclusión con la proyección. El fragmento menciona que, sobre un campo algebraicamente cerrado, estos anillos aparecen en geometría algebraica afín; aquí sólo se registra el ejemplo de álgebras, sin desarrollar esa teoría.
+Para $R$ conmutativo, los anillos $R[x_1,\ldots,x_n]$ son $R$-álgebras conmutativas mediante la inclusión de constantes. Sus cocientes por cualquier ideal también lo son, usando la composición de esa inclusión con la proyección. Sobre un campo algebraicamente cerrado, estos cocientes son ejemplos de álgebras que aparecen en geometría algebraica afín.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{La estructura de módulo en \texorpdfstring{$\Hom_R(M,N)$}{Hom}}
@@ -331,6 +325,6 @@ Aquí la igualdad $ra=ar$ es el paso que exige conmutatividad. Así, $rf$ sigue 
 Estas identidades puntuales verifican todos los axiomas del módulo.
 \end{proof}
 
-\begin{obs}[Orientación bibliográfica]
-Los fragmentos originales de \citet{aluffi2009} permiten verificar III.4.6--7, el apartado III.4.3, la definición III.4.9, los ejemplos III.4.10 y III.4.14, las proposiciones III.4.11--13 y los apartados III.5.1--2, incluida la afirmación III.5.1, la definición III.5.2, la proposición III.5.3, los ejemplos III.5.4--6 y la definición III.5.7. Las comprobaciones III.4.4 y III.4.21, las propiedades elementales de módulos y la pregunta sobre $\mathbb Z$-álgebras llevan solución aquí. La cerradura algebraica de $\mathbb C$ se usa como el hecho citado por el fragmento, no como un resultado demostrado en esta clase. Se revisaron las trece páginas del archivo; la última está en blanco. No se consultó el libro completo.
+\begin{obs}[Referencias de lectura]
+Para ideales primos y maximales, módulos y álgebras, véase \citet[cap.~III, 4.6--7/9--14 y 5.1--7]{aluffi2009}. Los ejercicios sobre $K[x]$ y $\mathbb C[x]$ son III.4.4 y III.4.21; para el segundo se usa el teorema fundamental del álgebra.
 \end{obs}

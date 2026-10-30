@@ -20,7 +20,7 @@ Si $a$ es primo, $(a)$ es propio, así que $a$ no es unidad. Dada una factorizac
 \begin{defi}
 Una \emph{factorización en irreducibles} de un elemento no nulo y no unidad $r$ es una expresión $r=q_1\cdots q_n$ con todos los $q_i$ irreducibles. Es \emph{única salvo orden y asociados} si toda otra expresión $r=q'_1\cdots q'_m$ tiene $m=n$ y, después de reordenar, cada $q'_i$ es asociado de $q_i$.
 
-Un \emph{dominio con factorización} es aquel en que todo elemento no nulo y no unidad admite tal expresión. Un \emph{dominio factorial}, o \emph{dominio de factorización única} (DFU, UFD en los fragmentos), es aquel en que esas factorizaciones existen y son únicas en el sentido anterior.
+Un \emph{dominio con factorización} es aquel en que todo elemento no nulo y no unidad admite tal expresión. Un \emph{dominio factorial}, o \emph{dominio de factorización única} (DFU; UFD en inglés), es aquel en que esas factorizaciones existen y son únicas en el sentido anterior.
 \end{defi}
 Al elegir representantes fijos de las clases de asociados se escribe un factor unidad separado, $r=u\prod_i q_i$. Es equivalente a la definición: se puede absorber $u$ en uno de los irreducibles sin cambiar su clase de asociado. Para una unidad se toma una lista vacía de factores y se conserva la unidad misma.
 
@@ -49,7 +49,7 @@ La \cref{prop:C15-cadenas} aplicada al módulo regular implica estabilización d
 \end{proof}
 
 \begin{ejer}[Factorización sin noetherianidad]\label{ejer:C16-infinitas}
-Comprobar que $B=\mathbb Z[x_1,x_2,\ldots]$ satisface la condición de cadena ascendente para ideales principales y, por tanto, tiene factorizaciones, aunque no es noetheriano. Es la comprobación a la que remite el ejercicio V.1.15 citado en la página 2.
+Comprobar que $B=\mathbb Z[x_1,x_2,\ldots]$ satisface la condición de cadena ascendente para ideales principales y, por tanto, tiene factorizaciones, aunque no es noetheriano.
 \end{ejer}
 \begin{sol}
 Cada polinomio no nulo $f$ pertenece a algún $B_n=\mathbb Z[x_1,\ldots,x_n]$. Todo divisor suyo en $B$ pertenece al mismo $B_n$: si $f=gh$, para una variable $x_j$ con $j>n$ el grado en $x_j$ satisface
@@ -62,7 +62,7 @@ En una cadena $(f_1)\subseteq(f_2)\subseteq\cdots$, si todos los $f_i$ son cero 
 
 Por Hilbert y porque $\mathbb Z$ es noetheriano, $B_n$ es noetheriano y la cadena se estabiliza allí. Las igualdades de ideales se conservan al generar ideales en $B$. Así se estabiliza la cadena original. La \cref{prop:C16-existencia} da las factorizaciones. Por el \cref{ejer:C15-infinitas}, $B$ tiene un ideal no finitamente generado y no es noetheriano.
 \end{sol}
-El ejemplo justifica la inclusión propia de los dominios noetherianos entre los dominios con factorización en el esquema de la clase 15. Los contornos coloreados de la página 2 distinguen esas regiones; aquí conservamos su propósito mediante esta separación entre existencia y noetherianidad.
+El ejemplo justifica la inclusión propia de los dominios noetherianos entre los dominios con factorización en el esquema de la clase 15.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Multiplicidades, divisibilidad y máximo común divisor}
@@ -77,9 +77,9 @@ r=u\prod_q q^{v_q(r)},\qquad
 u\in R^\times,\quad v_q(r)\geq0,
 \]
 con soporte finito. Las unidades tienen todas las multiplicidades cero. Un multiconjunto está contenido en otro si cada multiplicidad es menor o igual; al comparar soportes distintos, se extienden por cero a una misma base de representantes.
-\begin{nota}[El dato que determinan las multiplicidades]
-La página 3 dice que el elemento queda determinado por su multiconjunto de factores. Las multiplicidades determinan su \emph{clase de asociado}: aún falta el factor unidad. Por ejemplo, $2$ y $-2$ tienen las mismas multiplicidades en $\mathbb Z$. También hay que comparar clases de asociados, y no tratar dos representantes asociados como factores distintos. La unión de factores de un producto suma multiplicidades; no es una unión ordinaria que elimine repeticiones.
-\end{nota}
+\begin{obs}
+Las multiplicidades determinan la clase de asociado de un elemento; el factor unidad no queda determinado. Por ejemplo, $2$ y $-2$ tienen las mismas multiplicidades en $\mathbb Z$. Al multiplicar elementos se suman las multiplicidades de sus factores.
+\end{obs}
 
 \begin{lema}\label{lema:C16-multiplicidades}
 En un DFU, para elementos no nulos $a,b,c$:
@@ -116,7 +116,7 @@ R=\mathbb Z[x^2,x^3]
 \]
 Es el subanillo de $\mathbb Z[x]$ formado por polinomios sin término lineal y es dominio. Los divisores comunes de $x^5$ y $x^6$ en $R$ son exactamente $\pm1$, $\pm x^2$ y $\pm x^3$.
 
-Para completar la comprobación de la página 5, si $gh=x^5$ en $\mathbb Z[x]$, comparemos los grados mayores y los menores exponentes presentes. Ambos se suman en el producto y ambos dan cinco. Como para cada factor el mayor grado es al menos el menor, deben coincidir en cada factor; así, $g,h$ son monomios. Sus coeficientes enteros multiplican a uno, luego son $\pm1$. Aplicando esto a un divisor común, éste es $\pm x^k$. La pertenencia del divisor y de los cocientes $x^{5-k},x^{6-k}$ a $R$ deja sólo $k=0,2,3$.
+Si $gh=x^5$ en $\mathbb Z[x]$, comparemos los grados mayores y los menores exponentes presentes. Ambos se suman en el producto y ambos dan cinco. Como para cada factor el mayor grado es al menos el menor, deben coincidir en cada factor; así, $g,h$ son monomios. Sus coeficientes enteros multiplican a uno, luego son $\pm1$. Aplicando esto a un divisor común, éste es $\pm x^k$. La pertenencia del divisor y de los cocientes $x^{5-k},x^{6-k}$ a $R$ deja sólo $k=0,2,3$.
 
 Los divisores $x^2,x^3$ son incomparables: $x^3/x^2=x\notin R$, y $x^2/x^3$ ni siquiera es polinomio. Ninguno de los divisores comunes de la lista es múltiplo de ambos. Por tanto, $x^5,x^6$ no tienen máximo común divisor en $R$.
 \end{ejem}
@@ -144,7 +144,7 @@ x\omega=yz\ne0
 \]
 da dos factorizaciones distintas salvo orden y asociados.
 \end{ejem}
-\begin{proof}[Detalles añadidos al ejemplo de la pizarra]
+\begin{proof}
 La noetherianidad se sigue de Hilbert: es un cociente de un anillo de polinomios sobre el campo $\mathbb C$. Para justificar también que es dominio, consideremos
 \[
 \theta:\mathbb C[x,y,z,\omega]\longrightarrow\mathbb C[s,t,u,v],
@@ -215,7 +215,7 @@ a=qb+r,\qquad r=0\ \text{o}\ v(r)<v(b).
 \]
 Un dominio que admite esa función es \emph{euclidiano}. Los elementos $q,r$ se llaman cociente y resto de esa división.
 \end{defi}
-El fragmento usa «valuación» para esta función de tamaño. Aquí no se le atribuyen otros axiomas de las valuaciones: sólo se requiere la propiedad de división indicada. No se evalúa $v(0)$ y no se afirma unicidad del cociente o del resto.
+La función de tamaño $v$ sólo debe satisfacer la propiedad de división indicada. No se evalúa $v(0)$ ni se exige unicidad del cociente o del resto.
 
 \begin{ejem}
 En $\mathbb Z$ sirve $v(n)=|n|$. La división entera da $a=qb+r$ con $0\leq r<|b|$, incluso para $b<0$ ajustando el signo del cociente. Si $r\ne0$, $v(r)<v(b)$.
@@ -238,6 +238,6 @@ Quedan probadas las inclusiones
 \]
 junto con la noetherianidad de los DIP y la existencia de factorizaciones en los dominios noetherianos. Son las relaciones desarrolladas en este bloque del esquema de la clase 15.
 
-\begin{obs}[Orientación bibliográfica]
-Los fragmentos originales de \citet{aluffi2009} en estas diez páginas contienen el lema V.1.7, las definiciones V.1.8--10, la proposición V.1.11 y el corolario V.1.12; los apartados V.2.1, V.2.3--4, los lemas V.2.1, V.2.3--4, la definición V.2.2, el teorema V.2.5, la proposición V.2.6, la definición V.2.7 y la proposición V.2.8. La comprobación remitida a V.1.15 se resuelve inmediatamente; la de III.4.4 ya está resuelta en la clase 13. La prueba de que el cociente del ejemplo de cuatro variables es dominio y de la irreducibilidad de sus variables se añade, pues la página 6 sólo afirma esas propiedades. Se conservan las estrategias de cadenas, multiplicidades y tamaño mínimo de las demás pruebas.
+\begin{obs}[Referencias de lectura]
+Para factorización y dominios principales o euclidianos, véase \citet[cap.~V, 1.7--12 y 2.1--8]{aluffi2009}. El ejemplo de infinitas variables corresponde al ejercicio V.1.15; el caso de polinomios sobre un campo retoma III.4.4.
 \end{obs}

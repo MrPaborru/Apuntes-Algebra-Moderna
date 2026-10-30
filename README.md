@@ -1,31 +1,45 @@
 # Apuntes de Álgebra Moderna
 
-Apuntes personales en español del curso **Álgebra Moderna (18ALG01), CIMAT, otoño de 2025**, impartido por el **Dr. José Luis León Medina**. Alumno: **Pablo Jair Aranda Pérez**.
+Apuntes en español para consultar y estudiar los fundamentos de grupos, anillos, módulos y campos. Incluyen definiciones, teoremas con sus demostraciones, ejemplos, diagramas y ejercicios con solución.
 
-El curso se impartió en línea, los martes y jueves de 8:00 a 9:20, con Victor Adrián Meza Campa como ayudante. [Información y materiales del curso](https://www.cimat.mx/~luis.leon/es/cursos/algebra-moderna-cimat/).
+**[Leer los apuntes en PDF](build/main.pdf)**
 
-Las tareas del curso están en el repositorio [Tareas de Álgebra Moderna](https://github.com/MrPaborru/Tareas-Algebra-Moderna).
+## El curso
+
+**Álgebra Moderna (18ALG01)** · Centro de Investigación en Matemáticas (CIMAT) · **Otoño 2025**.
+
+- **Profesor:** Dr. José Luis León Medina.
+- **Ayudante:** Victor Adrián Meza Campa.
+- **Modalidad:** en línea.
+- **Horario:** martes y jueves, de 8:00 a 9:20.
+- **Autor de los apuntes:** Pablo Jair Aranda Pérez.
+
+[Información, temario y materiales del curso](https://www.cimat.mx/~luis.leon/es/cursos/algebra-moderna-cimat/).
 
 ## Contenido
 
-El documento actualizado se encuentra en [**build/main.pdf**](build/main.pdf). Están completas las **clases 1–22**, del **12, 14, 19, 21 y 26 de agosto; del 4, 9, 11, 18, 23, 25 y 30 de septiembre; del 2, 7, 9, 14, 16, 23 y 30 de octubre; y del 4, 6 y 11 de noviembre de 2025**, elaboradas a partir de las **253 páginas** de sus pizarras. Contiene conjuntos, funciones, categorías, grupos, productos, acciones, grupos libres y abelianos libres, subgrupos, cocientes e isomorfismos, la ecuación de clases, Cauchy y Sylow, Jordan–Hölder, conmutadores y resolubilidad, grupos simétricos y alternantes, extensiones y productos semidirectos, y la clasificación de grupos abelianos finitos. Las clases 11–13 incorporan anillos, unidades, polinomios, endomorfismos, ideales y cocientes, característica, ideales primos y maximales, espectros e introducción a módulos y álgebras. Las clases 14–16 desarrollan submódulos e isomorfismos, productos y coproductos, objetos libres, módulos noetherianos, álgebras finitas y de tipo finito, el teorema de la base de Hilbert, divisibilidad, irreducibles y factorización única, máximos comunes divisores y dominios euclidianos. Las clases 17–19 añaden el algoritmo de Euclides, Zorn y la existencia de ideales maximales, contenido y lema de Gauss, campos de fracciones, factorialidad de anillos de polinomios, raíces, extensiones de campos, cierre algebraico, reducción modular y la forma general de Eisenstein. Las clases 20–22 desarrollan bases y dimensión, rango, torsión, submódulos libres y bases compatibles sobre un DIP, resoluciones y clasificación de módulos finitamente generados, forma de Smith, característica, grado y extensiones simples de campos, polinomios mínimos y automorfismos. Incluye las demostraciones desarrolladas en las fuentes, diagramas y soluciones de las comprobaciones propuestas; se indica cuándo un resultado fundacional o el teorema fundamental del álgebra sólo se enuncia. Los complementos necesarios y las correcciones de las pizarras se identifican con sus páginas de origen. La numeración de clases es editorial, por orden cronológico de los archivos conservados; no se atribuye a una numeración original del profesor.
+La versión actual comprende **22 clases**, del **12 de agosto al 11 de noviembre de 2025**, organizadas en capítulos fechados.
 
-## Organización
+| Clases | Temas |
+| --- | --- |
+| 1–5 | Conjuntos, funciones y categorías; grupos, simetrías, productos, grupos libres, subgrupos, cocientes y primer teorema de isomorfismo. |
+| 6–10 | Acciones y ecuación de clases; Cauchy y Sylow; Jordan–Hölder, resolubilidad, grupos simétricos y alternantes; productos semidirectos y clasificación de grupos abelianos finitos. |
+| 11–14 | Anillos, polinomios, ideales y cocientes; característica, ideales primos y maximales; módulos, álgebras, submódulos y construcciones libres. |
+| 15–19 | Noetherianidad y teorema de Hilbert; divisibilidad y factorización; dominios euclidianos, Zorn, contenido y lema de Gauss; fracciones, raíces, extensiones e irreducibilidad. |
+| 20–22 | Bases, dimensión, rango y torsión; clasificación de módulos sobre un DIP y forma de Smith; extensiones simples, polinomios mínimos y automorfismos de campos. |
 
-- `main.tex`: documento principal.
-- `Apuntes/Cuerpo.tex` y `Apuntes/Cn.tex`: integración y un archivo por clase.
-- `Personalizacion/`: datos académicos, paleta, símbolos, entornos, títulos, índice y encabezados.
-- `Portada/`: portada, banner y los dos PDF gráficos definitivos del CIMAT, procedentes de la plantilla local de Homotopía Estable.
-- `Figuras/`: figuras vectoriales definitivas, incluidas desde el documento.
-- `Referencias.bib`: referencias verificadas; los localizadores de Aluffi se cotejaron en los fragmentos originales incluidos en las pizarras. La numeración de capítulos se contrastó con el [índice de la vista editorial](https://books.google.com/books/about/Algebra_Chapter_0.html?id=h4dNEAAAQBAJ): III para anillos y módulos, IV para el segundo estudio de grupos, VI para álgebra lineal y VII para campos. Para la reducción de palabras se consultó además el original público de Milne.
-- `Recursos/`: pizarras originales locales, intactas y excluidas de la publicación inicial.
-- `build/main.pdf`: único producto de compilación destinado a lectura y sincronización.
+Los ejercicios llevan su solución inmediatamente después del enunciado. La numeración de resultados es global; las definiciones y los ejemplos se numeran por sección. Cada clase cierra con referencias para profundizar en los temas tratados.
 
-## Compilación
+## Bibliografía
 
-Los auxiliares se guardan en `build/aux/`. El PDF de lectura es `build/main.pdf`.
+- Paolo Aluffi, *Algebra: Chapter 0*, Graduate Studies in Mathematics 104, American Mathematical Society, 2009. [DOI](https://doi.org/10.1090/gsm/104).
+- James S. Milne, *Group Theory*, versión 4.01, 2025. [Texto del autor](https://www.jmilne.org/math/CourseNotes/GT.pdf).
 
-Se necesita TeX Live o equivalente, con **pdfLaTeX, latexmk, Perl y BibTeX**. Los paquetes incluyen `newtxtext`, `newtxmath`, `eucal`, `microtype`, `babel` con español, AMS, `mathtools`, TikZ/`tikz-cd`, `tcolorbox`, `titlesec`, `tocloft`, `fancyhdr`, `hyperref`, `natbib`, `cleveref`, `aliascnt` y `refcount`. También debe estar instalado **LXfonts**, cuya familia `lmsb` conserva la fuente personalizada de `\mathbb` de la plantilla; `eucal` conserva la caligráfica Euler de `\mathcal`. La bibliografía utiliza BibTeX con `plainnat`.
+## Fuentes y compilación
+
+El documento principal es `main.tex`. Los capítulos se encuentran en `Apuntes/`, las figuras vectoriales en `Figuras/`, la portada en `Portada/` y la bibliografía en `Referencias.bib`. Las fuentes LaTeX necesarias para reproducir el documento están incluidas en el repositorio.
+
+Se necesita una distribución TeX con **pdfLaTeX, latexmk, Perl y BibTeX**, además de los paquetes utilizados en el preámbulo. La tipografía utiliza **NewTX**, **LXfonts** para `\mathbb` y **eucal** para `\mathcal`. Los diagramas se componen con TikZ y `tikz-cd`.
 
 Desde la raíz del proyecto:
 
@@ -33,14 +47,12 @@ Desde la raíz del proyecto:
 latexmk -pdf main.tex
 ```
 
-En PowerShell también se puede ejecutar:
+En PowerShell también puede utilizarse:
 
 ```powershell
 .\Compilar.ps1
 ```
 
-El script comprueba el código de salida y asegura la copia final incluso si latexmk no necesita repetir pasadas. Para limpiar los auxiliares:
+La compilación actualiza `build/main.pdf` cuando termina correctamente. Para eliminar los auxiliares, ejecutar `latexmk -c main.tex` o `.\Compilar.ps1 -Limpiar`.
 
-```sh
-latexmk -c main.tex
-```
+La configuración del formato, la paleta y los comandos matemáticos se describe en [Personalizacion/README.md](Personalizacion/README.md).

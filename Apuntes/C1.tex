@@ -1,8 +1,6 @@
 % Fuente única de clase: Recursos/2025-08-12.pdf, páginas 1--9.
 En la clase 1 fijamos el lenguaje de conjuntos y funciones y lo usamos para introducir categorías. La inyectividad y la sobreyectividad admiten formulaciones mediante inversas y cancelación; la factorización de una función por sus fibras conecta las relaciones de equivalencia con los cocientes.
 
-Los fragmentos originales de \citet{aluffi2009} incorporados a las pizarras contienen la definición I.1.1, las proposiciones I.2.1 e I.2.3, el teorema I.2.7 y la definición I.3.1. Sirven de orientación para las equivalencias y construcciones de esta clase; las demostraciones siguientes desarrollan también los pasos que las pizarras dejan indicados.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conjuntos, lógica y relaciones}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,10 +67,6 @@ Un par $(a,b)$ también puede verse como la función $f:\{1,2\}\to A\cup B$ con 
 \]
 Un elemento del producto elige un elemento de cada factor y conserva su índice.
 
-\begin{nota}
-En la página 3 se alternan las letras $A_i$ y $X_i$ en la fórmula del producto. Usamos $A_i$ en toda la expresión para referirnos a una misma familia. Éste es únicamente un ajuste de notación.
-\end{nota}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Equivalencias y conjuntos cociente}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,9 +111,9 @@ Es asociativa, pues ambas funciones $h\circ(g\circ f)$ y $(h\circ g)\circ f$ env
 La función $f:A\to B$ es \emph{inyectiva} si $f(a)=f(a')$ implica $a=a'$; equivalentemente, $a\ne a'$ implica $f(a)\ne f(a')$. Es \emph{sobreyectiva} si para cada $b\in B$ existe $a\in A$ con $f(a)=b$, es decir, $\im f=B$. Es \emph{biyectiva} si satisface ambas condiciones.
 \end{defi}
 
-\begin{nota}
-En la página 4 se formula primero sólo la unicidad de la imagen y luego se escribe la condición de existencia y unicidad. La unicidad aislada permite relaciones sin imagen para algunos elementos; la definición de función requiere ambas condiciones.
-\end{nota}
+\begin{obs}
+La definición de función exige existencia y unicidad de la imagen de cada elemento del dominio. La unicidad aislada permite relaciones que dejan elementos sin imagen.
+\end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Inversas por un lado}
@@ -138,11 +132,11 @@ Si $f\circ s=1_B$, para todo $b\in B$ tenemos $b=f(s(b))$, de modo que $f$ es so
 \end{proof}
 
 \begin{obs}
-La hipótesis $A\ne\varnothing$ importa en el primer inciso: la función $\varnothing\to\{1\}$ es inyectiva, pero no tiene inversa izquierda porque no existe función $\{1\}\to\varnothing$. Es el ejemplo de la página 5. El segundo inciso sigue siendo válido cuando $A=\varnothing$: una función de ese dominio es sobreyectiva exactamente cuando también $B=\varnothing$.
+La hipótesis $A\ne\varnothing$ importa en el primer inciso: la función $\varnothing\to\{1\}$ es inyectiva, pero no tiene inversa izquierda porque no existe función $\{1\}\to\varnothing$. El segundo inciso sigue siendo válido cuando $A=\varnothing$: una función de ese dominio es sobreyectiva exactamente cuando también $B=\varnothing$.
 \end{obs}
-\begin{nota}
-Las pizarras reproducen el enunciado sobre inversas, pero no desarrollan su prueba. La construcción anterior completa ese paso y hace explícito el uso de elección en la selección de preimágenes. Para una biyección no se necesita elegir entre varias: cada preimagen es única y determina su inversa bilateral.
-\end{nota}
+\begin{obs}
+La selección de preimágenes para construir una inversa por la derecha utiliza el axioma de elección. Para una biyección no se necesita elegir entre varias: cada preimagen es única y determina su inversa bilateral.
+\end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Monomorfismos y epimorfismos de conjuntos}
@@ -169,7 +163,7 @@ Supongamos primero $A\ne\varnothing$ y $f$ inyectiva. Por la proposición~\ref{p
 \]
 Si $A=\varnothing$, siempre hay a lo sumo una función $Z\to A$, y la cancelación también se cumple. Recíprocamente, si $f$ es mono y $f(a)=f(a')$, las funciones $\{*\}\to A$ que toman los valores $a$ y $a'$ tienen el mismo compuesto con $f$. Deben ser iguales; luego $a=a'$.
 
-Para la segunda equivalencia usamos la estrategia de la pizarra. Si $f$ no es sobreyectiva, fijamos $b_0\in B\setminus\im f$ y definimos
+Para la segunda equivalencia, si $f$ no es sobreyectiva, fijamos $b_0\in B\setminus\im f$ y definimos
 \[
 \beta'(b)=0,\qquad
 \beta''(b)=\begin{cases}1,&b=b_0,\\0,&b\ne b_0.\end{cases}
@@ -202,9 +196,6 @@ Aquí $q(a)=[a]$ y $\widetilde f([a])=f(a)$.
 \begin{proof}
 La proyección $q$ es sobreyectiva por definición del cociente. La regla de $\widetilde f$ está bien definida porque representantes equivalentes tienen igual imagen. Es sobreyectiva sobre $\im f$; es inyectiva porque $f(a)=f(a')$ implica $[a]=[a']$. La inclusión $i$ es inyectiva y $i\widetilde f q(a)=f(a)$ para todo $a$.
 \end{proof}
-\begin{nota}
-El teorema reproducido en la página 7 remite a una relación definida «arriba», fuera del fragmento visible. Hemos explicitado la relación de igualdad de imágenes y comprobado la factorización; no se presupone una explicación oral ausente.
-\end{nota}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Categorías y grupoides}
@@ -255,3 +246,7 @@ Así, una relación de equivalencia determina un grupoide. Cuando la relación e
 \begin{cases}\{1_a\},&a=b,\\\varnothing,&a\ne b.\end{cases}
 \]
 Ésta es la \emph{categoría discreta} sobre $S$. En la clase 2 usaremos los grupoides para interpretar los axiomas de grupo.
+
+\begin{obs}[Referencias de lectura]
+Para conjuntos, funciones, factorización por fibras y categorías, véase \citet[cap.~I, definición 1.1, proposiciones 2.1/3, teorema 2.7 y definición 3.1]{aluffi2009}.
+\end{obs}

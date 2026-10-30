@@ -12,7 +12,7 @@ Recordemos que un dominio euclidiano admite una función $v:R\setminus\{0\}\to\m
 \[
 a=bq+r,\qquad r=0\quad\text{o}\quad v(r)<v(b).
 \]
-No se compara directamente $r$ con $b$ mediante un orden del anillo: se comparan sus tamaños. La página 1 repite la definición y la prueba de que estos dominios son DIP, desarrolladas en la clase 16: un elemento no nulo de tamaño mínimo en un ideal lo genera, porque todo resto en ese ideal debe ser cero. Esto incluye $\mathbb Z$, con $v(n)=|n|$, y $K[x]$, con $v(f)=\deg f$, para un campo $K$.
+No se compara directamente $r$ con $b$ mediante un orden del anillo: se comparan sus tamaños. Como se probó en la clase 16, estos dominios son DIP: un elemento no nulo de tamaño mínimo en un ideal lo genera, porque todo resto en ese ideal debe ser cero. Esto incluye $\mathbb Z$, con $v(n)=|n|$, y $K[x]$, con $v(f)=\deg f$, para un campo $K$.
 
 \begin{lema}\label{lema:C17-resto}
 En un anillo conmutativo, si $a=bq+r$, entonces $(a,b)=(b,r)$.
@@ -26,7 +26,7 @@ En un dominio, los pares $a,b$ y $b,r$ tienen los mismos divisores comunes. En p
 \begin{proof}
 Un elemento $c$ divide a ambos generadores de un ideal si y sólo si ese ideal está contenido en $(c)$. Por el lema, esta condición es la misma para los dos pares. También lo es, por tanto, la propiedad que define al máximo común divisor.
 \end{proof}
-Las igualdades de máximos comunes divisores en las pizarras se entienden salvo asociados, o tras elegir representantes compatibles.
+Las igualdades entre máximos comunes divisores se entienden salvo asociados, o tras elegir representantes compatibles.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Terminación y cálculo del último resto}
@@ -57,7 +57,7 @@ En $\mathbb Q[x]$, sean
 \[
 a=x^3-x^2-4x+4,\qquad b=x^3+x^2-4x-4.
 \]
-Las divisiones escritas en la página 3 son
+Las divisiones son
 \[
 \begin{aligned}
 a&=b+(-2x^2+8),\\
@@ -90,7 +90,7 @@ Un orden total es un \emph{buen orden} si todo subconjunto no vacío tiene un el
 \begin{teo}[Buen orden]
 Todo conjunto admite un buen orden.
 \end{teo}
-El \emph{axioma de elección} permite seleccionar un elemento de cada miembro de una familia de conjuntos no vacíos; la formulación de la página 4 usa conjuntos disjuntos. Sobre los axiomas de Zermelo--Fraenkel, elección, Zorn y buen orden son formulaciones equivalentes. Las páginas 4--5 los enuncian sin demostrar esa equivalencia y mencionan su independencia respecto de los restantes axiomas; aquí se emplea Zorn como principio fundacional. La palabra «independientes» manuscrita en la página 5 no significa que sean independientes entre sí: la línea siguiente afirma justamente su equivalencia. La referencia al fenómeno de Banach--Tarski es sólo contextual y no se desarrolla.
+El \emph{axioma de elección} permite seleccionar un elemento de cada miembro de una familia de conjuntos no vacíos; también puede formularse para familias de conjuntos disjuntos. Sobre los axiomas de Zermelo--Fraenkel, elección, Zorn y buen orden son formulaciones equivalentes. Esta equivalencia y su independencia respecto de los restantes axiomas, si éstos son consistentes, se toman aquí como hechos fundacionales. Se empleará Zorn en las demostraciones.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Existencia de ideales maximales}
@@ -108,10 +108,10 @@ No es vacío, pues contiene $I$. Para una cadena no vacía $\mathcal C\subseteq\
 
 Si $U=R$, entonces $1_R\in J$ para algún $J\in\mathcal C$, contradiciendo que $J$ es propio. Por tanto, $U\in\mathcal I$ y es cota superior de la cadena. La cadena vacía tiene como cota a $I$. Zorn da un elemento maximal $\mathfrak m$ de $\mathcal I$. Todo ideal propio que lo contenga también pertenece a $\mathcal I$, luego coincide con él. Así, $\mathfrak m$ es un ideal maximal de $R$.
 \end{proof}
-La unidad es esencial para concluir que la unión sigue siendo propia. En el anillo cero no hay ideales propios, de modo que el enunciado no afirma que tenga un maximal. Para un anillo no nulo, aplicarlo a $(0)$ sí asegura su existencia. El fragmento menciona además una relación fundacional entre esta existencia general y elección, sin desarrollar su prueba.
+La unidad es esencial para concluir que la unión sigue siendo propia. En el anillo cero no hay ideales propios, de modo que el enunciado no afirma que tenga un maximal. Para un anillo no nulo, aplicarlo a $(0)$ sí asegura su existencia.
 
 \begin{ejer}[La necesidad de la unidad]\label{ejer:C17-sin-unidad}
-Dar un anillo sin unidad que no tenga ideales maximales. Ésta es la excepción remitida al ejercicio V.3.9 en la página 5.
+Dar un anillo sin unidad que no tenga ideales maximales.
 \end{ejer}
 \begin{sol}
 Tomemos el grupo aditivo $\mathbb Q$ con multiplicación idénticamente cero. Es un anillo asociativo y conmutativo sin unidad: $e\cdot1=0\ne1$ para cualquier $e$. Todos sus subgrupos aditivos son ideales.
@@ -133,11 +133,11 @@ IR[x]=\set*{\sum_{i=0}^d a_ix^i\given d\geq0,\ a_i\in I}.
 En efecto, un polinomio con coeficientes en $I$ es suma de productos $a_ix^i$. A la inversa, multiplicar un elemento de $I$ por un polinomio da coeficientes en $I$, y las sumas conservan esa condición.
 
 \begin{ejer}[Cocientar los coeficientes]\label{ejer:C17-coeficientes}
-Probar el isomorfismo del lema V.4.1 reproducido en la página 6,
+Probar el isomorfismo
 \[
 R[x]/IR[x]\cong(R/I)[x].
 \]
-El fragmento remite su demostración al ejercicio V.4.1; la pizarra la desarrolla mediante el primer isomorfismo.
+
 \end{ejer}
 \begin{sol}
 Consideremos
@@ -208,9 +208,6 @@ f=6(2x^2-3x+5).
 \]
 No es primitivo, pero su factor $2x^2-3x+5$ sí lo es, pues $\mcd(2,-3,5)=1$.
 \end{ejem}
-\begin{nota}[El término constante del factor primitivo]
-En la primera factorización manuscrita de la página 8 aparece $2x^2-3x+9$. El término correcto es $5$, porque $30/6=5$; además, la línea siguiente de la misma pizarra calcula $\mcd(2,-3,5)$.
-\end{nota}
 
 \begin{lema}\label{lema:C17-parte-primitiva}
 Si $R$ es DFU y $f\ne0$, existe $f_0\in R[x]$ primitivo con $f=c_ff_0$. Si $(f)=(c)(g)$ para $c\in R$ y $g$ primitivo, entonces $(c)=C_f$.
@@ -220,9 +217,9 @@ Escribamos $a_i=c_fb_i$ para cada coeficiente y pongamos $f_0=\sum_i b_ix^i$. Si
 
 Para la segunda parte, $(f)=(cg)$ implica $f=dcg$ y $cg=ef$ para ciertos polinomios $d,e$. Como $f\ne0$, cancelar en $f=def$ da $de=1$. En un anillo de polinomios sobre un dominio, las unidades son constantes: $\deg d+\deg e=0$. Así, $d\in R^\times$. Los coeficientes de $cg$ tienen máximo común divisor asociado a $c$, porque los de $g$ no tienen factor irreducible común. Multiplicar por $d$ no cambia su ideal de contenido. Luego $C_f=(c)$.
 \end{proof}
-\begin{nota}[Polinomios no nulos]
-El lema V.4.7 de la página 9 y la fórmula de la página 10 se leen para polinomios no nulos: el contenido se definió en la página 8 bajo esa hipótesis. No se usa un contenido del cero sin haberlo definido.
-\end{nota}
+\begin{obs}
+El contenido se ha definido para polinomios no nulos. Las fórmulas siguientes se utilizan bajo esa hipótesis.
+\end{obs}
 
 \begin{prop}[Lema de Gauss]\label{prop:C17-Gauss}
 Para $f,g\ne0$ en $R[x]$, con $R$ DFU, se tiene $C_{fg}=C_fC_g$.
@@ -241,6 +238,6 @@ Si $f,g\ne0$ y $(f)\subseteq(g)$ en $R[x]$, entonces $C_f\subseteq C_g$.
 La inclusión dice $f=gh$ para algún $h\ne0$. Por Gauss, $C_f=C_gC_h\subseteq C_g$.
 \end{proof}
 
-\begin{obs}[Orientación bibliográfica]
-Los fragmentos originales de \citet{aluffi2009} en las páginas 1--3 contienen V.2.4 y la definición/proposición V.2.7--8, ya tratadas en la clase 16, y los resultados V.2.9--12 sobre Euclides. Las páginas 4--5 contienen el lema V.3.1, el teorema V.3.3 y la proposición V.3.5: los dos primeros se enuncian como principios fundacionales; la existencia de maximales sí se demuestra. Se resuelve la excepción remitida a V.3.9. Las páginas 6--10 contienen V.4.1--9, con la comprobación V.4.1 desarrollada y las pruebas de primitividad y contenido. Son fragmentos reproducidos en las pizarras; no se consultó el libro completo.
+\begin{obs}[Referencias de lectura]
+Para Euclides y Zorn, véase \citet[cap.~V, 2.9--12 y 3.1/3/5]{aluffi2009}; para contenido y primitividad, V.4.1--9. Las equivalencias fundacionales se enuncian sin prueba. Los ejercicios corresponden a V.3.9 y V.4.1.
 \end{obs}

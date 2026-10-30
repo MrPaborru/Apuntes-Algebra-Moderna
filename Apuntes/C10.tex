@@ -1,8 +1,6 @@
 % Fuente única de clase: Recursos/2025-09-23.pdf, páginas 1--14.
 En la clase 10 distinguimos productos directos, extensiones y productos semidirectos. Después comenzamos la clasificación de los grupos abelianos finitos, primero separando sus subgrupos de Sylow y luego sus factores cíclicos.
 
-Los localizadores de los fragmentos originales de \citet{aluffi2009} se verificaron en las pizarras: IV.5.1--3, IV.5.5--13, IV.6.1--6 y el ejemplo IV.6.8. La comprobación manual sugerida en IV.5.13 se resuelve como ejercicio. Las pruebas de existencia de la descomposición están desarrolladas en las pizarras; la unicidad se enuncia en IV.6.6 y su demostración se añade explícitamente al final.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Productos directos y extensiones}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -42,9 +40,9 @@ Sean $q<p$ primos y $|G|=pq$. Si \mbox{$p\not\equiv1\pmod q$}, ambos subgrupos d
 
 Sean $P,Q$ esos subgrupos normales. Por Lagrange, $P\cap Q=\{e\}$, pues su orden divide a $p$ y a $q$. La proposición da $PQ\cong P\times Q$, de orden $pq$, así que $PQ=G$. Como $P\cong C_p$ y $Q\cong C_q$, obtenemos $G\cong C_p\times C_q\cong C_{pq}$. La última identificación se justifica porque un par de generadores tiene orden $\mcm(p,q)=pq$.
 \end{ejem}
-\begin{nota}[Corrección de la hipótesis del ejemplo]
-La página 2 supone $q<p$ y $q\not\equiv1\pmod p$, y de ahí afirma también la unicidad del $q$-subgrupo de Sylow. La congruencia que necesita excluirse es $p\equiv1\pmod q$, pues $n_q$ puede ser $p$. Por ejemplo, $S_3$ con $q=2$, $p=3$ satisface la condición escrita $2\not\equiv1\pmod3$ y no es cíclico. El ejemplo corregido coincide con el criterio de la clase 7, tras intercambiar los nombres de los primos. Además, $PQ$ se identifica con $P\times Q$ mediante $\mu$; no son literalmente el mismo conjunto.
-\end{nota}
+\begin{obs}
+Para $q<p$, la condición que excluye $n_q=p$ es $p\not\equiv1\pmod q$. La condición $q\not\equiv1\pmod p$ no basta: $S_3$, de orden $2\cdot3$, la satisface y no es cíclico.
+\end{obs}
 
 \begin{ejem}
 En $S_3$, tomemos $N=\generado{(1\,2\,3)}$ y $H=\generado{(1\,2)}$. El primero es normal, por ser $A_3$; el segundo no lo es, ya que
@@ -92,9 +90,9 @@ Si $N\trianglelefteq G$, $H\le G$, $G=NH$ y $N\cap H=\{e\}$, entonces $G$ es una
 \begin{proof}
 La restricción $\alpha:H\to G/N$, $h\mapsto hN$, es sobreyectiva: si $g=nh$, entonces $gN=h(h^{-1}nh)N=hN$, por normalidad de $N$. Su núcleo es $H\cap N=\{e\}$, por lo que es un isomorfismo. La aplicación $p=\alpha^{-1}\circ\pi:G\to H$ es sobreyectiva y tiene núcleo $N$. La inclusión $H\hookrightarrow G$ es una sección de $p$, de modo que la sucesión resultante es exacta y se escinde.
 \end{proof}
-\begin{nota}[Identificación del complemento]
-En la definición del fragmento de la página 4, identificar $H$ con un subgrupo de $G$ debe hacerse de forma compatible con la proyección de la extensión. La formulación mediante una sección lo precisa; equivale a tener un complemento $H_0$ con intersección trivial y $NH_0=G$, como acabamos de comprobar. La intersección trivial por sí sola no impone esa última igualdad.
-\end{nota}
+\begin{obs}
+Un complemento $H_0$ de $N$ debe satisfacer tanto $N\cap H_0=\{e\}$ como $NH_0=G$. La intersección trivial por sí sola no exige que ambos subgrupos generen $G$.
+\end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Construcción y reconocimiento del producto semidirecto}
@@ -188,7 +186,7 @@ Esta realización dentro de $G$ se llama \emph{producto semidirecto interno}. Si
 Si $C_3=\generado{y}$, un automorfismo está determinado por la imagen de $y$, que debe ser $y$ o $y^2$. Así $\Aut(C_3)=\{\id,\iota\}\cong C_2$, donde $\iota(y)=y^2$ y $\iota^2=\id$. Hay exactamente dos homomorfismos $C_2\to\Aut(C_3)$: el trivial y el que envía su generador a $\iota$. El primero da $C_3\times C_2\cong C_6$; el segundo da un grupo isomorfo a $S_3$.
 \end{ejem}
 \begin{ejer}[Cálculo del producto semidirecto no trivial]
-Comprobar que el producto semidirecto no trivial es $S_3$, como propone IV.5.13 en la página 9.
+Comprobar que el producto semidirecto no trivial es $S_3$.
 \end{ejer}
 \begin{sol}
 Escribamos $C_2=\generado{t}$ y elijamos $\theta_t(y)=y^{-1}$. Los seis elementos son $(y^a,t^b)$ con $a\in\{0,1,2\}$ y $b\in\{0,1\}$; su producto es
@@ -233,9 +231,6 @@ Sea $K=\generado{g}$ y elijamos $h'\notin K$. Como $G/K$ tiene orden $p$, se cum
 
 En el grupo cíclico $K$, los elementos anulados por $p^{r-1}$ son exactamente los múltiplos de $pg$: si $k=ag$ y $p^{r-1}k=0$, entonces $p^r\mid p^{r-1}a$ y $p\mid a$. Así, $ph'=pmg$ para algún entero $m$. Tomamos $h=h'-mg$. Tenemos $ph=0$, pero $h\notin K$, pues de lo contrario $h'=h+mg\in K$. En particular $h\ne0$ y su orden es exactamente $p$.
 \end{proof}
-\begin{nota}[Ajuste del cálculo del elemento de orden $p$]
-En la parte inferior de la página 10, la igualdad que se necesita es $ph'=pmg$, no sólo expresar $ph'$ como un múltiplo cualquiera de $g$. Se ha justificado que $ph'\in pK$ usando la no ciclicidad. Esto incluye el caso $ph'=0$ y permite concluir $p(h'-mg)=0$ sin suponer que $h'$ tenga orden máximo.
-\end{nota}
 
 \begin{lema}\label{lema:C10-factor-maximo}
 Sea $G$ un $p$-grupo abeliano finito y $g\in G$ un elemento de orden máximo. Existe $L\le G$ con
@@ -315,12 +310,12 @@ es inyectivo: su núcleo exige $a\mid x$ y $b\mid x$, y por coprimalidad $ab\mid
 
 Por último, cualquier lista de factores invariantes puede descomponerse por sus potencias primas usando el mismo isomorfismo. La divisibilidad obliga a que, para cada primo, los exponentes estén ordenados de menor a mayor; los ceros sólo pueden preceder a los positivos. Como $d_1>1$, algún primo aparece en todos los $s$ factores, así que $s$ es necesariamente la máxima longitud de las listas primarias. La unicidad ya probada de esas listas determina cada columna y, por tanto, cada $d_j$.
 \end{proof}
-\begin{nota}[Prueba añadida de unicidad]
-El teorema IV.6.6 se enuncia en la página 13 con ambas unicidades, pero estas páginas sólo desarrollan la existencia de factores cíclicos. La prueba mediante $p^{k-1}P/p^kP$ y la conversión entre las dos formas se añaden para completar ese enunciado. Los factores se determinan como tipos de isomorfismo; no se afirma que los subgrupos concretos de una descomposición sean únicos.
-\end{nota}
+\begin{obs}[Sentido de la unicidad]
+La unicidad determina los tipos de isomorfismo de los factores y sus multiplicidades. Los subgrupos concretos elegidos para una descomposición no tienen por qué ser únicos.
+\end{obs}
 
 \begin{ejem}[Los seis grupos abelianos de orden $360$]
-Como $360=2^3\cdot3^2\cdot5$, los exponentes para la parte de $2$ tienen las tres particiones $[3]$, $[2,1]$, $[1,1,1]$; para la de $3$, las dos particiones $[2]$, $[1,1]$; para la de $5$ sólo está $[1]$. Hay, pues, $3\cdot2\cdot1=6$ posibilidades. La tabla reúne las seis tablas de divisores elementales de la página 14 y sus factores invariantes:
+Como $360=2^3\cdot3^2\cdot5$, los exponentes para la parte de $2$ tienen las tres particiones $[3]$, $[2,1]$, $[1,1,1]$; para la de $3$, las dos particiones $[2]$, $[1,1]$; para la de $5$ sólo está $[1]$. Hay, pues, $3\cdot2\cdot1=6$ posibilidades. La tabla reúne las seis posibilidades y sus factores invariantes:
 \[
 \begin{array}{c|c|c|c}
 \text{parte de }2&\text{parte de }3&\text{parte de }5&\text{factores invariantes}\\\hline
@@ -339,6 +334,7 @@ C_3\oplus C_{120},\qquad C_6\oplus C_{60},\qquad C_2\oplus C_6\oplus C_{30}.
 \end{gather*}
 Cada lista tiene producto $360$ y cada término divide al siguiente.
 \end{ejem}
-\begin{obs}[Anotación administrativa de la fuente]
-Al final de la página 14 se anota: «Examen: 6 octubre, 2--4 pm. Salón D-702». Se conserva como información histórica de la pizarra, sin convertirla en una fecha de clase adicional.
+
+\begin{obs}[Referencias de lectura]
+Para extensiones, productos semidirectos y clasificación abeliana, véase \citet[cap.~IV, 5.1--3/5--13, 6.1--6 y ejemplo 6.8]{aluffi2009}. El ejemplo del producto semidirecto corresponde al ejercicio IV.5.13.
 \end{obs}

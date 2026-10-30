@@ -1,8 +1,6 @@
 % Fuente única de clase: Recursos/2025-08-21.pdf, páginas 1--15.
 En la clase 4 construimos el grupo abeliano libre como una suma directa de copias de $\mathbb Z$. Estudiamos después los subgrupos, el núcleo y la imagen, los subgrupos generados y los subgrupos de un grupo cíclico. Cerramos con la caracterización de los monomorfismos de grupos.
 
-Los fragmentos originales de \citet{aluffi2009} incluidos en las pizarras permiten localizar la definición II.6.1, la proposición II.6.2, los lemas II.6.3--4 y la propiedad universal del núcleo, proposición II.6.6. Las páginas 11--13 desarrollan las proposiciones II.6.9 y II.6.11 sobre subgrupos cíclicos; aquí se conservan sus argumentos y el ejemplo módulo $12$. Son resultados demostrados, sin ejercicios adicionales propuestos en este archivo.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Grupos abelianos libres}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -201,9 +199,6 @@ h=qd+r,\qquad 0\le r<d.
 \]
 Pero $r=h-qd\in H$; la minimalidad de $d$ fuerza $r=0$, de modo que $h\in d\mathbb Z$. La unicidad se sigue de que, para $d>0$, éste es el menor elemento positivo de $d\mathbb Z$.
 \end{proof}
-\begin{nota}
-En la página 11 de la pizarra se usa $\min(H\cap\mathbb N)$ y se escribe el resto como elemento de $\mathbb Z$. Precisamos que se toma el mínimo de los elementos \emph{positivos} de $H$, y que el resto pertenece a $H$; esa pertenencia es la que permite invocar la minimalidad.
-\end{nota}
 
 \begin{prop}\label{prop:C4-subgrupos-Zn}
 Si $n>0$ y $H\le\mathbb Z/n\mathbb Z$, existe un único divisor positivo $d$ de $n$ tal que $H=\generado{[d]_n}$.
@@ -269,3 +264,7 @@ Por tanto $g_1g_2^{-1}=e_G$ y $g_1=g_2$: la función es inyectiva.
 
 Finalmente, si $\varphi$ es inyectivo y $\alpha,\beta:K\to G$ satisfacen $\varphi\circ\alpha=\varphi\circ\beta$, para cada $k\in K$ se tiene $\varphi(\alpha(k))=\varphi(\beta(k))$. La inyectividad da $\alpha(k)=\beta(k)$ para todo $k$. Por tanto, $\alpha=\beta$, lo que prueba la cancelación requerida.
 \end{proof}
+
+\begin{obs}[Referencias de lectura]
+Para grupos abelianos libres, subgrupos, núcleos y subgrupos cíclicos, véase \citet[cap.~II, 6.1--4, 6.6, 6.9 y 6.11]{aluffi2009}.
+\end{obs}

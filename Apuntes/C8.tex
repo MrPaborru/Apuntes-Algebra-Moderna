@@ -1,8 +1,6 @@
 % Fuente única de clase: Recursos/2025-09-11.pdf, páginas 1--16.
 En la clase 8 estudiamos series normales y factores simples. El teorema de Jordan--Hölder permite comparar las series de composición; después, los conmutadores proporcionan un criterio para reconocer grupos resolubles.
 
-Los fragmentos originales de \citet{aluffi2009} reproducidos en las pizarras contienen la definición IV.3.1, el teorema IV.3.2, el ejemplo IV.3.3 y las proposiciones IV.3.4--5; para conmutadores y resolubilidad, IV.3.6--13. Estos localizadores se cotejaron en los fragmentos, sin consulta del libro completo. Se desarrollan sus demostraciones y se identifican los pasos añadidos para justificar el uso de correspondencias e isomorfismos.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Series normales y teorema de Jordan--Hölder}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -42,9 +40,6 @@ Para el segundo punto, $ba=a(a^{-1}ba)\in AB$ y $a^{-1}ba\in B$, así que los pr
 
 Finalmente, $kN\mapsto kL$ define un homomorfismo sobreyectivo $K/N\to K/L$: está bien definido porque $N\subseteq L$. Su núcleo es $L/N$, y se aplica otra vez el primer teorema de isomorfismo.
 \end{proof}
-\begin{nota}[Complemento sobre cocientes]
-Las páginas 2--5 y 8--11 utilizan estas correspondencias, el segundo teorema de isomorfismo y el tercer teorema de isomorfismo. Sus pruebas se añaden aquí para justificar los levantamientos de subgrupos y las identificaciones de factores.
-\end{nota}
 
 \begin{prop}\label{prop:C8-existencia}
 Todo grupo finito tiene una serie de composición. Además, toda serie normal de longitud máxima es de composición.
@@ -59,7 +54,6 @@ G_i>L>G_{i+1},\qquad L\trianglelefteq G_i,
 \]
 Insertar $L$ daría una serie normal más larga. Por tanto todos sus factores son simples.
 \end{proof}
-El argumento de maximalidad de la página 3 se ha completado comprobando también que el término final debe ser trivial.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Unicidad de los factores}
@@ -86,9 +80,6 @@ El núcleo de $\varphi_i$ es $N\cap G_{i+1}$. Su imagen es normal en $G_i/G_{i+1
 \]
 es trivial o simple. Al suprimir igualdades, todos los factores restantes son simples; los extremos son $N$ y $\{e\}$.
 \end{proof}
-\begin{nota}[Paso completado en la intersección]
-En la página 5 se toma una serie de composición de $G_1\cap G'_1$ intersectando una serie y suprimiendo repeticiones. El lema anterior justifica ese paso mediante el argumento desarrollado en las páginas 9--10: la normalidad de la imagen permite aplicar la simplicidad del cociente.
-\end{nota}
 
 \begin{teo}[Jordan--Hölder]\label{teo:C8-jh}
 Dos series de composición de un mismo grupo son equivalentes.
@@ -118,9 +109,9 @@ Sus dos primeros factores están intercambiados hasta isomorfismo; los restantes
 
 En $G_1$, comparamos la cola original, de longitud $n-1$, con $G_1>K>\cdots>\{e\}$. Por inducción son equivalentes, y $n-1=r+1$. En particular $r+1<n$, así que podemos aplicar la misma hipótesis en $G'_1$, comparando su serie a través de $K$, de longitud $r+1$, con la cola de la segunda serie original. Resulta $m-1=r+1=n-1$, y los factores coinciden con sus multiplicidades. El intercambio de los dos primeros factores completa la comparación en $G$.
 \end{proof}
-\begin{nota}[Equivalencia de series]
-En la página 6 se habla de series «iguales» después de aplicar inducción. Se trata de equivalencia de sus factores, no de igualdad de sus subgrupos. También se hace explícito por qué la segunda aplicación inductiva tiene longitud menor que $n$.
-\end{nota}
+\begin{obs}
+La equivalencia de series compara sus factores salvo isomorfismo y reordenamiento; no exige que sus subgrupos sean iguales.
+\end{obs}
 En un grupo finito, la \cref{prop:C8-existencia} y Jordan--Hölder muestran que todas las series de composición tienen longitud $\ell(G)$. Si un grupo cualquiera admite una serie de composición, también escribiremos $\ell(G)$ para su longitud, bien definida por el teorema.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -179,9 +170,9 @@ El dominio de $\bar\psi_i$ es simple. Su núcleo es todo el dominio o trivial; p
 
 Aplicando ahora la primera parte a las series obtenidas, construimos una serie de $G$ cuyos factores son la unión de ambas listas. Jordan--Hölder la compara con la serie original y da tanto la igualdad de longitudes como la afirmación sobre los factores.
 \end{proof}
-\begin{nota}[Propiedad universal utilizada]
-La página 11 llama «propiedad universal del núcleo» al paso que produce $\bar\psi_i$. La factorización por $G_i/G_{i+1}$ utiliza la propiedad universal del \emph{cociente}, puesto que $G_{i+1}\subseteq\ker\psi_i$.
-\end{nota}
+\begin{obs}
+La inclusión $G_{i+1}\subseteq\ker\psi_i$ permite factorizar $\psi_i$ por $G_i/G_{i+1}$ mediante la propiedad universal del cociente.
+\end{obs}
 
 \begin{defi}
 Un \emph{refinamiento} de una serie normal se obtiene insertando subgrupos, conservando los términos originales y la normalidad sucesiva.
@@ -208,9 +199,9 @@ G'=[G,G]=\generado{[g,h]\given g,h\in G}.
 Un subgrupo es \emph{característico} si lo preserva todo automorfismo de $G$; es \emph{plenamente invariante} si lo preserva todo endomorfismo de $G$.
 \end{defi}
 La igualdad $[g,h]=e$ equivale a $gh=hg$. En particular, $G$ es abeliano si y sólo si $G'=\{e\}$.
-\begin{nota}[Dos precisiones de definición]
-En la página 12 se escribe $G'$ como el conjunto de conmutadores; la definición del fragmento original es el \emph{subgrupo generado} por ellos, es decir, los productos finitos de conmutadores y sus inversos. En la página 13 se denomina característico al subgrupo preservado por todo endomorfismo. Reservamos ese requisito más fuerte para «plenamente invariante» y usamos automorfismos en la definición de característico. Ambos requisitos implican normalidad, pues incluyen las conjugaciones internas.
-\end{nota}
+\begin{obs}
+El conmutador $G'$ es el subgrupo generado por los conmutadores, por lo que contiene sus productos finitos e inversos. Un subgrupo es característico si lo preservan todos los automorfismos; si lo preservan todos los endomorfismos, es plenamente invariante. Ambas propiedades implican normalidad, pues incluyen las conjugaciones internas.
+\end{obs}
 
 \begin{lema}\label{lema:C8-conmutadores}
 Para un homomorfismo $\varphi:G\to H$ se cumple
@@ -237,7 +228,7 @@ G^{\mathrm{ab}} \arrow[rr,dashed,destacado,"\bar\alpha"'] && A.
 \]
 Explícitamente, $\bar\alpha(gG')=\alpha(g)$; la inclusión del núcleo asegura que no depende del representante y la sobreyectividad de $\pi$ asegura su unicidad.
 \end{proof}
-La categoría considerada en la página 12 tiene objetos $\alpha:G\to A$ con $A$ abeliano, y flechas $\varphi:A\to B$ que satisfacen $\varphi\alpha=\beta$. Sus triángulos tienen la forma
+Consideremos la categoría cuyos objetos son los homomorfismos $\alpha:G\to A$ con $A$ abeliano, y cuyas flechas $\varphi:A\to B$ satisfacen $\varphi\alpha=\beta$. Sus triángulos tienen la forma
 \[
 \begin{tikzcd}[column sep=large]
 & G \arrow[dl,"\alpha"'] \arrow[dr,"\beta"] & \\
@@ -275,24 +266,25 @@ G^{(i+1)}=(G^{(i)})'\subseteq G_i'\subseteq G_{i+1}.
 \]
 Concluimos $G^{(n)}\subseteq G_n=\{e\}$. Este último argumento no necesita finitud.
 \end{proof}
-\begin{nota}[Errata en el cociente inicial]
-En el fragmento de prueba de la página 15 se lee $G'/G_1$ conmutativo. El cociente supuesto abeliano es $G/G_1$; de su proyección se deduce $G'\subseteq G_1$. El cociente $G'/G_1$ ni siquiera está definido si aún no se conoce la inclusión contraria.
-\end{nota}
 
 \begin{ejem}
 Todo $p$-grupo finito es resoluble. Sus factores de composición son $p$-grupos simples. El centro de un $p$-grupo no trivial es no trivial; si además es simple, su centro debe ser todo el grupo. Es entonces simple abeliano, y por el argumento anterior tiene orden $p$. Todos los factores son, por tanto, cíclicos.
 \end{ejem}
 
+\begin{samepage}
 \begin{coro}\label{coro:C8-extension-resoluble}
 Si $N\trianglelefteq G$, entonces $G$ es resoluble si y sólo si lo son $N$ y $G/N$. Todo subgrupo de un grupo resoluble es resoluble.
 \end{coro}
 \begin{proof}
-Para grupos finitos, la primera afirmación se deduce de la \cref{prop:C8-factores-normal} y del criterio de factores cíclicos. Damos además el argumento por series derivadas, válido sin finitud, para conservar el alcance del enunciado de la página 16.
-
-Si $\pi:G\to G/N$ es la proyección, la sobreyectividad y la fórmula de conmutadores implican $\pi(G')=(G/N)'$: todo generador del segundo grupo se levanta a un conmutador del primero. Inductivamente, $\pi(G^{(i)})=(G/N)^{(i)}$. También, para cualquier subgrupo $H\le G$, la inclusión induce $H^{(i)}\subseteq G^{(i)}$. Si $G$ es resoluble, estas dos relaciones prueban que lo son $G/N$ y todo $H$, incluido $N$.
+En el caso finito bastan la \cref{prop:C8-factores-normal} y el criterio de factores cíclicos. Para el caso general, sea $\pi:G\to G/N$ la proyección. Como todo conmutador del cociente se levanta a uno de $G$, se tiene $\pi(G')=(G/N)'$ e, inductivamente, $\pi(G^{(i)})=(G/N)^{(i)}$. Para $H\le G$, la inclusión da $H^{(i)}\subseteq G^{(i)}$. Por tanto, si $G$ es resoluble, también lo son $G/N$ y todo $H$, incluido $N$.
 
 Si $(G/N)^{(a)}=\{e\}$ y $N^{(b)}=\{e\}$, la igualdad de imágenes da $G^{(a)}\subseteq N$. Por consiguiente $G^{(a+b)}\subseteq N^{(b)}=\{e\}$, y $G$ es resoluble.
 \end{proof}
-\begin{nota}[Alcance del último fragmento]
-La página 16 menciona el teorema de Feit--Thompson: todo grupo finito de orden impar es resoluble. Se conserva como referencia contextual del fragmento; no se desarrolla su prueba, que no forma parte de estas pizarras. La prueba por series derivadas del corolario anterior es un complemento para el caso no necesariamente finito.
-\end{nota}
+\begin{obs}[Teorema de Feit--Thompson]
+Todo grupo finito de orden impar es resoluble. Enunciamos este teorema sin demostración.
+\end{obs}
+
+\begin{obs}[Referencias de lectura]
+Para Jordan--Hölder, conmutadores y resolubilidad, véase \citet[cap.~IV, 3.1--13]{aluffi2009}.
+\end{obs}
+\end{samepage}

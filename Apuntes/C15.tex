@@ -25,7 +25,7 @@ El anillo $R=\mathbb Z[x_1,x_2,\ldots]$, con infinitas indeterminadas, es genera
 \end{ejem}
 
 \begin{ejer}[Un submódulo que no es finitamente generado]\label{ejer:C15-infinitas}
-Demostrar que $I=(x_1,x_2,\ldots)$ no es finitamente generado como $R$-módulo. Es la comprobación III.6.14 citada en la página 1.
+Demostrar que $I=(x_1,x_2,\ldots)$ no es finitamente generado como $R$-módulo.
 \end{ejer}
 \begin{sol}
 Supongamos que $I=(f_1,\ldots,f_s)$. Entre los $f_i$ aparecen sólo finitamente muchas variables; elegimos $x_j$ distinta de todas ellas. Cada $f_i\in I$ tiene término constante cero. Evaluemos todas las variables salvo $x_j$ en cero, conservando $x_j$ como indeterminada. Este homomorfismo $R\to\mathbb Z[x_j]$ envía cada $f_i$ a cero, de modo que anula el ideal que generan. Pero no anula $x_j$, que también debería pertenecer a ese ideal. Es una contradicción.
@@ -61,9 +61,6 @@ x=\sum_i r_ik_i+\sum_j s_j\ell_j.
 \]
 Por tanto, $K=\ang{k_1,\ldots,k_t,\ell_1,\ldots,\ell_s}$. Como $K$ era arbitrario, $M$ es noetheriano.
 \end{proof}
-\begin{nota}[Conclusión de la vuelta]
-La última línea manuscrita de la prueba en la página 3 concluye «$N$ es noetheriano». Eso ya era una hipótesis; el argumento prueba que \emph{$M$ es noetheriano}, porque todo submódulo $K$ de $M$ acaba de resultar finitamente generado.
-\end{nota}
 
 \begin{coro}\label{coro:C15-finito-noetheriano}
 Sea $R$ un anillo conmutativo noetheriano. Todo módulo sobre $R$ que admita un conjunto finito de generadores es también noetheriano.
@@ -78,9 +75,6 @@ Una sucesión de módulos es \emph{exacta} en un término cuando la imagen de la
 \xrightarrow{\psi}P\longrightarrow0,
 \]
 $\varphi$ es inyectivo, $\psi$ es sobreyectivo y $\im\varphi=\ker\psi$. Por el primer isomorfismo, $N\cong\im\varphi$ y $P\cong M/\im\varphi$. Así, la \cref{prop:C15-extension} equivale a que $M$ sea noetheriano si y sólo si lo son los dos extremos $N,P$.
-\begin{nota}[Identificación del núcleo en una sucesión]
-En la página 6, la aplicación con dominio $M$ y destino $P$ es $\psi$, así que el cociente que da $P$ es $M/\ker\psi$, no $M/\ker\varphi$ como aparece en una línea manuscrita. La expresión posterior $M/N$ supone identificar $N$ con su imagen mediante $\varphi$.
-\end{nota}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cadenas ascendentes y elementos maximales}
@@ -101,9 +95,9 @@ Para (ii)$\Rightarrow$(iii), si una familia no vacía no tuviera maximal, podrí
 
 Para (iii)$\Rightarrow$(i), fijemos un submódulo \emph{arbitrario} $K\subseteq M$. La familia de sus submódulos finitamente generados es no vacía, porque contiene cero. Sea $L=\ang{a_1,\ldots,a_s}$ un maximal en esa familia. Para cualquier $x\in K$, $L+Rx=\ang{a_1,\ldots,a_s,x}$ también pertenece a ella y contiene $L$, luego es $L$. Así $x\in L$, con lo que $K=L$ es finitamente generado. Esto vale para todo $K$ y prueba (i).
 \end{proof}
-\begin{nota}[Aplicar maximalidad en cada submódulo]
-La página 8 aplica el último argumento a los submódulos finitamente generados de $M$ y obtiene que $M$ es finitamente generado. Para concluir que es \emph{noetheriano}, hay que repetirlo dentro de cada $K\subseteq M$, como se hizo arriba; demostrar sólo la generación finita de $M$ no basta, por el \cref{ejer:C15-infinitas}.
-\end{nota}
+\begin{obs}
+La generación finita de $M$ no implica su noetherianidad. Hay que probar la generación finita de cada submódulo, como ilustra el \cref{ejer:C15-infinitas}.
+\end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Álgebras finitas y teorema de Hilbert}
@@ -132,9 +126,9 @@ Todo $s\in S$ se escribe $s=\sum_i\alpha(r_i)a_i=\varphi(\sum_i r_ix_i)$, así q
 \begin{ejem}
 Si $R\ne0$, $R[x]$ es de tipo finito, generado como álgebra por $x$, pero no es finito como módulo. Si unos polinomios $f_1,\ldots,f_s$ lo generaran como módulo, habría una cota $d$ para sus grados. Toda combinación con coeficientes en $R$ tendría grado a lo sumo $d$, mientras que $x^{d+1}$ tiene coeficiente principal $1_R\ne0$. No se puede generar así. Si no hubiera generadores no nulos, ni siquiera se generaría $1_R$.
 \end{ejem}
-\begin{nota}[Excepción del anillo cero]
-El ejemplo de la página 4 requiere $R\ne0$. Si $R=0$, también $R[x]=0$ y sí es finitamente generado como módulo. La condición se explicita para mantener la convención unitaria de estas notas.
-\end{nota}
+\begin{obs}
+Si $R=0$, también $R[x]=0$ y es finitamente generado como módulo. La hipótesis $R\ne0$ es necesaria para el ejemplo anterior.
+\end{obs}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{El ideal de coeficientes principales}
@@ -146,7 +140,7 @@ A=\{0\}\cup\set{a\in R\given
 a\text{ es coeficiente principal de algún }f\in I,\ f\ne0}.
 \]
 \begin{ejer}[Coeficientes principales de un ideal]\label{ejer:C15-principales}
-Probar que $A$ es un ideal de $R$, como propone el ejercicio V.1.6 citado en la página 8.
+Probar que $A$ es un ideal de $R$.
 \end{ejer}
 \begin{sol}
 Contiene cero. Si $a,b\ne0$ son coeficientes principales de $f,g\in I$ de grados $m,n$, elegimos $d=\max(m,n)$. El polinomio $x^{d-m}f-x^{d-n}g$ pertenece a $I$ y su coeficiente de grado $d$ es $a-b$. Si éste no es cero, es su coeficiente principal; si es cero, ya pertenece a $A$ por definición. Cuando uno de $a,b$ es cero se usa $f$ o $-g$. Así, $A$ es subgrupo aditivo.
@@ -164,7 +158,7 @@ Si $R$ es un anillo conmutativo noetheriano, también lo es $R[x]$. En consecuen
 \begin{proof}
 Sea $I$ un ideal de $R[x]$. Si $I=0$, ya es principal. En otro caso, el ideal $A$ del ejercicio anterior es no nulo y, por noetherianidad, admite generadores no nulos $a_1,\ldots,a_t$. Elegimos $f_i\in I$ con coeficiente principal $a_i$, ponemos $d_i=\deg f_i$ y $d=\max_i d_i$.
 
-El módulo $L=\ang{1,x,\ldots,x^{d-1}}\subseteq R[x]$ consiste en los polinomios de grado menor que $d$. Es finitamente generado y, por el \cref{coro:C15-finito-noetheriano}, es noetheriano como $R$-módulo. Por tanto, $L\cap I$ tiene generadores $g_1,\ldots,g_s$ como módulo. Si $d=0$, $L=0$ y esta lista es vacía. Afirmamos, como en V.1.4 de la pizarra, que
+El módulo $L=\ang{1,x,\ldots,x^{d-1}}\subseteq R[x]$ consiste en los polinomios de grado menor que $d$. Es finitamente generado y, por el \cref{coro:C15-finito-noetheriano}, es noetheriano como $R$-módulo. Por tanto, $L\cap I$ tiene generadores $g_1,\ldots,g_s$ como módulo. Si $d=0$, $L=0$ y esta lista es vacía. Afirmamos que
 \[
 I=(f_1,\ldots,f_t,g_1,\ldots,g_s)
 \]
@@ -191,7 +185,7 @@ La última afirmación no dice que $S$ sea noetheriano como $R$-módulo: por eje
 \subsection{Panorama de la factorización}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % P05: portada del capítulo V y esquema orientativo.
-La página 5 abre el capítulo V del libro con un esquema de clases de dominios. Lo conservamos como orientación: los rótulos «con factorización», «DFU» y «euclidiano» se precisan en la clase 16. La figura anuncia las relaciones que motivan ese estudio; no sustituye sus demostraciones.
+El esquema siguiente organiza las clases de dominios. Los rótulos «con factorización», «DFU» y «euclidiano» se precisan en la clase 16, donde se estudian sus relaciones.
 \input{Figuras/Dominios}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,7 +193,7 @@ La página 5 abre el capítulo V del libro con un esquema de clases de dominios.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % P10.
 \begin{defi}
-En un anillo conmutativo, $a$ \emph{divide} a $b$, escrito $a\mid b$, si existe $c\in R$ con $b=ac$, es decir, si $b\in(a)$. Dos elementos son \emph{asociados} si $(a)=(b)$, equivalentemente, si cada uno divide al otro.
+En un anillo conmutativo, $a$ \emph{divide} a $b$, escrito $a\mid b$, si existe $c\in R$ con $b=ac$, es decir, si $b\in(a)$. Dos elementos son \emph{asociados} si $(a)=(b)$, es decir, si se dividen mutuamente.
 \end{defi}
 La divisibilidad es reflexiva y transitiva por las identidades $a=a1$ y $b=ac$, $d=be\Rightarrow d=a(ce)$. Además, $a\mid b$ equivale a $(b)\subseteq(a)$, de modo que la dirección de inclusión de ideales es opuesta a la divisibilidad.
 
@@ -217,7 +211,7 @@ a\mid bc\quad\Longrightarrow\quad a\mid b\ \text{o}\ a\mid c.
 \]
 Es \emph{irreducible} si no es unidad y toda factorización $a=bc$ tiene al menos un factor unidad.
 \end{defi}
-La equivalencia para primos es la \cref{prop:C13-criterios}. Esta convención del fragmento permite que $0$ sea primo en un dominio, porque $(0)$ es primo. En cambio, $0$ no es irreducible: $0=0\cdot0$ y ninguno de esos factores es unidad en un dominio no nulo. Por eso se exigirá explícitamente «primo no nulo» al comparar ambas nociones.
+La equivalencia para primos es la \cref{prop:C13-criterios}. Esta convención permite que $0$ sea primo en un dominio, porque $(0)$ es primo. En cambio, $0$ no es irreducible: $0=0\cdot0$ y ninguno de esos factores es unidad en un dominio no nulo. Por eso se exigirá explícitamente «primo no nulo» al comparar ambas nociones.
 
 \begin{ejer}[Irreducibilidad e ideales principales]\label{ejer:C15-irreducible}
 Para un elemento no nulo y no unidad $a$ de un dominio, demostrar que las condiciones siguientes equivalen a su irreducibilidad:
@@ -226,7 +220,7 @@ Para un elemento no nulo y no unidad $a$ de un dominio, demostrar que las condic
 \item Si $a=bc$, entonces $(a)=(b)$ o $(a)=(c)$.
 \item Si $(a)\subseteq(b)$, entonces $(b)=(a)$ o $(b)=R$.
 \end{enumerate}
-Así, $(a)$ es maximal entre los ideales principales propios. La tercera formulación es la comprobación V.1.12 citada en la página 10.
+Así, $(a)$ es maximal entre los ideales principales propios.
 \end{ejer}
 \begin{sol}
 Si $a$ es irreducible y $a=bc$, uno de los factores es unidad. Si $c$ es unidad, $a$ es asociado de $b$; si $b$ es unidad, es asociado de $c$. Recíprocamente, si por ejemplo $a=ub$ con $u$ unidad y también $a=bc$, cancelar $b\ne0$ da $c=u$. Así, (i) implica irreducibilidad. La equivalencia entre (i) y (ii) es la definición de asociados.
@@ -234,6 +228,6 @@ Si $a$ es irreducible y $a=bc$, uno de los factores es unidad. Si $c$ es unidad,
 Si $a$ es irreducible y $(a)\subseteq(b)$, escribimos $a=bc$. Si $c$ es unidad, $(a)=(b)$; si $b$ es unidad, $(b)=R$. Esto prueba (iii). Para la vuelta, de $a=bc$ obtenemos $(a)\subseteq(b)$. Si $(b)=R$, $b$ es unidad. Si $(b)=(a)$, existe $d$ con $b=ad$, y $a=adc$; cancelar $a\ne0$ da $dc=1$, por lo que $c$ es unidad. Finalmente, (iii) dice exactamente que ningún ideal principal propio contiene estrictamente a $(a)$.
 \end{sol}
 
-\begin{obs}[Orientación bibliográfica]
-Se consultaron los fragmentos originales de \citet{aluffi2009}: III.6.4--5, ejemplo III.6.5, definición III.6.6, proposición III.6.7, corolario III.6.8 y ejemplo III.6.9; la apertura del capítulo V; la proposición V.1.1, el teorema V.1.2, el lema V.1.3 y la afirmación V.1.4; el apartado V.1.2, lema V.1.5 y definición V.1.6. Se resuelven las comprobaciones III.6.14, V.1.6 y V.1.12 remitidas por los fragmentos. El caso del ideal cero y el de grado máximo cero se incorporan a la prueba de Hilbert. Las referencias explícitas a III.4 y III.6 en estas páginas permiten además corregir los números de capítulo que se habían atribuido erróneamente en clases anteriores.
+\begin{obs}[Referencias de lectura]
+Para noetherianidad y álgebras finitas, véase \citet[cap.~III, 6.4--9]{aluffi2009}; para Hilbert e irreducibilidad, el cap.~V, 1.1--6. Los ejercicios corresponden a III.6.14, V.1.6 y V.1.12.
 \end{obs}
