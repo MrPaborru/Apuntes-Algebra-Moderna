@@ -16,6 +16,8 @@ Apuntes en español para consultar y estudiar los fundamentos de grupos, anillos
 
 [Información, temario y materiales del curso](https://www.cimat.mx/~luis.leon/es/cursos/algebra-moderna-cimat/).
 
+Las tareas del curso están en el repositorio [Tareas de Álgebra Moderna](https://github.com/MrPaborru/Tareas-Algebra-Moderna).
+
 ## Contenido
 
 Los apuntes comprenden **27 clases**, del **12 de agosto al 27 de noviembre de 2025**, organizadas en capítulos fechados.
@@ -55,6 +57,6 @@ En PowerShell también puede utilizarse:
 .\Compilar.ps1
 ```
 
-La compilación actualiza `build/main.pdf` cuando termina correctamente. Para eliminar los auxiliares, ejecutar `latexmk -c main.tex` o `.\Compilar.ps1 -Limpiar`.
+La compilación guarda los archivos auxiliares en `build/aux/` y actualiza `build/main.pdf` cuando termina correctamente. Para eliminar los auxiliares, ejecutar `latexmk -c main.tex` o `.\Compilar.ps1 -Limpiar`.
 
 La configuración del formato, la paleta y los comandos matemáticos se describe en [Personalizacion/README.md](Personalizacion/README.md).
