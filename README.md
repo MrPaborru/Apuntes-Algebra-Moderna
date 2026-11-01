@@ -28,9 +28,11 @@ Los apuntes se organizan en **cinco capítulos numerados**, comenzando por Preli
 | 2. Teoría de grupos | Grupos y homomorfismos; grupos libres, subgrupos y cocientes; permutaciones y acciones; Cauchy y Sylow; composición, simplicidad y resolubilidad; productos y clasificación abeliana. |
 | 3. Teoría de anillos | Anillos y álgebras; polinomios y propiedades universales; ideales y cocientes; primos y maximales; factorización, dominios principales y Euclides; fracciones, Gauss e irreducibilidad. |
 | 4. Teoría de módulos | Módulos, cocientes y exactitud; módulos libres, bases y torsión; noetherianidad e Hilbert; clasificación sobre dominios de ideales principales y forma de Smith. |
-| 5. Teoría de campos y de Galois | Extensiones simples y algebraicas; clausuras y normalidad; separabilidad y elemento primitivo; campos fijos y correspondencia de Galois; campos finitos y discriminantes. |
+| 5. Teoría de Galois | Extensiones simples y algebraicas; clausuras y normalidad; separabilidad y elemento primitivo; campos fijos y correspondencia de Galois; campos finitos y discriminantes. |
 
 Los **211 resultados numerados** comparten un contador por capítulo y los **45 ejercicios resueltos** tienen su propio contador por capítulo. Cada ejercicio incluye su solución completa inmediatamente después del enunciado. Las definiciones y los ejemplos se numeran por sección. Las orientaciones bibliográficas cierran cada capítulo.
+
+El índice general enlaza capítulos, secciones y subsecciones. Cada apertura de capítulo incluye además un miniíndice con enlaces a sus secciones.
 
 El orden sigue las dependencias de las demostraciones: los grupos libres preceden a la generación de subgrupos; las álgebras y la propiedad universal de polinomios se introducen en anillos; el teorema de Hilbert y sus aplicaciones aparecen después de los módulos noetherianos.
 
@@ -42,6 +44,8 @@ El orden sigue las dependencias de las demostraciones: los grupos libres precede
 ## Fuentes y compilación
 
 El documento principal es `main.tex`. Los fuentes se organizan por temas en `Apuntes/Preliminares/`, `Apuntes/Grupos/`, `Apuntes/Anillos/`, `Apuntes/Modulos/` y `Apuntes/Campos/`, las figuras vectoriales en `Figuras/`, la portada en `Portada/` y la bibliografía en `Referencias.bib`. Las fuentes LaTeX necesarias para reproducir el documento están incluidas en el repositorio.
+
+`Apuntes/Cuerpo.tex` establece los capítulos y el orden de lectura de sus archivos temáticos. Cada carpeta de capítulo incluye un `bibliografia.tex` con sus orientaciones de lectura. `Personalizacion/` reúne el formato, los contadores, la notación y las referencias; `Personalizacion/Respaldos/Titulos-2026-10-31/` conserva el diseño anterior de las aperturas y su muestra PDF.
 
 Se necesita una distribución TeX con **pdfLaTeX, latexmk, Perl y BibTeX**, además de los paquetes utilizados en el preámbulo. La tipografía utiliza **NewTX**, **LXfonts** para `\mathbb` y **eucal** para `\mathcal`. Los diagramas se componen con TikZ y `tikz-cd`.
 
