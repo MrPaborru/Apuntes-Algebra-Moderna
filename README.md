@@ -20,19 +20,19 @@ Las tareas del curso están en el repositorio [Tareas de Álgebra Moderna](https
 
 ## Contenido
 
-Los apuntes comprenden **27 clases**, del **12 de agosto al 27 de noviembre de 2025**, organizadas en capítulos fechados.
+Los apuntes se organizan en **cinco capítulos numerados**, comenzando por Preliminares.
 
-| Clases | Temas |
+| Bloque | Contenido |
 | --- | --- |
-| 1–5 | Conjuntos, funciones y categorías; grupos, simetrías, productos, grupos libres, subgrupos, cocientes y primer teorema de isomorfismo. |
-| 6–10 | Acciones y ecuación de clases; Cauchy y Sylow; Jordan–Hölder, resolubilidad, grupos simétricos y alternantes; productos semidirectos y clasificación de grupos abelianos finitos. |
-| 11–14 | Anillos, polinomios, ideales y cocientes; característica, ideales primos y maximales; módulos, álgebras, submódulos y construcciones libres. |
-| 15–19 | Noetherianidad y teorema de Hilbert; divisibilidad y factorización; dominios euclidianos, Zorn, contenido y lema de Gauss; fracciones, raíces, extensiones e irreducibilidad. |
-| 20–22 | Bases, dimensión, rango y torsión; clasificación de módulos sobre un DIP y forma de Smith; extensiones simples, polinomios mínimos y automorfismos de campos. |
-| 23–25 | Extensiones algebraicas y fórmula de la torre; clausuras algebraicas, campos de descomposición y normalidad; separabilidad, Frobenius y campos perfectos. |
-| 26–27 | Grado separable y elemento primitivo; campos fijos y correspondencia de Galois; campos finitos, discriminantes, ejemplos cúbicos y grupos cociente. |
+| 1. Preliminares | Conjuntos y lógica; equivalencias, funciones y cocientes; categorías y propiedades universales; orden, Zorn y elección. |
+| 2. Teoría de grupos | Grupos y homomorfismos; grupos libres, subgrupos y cocientes; permutaciones y acciones; Cauchy y Sylow; composición, simplicidad y resolubilidad; productos y clasificación abeliana. |
+| 3. Teoría de anillos | Anillos y álgebras; polinomios y propiedades universales; ideales y cocientes; primos y maximales; factorización, dominios principales y Euclides; fracciones, Gauss e irreducibilidad. |
+| 4. Teoría de módulos | Módulos, cocientes y exactitud; módulos libres, bases y torsión; noetherianidad e Hilbert; clasificación sobre dominios de ideales principales y forma de Smith. |
+| 5. Teoría de campos y de Galois | Extensiones simples y algebraicas; clausuras y normalidad; separabilidad y elemento primitivo; campos fijos y correspondencia de Galois; campos finitos y discriminantes. |
 
-Los ejercicios llevan su solución inmediatamente después del enunciado. La numeración de resultados es global; las definiciones y los ejemplos se numeran por sección. Cada clase cierra con referencias para profundizar en los temas tratados.
+Los **211 resultados numerados** comparten un contador por capítulo y los **45 ejercicios resueltos** tienen su propio contador por capítulo. Cada ejercicio incluye su solución completa inmediatamente después del enunciado. Las definiciones y los ejemplos se numeran por sección. Las orientaciones bibliográficas cierran cada capítulo.
+
+El orden sigue las dependencias de las demostraciones: los grupos libres preceden a la generación de subgrupos; las álgebras y la propiedad universal de polinomios se introducen en anillos; el teorema de Hilbert y sus aplicaciones aparecen después de los módulos noetherianos.
 
 ## Bibliografía
 
@@ -41,7 +41,7 @@ Los ejercicios llevan su solución inmediatamente después del enunciado. La num
 
 ## Fuentes y compilación
 
-El documento principal es `main.tex`. Los capítulos se encuentran en `Apuntes/`, las figuras vectoriales en `Figuras/`, la portada en `Portada/` y la bibliografía en `Referencias.bib`. Las fuentes LaTeX necesarias para reproducir el documento están incluidas en el repositorio.
+El documento principal es `main.tex`. Los fuentes se organizan por temas en `Apuntes/Preliminares/`, `Apuntes/Grupos/`, `Apuntes/Anillos/`, `Apuntes/Modulos/` y `Apuntes/Campos/`, las figuras vectoriales en `Figuras/`, la portada en `Portada/` y la bibliografía en `Referencias.bib`. Las fuentes LaTeX necesarias para reproducir el documento están incluidas en el repositorio.
 
 Se necesita una distribución TeX con **pdfLaTeX, latexmk, Perl y BibTeX**, además de los paquetes utilizados en el preámbulo. La tipografía utiliza **NewTX**, **LXfonts** para `\mathbb` y **eucal** para `\mathcal`. Los diagramas se componen con TikZ y `tikz-cd`.
 

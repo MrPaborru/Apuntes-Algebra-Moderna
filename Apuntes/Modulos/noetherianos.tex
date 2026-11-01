@@ -1,0 +1,67 @@
+\section{Módulos noetherianos y condiciones de cadenas}\label{sec:modulos-noetherianos}
+
+\subsection{Generación finita y módulos noetherianos}\label{tema:15-1-1b}\label{tema:15-1-2a}
+\begin{ejem}
+El anillo $R=\mathbb Z[x_1,x_2,\ldots]$, con infinitas indeterminadas, es generado por $1$ como módulo sobre sí mismo. Cada polinomio sólo utiliza finitamente muchas variables. Su ideal $I=(x_1,x_2,\ldots)$ ofrece un contraste entre generación de un módulo y de sus submódulos.
+\end{ejem}
+
+\begin{ejer}[Un submódulo que no es finitamente generado]\label{ejer:C15-infinitas}
+Demostrar que $I=(x_1,x_2,\ldots)$ no es finitamente generado como $R$-módulo.
+\end{ejer}
+\begin{sol}
+Supongamos que $I=(f_1,\ldots,f_s)$. Entre los $f_i$ aparecen sólo finitamente muchas variables; elegimos $x_j$ distinta de todas ellas. Cada $f_i\in I$ tiene término constante cero. Evaluemos todas las variables salvo $x_j$ en cero, conservando $x_j$ como indeterminada. Este homomorfismo $R\to\mathbb Z[x_j]$ envía cada $f_i$ a cero, de modo que anula el ideal que generan. Pero no anula $x_j$, que también debería pertenecer a ese ideal. Es una contradicción.
+\end{sol}
+
+\begin{defi}
+Un módulo es \emph{noetheriano} si todos sus submódulos son finitamente generados.
+\end{defi}
+En particular, todo módulo noetheriano es finitamente generado, pues es submódulo de sí mismo. La vuelta falla por el ejercicio anterior. Si $R$ es conmutativo, sus submódulos como módulo regular son sus ideales, de modo que esta definición recupera la de anillo noetheriano de la sección~\ref{tema:12-3-2}.
+
+\begin{prop}\label{prop:C15-extension}
+Si $N\subseteq M$ es submódulo, $M$ es noetheriano si y sólo si lo son $N$ y $M/N$.
+\end{prop}
+\begin{proof}
+Si $M$ es noetheriano, todo submódulo de $N$ también es submódulo de $M$ y es finitamente generado. Para un submódulo $\bar K\subseteq M/N$, la correspondencia proporciona $K\supseteq N$ con $\bar K=K/N$. Si $K=\ang{k_1,\ldots,k_t}$, sus clases generan $K/N$, pues
+\[
+x=\sum_i a_ik_i\quad\Longrightarrow\quad
+x+N=\sum_i a_i(k_i+N).
+\]
+Así, $N$ y $M/N$ son noetherianos.
+
+Para la vuelta, sea $K\subseteq M$ cualquier submódulo. Como $N$ es noetheriano, $K\cap N=\ang{\ell_1,\ldots,\ell_s}$. Por el segundo isomorfismo,
+\[
+K/(K\cap N)\cong(K+N)/N\subseteq M/N,
+\]
+de modo que ese cociente es finitamente generado. Elegimos representantes $k_1,\ldots,k_t\in K$ de un conjunto de generadores. Para $x\in K$ existen $r_i$ con $x-\sum_i r_ik_i\in K\cap N$. Entonces existen $s_j$ tales que
+\[
+x=\sum_i r_ik_i+\sum_j s_j\ell_j.
+\]
+Por tanto, $K=\ang{k_1,\ldots,k_t,\ell_1,\ldots,\ell_s}$. Como $K$ era arbitrario, $M$ es noetheriano.
+\end{proof}
+
+\begin{coro}\label{coro:C15-finito-noetheriano}
+Sea $R$ un anillo conmutativo noetheriano. Todo módulo sobre $R$ que admita un conjunto finito de generadores es también noetheriano.
+\end{coro}
+\begin{proof}
+El módulo regular $R$ es noetheriano. Por inducción y la proposición, también lo es $R^n$: el submódulo $R^{n-1}\oplus0$ tiene cociente $R$. El caso $n=0$ es el módulo cero. Si $R^n\twoheadrightarrow M$, el primer isomorfismo identifica $M$ con un cociente de $R^n$, que es noetheriano por la misma proposición.
+\end{proof}
+
+\subsection{Cadenas ascendentes y elementos maximales}\label{tema:15-1-3}
+\begin{prop}\label{prop:C15-cadenas}
+Para un módulo $M$ son equivalentes:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $M$ es noetheriano.
+\item Toda cadena ascendente $N_1\subseteq N_2\subseteq\cdots$ de submódulos se estabiliza: existe $k$ con $N_j=N_k$ para todo $j\geq k$.
+\item Toda familia no vacía de submódulos tiene un elemento maximal respecto de la inclusión.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Para (i)$\Rightarrow$(ii), la unión $N=\bigcup_i N_i$ es submódulo. Dados dos elementos, ambos pertenecen a algún término común de la cadena, por lo que su diferencia también pertenece; la estabilidad bajo escalares se comprueba en el término que contiene al elemento. Como $M$ es noetheriano, $N=\ang{a_1,\ldots,a_s}$. Todos los generadores están en algún $N_k$, tomando el máximo de sus índices. Entonces $N\subseteq N_k\subseteq N$, y $N_j=N_k$ para $j\geq k$. Si $N=0$, la conclusión es inmediata.
+
+Para (ii)$\Rightarrow$(iii), si una familia no vacía no tuviera maximal, podríamos elegir $N_1$ en ella y, sucesivamente, un miembro $N_{i+1}$ que contuviera estrictamente a $N_i$. La cadena nunca se estabilizaría, contradiciendo (ii).
+
+Para (iii)$\Rightarrow$(i), fijemos un submódulo \emph{arbitrario} $K\subseteq M$. La familia de sus submódulos finitamente generados es no vacía, porque contiene cero. Sea $L=\ang{a_1,\ldots,a_s}$ un maximal en esa familia. Para cualquier $x\in K$, $L+Rx=\ang{a_1,\ldots,a_s,x}$ también pertenece a ella y contiene $L$, luego es $L$. Así $x\in L$, con lo que $K=L$ es finitamente generado. Esto vale para todo $K$ y prueba (i).
+\end{proof}
+\begin{obs}
+La generación finita de $M$ no implica su noetherianidad. Hay que probar la generación finita de cada submódulo, como ilustra el \cref{ejer:C15-infinitas}.
+\end{obs}

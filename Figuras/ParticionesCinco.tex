@@ -9,10 +9,11 @@
 {4,1}/35/{[4,1]}/{-1},
 {5}/42/{[5]}/{+1}}
 {
+  \pgfmathsetmacro{\anchodiagrama}{max(\cols)}
   \node[anchor=south,font=\scriptsize] at (\pos+2,1) {$\lab$};
   \foreach \longitud [count=\fila from 0] in \cols {
     \foreach \col in {1,...,\longitud} {
-      \draw[black] (\pos+\col-1,-\fila) rectangle ++(1,-1);
+      \draw[black] (\pos+2-\anchodiagrama/2+\col-1,-\fila) rectangle ++(1,-1);
     }
   }
   \node[anchor=north,font=\small] at (\pos+2,-6) {$\paridad$};

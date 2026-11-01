@@ -1,0 +1,116 @@
+\section{Subanillos, productos y anillos de endomorfismos}\label{sec:anillos-construcciones}
+
+\subsection{Monomorfismos, subanillos y epimorfismos}\label{tema:11-2-3}
+\begin{defi}
+El núcleo de $\varphi:R\to S$ es $\ker\varphi=\set{r\in R\given\varphi(r)=0_S}$.
+\end{defi}
+\begin{prop}\label{prop:C11-mono}
+Para un homomorfismo de anillos $\varphi$, son equivalentes: ser monomorfismo en $\Ring$, tener núcleo $\{0\}$ y ser inyectivo como función.
+\end{prop}
+\begin{proof}
+Supongamos que $\varphi$ es mono y sea $r\in\ker\varphi$. Evaluar polinomios enteros en $r$ y en cero produce homomorfismos $\ev_r,\ev_0:\mathbb Z[x]\to R$. Esto vale incluso si $R$ no es conmutativo: los múltiplos enteros de $1_R$ conmutan con todos los elementos, y las potencias de un mismo elemento se multiplican sumando exponentes. La igualdad de composiciones se representa en el siguiente diagrama:
+\[
+\begin{tikzcd}[column sep=large]
+\mathbb Z[x]\arrow[r,"\ev_r"]&R\\
+\{a\}\arrow[u,"a\mapsto x"]\arrow[ur,"a\mapsto r"']&
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=large]
+\mathbb Z[x]\arrow[r,"\ev_0"]&R\\
+\{a\}\arrow[u,"a\mapsto x"]\arrow[ur,"a\mapsto0"']&
+\end{tikzcd}
+\]
+\[
+\begin{tikzcd}[column sep=large]
+\mathbb Z[x]\arrow[r,shift left=.7ex,"\ev_r"]
+\arrow[r,shift right=.7ex,"\ev_0"']&R\arrow[r,"\varphi"]&S.
+\end{tikzcd}
+\]
+Las dos composiciones envían $x$ a cero y cada entero $m$ a $m1_S$, por lo que coinciden. Cancelar $\varphi$ da $\ev_r=\ev_0$; al evaluar en $x$, resulta $r=0$.
+
+Si el núcleo es trivial y $\varphi(a)=\varphi(b)$, entonces $a-b\in\ker\varphi$ y $a=b$. Finalmente, toda función inyectiva permite cancelar por la izquierda las composiciones, de modo que un homomorfismo inyectivo es mono.
+\end{proof}
+
+\begin{defi}
+Un \emph{subanillo} $T\subseteq R$ es un anillo con las operaciones inducidas cuya inclusión es homomorfismo. Equivale a ser un subgrupo aditivo cerrado bajo productos y con la misma unidad.
+\end{defi}
+La unidad debe ser la misma: el anillo cero no es subanillo de un anillo no nulo con esta convención. Las propiedades asociativas y distributivas se heredan, lo que justifica el criterio.
+
+\begin{ejem}[Un epimorfismo que no es sobreyectivo]
+La inclusión $i:\mathbb Z\hookrightarrow\mathbb Q$ es epi en $\Ring$. Si $\alpha,\beta:\mathbb Q\to T$ satisfacen $\alpha i=\beta i$, para $p\in\mathbb Z$ y $q\in\mathbb Z\setminus\{0\}$ se tiene
+\[
+\alpha(p/q)=\alpha(p)\alpha(q)^{-1}
+=\beta(p)\beta(q)^{-1}=\beta(p/q).
+\]
+Las inversas existen porque los morfismos preservan unidades. Así $\alpha=\beta$, aunque $i$ no es sobreyectiva. Este argumento incluye destinos no conmutativos.
+\end{ejem}
+
+\subsection{El producto en la categoría de anillos}\label{tema:12-1-1}
+Para anillos $R_1,R_2$, el conjunto $R_1\times R_2$ es anillo con operaciones por componentes:
+\[
+\begin{aligned}
+(a_1,a_2)+(b_1,b_2)&=(a_1+b_1,a_2+b_2),\\
+(a_1,a_2)(b_1,b_2)&=(a_1b_1,a_2b_2).
+\end{aligned}
+\]
+Los axiomas se verifican en cada coordenada. Su cero es $(0,0)$ y su unidad es $(1_{R_1},1_{R_2})$.
+
+\begin{ejer}[Propiedad universal del producto]\label{ejer:C12-producto}
+Comprobar que este anillo, con sus proyecciones, es el producto categórico de $R_1$ y $R_2$ en $\Ring$.
+\end{ejer}
+\begin{sol}
+Cada proyección $p_i$ preserva suma, producto y unidad, por lo que es morfismo. Dados homomorfismos $f_i:T\to R_i$, la única función con $p_i f=f_i$ es
+\[
+f:T\longrightarrow R_1\times R_2,\qquad t\longmapsto(f_1(t),f_2(t)).
+\]
+Preserva las operaciones por la definición componente a componente; también $f(1_T)=(1_{R_1},1_{R_2})$. Esto prueba la existencia y unicidad del mediador en $\Ring$:
+\[
+\begin{tikzcd}[column sep=large]
+&T\arrow[dl,"f_1"']\arrow[d,dashed,destacado,"\exists!\,f"]\arrow[dr,"f_2"]&\\
+R_1&R_1\times R_2\arrow[l,"p_1"]\arrow[r,"p_2"']&R_2.
+\end{tikzcd}
+\qedhere
+\]
+\end{sol}
+
+\subsection{Anillos de endomorfismos y representación regular}\label{tema:12-1-2}
+Sea $G$ un grupo abeliano. En $\End_{\Ab}(G)=\Hom_{\Ab}(G,G)$ definimos
+\[
+(\alpha+\beta)(g)=\alpha(g)+\beta(g),\qquad
+\alpha\beta=\alpha\circ\beta.
+\]
+La suma de homomorfismos sigue siendo homomorfismo porque $G$ es abeliano. La suma puntual hace de este conjunto un grupo abeliano, con cero la función constante cero y negativo puntual. La composición es asociativa y tiene unidad $\id_G$. Las dos distributivas se comprueban evaluando: una usa la suma puntual y la otra la aditividad del endomorfismo que se compone a la izquierda. Por tanto, $\End_{\Ab}(G)$ es un anillo, en general no conmutativo.
+
+
+\begin{prop}\label{prop:C12-endZ}
+La evaluación en $1$ define un isomorfismo de anillos
+\[
+\Phi:\End_{\Ab}(\mathbb Z)\longrightarrow\mathbb Z,
+\qquad\alpha\longmapsto\alpha(1).
+\]
+\end{prop}
+\begin{proof}
+Todo endomorfismo aditivo satisface $\alpha(n)=n\alpha(1)$. La evaluación preserva la suma y envía $\id_{\mathbb Z}$ a $1$. Además,
+\[
+\Phi(\alpha\circ\beta)=\alpha(\beta(1))
+=\alpha(1)\beta(1)=\Phi(\alpha)\Phi(\beta).
+\]
+Su inversa es $\Psi(a)(n)=an$. En efecto, $\Psi(a)$ es aditiva, $\Psi(a+b)=\Psi(a)+\Psi(b)$, $\Psi(ab)=\Psi(a)\circ\Psi(b)$ y $\Psi(1)=\id$. Finalmente, $\Phi\Psi(a)=a$ y $\Psi\Phi(\alpha)(n)=\alpha(1)n=\alpha(n)$.
+\end{proof}
+
+
+Para un anillo $R$, las multiplicaciones izquierda y derecha son endomorfismos de $(R,+)$:
+\[
+\lambda_r(a)=ra,\qquad \mu_r(a)=ar.
+\]
+\begin{prop}\label{prop:C12-regular}
+La regla $r\mapsto\lambda_r$ define un homomorfismo inyectivo de anillos $\lambda:R\to\End_{\Ab}(R)$.
+\end{prop}
+\begin{proof}
+Por distributividad, $\lambda_{r+s}(a)=ra+sa=(\lambda_r+\lambda_s)(a)$. Por asociatividad,
+\[
+\lambda_{rs}(a)=(rs)a=r(sa)=(\lambda_r\circ\lambda_s)(a).
+\]
+También $\lambda_1=\id_R$. Finalmente, $\lambda_r(1)=r$, de modo que $\lambda_r=\lambda_s$ implica $r=s$.
+\end{proof}
+Esta representación es el análogo para anillos del argumento de Cayley. El orden de composición importa: para la multiplicación derecha se tiene $\mu_{rs}=\mu_s\circ\mu_r$, de modo que no se obtiene la misma afirmación sin invertir el producto.

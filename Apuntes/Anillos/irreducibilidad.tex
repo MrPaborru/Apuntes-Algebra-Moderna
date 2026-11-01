@@ -1,0 +1,190 @@
+\section{Raíces, evaluación y criterios de irreducibilidad}\label{sec:anillos-irreducibilidad}
+
+\subsection{El número de raíces y la evaluación}\label{tema:19-1-1}
+En esta sección los anillos son conmutativos. Un elemento $a\in R$ es una \emph{raíz} de $f\in R[x]$ si $f(a)=0$. Por la división por $x-a$, esto equivale a $x-a\mid f$. Para $f\ne0$, la raíz tiene \emph{multiplicidad} $r$ si $(x-a)^r\mid f$ pero $(x-a)^{r+1}\nmid f$.
+
+Las gráficas de la \cref{fig:multiplicidades} ilustran perfiles locales de raíces reales de multiplicidades uno, dos y tres.
+\figuraApuntes{Figuras/Multiplicidades}{fig:multiplicidades}{Raíces reales de multiplicidades uno, dos y tres.}
+
+\begin{lema}\label{lema:C19-numero-raices}
+Un polinomio no nulo de grado $n$ sobre un dominio tiene a lo sumo $n$ raíces, contadas con multiplicidad.
+\end{lema}
+\begin{proof}
+Sea $K$ el campo de fracciones del dominio. Las raíces del anillo original siguen siendo raíces en $K$, y sus multiplicidades se conservan: al dividir por el mónico $(x-a)^r$, el resto calculado sobre el anillo es también el resto sobre $K$, y la inclusión de coeficientes es inyectiva.
+
+En $K[x]$ hay factorización única y las raíces corresponden a los factores irreducibles de grado uno. Los factores $x-a$ de raíces distintas no son asociados. La suma de sus multiplicidades no puede exceder la suma de los grados de todos los factores de $f$, que es $n$.
+\end{proof}
+\begin{ejem}
+El polinomio $2x-1$ no tiene raíces en $\mathbb Z$, pero sí en $\mathbb Q$, donde su raíz es $1/2$. El paso al campo de fracciones puede añadir raíces.
+
+La condición de dominio es necesaria: en $(\mathbb Z/6\mathbb Z)[x]$, el polinomio $x^2+x$ tiene las cuatro raíces $0,2,3,5$, pues los productos $a(a+1)$ correspondientes son $0,6,12,30$ y todos se anulan módulo seis.
+\end{ejem}
+
+\begin{coro}\label{coro:C19-funciones}
+Sobre un dominio infinito, dos polinomios son iguales si y sólo si inducen la misma función de evaluación.
+\end{coro}
+\begin{proof}
+Una igualdad formal da iguales evaluaciones. A la inversa, si $f(a)=g(a)$ para todo $a$, cada elemento del dominio es raíz de $f-g$. Si esta diferencia fuera no nula, tendría infinitas raíces, contra el lema.
+\end{proof}
+Para cada $r\in R$, la evaluación es el único homomorfismo de $R$-álgebras $\varphi_r:R[x]\to R$ que envía $x$ a $r$; en particular,
+\[
+\varphi_r\left(\sum_i a_ix^i\right)=\sum_i a_ir^i.
+\]
+Así, el polinomio formal $f$ determina la función $\widehat f(r)=\varphi_r(f)$. La evaluación se representa mediante el triángulo
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+R[x]\arrow[r,"\varphi_r"]&R\\
+\{r\}\arrow[u,"j"]\arrow[ur,hook]&
+\end{tikzcd}
+\qquad j(r)=x.
+\]
+La unicidad requiere fijar los coeficientes de $R$ y la imagen de $x$, como en la propiedad universal de la \cref{prop:C14-algebra-libre}. El \cref{ejer:C18-formal-funcion} muestra por qué la infinitud importa.
+
+\subsection{Raíces racionales e irreducibilidad en grados bajos}\label{tema:19-1-2a}\label{tema:19-1-2c}\label{tema:19-1-3}
+\begin{prop}\label{prop:C19-grados-bajos}
+Sobre un campo $k$, un polinomio de grado dos o tres es irreducible si y sólo si no tiene raíces en $k$.
+\end{prop}
+\begin{proof}
+Si $a$ es raíz, escribimos $f=(x-a)g$. Como $\deg g=\deg f-1\geq1$, ninguno de los factores es unidad, así que $f$ es reducible.
+
+Recíprocamente, si $f=gh$ con ambos factores no unidades, sus grados son positivos y suman dos o tres. Alguno tiene grado uno, digamos $g=ux+v$ con $u\ne0$. Como $k$ es campo, $-u^{-1}v$ pertenece a $k$ y es raíz de $g$, y por tanto de $f$.
+\end{proof}
+Más generalmente, un irreducible de grado al menos dos sobre un campo no puede tener una raíz. La vuelta anterior depende tanto del grado como de la hipótesis de campo. Por ejemplo, $x^2+1$ es irreducible en $\mathbb R[x]$ porque no tiene raíces reales.
+
+\begin{ejem}
+Si $f\in\mathbb Z[x]$ es primitivo y de grado dos o tres, el \cref{coro:C18-criterio-irred} y la proposición dan
+\[
+f\text{ irreducible en }\mathbb Z[x]
+\quad\Longleftrightarrow\quad
+f\text{ no tiene raíces en }\mathbb Q.
+\]
+No basta buscar raíces enteras: $4x^2-1=(2x-1)(2x+1)$ es reducible en $\mathbb Z[x]$ y no tiene raíces enteras, aunque sí las racionales $\pm1/2$.
+
+En grado cuatro, $x^4+2x^2+1=(x^2+1)^2$ es reducible en $\mathbb Q[x]$ y no tiene raíces racionales. Por tanto, en grado cuatro la ausencia de raíces ya no implica irreducibilidad.
+\end{ejem}
+
+\begin{prop}\label{prop:C19-raices-racionales}
+Sea $R$ un DFU, $K=K(R)$ y $f=a_0+a_1x+\cdots+a_nx^n\in R[x]$ no nulo. Si $p/q\in K$ es raíz, con $q\ne0$ y $\mcd(p,q)$ unidad, entonces $p\mid a_0$ y $q\mid a_n$.
+\end{prop}
+\begin{proof}
+Si $p=0$, se tiene $a_0=0$ y $\mcd(0,q)$ unidad implica que $q$ es unidad; ambas divisibilidades se cumplen. Supongamos $p\ne0$. Multiplicando $f(p/q)=0$ por $q^n$, obtenemos
+\[
+a_0q^n+a_1pq^{n-1}+\cdots+a_np^n=0.
+\]
+Si $n=0$, esto contradiría $f\ne0$, así que $n\geq1$. Reagrupamos como
+\[
+\begin{aligned}
+a_0q^n&=-p(a_1q^{n-1}+\cdots+a_np^{n-1}),\\
+a_np^n&=-q(a_0q^{n-1}+a_1pq^{n-2}+\cdots+a_{n-1}p^{n-1}).
+\end{aligned}
+\]
+Así, $p\mid a_0q^n$ y $q\mid a_np^n$. Como $p,q$ no comparten factores irreducibles, comparar las multiplicidades en el DFU da $p\mid a_0$ y $q\mid a_n$. Si uno de esos coeficientes es cero, su divisibilidad es inmediata.
+\end{proof}
+
+\begin{ejem}
+Para $f=3-2x+3x^2-2x^3+3x^4-2x^5$, los posibles numeradores de una raíz racional reducida son $\pm1,\pm3$, y los denominadores son $\pm1,\pm2$. La identidad
+\[
+f=(3-2x)(1+x^2+x^4)
+\]
+muestra que $3/2$ es la única raíz racional del polinomio, pues $1+x^2+x^4>0$ para todo racional $x$.
+\end{ejem}
+
+\subsection{Polinomios sobre los complejos y los reales}\label{tema:19-2-3}
+\begin{teo}[Teorema fundamental del álgebra]\label{teo:C19-TFA}
+El campo $\mathbb C$ es algebraicamente cerrado.
+\end{teo}
+Usaremos este teorema sin demostración.
+
+\begin{prop}\label{prop:C19-reales}
+Los irreducibles de $\mathbb R[x]$ son los polinomios de grado uno y los cuadráticos $ax^2+bx+c$ con $b^2-4ac<0$. Todo polinomio real de grado al menos tres es reducible.
+\end{prop}
+\begin{proof}
+Sea $f\in\mathbb R[x]$ no constante. Por el teorema fundamental del álgebra tiene una raíz compleja $z$. Como los coeficientes son reales,
+\[
+f(\overline z)=\overline{f(z)}=0.
+\]
+Si $z\in\mathbb R$, $x-z$ es un factor real. Si $z\ne\overline z$, los factores lineales $x-z$ y $x-\overline z$ son irreducibles no asociados en $\mathbb C[x]$, luego su producto divide a $f$ allí. Ese producto es
+\[
+q=x^2-(z+\overline z)x+z\overline z\in\mathbb R[x].
+\]
+También divide a $f$ en $\mathbb R[x]$: al dividir por el mónico $q$ sobre $\mathbb R$, el resto es el mismo que sobre $\mathbb C$ y, por unicidad, es cero. Este paso completa la justificación de que el factor obtenido es real.
+
+Así, todo polinomio no constante tiene un factor real de grado uno o dos. Si su grado es al menos tres, ese factor y el cociente tienen grados positivos, luego es reducible. Los de grado uno son irreducibles. Por la \cref{prop:C19-grados-bajos}, un cuadrático es irreducible exactamente cuando no tiene raíces reales; por la fórmula cuadrática, esto equivale a discriminante negativo.
+\end{proof}
+
+\begin{ejer}[Grado impar y una raíz real]\label{ejer:C19-impar}
+Probar que todo polinomio real de grado impar tiene una raíz real. Dar una demostración algebraica y otra mediante el teorema del valor intermedio.
+\end{ejer}
+\begin{sol}
+Factoricemos en irreducibles reales. Por la proposición, sus grados son uno o dos. Si todos fueran cuadráticos, el grado total sería par. Luego hay un factor lineal, cuya raíz también anula al polinomio original.
+
+Para el argumento analítico, escribamos $f(x)=a_nx^n+\cdots+a_0$, con $n$ impar y $a_n\ne0$. Para $|x|$ suficientemente grande, $f(x)/(a_nx^n)$ está tan cerca de $1$ como se desee, pues los cocientes de los términos inferiores tienden a cero. Así, $f$ toma signos opuestos en un número positivo suficientemente grande y en su opuesto. La continuidad y el teorema del valor intermedio producen una raíz entre ambos.
+\end{sol}
+
+\subsection{Reducción módulo un primo y grados de irreducibles}\label{tema:19-3-1}\label{tema:19-3-2}
+La proyección $\mathbb Z\to\mathbb F_p$ induce el homomorfismo sobreyectivo
+\[
+\mathbb Z[x]\longrightarrow\mathbb F_p[x],\qquad
+f\longmapsto\overline f=f\bmod p,
+\]
+que reduce los coeficientes. Es el mapa del \cref{ejer:C17-coeficientes}.
+
+\begin{prop}\label{prop:C19-modular}
+Sea $f\in\mathbb Z[x]$ primitivo y $p$ un primo. Si $\overline f$ tiene el mismo grado que $f$ y es irreducible en $\mathbb F_p[x]$, entonces $f$ es irreducible en $\mathbb Z[x]$ y en $\mathbb Q[x]$.
+\end{prop}
+\begin{proof}
+Si $f=gh$ fuera una factorización en no unidades de $\mathbb Z[x]$, la primitividad y Gauss impedirían que alguno de los factores fuera una constante no unidad. Por tanto, $d=\deg g$ y $e=\deg h$ serían positivos y sumarían $\deg f$. Como $\overline f=\overline g\,\overline h$ conserva el grado,
+\[
+d+e=\deg\overline f=\deg\overline g+\deg\overline h,
+\qquad \deg\overline g\leq d,\quad\deg\overline h\leq e.
+\]
+Las dos desigualdades deben ser igualdades. Ambos factores reducidos tienen grado positivo, contradiciendo la irreducibilidad de $\overline f$. La afirmación sobre $\mathbb Q$ sigue del \cref{coro:C18-criterio-irred}.
+\end{proof}
+\begin{ejem}
+El polinomio $x^2+x+1$ es primitivo y su reducción módulo dos es irreducible de grado dos, pues no tiene raíces en $\mathbb F_2$. Por tanto, es irreducible sobre $\mathbb Z$ y sobre $\mathbb Q$.
+
+En cambio,
+\[
+2x^3+3x^2+3x+1=(2x+1)(x^2+x+1)
+\]
+es reducible, aunque su reducción módulo dos sea $x^2+x+1$. Aquí el grado baja de tres a dos: falta precisamente la hipótesis de conservación del grado.
+\end{ejem}
+
+\Needspace{6\baselineskip}
+\begin{ejer}[Grados de irreducibles sobre un campo finito]\label{ejer:C19-grados-finitos}
+Probar que los grados de los polinomios irreducibles sobre un campo finito no están acotados.
+\end{ejer}
+
+\begin{sol}
+Si todos los irreducibles tuvieran grado a lo sumo $N$, habría sólo finitos irreducibles mónicos $f_1,\ldots,f_m$: hay finitas posibilidades para cada coeficiente y finitos grados posibles. La lista no es vacía porque contiene los polinomios lineales mónicos.
+
+El polinomio $P=f_1\cdots f_m+1$ tiene grado positivo. Como $k[x]$ es DFU, tiene un factor irreducible; normalizándolo, sería alguno de los $f_j$. Pero entonces $f_j$ dividiría tanto a $P$ como a $f_1\cdots f_m$, luego dividiría su diferencia $1$. Esto contradice que tenga grado positivo.
+\end{sol}
+\begin{coro}
+Los grados de los irreducibles de $\mathbb Z[x]$ y de $\mathbb Q[x]$ no están acotados.
+\end{coro}
+\begin{proof}
+Fijemos un primo $p$. Para cada irreducible mónico de $\mathbb F_p[x]$, elegimos representantes enteros de los coeficientes conservando el coeficiente principal $1$. El polinomio obtenido es mónico, luego primitivo, y su reducción conserva el grado. La \cref{prop:C19-modular} da irreducibilidad tanto en $\mathbb Z[x]$ como en $\mathbb Q[x]$. Aplicamos el ejercicio a grados sin cota.
+\end{proof}
+No se afirma aquí que el argumento produzca todos los grados posibles; prueba exactamente la ausencia de una cota superior.
+
+\subsection{La forma general de Eisenstein}\label{tema:19-3-3}
+\begin{prop}[Eisenstein, forma general]\label{prop:C19-Eisenstein}
+Sea $R$ un anillo conmutativo y $\mathfrak p$ un ideal primo. Si $f=a_0+a_1x+\cdots+a_nx^n$ satisface
+\[
+a_n\notin\mathfrak p,\qquad
+a_i\in\mathfrak p\ (0\leq i<n),\qquad
+a_0\notin\mathfrak p^2,
+\]
+entonces $f$ no es producto de dos polinomios de grados menores que $n$ en $R[x]$.
+\end{prop}
+\begin{proof}
+Supongamos $f=gh$ con $\deg g,\deg h<n$. En el dominio $D=R/\mathfrak p$, la reducción satisface
+\[
+\overline g\,\overline h=\overline{a_n}x^n\ne0.
+\]
+En particular, los dos factores reducidos son no nulos. Para un polinomio no nulo sobre un dominio, tanto su mayor como su menor exponente con coeficiente no nulo se suman al multiplicar: los coeficientes extremos son productos no nulos. Por tanto, si un producto es un monomio, ambos factores son monomios. Escribamos $\overline g=bx^r$, $\overline h=cx^s$, con $b,c\ne0$ y $r+s=n$.
+
+Como $r\leq\deg g<n$ y $s\leq\deg h<n$, los dos exponentes son positivos. Así, los términos constantes de $g$ y $h$ pertenecen a $\mathfrak p$. Su producto es $a_0$, que entonces pertenece a $\mathfrak p^2$, contra la hipótesis. No existe la factorización supuesta. Si $n=0$, tampoco existen factores no nulos de grado menor que cero, por lo que el enunciado es inmediato.
+\end{proof}
+La conclusión sobre grados es válida incluso si $R$ tiene divisores de cero. En un dominio factorial, para un polinomio primitivo de grado positivo, implica irreducibilidad: una factorización en no unidades no puede tener un factor constante no unidad por Gauss, y los grados positivos de ambos factores serían menores que $n$.

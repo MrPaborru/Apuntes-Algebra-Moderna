@@ -1,0 +1,57 @@
+\section{Conjuntos, lógica y cuantificadores}\label{sec:preliminares-conjuntos}
+
+\subsection{Conjuntos, cuantificadores y operaciones}\label{tema:1-1-1}\label{tema:1-1-2}
+Un conjunto puede describirse por \emph{extensión}, enumerando sus elementos, o por \emph{comprensión}, mediante una condición que los caracteriza. Por ejemplo,
+\[
+\set{1,2,3,4}=\set{x\in\mathbb Z\given1\le x\le4},
+\qquad \mathbb Z=\{\ldots,-2,-1,0,1,2,\ldots\}.
+\]
+En una expresión $\set{x\in U\given P(x)}$ fijamos un conjunto ambiente $U$ y seleccionamos los elementos que satisfacen el predicado $P$.
+
+Los conectivos lógicos $\land$, $\lor$, $\Rightarrow$, $\neg$ y $\Leftrightarrow$ expresan, respectivamente, conjunción, disyunción, implicación, negación y equivalencia. La disyunción es inclusiva. Los cuantificadores $\forall$ y $\exists$ significan «para todo» y «existe». Las abreviaturas con dominio se interpretan como
+\[
+\begin{aligned}
+(\forall x\in U)\,P(x)&\quad\Longleftrightarrow\quad
+\forall x\,(x\in U\Rightarrow P(x)),\\
+(\exists x\in U)\,P(x)&\quad\Longleftrightarrow\quad
+\exists x\,(x\in U\land P(x)).
+\end{aligned}
+\]
+En particular, negar un enunciado universal equivale a encontrar un contraejemplo:
+\[
+\neg\bigl((\forall x\in U)P(x)\bigr)
+\quad\Longleftrightarrow\quad (\exists x\in U)\neg P(x).
+\]
+
+\begin{ejem}
+El enunciado «si $x$ es entero, entonces $x$ es racional y positivo» se escribe
+\[
+(\forall x\in\mathbb Z)\,(x\in\mathbb Q\land x>0).
+\]
+Es falso: $-2$ es entero y no es positivo. En cambio, todo entero es racional. En efecto, si $x\in\mathbb Z$ es arbitrario, entonces $x=x/1$ es una razón de enteros con denominador no nulo; por tanto, $x\in\mathbb Q$.
+\end{ejem}
+La segunda demostración ilustra la prueba de una implicación universal: fijamos un elemento arbitrario, suponemos la hipótesis y deducimos la conclusión.
+
+Si $A,B\subseteq U$, definimos
+\[
+A\cup B=\set{x\in U\given x\in A\lor x\in B},\qquad
+A\cap B=\set{x\in U\given x\in A\land x\in B}.
+\]
+Para una familia $(A_i)_{i\in I}$ de subconjuntos de $U$,
+\[
+\begin{aligned}
+\bigcup_{i\in I}A_i&=\set{x\in U\given(\exists i\in I)\ x\in A_i},\\
+\bigcap_{i\in I}A_i&=\set{x\in U\given(\forall i\in I)\ x\in A_i}.
+\end{aligned}
+\]
+El producto cartesiano registra elecciones ordenadas:
+\[
+A\times B=\set{(a,b)\given a\in A,\ b\in B}.
+\]
+Un par $(a,b)$ también puede verse como la función $f:\{1,2\}\to A\cup B$ con $f(1)=a$ y $f(2)=b$. Generalizando esta interpretación,
+\[
+\prod_{i\in I}A_i=
+\set*{f:I\longrightarrow\bigcup_{i\in I}A_i\given
+                 (\forall i\in I)\ f(i)\in A_i}.
+\]
+Un elemento del producto elige un elemento de cada factor y conserva su índice.

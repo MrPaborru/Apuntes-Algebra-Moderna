@@ -1,0 +1,107 @@
+\section{Campos de descomposición y extensiones normales}\label{sec:campos-normales}
+
+\subsection{Existencia, unicidad y cota del grado}\label{tema:24-3-1}
+Una familia de polinomios se \emph{descompone} sobre una extensión cuando cada uno se factoriza en términos lineales. Para una familia finita de polinomios no nulos, esto equivale a que se descomponga su producto. Por eso podemos concentrarnos en un solo polinomio.
+
+\begin{defi}
+Sea $0\ne f\in k[t]$ de grado $d$. Un \emph{campo de descomposición} de $f$ sobre $k$ es una extensión $F/k$ tal que
+\[
+f(t)=c\prod_{i=1}^d(t-\alpha_i)\quad\text{en }F[t],
+\qquad F=k(\alpha_1,\ldots,\alpha_d),
+\]
+con $c\in k^\times$. Las raíces se cuentan con sus multiplicidades; para $d=0$ se toma $F=k$.
+\end{defi}
+
+\begin{prop}\label{prop:C24-descomposicion}
+Todo polinomio no nulo $f\in k[t]$ admite un campo de descomposición $F$, único salvo isomorfismo sobre $k$, y $[F:k]\leq(\deg f)!$.
+
+Más generalmente, si $\iota:k'\to k$ es un isomorfismo y $g\in k'[t]$ se transforma en $f$ al aplicar $\iota$ a sus coeficientes, $\iota$ se extiende a un isomorfismo entre cualquier campo de descomposición de $g$ y cualquier campo de descomposición de $f$.
+\end{prop}
+\begin{proof}
+Probamos existencia y cota por inducción sobre $d=\deg f$. Para $d=0$ o $d=1$, basta $F=k$ y $[F:k]=1$. Si $d>1$, tomamos un factor irreducible $q$ de $f$. El campo $E=k[t]/(q)=k(\alpha)$ contiene una raíz de $f$ y satisface $[E:k]=\deg q\leq d$. En $E[t]$ escribimos $f=(t-\alpha)h$, con $\deg h=d-1$. Por inducción, $h$ tiene un campo de descomposición $F/E$ de grado a lo sumo $(d-1)!$. El campo $F$ está generado sobre $k$ por $\alpha$ y las raíces de $h$, luego es un campo de descomposición de $f$. Además,
+\[
+[F:k]=[F:E][E:k]\leq(d-1)!\,d=d!.
+\]
+
+Para la unicidad general, fijamos una clausura $\overline k$. Un campo de descomposición $F/k$ se puede incluir en ella por el \cref{lema:C24-inmersion}, pues es algebraico. Si $G/k'$ es un campo de descomposición de $g$, el mismo lema, identificando $k'$ con $k$ mediante $\iota$, da una inclusión $j:G\to\overline k$ que extiende a $\iota$. Sus imágenes de las raíces de $g$ son todas las raíces de $f$, porque transforman una factorización lineal completa de grado $d$ en otra del mismo grado. Por tanto $j(G)$ es el subcampo de $\overline k$ generado por $k$ y las raíces de $f$. Ése es también $F$, así que $j:G\to F$ es un isomorfismo. Los dos transportes se resumen en
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+k'[t]\arrow[r,"\widehat\iota","\sim"']&k[t]\\
+k'\arrow[r,"\iota","\sim"']\arrow[u,hook]&k\arrow[u,hook]
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=large,row sep=large]
+G\arrow[r,dashed,"j","\sim"',destacado]&F\\
+k'\arrow[r,"\iota","\sim"']\arrow[u,hook]&k\arrow[u,hook].
+\end{tikzcd}
+\]
+El caso $k'=k$ e $\iota=\id$ prueba la unicidad sobre el campo base.
+\end{proof}
+
+\subsection{Normalidad: caracterización y ejemplos}\label{tema:24-3-2}\label{tema:25-1-1}\label{tema:25-1-2}
+\begin{ejem}
+El campo de descomposición de $t^2+1$ sobre $\mathbb Q$ es $\mathbb Q(i)$, mientras que sobre $\mathbb R$ es $\mathbb C$. En ambos casos las raíces son $i$ y $-i$, pero se generan campos sobre bases distintas.
+\end{ejem}
+
+\begin{ejem}[Raíces octavas de la unidad]\label{ejem:C24-octavas}
+Sea $\zeta=e^{2\pi i/8}$. Las raíces de $t^8-1$ son $1,\zeta,\ldots,\zeta^7$, de modo que su campo de descomposición sobre $\mathbb Q$ es $\mathbb Q(\zeta)$. En la factorización
+\[
+t^8-1=(t^4-1)(t^4+1),
+\]
+el primer factor tiene raíces $1,-1,i,-i$ y el segundo tiene las potencias impares de $\zeta$, que se destacan en la \cref{fig:raices-octavas}.
+\figuraApuntes{Figuras/RaicesOctavas}{fig:raices-octavas}{Raíces octavas de la unidad.}
+El polinomio $t^4+1$ es irreducible sobre $\mathbb Q$: tras el cambio $t\mapsto t+1$ resulta
+\[
+(t+1)^4+1=t^4+4t^3+6t^2+4t+2,
+\]
+al que se aplica Eisenstein con el primo $2$. El cambio de variable es un automorfismo de $\mathbb Q[t]$, por lo que conserva irreducibilidad. Así $t^4+1$ es el mínimo de $\zeta$, y $\mathbb Q(\zeta)$ es ya su campo de descomposición, con
+\[
+[\mathbb Q(\zeta):\mathbb Q]=4.
+\]
+El grado cuatro mejora ampliamente las cotas $8!$ y $4!$ de la proposición.
+\end{ejem}
+
+\begin{defi}
+Una extensión $F/k$ es \emph{normal} si todo irreducible de $k[t]$ que tiene una raíz en $F$ se descompone por completo sobre $F$.
+\end{defi}
+
+\begin{teo}\label{teo:C24-normal}
+Una extensión $F/k$ es finita y normal si y sólo si es un campo de descomposición de algún polinomio no nulo de $k[t]$.
+\end{teo}
+\begin{proof}
+Si la extensión es finita, cualquier base vectorial es también una familia de generadores como campo. Escribamos $F=k(\alpha_1,\ldots,\alpha_r)$ y sean $p_i\in k[t]$ sus polinomios mínimos. Por normalidad, todos los $p_i$ se descomponen en $F$. El producto $f=\prod_i p_i$ se descompone y sus raíces generan $F$: pertenecen a $F$ y entre ellas están todos los $\alpha_i$.
+
+Recíprocamente, sea $F$ un campo de descomposición de $f$. Es finito por la \cref{prop:C24-descomposicion}. Incluyámoslo en $\overline k$ y sea $p\in k[t]$ irreducible con una raíz $\alpha\in F$. Si $\beta\in\overline k$ es cualquier otra raíz de $p$, existe un isomorfismo $\iota:k(\alpha)\to k(\beta)$ que fija a $k$ y envía $\alpha$ a $\beta$. El campo $F$ es de descomposición de $f$ sobre $k(\alpha)$, y $F(\beta)$ lo es sobre $k(\beta)$. La unicidad general de la proposición prolonga $\iota$ a un isomorfismo $F\to F(\beta)$ que fija a $k$. Por tanto ambos tienen la misma dimensión finita sobre $k$. Como además $F\subseteq F(\beta)$, coinciden y $\beta\in F$. Todas las raíces de $p$ pertenecen a $F$, lo que prueba la normalidad.
+\end{proof}
+
+Una extensión $F/k$ es normal cuando todo irreducible de $k[t]$ con una raíz en $F$ se descompone por completo en $F[t]$. La condición se refiere a irreducibles: un polinomio arbitrario puede tener una raíz en $F$ sin que todas sus raíces pertenezcan a ese campo.
+
+\begin{ejem}
+La extensión $\mathbb Q(\sqrt2)/\mathbb Q$ es normal. Para verlo directamente, sea $f\in\mathbb Q[t]$ irreducible con una raíz $\alpha\in\mathbb Q(\sqrt2)$. Podemos suponerlo mónico. En la torre
+\[
+\mathbb Q\subseteq\mathbb Q(\alpha)\subseteq\mathbb Q(\sqrt2),
+\]
+el grado $\deg f=[\mathbb Q(\alpha):\mathbb Q]$ divide a dos. Si es uno, $f$ ya es lineal. Si es dos, escribimos $f=t^2+bt+c$ y factorizamos en una clausura como $(t-\alpha)(t-\beta)$. Comparar coeficientes da $\alpha+\beta=-b$, luego $\beta=-b-\alpha\in\mathbb Q(\sqrt2)$. En ambos casos $f$ se descompone en ese campo.
+\end{ejem}
+
+\begin{ejem}
+La extensión $\mathbb Q(\sqrt[3]{2})/\mathbb Q$, con la raíz cúbica real, no es normal. El polinomio $t^3-2$ es irreducible por Eisenstein con $2$ y tiene una raíz en ese campo. Si $\omega$ es una raíz cúbica primitiva de la unidad en $\mathbb C$, su factorización es
+\[
+t^3-2=(t-\sqrt[3]{2})(t-\sqrt[3]{2}\,\omega)
+(t-\sqrt[3]{2}\,\omega^2).
+\]
+Las otras raíces no son reales y $\mathbb Q(\sqrt[3]{2})\subseteq\mathbb R$, por lo que el polinomio no se descompone allí.
+\end{ejem}
+
+El \cref{teo:C24-normal} caracteriza las extensiones finitas normales como campos de descomposición. En la dirección que parte de una extensión finita normal, basta tomar generadores algebraicos $\alpha_1,\ldots,\alpha_r$ y el producto de sus mínimos: todas sus raíces pertenecen al campo y entre ellas están los generadores.
+
+Para la otra dirección, sean $F/k$ un campo de descomposición de $f\in k[t]$ y $p\in k[t]$ irreducible con raíz $\alpha\in F$. Incluimos $F$ en una clausura $\overline k$ y elegimos otra raíz $\beta\in\overline k$ de $p$. El isomorfismo $\iota:k(\alpha)\to k(\beta)$ que fija a $k$ y envía $\alpha$ a $\beta$ se prolonga al diagrama
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+&k(\alpha)\arrow[r,hook]\arrow[d,"\iota","\sim"']&
+F\arrow[r,hook]\arrow[d,dashed,"\widetilde\iota","\sim"',destacado]&\overline k\\
+k\arrow[ur,hook]\arrow[r,hook]&k(\beta)\arrow[r,hook]&
+F(\beta)\arrow[r,hook]&\overline k.
+\end{tikzcd}
+\]
+En efecto, $F$ es el campo de descomposición de $f$ sobre $k(\alpha)$, y $F(\beta)$ lo es sobre $k(\beta)$. La \cref{prop:C24-descomposicion} proporciona $\widetilde\iota$. Este isomorfismo es $k$-lineal, por lo que $F$ y $F(\beta)$ tienen la misma dimensión finita sobre $k$. La inclusión $F\subseteq F(\beta)$ es, entonces, una igualdad; así $\beta\in F$. Como vale para toda raíz de $p$, se obtiene la normalidad.

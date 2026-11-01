@@ -1,0 +1,182 @@
+\section{Productos directos, extensiones y productos semidirectos}\label{sec:grupos-productos}
+
+\subsection{Normales con intersección trivial}\label{tema:10-1-1}
+Para subconjuntos $A,B\subseteq G$, escribimos
+\[
+[A,B]=\ang{[a,b]\given a\in A,\ b\in B}.
+\]
+\begin{lema}\label{lema:C10-conmutan}
+Si $N,H\trianglelefteq G$, entonces $[N,H]\subseteq N\cap H$. En particular, si $N\cap H=\{e\}$, cada elemento de $N$ conmuta con cada elemento de $H$.
+\end{lema}
+\begin{proof}
+Para $n\in N$ y $h\in H$, el elemento $[n,h]=n(hn^{-1}h^{-1})$ pertenece a $N$ por su normalidad. También $[n,h]=(nhn^{-1})h^{-1}\in H$. La intersección es subgrupo y contiene los generadores de $[N,H]$, luego contiene todo ese subgrupo. Si es trivial, cada conmutador es neutro y los elementos conmutan.
+\end{proof}
+
+\begin{prop}\label{prop:C10-directo}
+Si $N,H\trianglelefteq G$ y $N\cap H=\{e\}$, la aplicación
+\[
+\mu:N\times H\longrightarrow NH,\qquad (n,h)\longmapsto nh
+\]
+es un isomorfismo. Si además $NH=G$, realiza $G$ como producto directo de esos subgrupos.
+\end{prop}
+\begin{proof}
+El conjunto $NH$ es subgrupo por el \cref{lema:C8-cocientes}. El lema anterior da
+\[
+\mu(n_1,h_1)\mu(n_2,h_2)=n_1h_1n_2h_2
+=n_1n_2h_1h_2=\mu(n_1n_2,h_1h_2).
+\]
+La aplicación es sobreyectiva por definición de $NH$. Si $nh=e$, entonces $n=h^{-1}\in N\cap H$, luego $n=h=e$. Su núcleo es trivial y es un isomorfismo.
+\end{proof}
+
+\begin{ejem}[Otro argumento para el orden $pq$]
+Sean $q<p$ primos y $|G|=pq$. Si \mbox{$p\not\equiv1\pmod q$}, ambos subgrupos de Sylow son únicos: $n_p\mid q$ y $n_p\equiv1\pmod p$ fuerzan $n_p=1$, porque $q<p$; por otra parte, $n_q\mid p$ deja los candidatos $1,p$, y la hipótesis excluye $p$.
+
+Sean $P,Q$ esos subgrupos normales. Por Lagrange, $P\cap Q=\{e\}$, pues su orden divide a $p$ y a $q$. La proposición da $PQ\cong P\times Q$, de orden $pq$, así que $PQ=G$. Como $P\cong C_p$ y $Q\cong C_q$, obtenemos $G\cong C_p\times C_q\cong C_{pq}$. La última identificación se justifica porque un par de generadores tiene orden $\mcm(p,q)=pq$.
+\end{ejem}
+\begin{obs}
+Para $q<p$, la condición que excluye $n_q=p$ es $p\not\equiv1\pmod q$. La condición $q\not\equiv1\pmod p$ no basta: $S_3$, de orden $2\cdot3$, la satisface y no es cíclico.
+\end{obs}
+
+\begin{ejem}
+En $S_3$, tomemos $N=\ang{(1\,2\,3)}$ y $H=\ang{(1\,2)}$. El primero es normal, por ser $A_3$; el segundo no lo es, ya que
+\[
+(1\,2\,3)(1\,2)(1\,2\,3)^{-1}=(2\,3)\notin H.
+\]
+Tenemos $N\cap H=\{e\}$ y $NH=S_3$: los seis productos $nh$ son distintos, pues $nh=n'h'$ implica $n'^{-1}n=h'h^{-1}\in N\cap H$. Sin embargo, $S_3\not\cong N\times H$. El producto directo tiene el elemento $((1\,2\,3),(1\,2))$ de orden seis, mientras que en $S_3$ los tipos posibles sólo dan órdenes uno, dos o tres. La normalidad de ambos factores es esencial para la proposición.
+\end{ejem}
+
+\subsection{Sucesiones exactas y escisiones}\label{tema:10-1-2}
+\begin{defi}
+Una sucesión de homomorfismos es \emph{exacta} en un término si la imagen de la flecha que llega es el núcleo de la que sale. Una \emph{extensión de $H$ por $N$} es una sucesión exacta
+\[
+\begin{tikzcd}[column sep=large]
+1\arrow[r]&N\arrow[r,"i"]&G\arrow[r,"p"]&H\arrow[r]&1.
+\end{tikzcd}
+\]
+Esto equivale a que $i$ sea inyectiva, $p$ sobreyectiva e $i(N)=\ker p$. Identificamos entonces $N$ con su imagen normal en $G$. La extensión \emph{se escinde} si existe un homomorfismo $s:H\to G$ tal que $p\circ s=\id_H$, llamado \emph{sección}.
+\end{defi}
+Toda sección es inyectiva: $s(h)=e$ implica $h=p(s(h))=e$. Su imagen es un subgrupo $H_0\le G$ y satisface
+\[
+N\cap H_0=\{e\},\qquad NH_0=G.
+\]
+En efecto, si $s(h)\in N$, entonces $h=p(s(h))=e$. Para cada $g\in G$, tomando $h=p(g)$, el elemento $gs(h)^{-1}$ está en $N$, así que $g\in NH_0$.
+
+El producto directo siempre produce la sucesión exacta
+\[
+\begin{tikzcd}[column sep=large]
+1\arrow[r]&N\arrow[r,"{n\mapsto(n,e)}"]&N\times H\arrow[r,"{(n,h)\mapsto h}"]&H\arrow[r]&1.
+\end{tikzcd}
+\]
+La inclusión es inyectiva, la proyección es sobreyectiva y su núcleo es $N\times\{e\}$. La sección es $h\mapsto(e,h)$. Una sucesión exacta cualquiera no implica un producto directo: por ejemplo,
+\[
+1\longrightarrow A_3\longrightarrow S_3
+\overset{\varepsilon}{\longrightarrow}\{1,-1\}\longrightarrow1
+\]
+es exacta y $S_3\not\cong C_3\times C_2$. Incluso se escinde, enviando $-1$ a $(1\,2)$; escindirse tampoco basta para ser producto directo.
+
+\begin{lema}\label{lema:C10-escision}
+Si $N\trianglelefteq G$, $H\le G$, $G=NH$ y $N\cap H=\{e\}$, entonces $G$ es una extensión escindida de $H$ por $N$.
+\end{lema}
+\begin{proof}
+La restricción $\alpha:H\to G/N$, $h\mapsto hN$, es sobreyectiva: si $g=nh$, entonces $gN=h(h^{-1}nh)N=hN$, por normalidad de $N$. Su núcleo es $H\cap N=\{e\}$, por lo que es un isomorfismo. La aplicación $p=\alpha^{-1}\circ\pi:G\to H$ es sobreyectiva y tiene núcleo $N$. La inclusión $H\hookrightarrow G$ es una sección de $p$, de modo que la sucesión resultante es exacta y se escinde.
+\end{proof}
+\begin{obs}
+Un complemento $H_0$ de $N$ debe satisfacer tanto $N\cap H_0=\{e\}$ como $NH_0=G$. La intersección trivial por sí sola no exige que ambos subgrupos generen $G$.
+\end{obs}
+
+\subsection{La operación determinada por una acción}\label{tema:10-2-1}
+En la situación del lema anterior, la conjugación da un homomorfismo
+\[
+\gamma:H\longrightarrow\Aut(N),\qquad \gamma_h(n)=hnh^{-1}.
+\]
+La normalidad asegura que cada conjugación preserva $N$, su inversa es conjugar por $h^{-1}$, y $\gamma_{h_1h_2}=\gamma_{h_1}\circ\gamma_{h_2}$. Además,
+\[
+(n_1h_1)(n_2h_2)=\bigl(n_1\gamma_{h_1}(n_2)\bigr)(h_1h_2).
+\]
+Esto motiva la construcción abstracta siguiente.
+
+\begin{prop}\label{prop:C10-construccion}
+Sean $N,H$ grupos y $\theta:H\to\Aut(N)$ un homomorfismo. La operación en $N\times H$ dada por
+\[
+(n_1,h_1)\cdot_\theta(n_2,h_2)
+=\bigl(n_1\theta_{h_1}(n_2),h_1h_2\bigr)
+\]
+define un grupo con neutro $(e_N,e_H)$ e inverso
+\[
+(n,h)^{-1}=\bigl(\theta_{h^{-1}}(n^{-1}),h^{-1}\bigr).
+\]
+\end{prop}
+\begin{proof}
+La operación está bien definida porque $\theta_h$ es un automorfismo de $N$. Para la asociatividad, el producto asociado a la izquierda es
+\[
+\bigl(n_1\theta_{h_1}(n_2)\theta_{h_1h_2}(n_3),h_1h_2h_3\bigr).
+\]
+El asociado a la derecha es
+\[
+\bigl(n_1\theta_{h_1}(n_2\theta_{h_2}(n_3)),h_1h_2h_3\bigr).
+\]
+Coinciden porque $\theta_{h_1}$ preserva productos y $\theta_{h_1h_2}=\theta_{h_1}\theta_{h_2}$. Como $\theta_{e_H}=\id_N$ y $\theta_h(e_N)=e_N$, multiplicar por $(e_N,e_H)$ a cualquiera de los dos lados deja el elemento intacto.
+
+Para el inverso indicado, las primeras coordenadas de los productos en los dos órdenes son, respectivamente,
+\[
+n\theta_h(\theta_{h^{-1}}(n^{-1}))=nn^{-1}=e_N,
+\qquad
+\theta_{h^{-1}}(n^{-1})\theta_{h^{-1}}(n)=e_N.
+\]
+En ambos casos la segunda coordenada es $e_H$.
+\end{proof}
+\begin{defi}
+El grupo de la proposición se llama \emph{producto semidirecto} y se denota $N\rtimes_\theta H$. Si $\theta$ es trivial, la operación es la del producto directo $N\times H$.
+\end{defi}
+
+\begin{prop}\label{prop:C10-propiedades}
+En $G=N\rtimes_\theta H$, las aplicaciones $i(n)=(n,e_H)$ y $s(h)=(e_N,h)$ identifican copias de $N$ y $H$. La proyección $p(n,h)=h$ produce una extensión escindida, y esas copias cumplen $N\cap H=\{e_G\}$ y $NH=G$. La acción $\theta$ se realiza por conjugación en $G$.
+\end{prop}
+\begin{proof}
+La fórmula de multiplicación muestra que $i$ y $s$ son homomorfismos inyectivos. También muestra que $p$ es un homomorfismo sobreyectivo con núcleo $i(N)$ y que $p\circ s=\id_H$. Así,
+\[
+\begin{tikzcd}[column sep=large]
+1\arrow[r]&N\arrow[r,"i"]&N\rtimes_\theta H\arrow[r,"p"]&H\arrow[l,bend left=35,destacado,"s"]\arrow[r]&1
+\end{tikzcd}
+\]
+expresa la sucesión exacta y su sección. Las dos copias se intersectan sólo en $(e_N,e_H)$ y todo $(n,h)$ es $(n,e_H)(e_N,h)$. Finalmente,
+\begin{align*}
+(e_N,h)(n,e_H)(e_N,h)^{-1}
+&=(\theta_h(n),h)(e_N,h^{-1})\\
+&=(\theta_h(n),e_H),
+\end{align*}
+que es la copia de $\theta_h(n)$ en $N$.
+\end{proof}
+
+\subsection{Producto interno y ejemplo de orden seis}\label{tema:10-2-2}
+\begin{prop}\label{prop:C10-interno}
+Si $N\trianglelefteq G$, $H\le G$, $G=NH$ y $N\cap H=\{e\}$, entonces $G\cong N\rtimes_\gamma H$, donde $\gamma$ es la acción por conjugación.
+\end{prop}
+\begin{proof}
+Definimos $\varphi:N\rtimes_\gamma H\to G$ por $\varphi(n,h)=nh$. Es sobreyectiva por $G=NH$. Si $nh=n'h'$, entonces $n'^{-1}n=h'h^{-1}\in N\cap H$, así que $n=n'$ y $h=h'$; es biyectiva. Además,
+\begin{align*}
+\varphi\bigl((n_1,h_1)\cdot_\gamma(n_2,h_2)\bigr)
+&=n_1(h_1n_2h_1^{-1})h_1h_2\\
+&=(n_1h_1)(n_2h_2).
+\end{align*}
+Por tanto es un isomorfismo.
+\end{proof}
+Esta realización dentro de $G$ se llama \emph{producto semidirecto interno}. Si $N$ y $H$ conmutan, $\gamma$ es trivial y recuperamos el producto directo. En particular ocurre cuando ambos son normales y su intersección es trivial.
+
+\begin{ejem}
+Si $C_3=\ang{y}$, un automorfismo está determinado por la imagen de $y$, que debe ser $y$ o $y^2$. Así $\Aut(C_3)=\{\id,\iota\}\cong C_2$, donde $\iota(y)=y^2$ y $\iota^2=\id$. Hay exactamente dos homomorfismos $C_2\to\Aut(C_3)$: el trivial y el que envía su generador a $\iota$. El primero da $C_3\times C_2\cong C_6$; el segundo da un grupo isomorfo a $S_3$.
+\end{ejem}
+\begin{ejer}[Cálculo del producto semidirecto no trivial]
+Comprobar que el producto semidirecto no trivial es $S_3$.
+\end{ejer}
+\begin{sol}
+Escribamos $C_2=\ang{t}$ y elijamos $\theta_t(y)=y^{-1}$. Los seis elementos son $(y^a,t^b)$ con $a\in\{0,1,2\}$ y $b\in\{0,1\}$; su producto es
+\[
+(y^a,t^b)(y^c,t^d)=(y^{a+(-1)^bc},t^{b+d}),
+\]
+con exponentes reducidos módulo $3$ y $2$. En $S_3$ pongamos $r=(1\,2\,3)$ y $s=(1\,2)$. Por conjugación de ciclos, $srs^{-1}=(2\,1\,3)=r^{-1}$. En consecuencia,
+\[
+(r^as^b)(r^cs^d)=r^{a+(-1)^bc}s^{b+d}.
+\]
+La aplicación $(y^a,t^b)\mapsto r^as^b$ preserva los productos. Sus imágenes son $e,r,r^2,s,rs,r^2s$, todas distintas: los tres primeros elementos son pares y los otros impares, y dentro de cada bloque se cancela el mismo factor derecho. Por tanto es un isomorfismo sobre los seis elementos de $S_3$. También se obtiene aplicando la \cref{prop:C10-interno} a $N=A_3$ y $H=\ang{s}$.
+\end{sol}

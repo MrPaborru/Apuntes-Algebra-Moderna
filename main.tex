@@ -26,11 +26,14 @@
 \usepackage{refcount}
 \usepackage[explicit]{titlesec}
 \usepackage{tocloft,fancyhdr}
+\usepackage{needspace}
+\usepackage{caption}
 \input{Personalizacion/Datos}
 \input{Personalizacion/Paleta}
 \input{Personalizacion/Simbolos}
 \input{Personalizacion/Entornos}
 \input{Personalizacion/Referencias}
+\input{Personalizacion/Figuras}
 \input{Personalizacion/Encabezados}
 \input{Personalizacion/Titulos}
 \input{Personalizacion/TOC}
@@ -41,7 +44,7 @@
 \setlength{\emergencystretch}{1em}
 \widowpenalty=10000
 \clubpenalty=10000
-\hypersetup{pdftitle={Álgebra Moderna: clases 1 a 27},pdfauthor={Pablo Jair Aranda Pérez},pdfsubject={CIMAT, otoño 2025}}
+\hypersetup{pdftitle={Álgebra Moderna: grupos, anillos, módulos y teoría de Galois},pdfauthor={Pablo Jair Aranda Pérez},pdfsubject={CIMAT, otoño 2025}}
 \begin{document}
 \hypersetup{pageanchor=false}
 \input{Portada/Portada}
@@ -55,7 +58,7 @@
 \clearpage
 \markright{Referencias}
 \begingroup
-\titleformat{\chapter}[display]{\centering\Huge\scshape\color{grisCIMAT}}{}{}{#1}
+\formatoTituloListado
 \renewcommand{\bibsection}{\chapter*{Referencias}\phantomsection
 \addcontentsline{toc}{chapter}{Referencias}\markright{Referencias}\thispagestyle{plain}}
 \bibliographystyle{plainnat}

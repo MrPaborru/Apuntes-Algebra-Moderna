@@ -1,0 +1,75 @@
+% Índice breve de secciones numeradas para las aperturas de capítulo.
+% Se obtiene del .toc existente y se actualiza al compilar con latexmk.
+\newlength{\indiceCapituloAncho}
+
+\makeatletter
+\def\miniindice@clave#1.#2\@nil{\def\miniindice@capitulo{#1}}
+\long\def\miniindice@guardar#1#2#3\@nil{%
+  \miniindice@clave#2.\@nil
+  \ifcsname miniindice@lista@\miniindice@capitulo\endcsname\else
+    \expandafter\gdef\csname miniindice@lista@\miniindice@capitulo\endcsname{}%
+    \expandafter\gdef\csname miniindice@total@\miniindice@capitulo\endcsname{0}%
+  \fi
+  \expandafter\xdef\csname miniindice@total@\miniindice@capitulo\endcsname{%
+    \number\numexpr\csname miniindice@total@\miniindice@capitulo\endcsname+1\relax}%
+  \expandafter\g@addto@macro\csname miniindice@lista@\miniindice@capitulo\endcsname
+    {\filaIndiceCapitulo{#2}{#3}{#1}}%
+}
+\long\def\miniindice@leer#1#2#3\@nil{%
+  \ifx#2\numberline
+    \miniindice@guardar{#1}#3\@nil
+  \fi
+}
+\newcommand{\cargarIndicesCapitulos}{%
+  \begingroup
+    \makeatletter
+    \let\babel@toc\@gobbletwo
+    \long\def\contentsline##1##2##3##4{%
+      \ifstrequal{##1}{section}{\miniindice@leer{##4}##2\@nil}{}%
+    }%
+    \InputIfFileExists{\jobname.toc}{}{}%
+  \endgroup
+}
+\AtBeginDocument{\cargarIndicesCapitulos}
+
+\newcount\miniindice@posicion
+\newcount\miniindice@desde
+\newcount\miniindice@hasta
+\newcount\miniindice@mitad
+\newcommand{\filaIndiceCapitulo}[3]{%
+  \advance\miniindice@posicion\@ne
+  \ifnum\miniindice@posicion>\miniindice@desde
+    \ifnum\miniindice@posicion>\miniindice@hasta\else
+      \noindent\hangindent=2.5em\hangafter=1
+      \makebox[2.5em][l]{\hyperlink{#3}{\textcolor{rojoCIMAT}{\bfseries#1}}}%
+      \hyperlink{#3}{#2}\par\vspace{4.5pt}%
+    \fi
+  \fi
+}
+\newcommand{\miniindice@columna}[2]{%
+  \begin{minipage}[t]{\dimexpr(\indiceCapituloAncho-24pt)/2\relax}
+    \raggedright\parindent=0pt\parskip=0pt
+    \miniindice@posicion=0
+    \miniindice@desde=#1\relax
+    \miniindice@hasta=#2\relax
+    \csname miniindice@lista@\thechapter\endcsname
+    \vspace{-4.5pt}%
+  \end{minipage}%
+}
+\newcommand{\indiceCapitulo}{%
+  \begingroup
+    \normalfont\fontsize{10}{12.8}\selectfont
+    \color{grisCIMAT!75!black}%
+    \begin{minipage}{\indiceCapituloAncho}
+      \ifcsname miniindice@lista@\thechapter\endcsname
+        \noindent\textcolor{grisCIMAT!40!white}{\rule{\linewidth}{.35pt}}\par
+        \vspace{9pt}%
+        \miniindice@mitad=\csname miniindice@total@\thechapter\endcsname\relax
+        \advance\miniindice@mitad\@ne\divide\miniindice@mitad by 2
+        \noindent\miniindice@columna{0}{\miniindice@mitad}\hfill
+        \miniindice@columna{\miniindice@mitad}{\csname miniindice@total@\thechapter\endcsname}%
+      \fi
+    \end{minipage}%
+  \endgroup
+}
+\makeatother

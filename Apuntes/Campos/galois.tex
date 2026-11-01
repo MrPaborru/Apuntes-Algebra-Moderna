@@ -1,0 +1,73 @@
+\Needspace{12\baselineskip}
+\section{Teorema fundamental, campos intermedios normales y grupos cociente}\label{sec:campos-galois}
+
+\subsection{Grados, índices y operaciones de retículo}\label{tema:27-2-1}
+\begin{ejer}[La extensión sobre un campo intermedio]\label{ejer:C27-intermedio}
+Sea $F/k$ de Galois y $k\subseteq E\subseteq F$. Probar que $F/E$ es de Galois y que
+\[
+[F:E]=|\Aut_E(F)|,\qquad
+[E:k]=[\Aut_k(F):\Aut_E(F)].
+\]
+\end{ejer}
+\begin{sol}
+El campo $F$ es el campo de descomposición de un polinomio separable $f\in k[t]$. Sigue siendo su campo de descomposición sobre $E$, y $f$ sigue siendo separable en $E[t]$. Por el \cref{teo:C27-galois}, $F/E$ es de Galois y $[F:E]=|\Aut_E(F)|$.
+
+La fórmula de la torre y el teorema de Lagrange dan
+\[
+[E:k]=\frac{[F:k]}{[F:E]}
+=\frac{|\Aut_k(F)|}{|\Aut_E(F)|}
+=[\Aut_k(F):\Aut_E(F)].
+\]
+No se afirma que $E/k$ sea de Galois. Por ejemplo, $\mathbb Q(\sqrt[3]{2})$ es intermedio en el campo de descomposición de $t^3-2$, que es de Galois sobre $\mathbb Q$, pero la extensión cúbica real no es normal.
+\end{sol}
+
+\begin{teo}[Correspondencia de Galois]\label{teo:C27-reticulos}
+Si $F/k$ es de Galois, la correspondencia es una biyección que invierte inclusiones entre el retículo de campos intermedios y el de subgrupos de $\gal(F/k)$. Si $E_i$ corresponde a $G_i$, entonces
+\[
+E_1E_2\ \longleftrightarrow\ G_1\cap G_2,
+\qquad E_1\cap E_2\ \longleftrightarrow\ \ang{G_1,G_2}.
+\]
+\end{teo}
+\begin{proof}
+La biyección es el \cref{teo:C27-galois}, y el \cref{lema:C26-correspondencia} prueba que invierte inclusiones. Este último también da
+\[
+\Aut_{E_1E_2}(F)=G_1\cap G_2,
+\qquad
+F^{\ang{G_1,G_2}}=F^{G_1}\cap F^{G_2}=E_1\cap E_2.
+\]
+Las dos identidades son precisamente las correspondencias del enunciado.
+\end{proof}
+En la representación vertical, las aristas indican inclusiones entre los campos, y a la derecha se invierte el orden de los subgrupos:
+\[
+\begin{tikzcd}[column sep=huge,row sep=2em]
+F\arrow[d,dash]&\{\id\}\arrow[d,dash]\\
+E\arrow[d,dash]&\Aut_E(F)\arrow[d,dash]\\
+k&\gal(F/k)
+\end{tikzcd}
+\]
+En el lado de los campos, la intersección es el mayor subcampo común y el compuesto es el menor que contiene a ambos. En el lado de los grupos, esas operaciones son intersección y subgrupo generado; el teorema las intercambia.
+
+\subsection{Campos intermedios normales y grupos cociente}\label{tema:27-4-0a}
+\begin{teo}\label{teo:C27-cociente}
+Sea $F/k$ de Galois y sea $k\subseteq E\subseteq F$. Entonces $E/k$ es de Galois si y sólo si $\Aut_E(F)$ es normal en $\Aut_k(F)$. En ese caso, la restricción induce un isomorfismo
+\[
+\gal(E/k)\cong\gal(F/k)/\Aut_E(F).
+\]
+\end{teo}
+\begin{proof}
+Sean $G=\gal(F/k)$ y $H=\Aut_E(F)$. Como $E=F^H$, para $g\in G$ tenemos
+\[
+g(F^H)=F^{gHg^{-1}}.
+\]
+En efecto, si $x$ está fijo por $H$ y $h\in H$, entonces $(ghg^{-1})(g(x))=g(h(x))=g(x)$. La inclusión inversa se obtiene aplicando el mismo argumento a $g^{-1}$.
+
+Si $E/k$ es de Galois, es normal y el \cref{ejer:C27-normal-invariante} da $g(E)=E$ para todo $g\in G$. La identidad anterior y la inyectividad de la correspondencia implican $gHg^{-1}=H$, luego $H$ es normal.
+
+Recíprocamente, si $H$ es normal, la identidad da $g(E)=E$ para todo $g\in G$. Todo elemento de $E$ es separable sobre $k$, pues lo es en $F$. Para probar normalidad, elijamos $\alpha\in E$ y cualquier raíz $\beta\in\overline k$ de su mínimo sobre $k$. La normalidad de $F/k$ garantiza $\beta\in F$. El isomorfismo $k(\alpha)\to k(\beta)$ se prolonga a un automorfismo $g$ de $F$, usando que $F$ es campo de descomposición de un polinomio de $k[t]$ sobre ambas bases. Entonces $\beta=g(\alpha)\in g(E)=E$. El mínimo se descompone en $E$, de modo que $E/k$ es normal y, junto con la separabilidad, es de Galois.
+
+En estas condiciones, la restricción es un homomorfismo de grupos
+\[
+\rho:G\longrightarrow\gal(E/k),\qquad g\longmapsto\restr{g}{E},
+\]
+con núcleo $H$. Es sobreyectiva: para $u\in\gal(E/k)$, tomemos un polinomio separable de $k[t]$ cuyo campo de descomposición sea $F$. Considerado en $E[t]$, $u$ no cambia sus coeficientes y $F$ es su campo de descomposición sobre $E$. La unicidad con transporte de la base prolonga $u$ a un automorfismo de $F$ sobre $k$. El primer teorema de isomorfismo da $G/H\cong\gal(E/k)$.
+\end{proof}

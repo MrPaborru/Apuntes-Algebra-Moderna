@@ -1,0 +1,20 @@
+\section{Orden, lema de Zorn y elección}\label{sec:preliminares-orden}
+
+\subsection{El lema de Zorn y el buen orden}\label{tema:17-2-1}
+\begin{defi}
+Un \emph{orden parcial} en un conjunto $Z$ es una relación $\preceq$ reflexiva, transitiva y antisimétrica: $a\preceq b$ y $b\preceq a$ implican $a=b$. Es \emph{total} si cualesquiera dos elementos son comparables. Una \emph{cadena} es un subconjunto totalmente ordenado por la relación restringida.
+\end{defi}
+El orden usual de $\mathbb Z$ es total. La inclusión en una familia de subconjuntos es un orden parcial y, en general, no es total. Escribimos $a\prec b$ si $a\preceq b$ y $a\ne b$.
+
+Un elemento $m$ es \emph{maximal} si $m\preceq a$ implica $m=a$. Una \emph{cota superior} de $S\subseteq Z$ es un elemento $u\in Z$ con $a\preceq u$ para todo $a\in S$. Ser maximal no exige estar por encima de todos los elementos: puede haber elementos incomparables.
+
+\begin{lema}[Zorn]\label{lema:C17-Zorn}
+Sea $Z$ un conjunto no vacío parcialmente ordenado. Si toda cadena tiene una cota superior en $Z$, entonces $Z$ tiene un elemento maximal.
+\end{lema}
+\begin{defi}
+Un orden total es un \emph{buen orden} si todo subconjunto no vacío tiene un elemento mínimo. Un conjunto es \emph{bien ordenable} si admite un buen orden.
+\end{defi}
+\begin{teo}[Buen orden]
+Todo conjunto admite un buen orden.
+\end{teo}
+El \emph{axioma de elección} permite seleccionar un elemento de cada miembro de una familia de conjuntos no vacíos; también puede formularse para familias de conjuntos disjuntos. Sobre los axiomas de Zermelo--Fraenkel, elección, Zorn y buen orden son formulaciones equivalentes. Esta equivalencia y su independencia respecto de los restantes axiomas, si éstos son consistentes, se toman aquí como hechos fundacionales. Se empleará Zorn en las demostraciones.

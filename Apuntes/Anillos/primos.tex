@@ -1,0 +1,129 @@
+\section{Ideales primos y maximales; ejemplos de espectros}\label{sec:anillos-primos}
+
+\subsection{Primalidad, maximalidad y correspondencia}\label{tema:13-1-2}
+\begin{defi}
+Un ideal \emph{propio} $I\subsetneq R$ es \emph{primo} si $R/I$ es un dominio entero y es \emph{maximal} si $R/I$ es un campo. Todo ideal maximal es primo, porque todo campo es dominio.
+\end{defi}
+
+\begin{ejem}
+El ideal $(x-a)$ de $R[x]$ es primo si y sólo si $R$ es dominio, y maximal si y sólo si $R$ es campo, por el \cref{ejem:C13-evaluacion}. Además, $(x^2+1)$ es maximal en $\mathbb R[x]$, porque el cociente es $\mathbb C$.
+
+En $\mathbb Z[x]$, $(2,x)$ es maximal. En efecto, si $\bar2=2+(x)$, el ejemplo de cocientes sucesivos de la sección~\ref{tema:12-3-1} da
+\[
+\mathbb Z[x]/(2,x)
+\cong (\mathbb Z[x]/(x))/(\bar2)
+\cong\mathbb Z/(2),
+\]
+que es campo. La barra recuerda que en el cociente intermedio se genera un ideal con la \emph{clase} de $2$, y no con un entero considerado fuera de ese anillo.
+\end{ejem}
+
+\begin{lema}\label{lema:C13-campo}
+Un anillo conmutativo $T\ne0$ es campo si y sólo si no tiene ideales distintos de $(0)$ y $T$.
+\end{lema}
+\begin{proof}
+Si $T$ es campo y $J\ne(0)$, elegimos $a\ne0$ en $J$. Como $a^{-1}a=1\in J$, resulta $J=T$. Recíprocamente, para cualquier $a\ne0$, el ideal $(a)$ no es cero y debe ser todo $T$. Existe $b$ con $ba=1$, y la conmutatividad hace de $b$ un inverso bilateral. Luego $T$ es campo.
+\end{proof}
+
+\begin{prop}\label{prop:C13-criterios}
+Sea $I$ un ideal propio de un anillo conmutativo $R$.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $I$ es primo si y sólo si, para todo $a,b\in R$, $ab\in I$ implica $a\in I$ o $b\in I$.
+\item $I$ es maximal si y sólo si todo ideal $J$ con $I\subseteq J\subseteq R$ es $I$ o $R$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+El cociente $R/I$ es conmutativo y no nulo, pues $I$ es propio. La igualdad $(a+I)(b+I)=I$ equivale a $ab\in I$, y una de esas clases es cero si y sólo si su representante pertenece a $I$. Esto demuestra (i).
+
+Por el \cref{lema:C12-correspondencia}, los ideales de $R/I$ son exactamente los $J/I$ con $J\supseteq I$. El ideal cero corresponde a $J=I$ y el ideal total a $J=R$. El \cref{lema:C13-campo} demuestra (ii).
+\end{proof}
+
+\begin{prop}\label{prop:C13-primo-maximal}
+Sea $I$ un ideal propio de un anillo conmutativo $R$.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Si $R/I$ es finito, $I$ es primo si y sólo si es maximal.
+\item Si $R$ es DIP e $I\ne(0)$, $I$ es primo si y sólo si es maximal.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+La primera afirmación es la \cref{prop:C11-finito} aplicada al cociente. Para (ii), sólo falta probar que un primo no nulo es maximal. Escribimos $I=(a)$ con $a\ne0$. Si $I\subseteq J$, escribimos $J=(b)$ y, como $a\in(b)$, tenemos $a=bc$. La primalidad de $(a)$ da $b\in(a)$ o $c\in(a)$.
+
+Si $b\in(a)$, entonces $J\subseteq I$, luego $J=I$. Si $c=da$, la igualdad $a=bc=bda$ da $(1-bd)a=0$. Como $R$ es dominio y $a\ne0$, $bd=1$. Así, $b$ es unidad y $J=R$. Por la \cref{prop:C13-criterios}, $I$ es maximal.
+\end{proof}
+
+\subsection{Espectros de enteros y polinomios}\label{tema:13-1-3}
+\begin{defi}
+El \emph{espectro} de un anillo conmutativo es el conjunto de sus ideales primos:
+\[
+\Spec R=\set{I\subsetneq R\given I\text{ es ideal primo}}.
+\]
+\end{defi}
+No se introduce aquí una topología; los dibujos representan las inclusiones entre ideales.
+
+En $\mathbb Z$, para $n>0$, el ideal $(n)$ es primo si y sólo si es maximal, y esto ocurre si y sólo si $n$ es primo como entero. El ideal $(1)$ no es propio. Además, $(0)$ es primo porque $\mathbb Z$ es dominio, y no es maximal porque $\mathbb Z$ no es campo. Como todos los ideales son principales,
+\[
+\Spec\mathbb Z=\{(0)\}\cup\set{(p)\given p\text{ primo positivo}}.
+\]
+Cada $(p)$ contiene a $(0)$, y no hay inclusiones entre dos ideales maximales distintos.
+
+\begin{ejer}[Los polinomios sobre un campo forman un DIP]\label{ejer:C13-Kx}
+Probar que, si $K$ es un campo, $K[x]$ es un dominio de ideales principales.
+\end{ejer}
+\begin{sol}
+El producto de dos polinomios no nulos tiene coeficiente principal igual al producto de sus coeficientes principales, que es no nulo en el campo. Así, $K[x]$ es dominio.
+
+El ideal cero es principal. Si $I\ne(0)$, los grados de sus polinomios no nulos forman un conjunto no vacío de enteros no negativos. Elegimos $f\in I$ de grado mínimo $d$. Si $d=0$, $f$ es una constante no nula y es unidad, de modo que $I=K[x]=(1)$. Si $d\geq1$, multiplicamos $f$ por el inverso de su coeficiente principal y suponemos que es mónico.
+
+Para $g\in I$, la \cref{prop:C12-division} da $g=fq+r$, con $\deg r<d$. Como $f,g\in I$, también $r=g-fq\in I$. Si $r\ne0$, contradice la minimalidad de $d$. Luego $r=0$, así que $g\in(f)$ y $I\subseteq(f)$. La inclusión opuesta se sigue de $f\in I$. Por tanto, $I=(f)$.
+\end{sol}
+
+En consecuencia, los primos no nulos de $K[x]$ son maximales por la \cref{prop:C13-primo-maximal}. El ideal $(0)$ es primo y no maximal: $K[x]$ es dominio y $x$ no tiene inverso polinómico, porque los grados de productos no nulos se suman.
+
+\begin{defi}
+Un campo es \emph{algebraicamente cerrado} si todo polinomio no constante con coeficientes en él tiene una raíz en el campo. Un polinomio no nulo y no unidad es \emph{irreducible} si, en toda factorización suya, al menos uno de los factores es unidad.
+\end{defi}
+Usaremos el teorema fundamental del álgebra: $\mathbb C$ es algebraicamente cerrado. Su demostración queda fuera del alcance de estos apuntes.
+
+\begin{ejer}[{Ideales maximales de $\mathbb C[x]$}]\label{ejer:C13-complejos}
+Suponiendo que $\mathbb C$ es algebraicamente cerrado, demostrar que los ideales maximales de $\mathbb C[x]$ son exactamente $(x-z)$, $z\in\mathbb C$.
+\end{ejer}
+\begin{sol}
+Cada $(x-z)$ es maximal porque su cociente es $\mathbb C$. Recíprocamente, un maximal $M$ no puede ser $(0)$, como acabamos de ver. Por el \cref{ejer:C13-Kx}, $M=(f)$ con $f$ no nulo y no constante: una constante no nula generaría todo el anillo.
+
+El polinomio $f$ debe ser irreducible. Si $f=gh$ con ambos factores no unidades, sus grados son positivos y menores que $\deg f$, de modo que
+\[
+(f)\subsetneq(g)\subsetneq\mathbb C[x],
+\]
+contradiciendo la maximalidad. Como $\mathbb C$ es algebraicamente cerrado, existe $z$ con $f(z)=0$. El \cref{ejem:C13-evaluacion} da $f=(x-z)q$. La irreducibilidad obliga a que $q$ sea unidad, es decir, una constante no nula. Por tanto, $(f)=(x-z)$.
+
+Además, distintos valores dan distintos ideales: si $(x-z)=(x-w)$, entonces $x-w$ se anula en $z$, de donde $z=w$.
+\end{sol}
+\begin{obs}
+Los irreducibles de $\mathbb C[x]$ tienen la forma $c(x-z)$ con $c\ne0$. Cada uno genera el mismo ideal que su representante mónico $x-z$; por ejemplo, $2x$ también es irreducible.
+\end{obs}
+
+Así, $\Spec\mathbb C[x]=\{(0)\}\cup\set{(x-z)\given z\in\mathbb C}$. La \cref{fig:espectros} muestra un nivel de ideales maximales, todos sobre $(0)$. En el segundo dibujo el plano sólo organiza los parámetros complejos; las líneas indican inclusiones de ideales.
+\figuraApuntes{Figuras/Espectros}{fig:espectros}{Esquemas de $\Spec\mathbb Z$ y $\Spec\mathbb C[x]$.}
+
+\subsection{Existencia de ideales maximales}\label{tema:17-2-2}
+\begin{prop}\label{prop:C17-maximales}
+Todo ideal propio $I$ de un anillo conmutativo unitario $R$ está contenido en un ideal maximal.
+\end{prop}
+\begin{proof}
+Ordenemos por inclusión el conjunto
+\[
+\mathcal I=\set{J\subsetneq R\given J\text{ es ideal e }I\subseteq J}.
+\]
+No es vacío, pues contiene $I$. Para una cadena no vacía $\mathcal C\subseteq\mathcal I$, sea $U=\bigcup_{J\in\mathcal C}J$. Contiene $I$. Si $a,b\in U$, pertenecen a dos miembros de la cadena y uno contiene al otro; así, ambos pertenecen a un mismo ideal y $a-b\in U$. También $ra\in U$ para todo $r\in R$. Luego $U$ es ideal.
+
+Si $U=R$, entonces $1_R\in J$ para algún $J\in\mathcal C$, contradiciendo que $J$ es propio. Por tanto, $U\in\mathcal I$ y es cota superior de la cadena. La cadena vacía tiene como cota a $I$. Zorn da un elemento maximal $\mathfrak m$ de $\mathcal I$. Todo ideal propio que lo contenga también pertenece a $\mathcal I$, luego coincide con él. Así, $\mathfrak m$ es un ideal maximal de $R$.
+\end{proof}
+La unidad es esencial para concluir que la unión sigue siendo propia. En el anillo cero no hay ideales propios, de modo que el enunciado no afirma que tenga un maximal. Para un anillo no nulo, aplicarlo a $(0)$ sí asegura su existencia.
+
+\begin{ejer}[La necesidad de la unidad]\label{ejer:C17-sin-unidad}
+Dar un anillo sin unidad que no tenga ideales maximales.
+\end{ejer}
+\begin{sol}
+Tomemos el grupo aditivo $\mathbb Q$ con multiplicación idénticamente cero. Es un anillo asociativo y conmutativo sin unidad: $e\cdot1=0\ne1$ para cualquier $e$. Todos sus subgrupos aditivos son ideales.
+
+Si $M$ fuera un ideal maximal, el grupo abeliano no nulo $\mathbb Q/M$ no tendría subgrupos propios no triviales. Cualquier elemento no nulo lo generaría; sería cíclico, y su orden tendría que ser un primo $p$: un grupo cíclico infinito o de orden compuesto tiene subgrupos propios no triviales. Pero multiplicar por $p$ es sobreyectivo en $\mathbb Q/M$, porque $q+M=p(q/p+M)$. En un grupo de orden $p$ esa multiplicación es cero, una contradicción. No existe tal $M$.
+\end{sol}

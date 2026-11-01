@@ -1,0 +1,149 @@
+\section{Anillos, homomorfismos, unidades y divisores de cero}\label{sec:anillos-fundamentos}
+
+\subsection{Axiomas y primeros ejemplos}\label{tema:11-1-1}
+\begin{defi}
+Un \emph{anillo} es un conjunto $R$ con operaciones $+$ y $\cdot$ tales que $(R,+)$ es un grupo abeliano, el producto es asociativo y tiene identidad bilateral $1_R$, y se cumplen ambas leyes distributivas:
+\[
+r(s+t)=rs+rt,\qquad (r+s)t=rt+st.
+\]
+El neutro aditivo se denota $0_R$. El anillo es \emph{conmutativo} si $rs=sr$ para todos $r,s\in R$.
+\end{defi}
+Así, $(R,\cdot)$ es un monoide, pero no se pide que sus elementos tengan inversos multiplicativos.
+En estas notas los anillos tienen unidad, pero no se supone conmutatividad salvo que se indique. Se permite el anillo cero, cuyo único elemento satisface $0_R=1_R$. Recíprocamente, si $0_R=1_R$, entonces $r=r1_R=r0_R=0_R$ para todo $r$, por la propiedad siguiente.
+
+\begin{lema}\label{lema:C11-cero}
+En cualquier anillo, $r0=0=0r$ y $(-1)r=-r=r(-1)$.
+\end{lema}
+\begin{proof}
+La distributividad da $r0=r(0+0)=r0+r0$. Cancelando en el grupo aditivo resulta $r0=0$; el otro lado es análogo. Además,
+\[
+(-1)r+r=(-1+1)r=0,\qquad r(-1)+r=r(-1+1)=0.
+\]
+La unicidad del inverso aditivo concluye la prueba.
+\end{proof}
+
+\begin{ejem}
+Los enteros, racionales, reales y complejos son anillos con sus operaciones usuales. También lo es $\mathbb Z/n\mathbb Z$ para $n\geq1$, con operaciones inducidas por las de los enteros. El caso $n=1$ es el anillo cero.
+
+El anillo $M_2(\mathbb R)$ de matrices reales de tamaño dos no es conmutativo. Por ejemplo, tomemos
+\[
+A=\begin{pmatrix}0&1\\0&0\end{pmatrix},\qquad
+B=\begin{pmatrix}0&0\\1&0\end{pmatrix}.
+\]
+Entonces $AB=\operatorname{diag}(1,0)$ y $BA=\operatorname{diag}(0,1)$ son distintos. La unidad es la matriz identidad.
+\end{ejem}
+
+\begin{ejem}[Fallo de cancelación]
+En $\mathbb Z/6\mathbb Z$ se tiene $[2][4]=[2]=[2][1]$, aunque $[4]\ne[1]$. La diferencia se explica por $[2][3]=[0]$, con ambos factores distintos de cero.
+\end{ejem}
+
+\subsection{Divisores de cero y dominios}\label{tema:11-1-2}
+\begin{defi}
+Un elemento $a\in R$ es \emph{divisor de cero por la izquierda} si existe $b\ne0$ con $ab=0$, y \emph{por la derecha} si existe $b\ne0$ con $ba=0$.
+\end{defi}
+No se exige $a\ne0$. Así, en un anillo no nulo, el propio cero es divisor de cero por ambos lados. En un dominio se excluyen los divisores de cero no nulos.
+
+\begin{prop}\label{prop:C11-cancelacion}
+Un elemento $a$ no es divisor de cero por la izquierda si y sólo si $L_a:R\to R$, $x\mapsto ax$, es inyectiva. Para la derecha, el criterio es la inyectividad de $R_a:R\to R$, $x\mapsto xa$.
+\end{prop}
+\begin{proof}
+Si $a$ no es divisor por la derecha y $xa=x'a$, entonces $(x-x')a=0$ fuerza $x=x'$. Recíprocamente, si $R_a$ es inyectiva y $xa=0=0a$, resulta $x=0$, de modo que no hay un testigo no nulo de que $a$ sea divisor por la derecha. Cambiando el lado de los productos se obtiene la primera equivalencia. Estas aplicaciones son homomorfismos de grupos aditivos; no se afirma que preserven la unidad ni que sean morfismos de anillos.
+\end{proof}
+
+\begin{defi}
+Un \emph{dominio entero}, o simplemente \emph{dominio}, es un anillo conmutativo no nulo tal que
+\[
+ab=0\quad\Longrightarrow\quad a=0\ \text{o}\ b=0.
+\]
+\end{defi}
+Por tanto, en un dominio se puede cancelar cualquier factor no nulo. Los anillos $\mathbb Z$, $\mathbb Q$, $\mathbb R$ y $\mathbb C$ son dominios; $\mathbb Z/6\mathbb Z$ no lo es.
+
+\subsection{Unidades y campos}\label{tema:11-1-3}
+\begin{defi}
+$u$ es una \emph{unidad por la izquierda} si existe $v$ con $uv=1$, y una \emph{unidad por la derecha} si existe $w$ con $wu=1$. Es una \emph{unidad bilateral}, o \emph{unidad}, si satisface ambas condiciones.
+\end{defi}
+\begin{obs}
+Con esta convención, una unidad por la izquierda tiene un inverso por la derecha, y viceversa. Las ecuaciones $uv=1$ y $wu=1$ especifican el lado del inverso.
+\end{obs}
+
+\begin{prop}\label{prop:C11-unidades}
+Para $u\in R$ se cumplen las siguientes propiedades.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Existe $v$ con $uv=1$ si y sólo si $L_u$ es sobreyectiva; existe $w$ con $wu=1$ si y sólo si $R_u$ lo es.
+\item Si $uv=1$, entonces $R_u$ es inyectiva. Si $wu=1$, entonces $L_u$ es inyectiva.
+\item Si hay inversos por ambos lados, coinciden y son únicos.
+\item Las unidades forman un grupo multiplicativo, denotado $R^\times$ o $R^*$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Si $uv=1$, cualquier $y\in R$ se escribe $y=u(vy)$, así que $L_u$ es sobreyectiva. Recíprocamente, la sobreyectividad permite elegir $v$ con $L_u(v)=1$. La prueba para $R_u$ es análoga.
+
+Si $xu=x'u$ y $uv=1$, multiplicar por $v$ a la derecha da $x=x'$. Si $ux=ux'$ y $wu=1$, multiplicar por $w$ a la izquierda da lo mismo. Esto prueba (ii), y la \cref{prop:C11-cancelacion} traduce el resultado en ausencia de divisores de cero del lado correspondiente.
+
+Si $wu=1=uv$, entonces $w=w(uv)=(wu)v=v$. Todo inverso bilateral debe coincidir con éste, que denotamos $u^{-1}$.
+
+Finalmente, $1$ es unidad y, si $u,v$ son unidades, $uv$ tiene inverso $v^{-1}u^{-1}$. El inverso de una unidad también es unidad. La asociatividad se hereda de $R$, con lo que
+\[
+R^\times=\set{u\in R\given u\text{ es unidad bilateral}}
+\]
+es un grupo.
+\end{proof}
+
+\begin{defi}
+Un \emph{anillo de división} es un anillo en el que todo elemento no nulo es unidad bilateral. Un \emph{campo} es un anillo conmutativo \emph{no nulo} en el que todo elemento no nulo es unidad.
+\end{defi}
+Bajo esta definición se permite el anillo cero como anillo de división; los campos, en cambio, se suponen siempre no nulos.
+
+\begin{prop}\label{prop:C11-finito}
+Todo campo es un dominio, y todo dominio finito es un campo.
+\end{prop}
+\begin{proof}
+En un campo, si $a\ne0$ y $ab=0$, multiplicar por $a^{-1}$ da $b=0$. Para la segunda afirmación basta probar que un dominio finito es campo. Para $a\ne0$, las aplicaciones $L_a$ y $R_a$ son inyectivas por la \cref{prop:C11-cancelacion}; como el conjunto es finito, son sobreyectivas. La \cref{prop:C11-unidades} da inversos por ambos lados, luego $a$ es unidad.
+\end{proof}
+La finitud es esencial: $\mathbb Z$ es dominio, pero no campo, pues $2$ no tiene inverso entero.
+
+\begin{ejem}[Unidades módulo un entero]
+Para $n\geq1$,
+\[
+(\mathbb Z/n\mathbb Z)^\times
+=\set{[m]_n\given \mcd(m,n)=1}.
+\]
+En efecto, la imagen de $L_{[m]}$ es el subgrupo aditivo generado por $[m]$. Es todo el grupo si y sólo si $\mcd(m,n)=1$, por el cálculo de subgrupos cíclicos. Equivalentemente, una identidad de Bézout $am+bn=1$ da el inverso $[a]$, y un inverso módulo $n$ produce esa identidad.
+
+Para $n\geq2$, $\mathbb Z/n\mathbb Z$ es dominio si y sólo si es campo, y esto ocurre si y sólo si $n$ es primo. Si $n$ es primo, cada clase no nula es coprima con $n$ y es unidad. Si $n=ab$ con $1<a,b<n$, las clases no nulas $[a]$ y $[b]$ tienen producto cero. El caso $n=1$ se excluye por ser el anillo cero.
+\end{ejem}
+
+\subsection{Homomorfismos y la categoría de anillos}\label{tema:11-2-2a}
+\begin{defi}
+Un \emph{homomorfismo de anillos} $\varphi:R\to S$ preserva ambas operaciones y la unidad:
+\[
+\varphi(a+b)=\varphi(a)+\varphi(b),\qquad
+\varphi(ab)=\varphi(a)\varphi(b),\qquad
+\varphi(1_R)=1_S.
+\]
+Los anillos con estos morfismos forman la categoría $\Ring$.
+\end{defi}
+Las identidades y composiciones preservan las tres condiciones. Por ser homomorfismo aditivo, $\varphi$ también preserva cero y negativos.
+
+\begin{prop}\label{prop:C11-inicial}
+El anillo cero es terminal en $\Ring$, y $\mathbb Z$ es inicial. El anillo cero no es inicial.
+\end{prop}
+\begin{proof}
+La única función $R\to0$ es un homomorfismo, incluida la condición sobre la unidad, porque $1_0=0$. Un morfismo $0\to R$ debería enviar el mismo elemento a $0_R$ y a $1_R$; sólo existe si $R=0$, de modo que $0$ no es inicial.
+
+Para cualquier anillo $R$, definimos $\iota_R:\mathbb Z\to R$ por $\iota_R(n)=n1_R$, donde se usan sumas repetidas para $n>0$, cero para $n=0$ y negativos para $n<0$. La aditividad es la regla de los múltiplos enteros en un grupo abeliano. Por distributividad,
+\[
+(m1_R)(n1_R)=(mn)1_R.
+\]
+Para enteros positivos se obtiene sumando $m$ paquetes de $n$ unos; los casos negativos se siguen de la compatibilidad del producto con los inversos aditivos. También $\iota_R(1)=1_R$, por lo que es homomorfismo. Cualquier otro debe enviar $1$ a $1_R$ y, por aditividad, $n$ a $n1_R$.
+\end{proof}
+
+\begin{prop}
+Los homomorfismos de anillos preservan unidades por cualquiera de los lados y, en particular, inducen homomorfismos $R^\times\to S^\times$.
+\end{prop}
+\begin{proof}
+Si $uv=1_R$, entonces $\varphi(u)\varphi(v)=\varphi(1_R)=1_S$. Lo mismo ocurre con un inverso por el otro lado. Para unidades bilaterales, $\varphi(u^{-1})=\varphi(u)^{-1}$, y la compatibilidad con el producto ya es parte de los axiomas.
+\end{proof}
+\begin{ejem}
+No se preserva necesariamente la ausencia de divisores de cero: $3\in\mathbb Z$ no es divisor de cero, pero su imagen bajo la proyección $\mathbb Z\to\mathbb Z/6\mathbb Z$ lo es, pues $[3][2]=[0]$ y $[2]\ne[0]$.
+\end{ejem}

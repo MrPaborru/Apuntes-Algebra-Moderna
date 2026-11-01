@@ -1,0 +1,158 @@
+\section{Divisibilidad, irreducibles y factorización única}\label{sec:anillos-factorizacion}
+
+\subsection{Divisibilidad, asociados y elementos primos}\label{tema:15-3-1}\label{tema:15-3-2}
+El esquema de la \cref{fig:dominios} organiza las clases de dominios. Los rótulos «con factorización», «DFU» y «euclidiano» se precisan en las secciones~\ref{sec:anillos-factorizacion} y~\ref{sec:anillos-euclidianos}, donde se estudian sus relaciones. Los ejemplos~\ref{ejem:C16-determinante} y~\ref{ejem:infinitas-DFU} justificarán, después del teorema de Hilbert, las diferencias entre noetherianidad y factorización.
+\figuraApuntes{Figuras/Dominios}{fig:dominios}{Relaciones entre clases de dominios enteros.}
+
+\begin{defi}
+En un anillo conmutativo, $a$ \emph{divide} a $b$, escrito $a\mid b$, si existe $c\in R$ con $b=ac$, es decir, si $b\in(a)$. Dos elementos son \emph{asociados} si $(a)=(b)$, es decir, si se dividen mutuamente.
+\end{defi}
+La divisibilidad es reflexiva y transitiva por las identidades $a=a1$ y $b=ac$, $d=be\Rightarrow d=a(ce)$. Además, $a\mid b$ equivale a $(b)\subseteq(a)$, de modo que la dirección de inclusión de ideales es opuesta a la divisibilidad.
+
+\begin{lema}\label{lema:C15-asociados}
+En un dominio, dos elementos no nulos son asociados si y sólo si uno es múltiplo del otro por una unidad.
+\end{lema}
+\begin{proof}
+Si $b=ac$ y $a=bd$, entonces $a=acd$. Cancelando $a\ne0$, $cd=1$, así que $d$ es unidad y $a=db$. Recíprocamente, $a=ub$ da $a\in(b)$ y $b=u^{-1}a\in(a)$, por lo que los ideales coinciden.
+\end{proof}
+
+\begin{defi}
+En un dominio $R$, un elemento $a$ es \emph{primo} si $(a)$ es un ideal primo. Equivalentemente, $a$ no es unidad y
+\[
+a\mid bc\quad\Longrightarrow\quad a\mid b\ \text{o}\ a\mid c.
+\]
+Es \emph{irreducible} si no es unidad y toda factorización $a=bc$ tiene al menos un factor unidad.
+\end{defi}
+La equivalencia para primos es la \cref{prop:C13-criterios}. Esta convención permite que $0$ sea primo en un dominio, porque $(0)$ es primo. En cambio, $0$ no es irreducible: $0=0\cdot0$ y ninguno de esos factores es unidad en un dominio no nulo. Por eso se exigirá explícitamente «primo no nulo» al comparar ambas nociones.
+
+\begin{ejer}[Irreducibilidad e ideales principales]\label{ejer:C15-irreducible}
+Para un elemento no nulo y no unidad $a$ de un dominio, demostrar que las condiciones siguientes equivalen a su irreducibilidad:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Si $a=bc$, entonces $a$ es asociado de $b$ o de $c$.
+\item Si $a=bc$, entonces $(a)=(b)$ o $(a)=(c)$.
+\item Si $(a)\subseteq(b)$, entonces $(b)=(a)$ o $(b)=R$.
+\end{enumerate}
+Así, $(a)$ es maximal entre los ideales principales propios.
+\end{ejer}
+\begin{sol}
+Si $a$ es irreducible y $a=bc$, uno de los factores es unidad. Si $c$ es unidad, $a$ es asociado de $b$; si $b$ es unidad, es asociado de $c$. Recíprocamente, si por ejemplo $a=ub$ con $u$ unidad y también $a=bc$, cancelar $b\ne0$ da $c=u$. Así, (i) implica irreducibilidad. La equivalencia entre (i) y (ii) es la definición de asociados.
+
+Si $a$ es irreducible y $(a)\subseteq(b)$, escribimos $a=bc$. Si $c$ es unidad, $(a)=(b)$; si $b$ es unidad, $(b)=R$. Esto prueba (iii). Para la vuelta, de $a=bc$ obtenemos $(a)\subseteq(b)$. Si $(b)=R$, $b$ es unidad. Si $(b)=(a)$, existe $d$ con $b=ad$, y $a=adc$; cancelar $a\ne0$ da $dc=1$, por lo que $c$ es unidad. Finalmente, (iii) dice exactamente que ningún ideal principal propio contiene estrictamente a $(a)$.
+\end{sol}
+
+\subsection{Primos no nulos e irreducibles}\label{tema:16-1-1}
+En lo que sigue $R$ es un dominio entero. Conservamos la convención de la sección~\ref{tema:15-3-2}: «primo» significa que el ideal principal es primo, por lo que el cero puede ser primo; la comparación con irreducibilidad necesita excluirlo.
+
+\begin{lema}\label{lema:C16-primo-irreducible}
+Todo elemento primo no nulo de un dominio es irreducible.
+\end{lema}
+\begin{proof}
+Si $a$ es primo, $(a)$ es propio, así que $a$ no es unidad. Dada una factorización $a=bc$, la primalidad implica $b\in(a)$ o $c\in(a)$. En el primer caso $b=ad$, luego $a=adc$; cancelar $a\ne0$ da $dc=1$, y $c$ es unidad. En el segundo caso el mismo argumento muestra que $b$ es unidad. Por tanto, $a$ es irreducible.
+\end{proof}
+
+\begin{defi}
+Una \emph{factorización en irreducibles} de un elemento no nulo y no unidad $r$ es una expresión $r=q_1\cdots q_n$ con todos los $q_i$ irreducibles. Es \emph{única salvo orden y asociados} si toda otra expresión $r=q'_1\cdots q'_m$ tiene $m=n$ y, después de reordenar, cada $q'_i$ es asociado de $q_i$.
+
+Un \emph{dominio con factorización} es aquel en que todo elemento no nulo y no unidad admite tal expresión. Un \emph{dominio factorial}, o \emph{dominio de factorización única} (DFU; UFD en inglés), es aquel en que esas factorizaciones existen y son únicas en el sentido anterior.
+\end{defi}
+Al elegir representantes fijos de las clases de asociados se escribe un factor unidad separado, $r=u\prod_i q_i$. Es equivalente a la definición: se puede absorber $u$ en uno de los irreducibles sin cambiar su clase de asociado. Para una unidad se toma una lista vacía de factores y se conserva la unidad misma.
+
+\subsection{Existencia por cadenas de ideales principales}\label{tema:16-1-2a}
+\begin{prop}\label{prop:C16-existencia}
+Sea $r\ne0$ una no unidad. Si toda cadena ascendente de ideales principales que comienza en $(r)$ se estabiliza, $r$ admite una factorización en irreducibles.
+\end{prop}
+\begin{proof}
+Supongamos que $r$ no tiene factorización. Entonces no es irreducible, porque él mismo sería una factorización de longitud uno. Existen no unidades $r_1,s_1$ con $r=r_1s_1$. Ambos factores son no nulos porque $R$ es dominio. Si los dos tuvieran factorización, multiplicarlas daría una de $r$; elegimos como $r_1$ un factor que no la tenga.
+
+La inclusión $(r)\subseteq(r_1)$ es estricta. Si fueran iguales, $r_1=rt$ daría $r=rts_1$ y, cancelando $r\ne0$, $ts_1=1$, contradiciendo que $s_1$ no es unidad. Repetir el argumento produce
+\[
+(r)\subsetneq(r_1)\subsetneq(r_2)\subsetneq\cdots,
+\]
+sin estabilización, contra la hipótesis.
+\end{proof}
+
+\begin{coro}\label{coro:C16-noetheriano}
+En todo dominio noetheriano existen factorizaciones en irreducibles.
+\end{coro}
+\begin{proof}
+Sea $I_1\subseteq I_2\subseteq\cdots$ una cadena de ideales. Su unión $I$ es un ideal: dos de sus elementos pertenecen a un mismo término, que contiene su diferencia, y multiplicar por un elemento del anillo conserva ese término. Por noetherianidad, $I=(a_1,\ldots,a_s)$. Todos los generadores pertenecen a algún $I_N$, tomando el máximo de sus índices; entonces $I=I_N$ y $I_j=I_N$ para todo $j\ge N$. Si $I=0$, todos los términos son cero. Así se estabilizan todas las cadenas de ideales, en particular las principales. Aplicamos la proposición a cada elemento no nulo y no unidad.
+\end{proof}
+
+\subsection{Multiconjuntos de irreducibles}\label{tema:16-2-1}
+Un \emph{multiconjunto} asigna a cada elemento una multiplicidad entera no negativa. Para una factorización finita sólo hay finitas multiplicidades positivas. En un DFU elegimos representantes $q$ de las clases de asociados de irreducibles y escribimos
+\[
+r=u\prod_q q^{v_q(r)},\qquad
+u\in R^\times,\quad v_q(r)\geq0,
+\]
+con soporte finito. Las unidades tienen todas las multiplicidades cero. Un multiconjunto está contenido en otro si cada multiplicidad es menor o igual; al comparar soportes distintos, se extienden por cero a una misma base de representantes.
+\begin{obs}
+Las multiplicidades determinan la clase de asociado de un elemento; el factor unidad no queda determinado. Por ejemplo, $2$ y $-2$ tienen las mismas multiplicidades en $\mathbb Z$. Al multiplicar elementos se suman las multiplicidades de sus factores.
+\end{obs}
+
+\begin{lema}\label{lema:C16-multiplicidades}
+En un DFU, para elementos no nulos $a,b,c$:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $(a)\subseteq(b)$, o equivalentemente $b\mid a$, si y sólo si $v_q(b)\leq v_q(a)$ para todo $q$.
+\item $a,b$ son asociados si y sólo si sus multiplicidades coinciden.
+\item $v_q(bc)=v_q(b)+v_q(c)$ para todo $q$.
+\end{enumerate}
+\end{lema}
+\begin{proof}
+Multiplicar las factorizaciones de $b$ y $c$ da una factorización de $bc$; la unicidad obliga a que sus multiplicidades sean las sumas. Esto prueba (iii), incluyendo factores unidades con multiconjunto vacío.
+
+Si $a=bc$, (iii) da $v_q(a)=v_q(b)+v_q(c)\geq v_q(b)$. Recíprocamente, si todas las diferencias son no negativas, escribiendo $a=u\prod q^{\alpha_q}$, $b=v\prod q^{\beta_q}$ se tiene
+\[
+a=b\left(uv^{-1}\prod_q q^{\alpha_q-\beta_q}\right),
+\]
+lo que prueba (i). Finalmente, ser asociados equivale a las dos inclusiones de ideales; por (i), equivale a las dos desigualdades opuestas y, por tanto, a igualdad de multiplicidades.
+\end{proof}
+
+\subsection{Existencia de máximo común divisor}\label{tema:16-2-2}
+\begin{defi}
+Un \emph{máximo común divisor} de $a,b$ en un dominio es un elemento $d$ tal que $d\mid a$, $d\mid b$, y todo divisor común $c$ de $a,b$ divide a $d$. Equivale a que $(d)$ sea el menor ideal principal que contiene $(a,b)$.
+\end{defi}
+Se extiende la definición a cualquier familia finita. Si hay dos máximos comunes divisores, se dividen mutuamente y son asociados; por ello $\mcd(a,b)$ designa una elección de representante, salvo que se fije una normalización. No tiene por qué existir en todo dominio.
+
+\begin{ejem}[Un dominio sin cierto máximo común divisor]
+Sea
+\[
+R=\mathbb Z[x^2,x^3]
+=\set{a_0+a_2x^2+\cdots+a_nx^n\given a_i\in\mathbb Z}.
+\]
+Es el subanillo de $\mathbb Z[x]$ formado por polinomios sin término lineal y es dominio. Los divisores comunes de $x^5$ y $x^6$ en $R$ son exactamente $\pm1$, $\pm x^2$ y $\pm x^3$.
+
+Si $gh=x^5$ en $\mathbb Z[x]$, comparemos los grados mayores y los menores exponentes presentes. Ambos se suman en el producto y ambos dan cinco. Como para cada factor el mayor grado es al menos el menor, deben coincidir en cada factor; así, $g,h$ son monomios. Sus coeficientes enteros multiplican a uno, luego son $\pm1$. Aplicando esto a un divisor común, éste es $\pm x^k$. La pertenencia del divisor y de los cocientes $x^{5-k},x^{6-k}$ a $R$ deja sólo $k=0,2,3$.
+
+Los divisores $x^2,x^3$ son incomparables: $x^3/x^2=x\notin R$, y $x^2/x^3$ ni siquiera es polinomio. Ninguno de los divisores comunes de la lista es múltiplo de ambos. Por tanto, $x^5,x^6$ no tienen máximo común divisor en $R$.
+\end{ejem}
+
+\begin{lema}\label{lema:C16-mcd}
+En un DFU, dos elementos no nulos tienen máximo común divisor. Si
+\[
+a=u\prod_{i=1}^t q_i^{\alpha_i},\qquad
+b=v\prod_{i=1}^t q_i^{\beta_i},
+\]
+con representantes no asociados entre sí y exponentes no negativos, uno de esos divisores es $d=\prod_i q_i^{\min(\alpha_i,\beta_i)}$.
+\end{lema}
+\begin{proof}
+Sus multiplicidades no exceden las de $a$ ni las de $b$, luego divide a ambos por el \cref{lema:C16-multiplicidades}. Todo divisor común $c$ es no nulo y tiene $v_{q_i}(c)\leq\alpha_i,\beta_i$; tampoco puede tener otros factores. Así, sus multiplicidades no exceden $\min(\alpha_i,\beta_i)$, lo que prueba $c\mid d$.
+\end{proof}
+
+\subsection{Un criterio de factorización única}\label{tema:16-3-1}
+\begin{lema}\label{lema:C16-irreducible-primo}
+En un DFU todo irreducible es primo.
+\end{lema}
+\begin{proof}
+Sea $a$ irreducible. No es unidad. Si $a\mid bc$ y uno de $b,c$ es cero, $a$ divide a ese factor y la conclusión es inmediata. Si ambos son no nulos, la clase de asociado de $a$ aparece con multiplicidad al menos uno en $bc$. Por el \cref{lema:C16-multiplicidades}, aparece en $b$ o en $c$, de modo que $a\mid b$ o $a\mid c$. Éste es el criterio de primalidad.
+\end{proof}
+
+\begin{teo}\label{teo:C16-criterio}
+Un dominio es DFU si y sólo si satisface la condición de cadena ascendente para ideales principales y todo irreducible es primo.
+\end{teo}
+\begin{proof}
+Si es DFU, ya vimos que sus irreducibles son primos. Para una cadena $(r_1)\subseteq(r_2)\subseteq\cdots$, descartamos los términos iniciales nulos si aparece alguno no nulo; si no aparece, la cadena es constante. En el resto de la cadena, cada multiconjunto de factores está contenido en el anterior. La suma de las multiplicidades es un entero no negativo y disminuye en cada inclusión estricta de ideales, por el \cref{lema:C16-multiplicidades}. Sólo puede disminuir finitamente muchas veces. Después las multiplicidades coinciden y también los ideales, luego la cadena se estabiliza.
+
+Recíprocamente, la condición de cadena proporciona existencia por la \cref{prop:C16-existencia}. Para probar unicidad, supongamos que un mismo elemento tiene expresiones $u q_1\cdots q_n=v p_1\cdots p_m$, con $u,v$ unidades y todos los demás factores irreducibles. Si $n>0$, el primo $q_1$ divide al producto de la derecha; no divide a la unidad $v$, por lo que divide a algún $p_j$. Reordenando, $p_1=q_1c$, y la irreducibilidad de $p_1$ fuerza que $c$ sea unidad, ya que $q_1$ no lo es.
+
+Cancelamos $q_1\ne0$ y absorbemos $c$ en el factor unidad. Repetimos el argumento con una lista más corta. No puede agotarse una lista antes que la otra: eso igualaría una unidad a un producto no vacío de irreducibles, pero si un producto es unidad, cada factor lo es. Por tanto, $m=n$ y, después de reordenar, cada pareja de factores es asociada. Esto prueba la unicidad requerida.
+\end{proof}

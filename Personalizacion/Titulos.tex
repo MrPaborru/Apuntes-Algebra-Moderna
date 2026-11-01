@@ -8,10 +8,10 @@
   {}{}
 \makeatother
 
-% Caja para el número de la capítulo
+% Caja para el número del capítulo
 \newsavebox{\felinechapternumber}
 
-% Marcador: "CLASE" vertical + número
+% Marcador: "CAPÍTULO" vertical + número
 \newcommand{\felinechaptermarker}{%
     \sbox{\felinechapternumber}{%
         \begingroup
@@ -37,7 +37,7 @@
                     \heightof{\usebox{\felinechapternumber}}%
                     +\depthof{\usebox{\felinechapternumber}}%
                 }{!}{%
-                    \scshape\so{CLASE}%
+                    \scshape\so{CAPÍTULO}%
                 }%
             }%
         }%
@@ -49,13 +49,28 @@
 }
 
 
-% Espaciado de las capítulos
+% Espaciado de los capítulos
 \titlespacing*{\chapter}
     {0pt}
     {-5em}
     {3em}
 
-% Formato de las capítulos
+\input{Personalizacion/IndiceCapitulo}
+\newsavebox{\materiaTituloCaja}
+\newsavebox{\indiceCapituloCaja}
+\newcommand{\tituloCapituloConIndice}[1]{%
+  \sbox{\materiaTituloCaja}{\abvMateria}%
+  \setlength{\indiceCapituloAncho}{\textwidth}%
+  \sbox{\indiceCapituloCaja}{\indiceCapitulo}%
+  % El título encabeza el miniíndice y comparte su margen izquierdo.
+  \parbox{\textwidth}{{\raggedright\normalfont#1\par}%
+    \noindent\makebox[\textwidth][r]{%
+      \phantom{\usebox{\materiaTituloCaja}}%
+      \llap{\raisebox{\dimexpr\ht\materiaTituloCaja-\ht\indiceCapituloCaja-8pt\relax}
+        [0pt][0pt]{\usebox{\indiceCapituloCaja}}}}}%
+}
+
+% Formato de los capítulos
 \titleformat{\chapter}[display]
     {\Huge\bfseries\color{grisCIMAT!80!black}\raggedleft}
     {
@@ -67,11 +82,11 @@
         \vspace{-0.55em}\\
         {\Large\color{rojoCIMAT}\normalfont\bfseries\hspace{1.4cm}en Matemáticas, A.C.}
     \end{minipage}\\
-    \vspace{4.9cm}
+    \vspace{3.9cm}
     \felinechaptermarker
     }
-    {1.5em}
-    {{\normalfont#1}\\\abvMateria}
+    {\dimexpr1.5em+1.35cm\relax}
+    {\tituloCapituloConIndice{#1}}
     [%
     \input{Portada/banner}%
     \clearpage%
@@ -79,14 +94,25 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \renewcommand{\thesection}{\arabic{section}}
-% \titleformat{\section}
-%     {\normalfont\Large\centering\scshape}{\thesection.}{1em}{#1}[\vspace{1em}]
-
-% Títulos de secciones alternativo
-% \titleformat{\section}
-%     {\scshape\Large\bfseries}{\colorbox{black}{\textcolor{white}{\thesection}}}{1.2em}{}[]
+\titleformat{\section}
+    {\normalfont\Large\bfseries\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000}
+    {\textcolor{rojoCIMAT}{\thesection.}}{1em}{#1}
 
 % Títulos de subsecciones
 \titleformat{\subsection}
-    {\normalfont\large\scshape}{\thesubsection}{1em}{#1}[]
+    {\normalfont\large\scshape\color{grisCIMAT}\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000}
+    {\begingroup\setlength{\fboxsep}{2pt}%
+      \colorbox{grisCIMAT}{\textcolor{white}{%
+        \raisebox{0pt}[\dimexpr\height+.4pt\relax][\dimexpr\depth+.4pt\relax]{\bfseries\thesubsection}}}%
+      \endgroup}{.7em}{#1}[]
+\titleformat{name=\chapter,numberless}[display]
+  {\Huge\bfseries\color{grisCIMAT!80!black}\raggedleft}
+  {\includegraphics[height=2cm]{Portada/escudo_cimat.pdf}\\[5cm]}
+  {1em}{\parbox{\textwidth}{\raggedleft#1}}
+  [\input{Portada/banner}\clearpage]
+
+% Formato del título de referencias.
+\newcommand{\formatoTituloListado}{%
+  \titleformat{name=\chapter,numberless}[display]
+    {\centering\Huge\scshape\color{grisCIMAT}}{}{0pt}{##1}%
+}

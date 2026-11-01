@@ -1,0 +1,146 @@
+\section{Módulos, homomorfismos y ejemplos}\label{sec:modulos-fundamentos}
+
+\subsection{Definición y axiomas}\label{tema:13-2-1}
+Volvemos a permitir anillos no conmutativos. Una acción izquierda de $R$ sobre un grupo abeliano $M$ es un homomorfismo de anillos
+\[
+\sigma:R\longrightarrow\End_{\Ab}(M).
+\]
+El producto en el destino es la composición y su unidad es $\id_M$. Escribiendo $rm=\sigma(r)(m)$, se obtiene la formulación siguiente.
+
+\begin{defi}
+Un \emph{$R$-módulo izquierdo} es un grupo abeliano $(M,+)$ con una función $R\times M\to M$, $(r,m)\mapsto rm$, que satisface
+\[
+\begin{aligned}
+r(m+n)&=rm+rn,&(r+s)m&=rm+sm,\\
+(rs)m&=r(sm),&1_Rm&=m
+\end{aligned}
+\]
+para todos $r,s\in R$ y $m,n\in M$. En adelante usaremos módulos izquierdos.
+\end{defi}
+
+\begin{prop}\label{prop:C13-accion}
+Dar una estructura de $R$-módulo en $M$ equivale a dar un homomorfismo $\sigma:R\to\End_{\Ab}(M)$.
+\end{prop}
+\begin{proof}
+Si se da $\sigma$, la primera distributiva dice que cada $\sigma(r)$ es aditivo; la segunda expresa $\sigma(r+s)=\sigma(r)+\sigma(s)$; la asociatividad de la acción expresa $\sigma(rs)=\sigma(r)\circ\sigma(s)$; y el axioma de unidad es $\sigma(1_R)=\id_M$.
+
+Recíprocamente, dada la función de acción, definimos $\sigma(r)(m)=rm$. El primer axioma hace que $\sigma(r)$ sea un endomorfismo aditivo. Los otros tres lo convierten en un homomorfismo de anillos. Las construcciones son inversas porque ambas quedan determinadas por el valor $rm$.
+\end{proof}
+
+\begin{ejer}[Cero y negativos en un módulo]\label{ejer:C13-cero}
+Demostrar $0_Rm=0_M$ y $(-1_R)m=-m$.
+\end{ejer}
+\begin{sol}
+La igualdad $0_R=0_R+0_R$ da $0_Rm=0_Rm+0_Rm$. Cancelar en el grupo aditivo de $M$ produce $0_Rm=0_M$. Después,
+\[
+0_M=(1_R+(-1_R))m=m+(-1_R)m,
+\]
+de modo que $(-1_R)m$ es el inverso aditivo de $m$.
+\end{sol}
+
+\begin{prop}\label{prop:C13-Zmod}
+Todo grupo abeliano admite exactamente una estructura de $\mathbb Z$-módulo.
+\end{prop}
+\begin{proof}
+Por la \cref{prop:C13-accion}, esa estructura equivale a un homomorfismo $\mathbb Z\to\End_{\Ab}(M)$. Existe uno y es único porque $\mathbb Z$ es inicial en $\Ring$, por la \cref{prop:C11-inicial}. Concretamente, para $n>0$ se suman $n$ copias de $m$; $0m=0$, y $(-n)m=-(nm)$.
+\end{proof}
+
+\subsection{Morfismos y ejemplos}\label{tema:13-2-2}
+\begin{defi}
+Un \emph{homomorfismo de $R$-módulos}, o aplicación \emph{$R$-lineal}, es una función $f:M\to N$ tal que
+\[
+f(m+n)=f(m)+f(n),\qquad f(rm)=rf(m).
+\]
+Los módulos izquierdos y estos morfismos forman la categoría $R\text{-}\mathbf{Mod}$. Escribimos $\Hom_R(M,N)$ para su conjunto de morfismos.
+\end{defi}
+La identidad es lineal y la composición lo es: para $f:M\to N$, $g:N\to P$, se tiene $gf(rm)=g(rf(m))=rgf(m)$, además de la aditividad. La segunda condición de la definición expresa que conmuta el cuadrado de acciones:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+R\times M\arrow[r,"\id_R\times f"]\arrow[d,"\rho_M"']
+&R\times N\arrow[d,"\rho_N"]\\
+M\arrow[r,"f"']&N.
+\end{tikzcd}
+\]
+Ambos recorridos envían $(r,m)$ al mismo elemento: $f(rm)=rf(m)$.
+
+\begin{ejem}
+La categoría $\mathbb Z\text{-}\mathbf{Mod}$ se identifica con $\Ab$. Ya vimos que las estructuras de módulo son únicas. Además, todo homomorfismo aditivo satisface $f(nm)=nf(m)$ para enteros positivos por sumas repetidas, para cero por aditividad y para negativos porque preserva inversos. Por tanto, también coinciden los morfismos.
+
+Si $K$ es campo, los $K$-módulos son precisamente los espacios vectoriales sobre $K$; sus morfismos son las aplicaciones lineales. Así, $K\text{-}\mathbf{Mod}=K\text{-}\Vect$ con estas identificaciones.
+\end{ejem}
+
+\begin{ejem}[Un módulo procedente de un homomorfismo de anillos]\label{ejem:C13-restriccion}
+Todo homomorfismo $\alpha:R\to S$ hace de $(S,+)$ un $R$-módulo mediante $r\cdot s=\alpha(r)s$. En efecto, para $r,t\in R$ y $s,u\in S$,
+\[
+\begin{aligned}
+r\cdot(s+u)&=\alpha(r)s+\alpha(r)u,\\
+(r+t)\cdot s&=\alpha(r)s+\alpha(t)s,\\
+(rt)\cdot s&=\alpha(r)\alpha(t)s
+=r\cdot(t\cdot s),\\
+1_R\cdot s&=\alpha(1_R)s=s.
+\end{aligned}
+\]
+En particular, tomando $S=R$ y $\alpha=\id_R$, todo anillo es módulo izquierdo sobre sí mismo.
+\end{ejem}
+
+El grupo cero admite una única estructura de $R$-módulo y es terminal: la única función $M\to0$ es lineal. También es inicial, pues la única función $0\to M$ compatible con la suma envía cero a cero y es lineal. Así, es objeto cero de la categoría.
+
+Todo homomorfismo biyectivo de módulos es un isomorfismo. Si $f:M\to N$ es lineal y biyectivo, para $y=f(m)$, $z=f(n)$ se tiene $f^{-1}(y+z)=m+n$ y $f^{-1}(ry)=rm$. Por tanto, la inversa es aditiva y $R$-lineal.
+
+\subsection{La estructura de módulo en \texorpdfstring{$\Hom_R(M,N)$}{Hom}}\label{tema:13-3-2}
+\begin{prop}\label{prop:C13-Hom}
+Para módulos izquierdos $M,N$ sobre un anillo $R$, $\Hom_R(M,N)$ es un grupo abeliano con la suma puntual. Si $R$ es conmutativo, es además un $R$-módulo con
+\[
+(rf)(m)=rf(m).
+\]
+\end{prop}
+\begin{proof}
+La suma de aplicaciones aditivas es aditiva porque $N$ es abeliano. Si $f,g$ son $R$-lineales, para $a\in R$,
+\[
+(f+g)(am)=af(m)+ag(m)=a(f+g)(m).
+\]
+La aplicación cero es lineal, al igual que el negativo puntual de una aplicación lineal. Por tanto, $\Hom_R(M,N)$ es subgrupo de $\Hom_{\Ab}(M,N)$.
+
+Supongamos ahora que $R$ es conmutativo. La función $rf$ es aditiva y satisface
+\[
+(rf)(am)=rf(am)=r(af(m))=(ra)f(m)
+=(ar)f(m)=a(rf)(m).
+\]
+Aquí la igualdad $ra=ar$ es el paso que exige conmutatividad. Así, $rf$ sigue perteneciendo a $\Hom_R(M,N)$. Los axiomas del módulo se verifican evaluando en cada $m$:
+\[
+\begin{aligned}
+(r(f+g))(m)&=rf(m)+rg(m),\\
+((r+s)f)(m)&=rf(m)+sf(m),\\
+((rs)f)(m)&=r(sf(m)),\qquad (1_Rf)(m)=f(m).
+\end{aligned}
+\]
+Estas identidades puntuales verifican todos los axiomas del módulo.
+\end{proof}
+
+\subsection{Álgebras: compatibilidad de escalares y linealidad}\label{tema:13-3-1a}\label{tema:13-3-1c}\label{tema:13-3-1e}\label{tema:14-3-2b}
+El módulo del \cref{ejem:C13-restriccion} existe sin conmutatividad. La condición central de las álgebras, definida en la sección~\ref{sec:anillos-algebras}, permite relacionar sus escalares con los productos de $S$.
+
+Sea $(S,\alpha)$ una $R$-álgebra, con $R$ conmutativo, y escribamos $r\cdot s=\alpha(r)s$. La condición central permite mover los escalares a través de cualquier factor. Para $r_1,r_2\in R$ y $s_1,s_2\in S$,
+\[
+\begin{aligned}
+(r_1\cdot s_1)(r_2\cdot s_2)
+&=\alpha(r_1)s_1\alpha(r_2)s_2\\
+&=\alpha(r_1)\alpha(r_2)s_1s_2
+=(r_1r_2)\cdot(s_1s_2).
+\end{aligned}
+\]
+En particular, $(r\cdot s)t=r\cdot(st)=s(r\cdot t)$. Esto expresa la compatibilidad del producto con la acción.
+
+Para un morfismo de $R$-álgebras $f:(S,\alpha)\to(T,\beta)$, la identidad $f\alpha=\beta$ implica $f(r\cdot s)=r\cdot f(s)$.
+
+\Needspace{6\baselineskip}
+\begin{ejer}[Linealidad del mediador polinómico]\label{ejer:C14-linealidad}
+Verificar que el homomorfismo $\varphi:R[A]\to S$ de la \cref{prop:C14-algebra-libre} es también $R$-lineal.
+\end{ejer}
+\begin{sol}
+Es aditivo porque es homomorfismo de anillos. Para $r\in R$ y $p\in R[A]$,
+\[
+\varphi(rp)=\varphi(r)\varphi(p)=\alpha(r)\varphi(p)=r\cdot\varphi(p).
+\]
+Así, la compatibilidad con la estructura de álgebra implica la linealidad del mediador.
+\end{sol}

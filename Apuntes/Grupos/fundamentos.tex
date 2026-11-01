@@ -1,0 +1,324 @@
+\section{Grupos, homomorfismos y primeros ejemplos}\label{sec:grupos-fundamentos}
+
+\subsection{De un grupoide a una operación}\label{tema:2-1-1}
+Consideremos un grupoide $\mathcal C$ con un único objeto $*$. Todos sus morfismos pertenecen a $\Hom_{\mathcal C}(*,*)$ y son invertibles; por tanto,
+\[
+\Hom_{\mathcal C}(*,*)=\Aut_{\mathcal C}(*).
+\]
+La composición proporciona una operación asociativa, la identidad $1_*$ actúa como elemento neutro y cada morfismo tiene inversa. Estas propiedades conducen a la definición usual.
+
+\begin{defi}
+Un \emph{grupo} es un conjunto no vacío $G$ con una operación $G\times G\to G$, $(g,h)\mapsto gh$, tal que
+\begin{enumerate}[label=\roman*)]
+\item $(gh)k=g(hk)$ para cualesquiera $g,h,k\in G$;
+\item existe $e\in G$ con $ge=eg=g$ para todo $g\in G$;
+\item para cada $g\in G$ existe $g^{-1}\in G$ con $gg^{-1}=g^{-1}g=e$.
+\end{enumerate}
+Es \emph{abeliano} o \emph{conmutativo} si $gh=hg$ para todo par de elementos.
+\end{defi}
+La identidad y los inversos son únicos: si $e'$ también es neutro, $e=ee'=e'$; si $h$ y $k$ son inversos de $g$, entonces $h=h(gk)=(hg)k=k$. Recíprocamente, un grupo determina un grupoide con un objeto, usando el producto como composición.
+
+\begin{obs}[Convención de composición]
+También puede definirse la composición opuesta $f\mathbin{\bullet}g=g\circ f$, que es asociativa:
+\[
+(f\mathbin{\bullet}g)\mathbin{\bullet}h
+=h\circ(g\circ f)=(h\circ g)\circ f
+=f\mathbin{\bullet}(g\mathbin{\bullet}h).
+\]
+En estos apuntes fijamos $fg=f\circ g$: el factor derecho actúa primero.
+\end{obs}
+
+\begin{ejem}
+El conjunto $\{e\}$ es el grupo trivial. Los conjuntos $\mathbb Z$, $\mathbb Q$, $\mathbb R$ y $\mathbb C$ son grupos con la suma. El conjunto $\mathbb R^*=\mathbb R\setminus\{0\}$ es un grupo con la multiplicación. El grupo $\mathrm{GL}_n(\mathbb R)$ consta de las matrices reales invertibles de tamaño $n\times n$, con el producto de matrices.
+\end{ejem}
+En notación aditiva, la identidad se escribe $0$ y el inverso de $a$ se escribe $-a$. En notación multiplicativa se usan $e$ y $a^{-1}$. El tipo de notación no sustituye la comprobación de los axiomas.
+
+\subsection{Potencias y órdenes}\label{tema:2-1-2}
+Por asociatividad podemos omitir los paréntesis en un producto de varios elementos. Para $n>0$, $g^n$ denota el producto de $n$ copias de $g$; ponemos $g^0=e$ y $g^{-n}=(g^{-1})^n$. La asociatividad y las cancelaciones dan
+\[
+g^{m+n}=g^mg^n,\qquad (g^m)^n=g^{mn}\qquad(m,n\in\mathbb Z).
+\]
+\begin{defi}
+El \emph{orden} de $g\in G$, denotado $|g|$, es el menor entero positivo $d$ tal que $g^d=e$, si existe. En otro caso escribimos $|g|=\infty$. El orden $|G|$ del grupo es su número de elementos si es finito, y se escribe $\infty$ si es infinito.
+\end{defi}
+Son nociones distintas: $|g|$ se refiere a las potencias de un elemento; $|G|$, al conjunto completo.
+
+\begin{lema}\label{lema:C2-orden}
+Si $g^n=e$ para algún entero positivo $n$, entonces $|g|$ divide a $n$.
+\end{lema}
+\begin{proof}
+Sea $d=|g|$. El algoritmo de la división da $n=pd+q$, con $0\le q<d$. Entonces
+\[
+e=g^n=(g^d)^p g^q=g^q.
+\]
+Si $q>0$, contradice la minimalidad de $d$. Luego $q=0$, de donde $d\mid n$. Recíprocamente, si $n=kd$, entonces $g^n=(g^d)^k=e$. La equivalencia vale también para $n\le0$, por la misma igualdad.
+\end{proof}
+
+\begin{prop}\label{prop:C2-potencias}
+Si $|g|=d<\infty$ y $m>0$, entonces
+\[
+|g^m|=\frac{\mcm(m,d)}m=\frac d{\mcd(m,d)}.
+\]
+Para $m=0$ se tiene $|g^0|=1=d/\mcd(0,d)$.
+\end{prop}
+\begin{proof}
+Para $m>0$, el menor entero positivo $k$ con $(g^m)^k=e$ es el menor $k$ con $d\mid mk$. Así, $mk$ es el menor múltiplo positivo de $m$ que también es múltiplo de $d$: es $\mcm(m,d)$. La segunda igualdad se sigue de $\mcm(m,d)\mcd(m,d)=md$. El caso $m=0$ da $g^0=e$, de orden uno.
+\end{proof}
+
+\begin{prop}\label{prop:C2-producto-orden}
+Si $g,h\in G$ conmutan y tienen orden finito, entonces
+\[
+|gh|\mid\mcm(|g|,|h|).
+\]
+\end{prop}
+\begin{proof}
+Sea $N=\mcm(|g|,|h|)$. Como $g$ y $h$ conmutan, podemos reagrupar los $N$ factores de cada tipo en $(gh)^N$, y obtenemos $(gh)^N=g^Nh^N=e$. El lema~\ref{lema:C2-orden} da la divisibilidad afirmada.
+\end{proof}
+
+\subsection{Automorfismos, grupos cíclicos y diédricos}\label{tema:2-2-1}\label{tema:2-2-2}
+Para cualquier objeto $A$ de una categoría $\mathcal C$, los automorfismos de $A$ forman un grupo $\Aut_{\mathcal C}(A)$ con la composición. El compuesto de dos isomorfismos vuelve a ser invertible, con $(fg)^{-1}=g^{-1}f^{-1}$; las demás propiedades vienen de la categoría.
+
+En $\Set$, este grupo es el \emph{grupo simétrico} o de permutaciones de $A$, denotado $\Sym(A)$. Si $A=\{1,\ldots,n\}$, escribimos $S_n$. La permutación $\sigma$ se representa por
+\[
+\sigma=\begin{pmatrix}1&2&\cdots&n\\\sigma(1)&\sigma(2)&\cdots&\sigma(n)\end{pmatrix}.
+\]
+Nuestro producto satisface $(\tau\sigma)(i)=\tau(\sigma(i))$: primero actúa el factor de la derecha.
+
+\begin{ejer}[Cálculo de permutaciones]\label{ejer:C2-permutaciones}
+Para
+\[
+x=\begin{pmatrix}1&2&3\\2&1&3\end{pmatrix},\qquad
+y=\begin{pmatrix}1&2&3\\3&1&2\end{pmatrix},
+\]
+compruebe los dos productos y que no conmutan.
+\end{ejer}
+\begin{sol}
+Con nuestra convención, $yx=y\circ x$ envía $1\mapsto2\mapsto1$, $2\mapsto1\mapsto3$ y $3\mapsto3\mapsto2$. Por tanto,
+\[
+yx=\begin{pmatrix}1&2&3\\1&3&2\end{pmatrix}.
+\]
+En cambio, $xy=x\circ y$ envía $1\mapsto3\mapsto3$, $2\mapsto1\mapsto2$ y $3\mapsto2\mapsto1$, de modo que
+\[
+xy=\begin{pmatrix}1&2&3\\3&2&1\end{pmatrix}\ne yx.\qedhere
+\]
+\end{sol}
+
+Las simetrías de un polígono regular de $n\ge3$ lados forman el \emph{grupo diédrico} $D_{2n}$, de orden $2n$: hay $n$ rotaciones y $n$ reflexiones. El subíndice indica el número de simetrías. Para el hexágono obtenemos $D_{12}$; si $r$ gira $60^\circ$ y $s$ es una reflexión fija, sus elementos son
+\[
+e,r,r^2,r^3,r^4,r^5,\quad s,rs,r^2s,r^3s,r^4s,r^5s.
+\]
+La \cref{fig:hexagono} conserva la distinción de las doce imágenes mediante sectores y una marca asimétrica. Los ejes de reflexión son las tres rectas que unen vértices opuestos y las tres que unen puntos medios de lados opuestos. El ciclo reúne las rotaciones sucesivas; el abanico agrupa las seis reflexiones a partir de la identidad.
+\figuraApuntes{Figuras/Hexagono}{fig:hexagono}{Simetrías del hexágono regular.}
+Una simetría queda determinada por la imagen de un vértice y la elección de cuál de los dos vecinos será la imagen del siguiente. Existen, por ello, a lo sumo $2n$ posibilidades; las rotaciones y reflexiones descritas realizan todas ellas.
+
+Para $n>0$, la congruencia en $\mathbb Z$ se define por $a\equiv b\pmod n$ si $n\mid(a-b)$. El cociente $\mathbb Z/n\mathbb Z$ es un grupo con
+\[
+[a]_n+[b]_n=[a+b]_n.
+\]
+La operación no depende de los representantes porque una suma de múltiplos de $n$ vuelve a ser múltiplo de $n$. Denotamos por $C_n$ un grupo cíclico de orden $n$, escrito multiplicativamente como $\{e,x,\ldots,x^{n-1}\}$, donde $x$ tiene orden $n$. En notación aditiva, el modelo es $\mathbb Z/n\mathbb Z$, generado por $[1]_n$. Por ejemplo, en $\mathbb Z/3\mathbb Z$,
+\[
+[0]_3+[1]_3=[1]_3,\qquad [1]_3+[2]_3=[3]_3=[0]_3.
+\]
+
+\subsection{Homomorfismos, objeto cero y productos}\label{tema:2-3-1}\label{tema:2-3-2b}\label{tema:3-1-1a}\label{tema:2-3-3b}
+\begin{defi}
+Un \emph{homomorfismo de grupos} $\varphi:G\to H$ es una función tal que $\varphi(ab)=\varphi(a)\varphi(b)$ para todo $a,b\in G$.
+\end{defi}
+Si $m_G$ y $m_H$ denotan las multiplicaciones, esta igualdad equivale a la conmutatividad del cuadrado
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G\times G\arrow[r,estructura,"\varphi\times\varphi"]\arrow[d,estructura,"m_G"']
+&H\times H\arrow[d,estructura,"m_H"]\\
+G\arrow[r,estructura,"\varphi"']&H.
+\end{tikzcd}
+\]
+Además, $\varphi(e_G)=e_H$: de $\varphi(e_G)=\varphi(e_G)^2$ cancelamos $\varphi(e_G)$. También $\varphi(g^{-1})=\varphi(g)^{-1}$, al aplicar $\varphi$ a $gg^{-1}=g^{-1}g=e_G$.
+
+Los grupos y sus homomorfismos forman la categoría $\Grp$. Las identidades son homomorfismos; si $\varphi:G\to H$ y $\psi:H\to K$ son homomorfismos, el diagrama
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G\times G\arrow[r,estructura,"\varphi\times\varphi"]
+\arrow[rr,bend left=22,destacado,"(\psi\circ\varphi)\times(\psi\circ\varphi)"]
+\arrow[d,estructura,"m_G"']
+&H\times H\arrow[r,estructura,"\psi\times\psi"]\arrow[d,estructura,"m_H"]
+&K\times K\arrow[d,estructura,"m_K"]\\
+G\arrow[r,estructura,"\varphi"']\arrow[rr,bend right=22,destacado,"\psi\circ\varphi"']
+&H\arrow[r,estructura,"\psi"']&K
+\end{tikzcd}
+\]
+muestra que el compuesto conserva el producto. En términos de elementos,
+\[
+(\psi\circ\varphi)(ab)=\psi(\varphi(a)\varphi(b))
+=(\psi\circ\varphi)(a)(\psi\circ\varphi)(b).
+\]
+La asociatividad es la de la composición de funciones.
+
+En $\Grp$, el grupo trivial es inicial y terminal: la única función desde él que conserva la identidad envía $e$ a $e_G$, y sólo existe una función hacia él. Ambas funciones son homomorfismos.
+
+Una categoría con un objeto inicial y terminal a la vez se llama \emph{punteada}; dicho objeto se denomina \emph{objeto cero}. En $\Grp$ es el grupo trivial. Para dos grupos $A,B$, el compuesto que pasa por él define el homomorfismo trivial:
+\[
+\begin{tikzcd}[column sep=large]
+A\arrow[r]\arrow[rr,bend right=25,"0_{A,B}"']&\{*\}\arrow[r]&B.
+\end{tikzcd}
+\]
+Este homomorfismo envía cada $a\in A$ a $e_B$.
+
+En $\Grp$ damos al conjunto $G\times H$ la operación
+\[
+(g_1,h_1)(g_2,h_2)=(g_1g_2,h_1h_2).
+\]
+Es asociativa, tiene identidad $(e_G,e_H)$ e inversa $(g,h)^{-1}=(g^{-1},h^{-1})$. Las proyecciones son homomorfismos. Para homomorfismos $f:Z\to G$ y $g:Z\to H$, la misma regla $\sigma(z)=(f(z),g(z))$ satisface
+\[
+\sigma(zz')=(f(z)f(z'),g(z)g(z'))=\sigma(z)\sigma(z').
+\]
+Así, también es un homomorfismo y cumple la misma unicidad. Esto prueba la propiedad de producto en $\Grp$.
+
+\begin{obs}
+La existencia de todos los productos finitos requiere productos binarios y un producto vacío, es decir, un objeto terminal. En $\Set$ el producto vacío es un singleton y en $\Grp$ es el grupo trivial; los demás productos finitos se obtienen por iteración.
+\end{obs}
+
+\subsection{El homomorfismo exponencial y las reducciones módulo un divisor}\label{tema:3-1-2}
+Para $g\in G$, la función exponencial
+\[
+\varepsilon_g:\mathbb Z\to G,\qquad m\mapsto g^m,
+\]
+es un homomorfismo porque $g^{m+n}=g^mg^n$. Su imagen es el subgrupo cíclico $\ang{g}=\set{g^m\given m\in\mathbb Z}$. En notación aditiva, el ejemplo fundamental es
+\[
+\pi_n:\mathbb Z\to\mathbb Z/n\mathbb Z,\qquad
+m\mapsto m[1]_n=[m]_n.
+\]
+Es sobreyectivo, de modo que $[1]_n$ genera el cociente.
+
+Si $m,n>0$ y $m\mid n$, definimos
+\[
+\pi_m^n:\mathbb Z/n\mathbb Z\to\mathbb Z/m\mathbb Z,
+\qquad [a]_n\mapsto[a]_m.
+\]
+Está bien definido: $[a]_n=[a']_n$ implica $n\mid(a-a')$ y, como $m\mid n$, también $m\mid(a-a')$. Conserva la suma por la regla de suma de clases y satisface
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathbb Z\arrow[d,estructura,"\pi_n"']\arrow[dr,estructura,"\pi_m"]&\\
+\mathbb Z/n\mathbb Z\arrow[r,destacado,"\pi_m^n"']&\mathbb Z/m\mathbb Z.
+\end{tikzcd}
+\]
+Si $m_1\mid n$ y $m_2\mid n$, la propiedad universal del producto de la sección~\ref{tema:2-3-3b} da un único homomorfismo
+\[
+\rho:\mathbb Z/n\mathbb Z\to
+ (\mathbb Z/m_1\mathbb Z)\times(\mathbb Z/m_2\mathbb Z),\qquad
+\rho([a]_n)=([a]_{m_1},[a]_{m_2}),
+\]
+que hace conmutar el diagrama
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+&&\mathbb Z/m_1\mathbb Z\\
+\mathbb Z/n\mathbb Z\arrow[r,dashed,destacado,"\rho"]
+\arrow[urr,bend left=12,estructura,"\pi_{m_1}^n"]
+\arrow[drr,bend right=12,estructura,"\pi_{m_2}^n"']
+&(\mathbb Z/m_1\mathbb Z)\times(\mathbb Z/m_2\mathbb Z)
+\arrow[ur,estructura,"\pi_1"']\arrow[dr,estructura,"\pi_2"]&\\
+&&\mathbb Z/m_2\mathbb Z.
+\end{tikzcd}
+\]
+Por ejemplo, para $n=6$, $m_1=2$ y $m_2=3$, sus valores son
+\[
+\begin{array}{c|c@{\qquad}c|c}
+[a]_6&\rho([a]_6)&[a]_6&\rho([a]_6)\\\hline
+{[0]_6}&([0]_2,[0]_3)&[3]_6&([1]_2,[0]_3)\\
+{[1]_6}&([1]_2,[1]_3)&[4]_6&([0]_2,[1]_3)\\
+{[2]_6}&([0]_2,[2]_3)&[5]_6&([1]_2,[2]_3)
+\end{array}
+\]
+Las seis imágenes son distintas y agotan el producto; en este ejemplo $\rho$ es una biyección. La construcción general anterior sólo afirma la existencia y unicidad del homomorfismo hacia el producto, sin suponer que sea siempre un isomorfismo.
+
+\subsection{Orden y propiedades invariantes}\label{tema:3-2-1}
+\begin{prop}\label{prop:C3-orden-imagen}
+Todo homomorfismo $\varphi:G\to H$ satisface $|\varphi(g)|\mid |g|$ cuando $g$ tiene orden finito.
+\end{prop}
+\begin{proof}
+Los homomorfismos conservan potencias e identidad; por tanto,
+\[
+\varphi(g)^{|g|}=\varphi(g^{|g|})=\varphi(e_G)=e_H.
+\]
+Aplicamos el lema~\ref{lema:C2-orden} al elemento $\varphi(g)$.
+\end{proof}
+\begin{ejem}
+Todo homomorfismo $\varphi:C_4\to C_7$ es trivial. Para $g\in C_4$, tenemos $g^4=e$, por lo que $|g|\mid4$. Además, $\varphi(g)^7=e$ porque $\varphi(g)$ pertenece al grupo cíclico de orden siete. Así, $|\varphi(g)|$ divide a $7$ y también a $4$, usando la proposición anterior. Como estos enteros son coprimos, $|\varphi(g)|=1$ y $\varphi(g)=e$ para todo $g$.
+\end{ejem}
+
+\begin{prop}\label{prop:C3-iso}
+Un homomorfismo $\varphi:G\to H$ es un isomorfismo de grupos si y sólo si es una función biyectiva.
+\end{prop}
+\begin{proof}
+Una inversa en $\Grp$ es, en particular, una inversa de funciones; por tanto, $\varphi$ es biyectiva. A la inversa, supongamos que $\varphi$ es biyectiva y sea $\psi$ su inversa como función. Para $x,y\in H$, escribimos $x=\varphi(a)$ e $y=\varphi(b)$. Entonces
+\[
+\psi(xy)=\psi(\varphi(a)\varphi(b))
+=\psi(\varphi(ab))=ab=\psi(x)\psi(y).
+\]
+Así, la función inversa también es un homomorfismo.
+\end{proof}
+La relación $G\cong H$ es una equivalencia: la identidad prueba reflexividad, invertir un isomorfismo prueba simetría y componerlos prueba transitividad. Escribimos $\Aut(G)$ para el grupo de automorfismos de $G$.
+
+Un grupo es \emph{cíclico} si es isomorfo a $\mathbb Z$ o a $C_n=\mathbb Z/n\mathbb Z$ para algún $n>0$. Equivalentemente, está generado por un elemento $g$. Para comprobar la equivalencia usamos $\varepsilon_g$: si $g$ tiene orden infinito es inyectivo, y si tiene orden $d$ induce una biyección $[m]_d\mapsto g^m$. En ambos casos la imagen es exactamente $\ang{g}$.
+
+\begin{prop}
+Un isomorfismo $\varphi:G\to H$ conserva el orden de cada elemento. Además, $G$ es abeliano si y sólo si $H$ es abeliano.
+\end{prop}
+\begin{proof}
+Para todo entero positivo $n$, la igualdad $\varphi(g)^n=e_H$ equivale a $g^n=e_G$, aplicando $\varphi$ o su inversa. Los conjuntos de exponentes que anulan ambos elementos coinciden: tienen el mismo mínimo o ambos son vacíos. Esto incluye el orden infinito.
+
+Si $G$ es abeliano y $x,y\in H$, elegimos $a,b\in G$ con $x=\varphi(a)$ e $y=\varphi(b)$. Entonces
+\[
+xy=\varphi(a)\varphi(b)=\varphi(ab)=\varphi(ba)
+=\varphi(b)\varphi(a)=yx.
+\]
+El argumento aplicado a $\varphi^{-1}$ demuestra la recíproca.
+\end{proof}
+
+\subsection{Productos, coproductos y suma de homomorfismos}\label{tema:3-2-2}\label{tema:3-2-3}
+Denotamos por $\Ab$ la categoría de grupos abelianos y homomorfismos de grupos. Su objeto cero es $\{0\}$ y su producto binario es $G\times H$ con suma componente a componente. Las proyecciones siguen siendo homomorfismos entre grupos abelianos.
+
+El concepto dual de producto es el \emph{coproducto}: dados $G,H$, buscamos un objeto con flechas desde ellos, inicial entre tales diagramas. Es decir, para cada $f_G:G\to Z$ y $f_H:H\to Z$ debe existir un único $\sigma$ que haga conmutar
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G\arrow[dr,estructura,"i_G"']\arrow[drr,bend left=15,estructura,"f_G"]&&\\
+&G\oplus H\arrow[r,dashed,destacado,"\exists!\,\sigma"]&Z.\\
+H\arrow[ur,estructura,"i_H"]\arrow[urr,bend right=15,estructura,"f_H"']&&
+\end{tikzcd}
+\]
+En $\Ab$ podemos tomar el mismo grupo $G\times H$, escrito $G\oplus H$ al destacar el coproducto, con $i_G(g)=(g,0)$ e $i_H(h)=(0,h)$. Definimos
+\[
+\sigma(g,h)=f_G(g)+f_H(h).
+\]
+Es un homomorfismo porque $Z$ es abeliano:
+\[
+\begin{aligned}
+\sigma(g+g',h+h')
+&=f_G(g)+f_G(g')+f_H(h)+f_H(h')\\
+&=\sigma(g,h)+\sigma(g',h').
+\end{aligned}
+\]
+Cumple $\sigma i_G=f_G$ y $\sigma i_H=f_H$. Es único, ya que cualquier homomorfismo con esas restricciones satisface
+\[
+\sigma(g,h)=\sigma((g,0)+(0,h))
+=\sigma(i_G(g))+\sigma(i_H(h))=f_G(g)+f_H(h).
+\]
+La afirmación se refiere al producto de dos grupos, y por iteración a familias finitas; no identifica productos y coproductos de familias infinitas.
+
+Para $G,H\in\Ab$, el conjunto $\Hom_{\Ab}(G,H)$ es un grupo abeliano con la operación puntual
+\[
+(\varphi+\psi)(g)=\varphi(g)+\psi(g).
+\]
+La suma vuelve a ser un homomorfismo. En efecto,
+\[
+\begin{aligned}
+(\varphi+\psi)(g_1+g_2)
+&=\varphi(g_1)+\varphi(g_2)+\psi(g_1)+\psi(g_2)\\
+&=\varphi(g_1)+\psi(g_1)+\varphi(g_2)+\psi(g_2)\\
+&=(\varphi+\psi)(g_1)+(\varphi+\psi)(g_2).
+\end{aligned}
+\]
+La identidad es el homomorfismo trivial, y $(-\varphi)(g)=-\varphi(g)$. Esta función es un homomorfismo porque
+\[
+-\varphi(g_1+g_2)=-\varphi(g_1)-\varphi(g_2).
+\]
+La asociatividad y conmutatividad de la suma de homomorfismos se verifican evaluando en cada $g$ y usando las propiedades de $H$.

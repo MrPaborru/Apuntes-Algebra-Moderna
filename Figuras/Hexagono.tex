@@ -21,14 +21,14 @@ $e$&$r$&$r^2$&$r^3$&$r^4$&$r^5$\\[7pt]
 $s$&$rs$&$r^2s$&$r^3s$&$r^4s$&$r^5s$
 \end{tabular}
 \par\medskip
-\begin{tikzpicture}[scale=.75]
+\begin{tikzpicture}[scale=.75,baseline=(current bounding box.center)]
 \draw[thick] (0:1.2)--(60:1.2)--(120:1.2)--(180:1.2)--(240:1.2)--(300:1.2)--cycle;
 \foreach \ang in {0,30,60,90,120,150}{\draw[rojoDiagramaCIMAT,dashed] (\ang:1.6)--(\ang+180:1.6);}
 \draw[-{Stealth},thick] (15:1.8) arc[start angle=15,end angle=65,radius=1.8];
 \node at (45:2.15) {$r$};
 \end{tikzpicture}
 \hspace{1cm}
-\begin{tikzpicture}[scale=.6,every node/.style={font=\small,fill=white,inner sep=2pt}]
+\begin{tikzpicture}[scale=.6,baseline=(current bounding box.center),every node/.style={font=\small,fill=white,inner sep=2pt}]
 % Ciclo de rotaciones y abanico de reflexiones presentes en la pizarra.
 \foreach \k/\ang/\lab in {0/270/e,1/330/r,2/30/r^2,3/90/r^3,4/150/r^4,5/210/r^5}{
 \node (R\k) at (\ang:1.8) {$\lab$};}

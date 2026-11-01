@@ -1,0 +1,125 @@
+\section{Submódulos, cocientes y teoremas de isomorfismo}\label{sec:modulos-cocientes}
+
+\subsection{Submódulos, núcleos e imágenes}\label{tema:14-1-1}
+\begin{defi}
+Un \emph{submódulo} $N$ de un $R$-módulo izquierdo $M$ es un subgrupo aditivo estable bajo los escalares: $rn\in N$ para todo $r\in R$, $n\in N$. Con la acción restringida es un $R$-módulo y su inclusión en $M$ es lineal.
+\end{defi}
+Para el módulo regular izquierdo $R$, los submódulos son exactamente los ideales izquierdos. En particular, todo ideal izquierdo es un $R$-módulo; no es necesario que sea bilateral.
+
+\begin{ejem}
+Si $f:M\to M'$ es lineal, $\ker f$ e $\im f$ son submódulos. Son subgrupos aditivos y, para $m\in\ker f$, $f(rm)=rf(m)=0$. Para $y=f(z)$, se tiene $ry=rf(z)=f(rz)\in\im f$.
+\end{ejem}
+
+La estabilidad de $N$ también se expresa restringiendo la acción $\sigma:R\to\End_{\Ab}(M)$. Pongamos
+\[
+E=\set{u\in\End_{\Ab}(M)\given u(N)\subseteq N}.
+\]
+Es subanillo: contiene la identidad y es estable bajo suma, negativos y composición. La acción toma valores en $E$, y la restricción $u\mapsto\restr{u}{N}$ es homomorfismo de anillos. Así obtenemos
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+R\arrow[r,"\sigma"]\arrow[dr,dashed,destacado,"\sigma_N"']
+&E\arrow[r,hook]\arrow[d,"\mathrm{restr}"]&\End_{\Ab}(M)\\
+&\End_{\Ab}(N)&
+\end{tikzcd}
+\]
+\begin{obs}
+Un endomorfismo de $N$ no tiene por qué extenderse a $M$. La restricción parte de los endomorfismos de $M$ que preservan $N$, y no tiene por qué ser inyectiva.
+\end{obs}
+
+\begin{ejem}
+Si $r\in Z(R)$, el conjunto $rM=\set{rm\given m\in M}$ es submódulo: es subgrupo aditivo y $a(rm)=r(am)$ para $a\in R$. Más generalmente, para un ideal izquierdo $I$,
+\[
+IM=\set*{\sum_{j=1}^k a_jm_j\given k\geq0,\ a_j\in I,\ m_j\in M}
+\]
+es submódulo. Las sumas son finitas; sumar o negar conserva la forma, y $r\sum a_jm_j=\sum(ra_j)m_j$ pertenece a $IM$ por absorción izquierda. El requisito central para $rM$ asegura esa estabilidad; para $IM$ la proporciona el ideal.
+\end{ejem}
+
+\subsection{El módulo cociente y su propiedad universal}\label{tema:14-1-2}
+Si $N\subseteq M$ es submódulo, el grupo aditivo cociente $M/N$ existe porque $M$ es abeliano. Para que la proyección sea lineal, su acción debe satisfacer $r(m+N)=rm+N$.
+
+\begin{ejer}[La acción en un cociente]\label{ejer:C14-cociente}
+Comprobar que esta regla define una estructura de $R$-módulo en $M/N$, y que la proyección $\pi:M\to M/N$ es lineal con núcleo $N$.
+\end{ejer}
+\begin{sol}
+Si $m-m'\in N$, entonces $rm-rm'=r(m-m')\in N$, por lo que la clase no depende del representante. Los axiomas se heredan de $M$:
+\[
+\begin{aligned}
+r((m+N)+(m'+N))&=(rm+N)+(rm'+N),\\
+(r+s)(m+N)&=(rm+N)+(sm+N),\\
+(rs)(m+N)&=r(sm+N),\qquad 1_R(m+N)=m+N.
+\end{aligned}
+\]
+La proyección es aditiva y $\pi(rm)=rm+N=r\pi(m)$. Finalmente, $\pi(m)=N$ equivale a $m\in N$. El cuadrado que fuerza la acción es
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+R\times M\arrow[r,"\id_R\times\pi"]\arrow[d,"\rho_M"']
+&R\times(M/N)\arrow[d,"\rho_{M/N}"]\\
+M\arrow[r,"\pi"']&M/N.
+\end{tikzcd}
+\qedhere
+\]
+\end{sol}
+
+\begin{ejem}
+Si $I$ es ideal bilateral de $R$, los tres grupos $I$, $R$ y $R/I$ son módulos izquierdos, y $I$ es submódulo de $R$. Si $R$ es conmutativo, $R$ y $R/I$ son también $R$-álgebras.
+
+Si $I$ es sólo ideal izquierdo, el cociente $R/I$ sigue siendo módulo, con $r(a+I)=ra+I$. Para que la multiplicación de clases lo convierta además en anillo se necesita que $I$ sea bilateral, por la \cref{prop:C12-cociente}.
+\end{ejem}
+
+\begin{teo}\label{teo:C14-universal}
+Si $N\subseteq\ker f$ para un homomorfismo $f:M\to P$, existe un único homomorfismo $\widetilde f:M/N\to P$ con $\widetilde f\pi=f$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+M\arrow[r,"f"]\arrow[dr,"\pi"']&P\\
+&M/N\arrow[u,dashed,destacado,"\exists!\,\widetilde f"'].
+\end{tikzcd}
+\]
+\end{teo}
+\begin{proof}
+En grupos abelianos ya existe la única aplicación aditiva $\widetilde f(m+N)=f(m)$. Está bien definida porque $m-m'\in N$ implica $f(m)=f(m')$. Para los escalares,
+\[
+\widetilde f(r(m+N))=\widetilde f(rm+N)=f(rm)
+=rf(m)=r\widetilde f(m+N).
+\]
+Así es lineal y queda determinada por sus valores sobre todas las clases.
+\end{proof}
+
+\subsection{Isomorfismos y operaciones con submódulos}\label{tema:14-1-3}
+\begin{teo}[Primer teorema de isomorfismo]\label{teo:C14-primer-iso}
+Todo homomorfismo de módulos $f:M\to M'$ admite la factorización
+\[
+\begin{tikzcd}[column sep=large]
+M\arrow[r,two heads,"\pi"]\arrow[rrr,bend left=23,"f"]
+&M/\ker f\arrow[r,destacado,"\widetilde f","\sim"']
+&\im f\arrow[r,hook]&M',
+\end{tikzcd}
+\]
+con $\widetilde f(m+\ker f)=f(m)$. Si $f$ es sobreyectivo, $M/\ker f\cong M'$.
+\end{teo}
+\begin{proof}
+El \cref{teo:C14-universal} da el morfismo con destino $\im f$. Es sobreyectivo por definición de imagen e inyectivo porque $\widetilde f(m+\ker f)=0$ equivale a $m\in\ker f$. La inversa de un homomorfismo biyectivo es lineal, como vimos en la sección~\ref{tema:13-2-2}, luego es un isomorfismo.
+\end{proof}
+
+\begin{prop}\label{prop:C14-correspondencia}
+Los submódulos de $M/N$ corresponden a los submódulos de $M$ que contienen $N$, mediante $P\mapsto P/N$ y $Q\mapsto\pi^{-1}(Q)$; la correspondencia preserva inclusiones. Para $N\subseteq P\subseteq M$, además,
+\[
+(M/N)/(P/N)\cong M/P.
+\]
+\end{prop}
+\begin{proof}[Detalles de la correspondencia y del cociente]
+La preimagen de un submódulo es subgrupo aditivo estable bajo escalares, porque $\pi$ es lineal; contiene $N$. A su vez, $\pi(P)=P/N$ es submódulo por ser imagen lineal. Si $m+N=p+N$ con $p\in P$, entonces $m-p\in N\subseteq P$, de modo que $\pi^{-1}(P/N)=P$. La sobreyectividad da $\pi(\pi^{-1}(Q))=Q$. Ambas operaciones preservan el orden de inclusión.
+
+La proyección $M\to M/P$ anula $N$ e induce el homomorfismo sobreyectivo $\widetilde\pi:M/N\to M/P$, $m+N\mapsto m+P$. Su núcleo es $P/N$; el primer isomorfismo da el resultado. Su triángulo es el del \cref{teo:C14-universal}, con $f$ la proyección a $M/P$.
+\end{proof}
+
+\begin{prop}[Segundo teorema de isomorfismo]\label{prop:C14-segundo-iso}
+Para submódulos $N,P\subseteq M$, $N+P$ y $N\cap P$ son submódulos y
+\[
+(N+P)/N\cong P/(N\cap P).
+\]
+\end{prop}
+\begin{proof}
+La suma y la intersección son subgrupos aditivos. Las igualdades $r(n+p)=rn+rp$ y la estabilidad simultánea en ambos submódulos prueban que son submódulos. El morfismo $P\to(N+P)/N$, $p\mapsto p+N$, es sobreyectivo: toda clase de $n+p$ coincide con la de $p$. Su núcleo es $N\cap P$, así que aplicamos el \cref{teo:C14-primer-iso}.
+\end{proof}
+
+Para cualquier familia $(N_\alpha)$ de submódulos, su intersección y su suma son submódulos. La suma consiste en sumas finitas de elementos de los $N_\alpha$: suma, negativos y escalares preservan esa forma. La intersección es estable porque cada $N_\alpha$ lo es. La suma vacía es cero y la intersección vacía es $M$.

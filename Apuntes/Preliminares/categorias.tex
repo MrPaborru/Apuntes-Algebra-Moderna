@@ -1,0 +1,75 @@
+\section{Categorías, morfismos y propiedades universales}\label{sec:preliminares-categorias}
+
+\subsection{Categorías, morfismos y ejemplos}\label{tema:1-3-1}\label{tema:1-3-2}
+\begin{defi}
+Una \emph{categoría} $\mathcal C$ consta de una clase $\Ob(\mathcal C)$ de objetos, un conjunto $\Hom_{\mathcal C}(A,B)$ de morfismos para cada par de objetos y una composición
+\[
+\Hom_{\mathcal C}(A,B)\times\Hom_{\mathcal C}(B,C)
+\longrightarrow\Hom_{\mathcal C}(A,C),\qquad(f,g)\longmapsto gf.
+\]
+La composición es asociativa: $(hg)f=h(gf)$. Cada objeto $A$ tiene un morfismo identidad $1_A$ tal que $f1_A=f$ y $1_Bf=f$ para todo $f:A\to B$.
+\end{defi}
+El ejemplo básico es $\Set$, con conjuntos como objetos y funciones como morfismos.
+
+\begin{defi}
+Un morfismo $f:A\to B$ es un \emph{isomorfismo} si existe $g:B\to A$ con $gf=1_A$ y $fg=1_B$. Escribimos $A\cong B$ cuando existe tal isomorfismo. Un \emph{grupoide} es una categoría cuyos morfismos son todos isomorfismos.
+\end{defi}
+\[
+\begin{tikzcd}[column sep=large]
+A\arrow[r,bend left=20,"f"]&B\arrow[l,bend left=20,"g"]
+\end{tikzcd}
+\qquad gf=1_A,\quad fg=1_B.
+\]
+La inversa es única: si $g$ y $h$ son inversas de $f$, entonces $g=g(fh)=(gf)h=h$.
+
+Sea $\sim$ una relación reflexiva y transitiva sobre $S$. Definimos una categoría $\mathcal C$ con objetos los elementos de $S$ y
+\[
+\Hom_{\mathcal C}(a,b)=
+\begin{cases}\{(a,b)\},&a\sim b,\\\varnothing,&a\not\sim b.\end{cases}
+\]
+La reflexividad proporciona $1_a=(a,a)$. Si $f=(a,b)$ y $g=(b,c)$ existen, la transitividad garantiza que $(a,c)$ también existe, y definimos $gf=(a,c)$. Las identidades actúan como tales; la asociatividad se sigue porque, entre dos objetos fijos, hay a lo sumo un morfismo.
+
+Si además $\sim$ es simétrica, todo $(a,b)$ tiene inversa $(b,a)$, puesto que
+\[
+(b,a)(a,b)=(a,a),\qquad (a,b)(b,a)=(b,b).
+\]
+Así, una relación de equivalencia determina un grupoide. Cuando la relación es la igualdad, sólo existen las identidades:
+\[
+\Hom_{\mathcal C}(a,b)=
+\begin{cases}\{1_a\},&a=b,\\\varnothing,&a\ne b.\end{cases}
+\]
+Ésta es la \emph{categoría discreta} sobre $S$. Los grupoides permiten interpretar los axiomas de grupo; véase la sección~\ref{sec:grupos-fundamentos}.
+
+\subsection{Objetos iniciales, terminales y productos}\label{tema:2-3-2a}\label{tema:2-3-3a}
+\begin{defi}
+Un objeto $I$ es \emph{inicial} si para todo objeto $A$ hay un único morfismo $I\to A$. Un objeto $T$ es \emph{terminal} o final si para todo $A$ hay un único morfismo $A\to T$.
+\end{defi}
+Dos objetos iniciales son isomorfos por un único isomorfismo: si $u:I\to I'$ y $v:I'\to I$ son los morfismos que da la propiedad universal, entonces $vu=1_I$ y $uv=1_{I'}$ porque en cada caso sólo existe un endomorfismo. El argumento dual vale para objetos terminales.
+
+En $\Set$, el conjunto vacío es inicial y cualquier conjunto con un elemento es terminal.
+
+Fijemos $A,B\in\Ob(\mathcal C)$. La categoría $\mathcal C_{A,B}$ tiene como objetos los diagramas $A\xleftarrow{f}Z\xrightarrow{g}B$. Un morfismo de $(Z_1,f_1,g_1)$ a $(Z_2,f_2,g_2)$ es un morfismo $\sigma:Z_1\to Z_2$ con $f_2\sigma=f_1$ y $g_2\sigma=g_1$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+&&A\\
+Z_1\arrow[r,estructura,"\sigma"]\arrow[urr,bend left=12,estructura,"f_1"]
+\arrow[drr,bend right=12,estructura,"g_1"']
+&Z_2\arrow[ur,estructura,"f_2"']\arrow[dr,estructura,"g_2"]&\\
+&&B.
+\end{tikzcd}
+\]
+Estas igualdades se conservan al componer y al tomar identidades, lo que define la categoría.
+
+\begin{defi}
+Un \emph{producto} de $A$ y $B$ es un objeto terminal de $\mathcal C_{A,B}$. Se escribe $(A\times B,\pi_A,\pi_B)$. Para todo par $f:Z\to A$, $g:Z\to B$ existe un único $\sigma:Z\to A\times B$ tal que
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+&&A\\
+Z\arrow[r,dashed,destacado,"\exists!\,\sigma"]
+\arrow[urr,bend left=12,estructura,"f"]\arrow[drr,bend right=12,estructura,"g"']
+&A\times B\arrow[ur,estructura,"\pi_A"']\arrow[dr,estructura,"\pi_B"]&\\
+&&B.
+\end{tikzcd}
+\]
+\end{defi}
+En $\Set$, éste es el producto cartesiano, con proyecciones a las coordenadas. El morfismo requerido es $\sigma(z)=(f(z),g(z))$ y es único porque ambas coordenadas están determinadas.

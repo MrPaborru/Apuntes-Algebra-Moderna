@@ -1,0 +1,216 @@
+\section{Grupos libres y grupos abelianos libres}\label{sec:grupos-libres}
+
+\subsection{Propiedad universal y palabras sobre un alfabeto}\label{tema:3-3-1}\label{tema:3-3-2}
+Sea $A$ un conjunto. Queremos un grupo $F(A)$ que permita interpretar cualquier elección de imágenes de los elementos de $A$ como un homomorfismo. Para formalizarlo, consideremos la categoría $\mathcal G^A$: sus objetos son pares $(j,G)$, donde $G$ es un grupo y $j:A\to G$ es una función; un morfismo $(j_1,G_1)\to(j_2,G_2)$ es un homomorfismo $\varphi:G_1\to G_2$ tal que $\varphi j_1=j_2$.
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G_1\arrow[r,"\varphi"]&G_2\\
+A\arrow[u,"j_1"]\arrow[ur,"j_2"']&
+\end{tikzcd}
+\]
+
+\begin{defi}
+Un \emph{grupo libre sobre $A$} es un grupo $F(A)$ junto con una función $j:A\to F(A)$ que constituye un objeto inicial de $\mathcal G^A$. Para cada función $f:A\to G$ existe, pues, un único homomorfismo $\varphi:F(A)\to G$ tal que $\varphi j=f$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+F(A)\arrow[r,dashed,destacado,"\exists!\,\varphi"]&G\\
+A\arrow[u,estructura,"j"]\arrow[ur,estructura,"f"']&
+\end{tikzcd}
+\]
+\end{defi}
+La inicialidad incluye la función $j$, no sólo el grupo que aparece como su codominio. Dos pares que cumplen la propiedad universal son isomorfos por un único isomorfismo compatible con sus funciones desde $A$, por la unicidad de objetos iniciales de la sección~\ref{tema:2-3-2a}.
+
+Construimos una copia disjunta $A'$ de $A$ y denotamos por $a^{-1}$ la copia formal de $a$. El alfabeto es $\Sigma=A\sqcup A'$. En él, la operación de invertir símbolos intercambia $a$ y $a^{-1}$.
+
+Una \emph{palabra} es una lista finita $w=a_1\cdots a_n$ de letras de $\Sigma$. Su longitud es $n$; la lista vacía $()$ tiene longitud cero. Denotamos por $W(A)$ el conjunto de palabras. La concatenación de listas es asociativa y tiene por identidad la palabra vacía, pero todavía no permite cancelar símbolos.
+
+Por ejemplo, si $A=\{a\}$, una palabra es
+\[
+a^{-1}a^{-1}aaaa^{-1}aa^{-1}.
+\]
+Si $A=\{x,y\}$, podemos formar
+\[
+xxx^{-1}yy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x.
+\]
+Las listas $xyy^{-1}x$ y $xx$ son distintas; en el grupo buscado representarán el mismo elemento.
+
+\begin{obs}
+Los elementos de $W(A)$ son todas las palabras; los de $F(A)$ son las palabras reducidas. Su producto consiste en concatenar y reducir.
+\end{obs}
+
+\subsection{Reducción de palabras y estructura de grupo}\label{tema:3-4-1}\label{tema:3-4-2}
+Definimos $r:W(A)\to W(A)$ cancelando, de izquierda a derecha, la primera pareja contigua de la forma $aa^{-1}$ o $a^{-1}a$. Si no existe tal pareja, ponemos $r(w)=w$ y decimos que $w$ es \emph{reducida}.
+
+\begin{lema}
+Si $w$ tiene longitud $n$, entonces $r^{\lfloor n/2\rfloor}(w)$ es una palabra reducida.
+\end{lema}
+\begin{proof}
+Cada aplicación que modifica la palabra elimina dos letras. No pueden producirse más de $\lfloor n/2\rfloor$ eliminaciones; una vez que no quedan parejas cancelables, las siguientes aplicaciones dejan la palabra fija.
+\end{proof}
+Definimos $R(w)=r^{\lfloor n/2\rfloor}(w)$. En particular, $R(w)=w$ para una palabra reducida, y $R(R(w))=R(w)$.
+
+\begin{ejer}[Reducciones de palabras]\label{ejer:C3-reducciones}
+Compruebe las siguientes reducciones:
+\[
+\begin{aligned}
+R(a^{-1}a^{-1}aaaa^{-1}aa^{-1})&=(),\\
+R(xxx^{-1}yy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x)
+&=xxxy^{-1}y^{-1}x.
+\end{aligned}
+\]
+\end{ejer}
+\begin{sol}
+En la primera palabra, siguiendo siempre la primera cancelación disponible,
+\[
+\begin{aligned}
+a^{-1}a^{-1}aaaa^{-1}aa^{-1}
+&\longmapsto a^{-1}aaa^{-1}aa^{-1}\\
+&\longmapsto aa^{-1}aa^{-1}
+\longmapsto aa^{-1}\longmapsto().
+\end{aligned}
+\]
+En la segunda, cancelamos en este orden $xx^{-1}$, $yy^{-1}$, la siguiente pareja $yy^{-1}$ y la pareja $x^{-1}x$ que queda contigua:
+\[
+\begin{aligned}
+xxx^{-1}yy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x
+&\longmapsto xyy^{-1}xxy^{-1}x^{-1}yy^{-1}xy^{-1}x\\
+&\longmapsto xxxy^{-1}x^{-1}yy^{-1}xy^{-1}x\\
+&\longmapsto xxxy^{-1}x^{-1}xy^{-1}x\\
+&\longmapsto xxxy^{-1}y^{-1}x.
+\end{aligned}
+\]
+La última palabra no contiene parejas de letras inversas contiguas; las aplicaciones restantes de $r$ la dejan fija.
+\end{sol}
+
+Sea $F(A)$ el conjunto de palabras reducidas. Definimos
+\[
+w\cdot w'=R(ww').
+\]
+La palabra vacía será la identidad. Si $w=a_1\cdots a_n$ está reducida, su inversa será
+\[
+w^{-1}=a_n^{-1}\cdots a_1^{-1},
+\]
+donde se invierte cada símbolo formal.
+
+\begin{lema}\label{lema:C3-unicidad-reduccion}
+Toda sucesión de cancelaciones de parejas contiguas que termina en una palabra reducida da el mismo resultado.
+\end{lema}
+\begin{proof}
+Procedemos por inducción sobre la longitud. Si no hay cancelaciones posibles, no hay nada que probar. Comparemos las primeras cancelaciones de dos sucesiones. Si eliminan la misma pareja, aplicamos la inducción a la palabra más corta obtenida. Si las parejas no comparten letras, podemos realizar las dos cancelaciones en cualquiera de los dos órdenes y obtenemos una misma palabra más corta; la inducción compara las formas reducidas de las palabras intermedias.
+
+Si las parejas se solapan, las tres letras involucradas tienen forma $aa^{-1}a$ o $a^{-1}aa^{-1}$. Cancelar la pareja izquierda o la derecha deja la misma letra. Las palabras resultantes coinciden, por lo que volvemos a aplicar inducción. Estos casos agotan las posibles primeras cancelaciones y prueban la unicidad.
+\end{proof}
+En particular, podemos reducir primero una parte de una concatenación. Para cualesquiera palabras $u,v$,
+\[
+R(R(u)v)=R(uv)=R(uR(v)).
+\]
+En efecto, cancelar dentro de $u$ o dentro de $v$ es una sucesión válida de cancelaciones de $uv$, y la forma final es única. Por ello,
+\[
+(u\cdot v)\cdot w=R(R(uv)w)=R(uvw)
+=R(uR(vw))=u\cdot(v\cdot w).
+\]
+La palabra vacía actúa como identidad porque $R(w)=w$ para $w\in F(A)$. La palabra $w^{-1}$ también es reducida; en $ww^{-1}$ y $w^{-1}w$ cancelamos desde el centro hasta obtener $()$. Hemos comprobado todos los axiomas de grupo.
+
+\subsection{Extensión universal y casos básicos}\label{tema:3-4-3}
+La función canónica $j:A\to F(A)$ envía $a$ a la palabra de una letra $a$, y es inyectiva. Dada una función $f:A\to G$, la extendemos primero a letras por
+\[
+\widetilde\varphi(a)=f(a),\qquad
+\widetilde\varphi(a^{-1})=f(a)^{-1},
+\]
+y a todas las palabras por multiplicación ordenada:
+\[
+\widetilde\varphi(a_1\cdots a_n)
+=\widetilde\varphi(a_1)\cdots\widetilde\varphi(a_n),
+\qquad\widetilde\varphi(())=e_G.
+\]
+Eliminar una pareja $aa^{-1}$ o $a^{-1}a$ no modifica este valor. Así,
+\[
+\widetilde\varphi(R(w))=\widetilde\varphi(w).
+\]
+La restricción $\varphi:F(A)\to G$ satisface
+\[
+\varphi(w\cdot w')=\widetilde\varphi(R(ww'))
+=\widetilde\varphi(ww')=\varphi(w)\varphi(w'),
+\]
+y es un homomorfismo con $\varphi j=f$. El diagrama de la construcción es
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+W(A)\arrow[r,destacado,"R"]\arrow[rr,bend left=24,destacado,"\widetilde\varphi"]
+&F(A)\arrow[r,destacado,"\varphi"]&G\\
+&A\arrow[u,estructura,"j"]\arrow[ur,estructura,"f"']&
+\end{tikzcd}
+\]
+Cualquier homomorfismo que extienda $f$ debe enviar $a^{-1}$ a $f(a)^{-1}$ y una palabra al producto de las imágenes de sus letras. Por tanto, coincide con $\varphi$. Esto prueba la propiedad universal.
+
+Si $A=\varnothing$, sólo existe la palabra vacía, de modo que $F(\varnothing)=\{e\}$. Si $A=\{x\}$, una palabra reducida no puede mezclar $x$ y $x^{-1}$: en el primer cambio de tipo aparecería una pareja cancelable. Sus elementos son, por tanto,
+\[
+\ldots,x^{-2},x^{-1},e,x,x^2,\ldots.
+\]
+Las potencias son palabras distintas y $x^mx^n=x^{m+n}$. Así, $\varepsilon_x:\mathbb Z\to F(\{x\})$ es un isomorfismo.
+
+\subsection{El árbol de dos generadores}\label{tema:3-4-4}
+Para $A=\{x,y\}$, representamos las palabras reducidas como vértices del grafo de la \cref{fig:arbol-libre}. Desde una palabra $w$ trazamos aristas hacia $R(wx)$, $R(wx^{-1})$, $R(wy)$ y $R(wy^{-1})$. Desde $e$, las direcciones derecha, izquierda, arriba y abajo corresponden a $x,x^{-1},y,y^{-1}$; al continuar, evitamos volver por la arista inversa. Los segmentos se acortan para que quepan las primeras generaciones.
+\figuraApuntes{Figuras/ArbolLibre}{fig:arbol-libre}{Árbol de Cayley del grupo libre en dos generadores.}
+La ruta destacada representa $e\to x\to xy\to xyx$. No hay ciclos sin retroceso: sus etiquetas formarían una palabra reducida no vacía igual a la identidad, lo cual contradice la construcción de $F(\{x,y\})$. El dibujo es una porción finita del árbol infinito; los extremos de la figura admiten nuevas continuaciones.
+
+\subsection{Grupos abelianos libres}\label{tema:4-1-0}
+Buscamos la versión de la construcción del grupo libre de la sección~\ref{tema:3-3-1} dentro de $\Ab$.
+\begin{defi}
+Un \emph{grupo abeliano libre sobre un conjunto $A$} es un grupo abeliano $F^{\mathrm{ab}}(A)$ con una función $j:A\to F^{\mathrm{ab}}(A)$ tal que, para todo grupo abeliano $H$ y toda función $f:A\to H$, existe un único homomorfismo $\varphi$ con $\varphi\circ j=f$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+F^{\mathrm{ab}}(A)\arrow[r,destacado,"\exists!\,\varphi"]&H\\
+A\arrow[u,"j"]\arrow[ur,"f"']&
+\end{tikzcd}
+\]
+\end{defi}
+
+Si $A=\{1,\ldots,n\}$, tomamos $\mathbb Z^{\oplus n}=\mathbb Z^n$ y enviamos $i$ al vector $j(i)$ con un $1$ en la coordenada $i$ y ceros en las demás. Cada vector admite una expresión única
+\[
+(m_1,\ldots,m_n)=\sum_{i=1}^n m_i j(i).
+\]
+Por ello, el único candidato para extender $f$ es
+\[
+\varphi(m_1,\ldots,m_n)=\sum_{i=1}^n m_i f(i).
+\]
+Es un homomorfismo: para $u=(u_i)$ y $v=(v_i)$,
+\[
+\varphi(u+v)=\sum_i(u_i+v_i)f(i)
+=\sum_i u_i f(i)+\sum_i v_i f(i)=\varphi(u)+\varphi(v).
+\]
+La conmutatividad permite reagrupar las coordenadas en el dominio y los sumandos en $H$. Además, $\varphi(j(i))=f(i)$, y cualquier homomorfismo con esta propiedad queda determinado por la expresión de cada vector en la base.
+
+
+Para un conjunto arbitrario $A$ y un grupo abeliano $H$, el conjunto $H^A=\Hom_{\Set}(A,H)$ es un grupo abeliano bajo la suma puntual: $(\alpha+\beta)(a)=\alpha(a)+\beta(a)$. El neutro es la función cero y el inverso de $\alpha$ es $a\mapsto-\alpha(a)$. Definimos
+\[
+\supp(\alpha)=\set{a\in A\given\alpha(a)\ne0},\qquad
+H^{\oplus A}=\set{\alpha\in H^A\given\supp(\alpha)\text{ es finito}}.
+\]
+Este último conjunto es un subgrupo: contiene la función cero, el soporte de $-\alpha$ coincide con el de $\alpha$, y el de $\alpha+\beta$ está contenido en la unión de sus dos soportes.
+
+\begin{prop}\label{prop:C4-libre-abeliano}
+El grupo $\mathbb Z^{\oplus A}$, con la función $j:A\to\mathbb Z^{\oplus A}$ dada por $j(a)=j_a$, donde
+\[
+j_a(x)=\begin{cases}1,&x=a,\\0,&x\ne a,\end{cases}
+\]
+es un grupo abeliano libre sobre $A$.
+\end{prop}
+\begin{proof}
+Cada $\alpha\in\mathbb Z^{\oplus A}$ se escribe de modo único como
+\[
+\alpha=\sum_{a\in A}m_a j_a,\qquad m_a=\alpha(a),
+\]
+con sólo un número finito de coeficientes no nulos. Si $f:A\to H$, necesariamente debemos definir
+\[
+\varphi(\alpha)=\sum_{a\in A}m_a f(a).
+\]
+La suma es finita, así que tiene sentido en cualquier grupo abeliano $H$. Para $\alpha=\sum_a m_a j_a$ y $\beta=\sum_a n_a j_a$, podemos sumar sobre la unión finita de sus soportes y obtener
+\begin{align*}
+\varphi(\alpha+\beta)
+&=\sum_a(m_a+n_a)f(a)\\
+&=\sum_a m_a f(a)+\sum_a n_a f(a)
+=\varphi(\alpha)+\varphi(\beta).
+\end{align*}
+Además $\varphi(j_a)=f(a)$. Todo homomorfismo que extienda $f$ debe tener esta misma fórmula, por lo que la extensión es única.
+\end{proof}
+Si $A$ es infinito, $\mathbb Z^{\oplus A}$ se distingue del producto $\mathbb Z^A$: una función con infinitas coordenadas no nulas pertenece al producto, pero no a la suma directa. Para $A=\varnothing$, ambos dan el grupo trivial.

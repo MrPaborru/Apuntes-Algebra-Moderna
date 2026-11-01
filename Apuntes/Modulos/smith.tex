@@ -1,0 +1,33 @@
+\section{Presentaciones y forma normal de Smith}\label{sec:modulos-smith}
+
+\subsection{Un ejemplo de presentación y forma de Smith}\label{tema:21-4-0}
+Sea ahora $R=k[x]$, con $k$ un campo, y sea el módulo presentado por
+\[
+A=\begin{pmatrix}x&0\\0&x-1\end{pmatrix}:R^2\to R^2,
+\qquad M=\coker A=R^2/\im A.
+\]
+La diagonal inicial no es una cadena de divisibilidad, pues $x\nmid x-1$. Las operaciones elementales por filas y columnas corresponden a multiplicar por matrices invertibles y conservan el conúcleo salvo isomorfismo. Denotando las filas por $L_i$ y las columnas por $C_i$, efectuamos las siguientes operaciones:
+\begin{align*}
+\begin{pmatrix}x&0\\0&x-1\end{pmatrix}
+&\xrightarrow{C_1\leftarrow C_1+C_2}
+\begin{pmatrix}x&0\\x-1&x-1\end{pmatrix}
+\xrightarrow{L_2\leftarrow L_2-L_1}
+\begin{pmatrix}x&0\\-1&x-1\end{pmatrix}\\[3pt]
+&\xrightarrow{L_2\leftarrow-L_2}
+\begin{pmatrix}x&0\\1&1-x\end{pmatrix}
+\xrightarrow{L_1\leftrightarrow L_2}
+\begin{pmatrix}1&1-x\\x&0\end{pmatrix}\\[3pt]
+&\xrightarrow{C_2\leftarrow C_2-(1-x)C_1}
+\begin{pmatrix}1&0\\x&-x(1-x)\end{pmatrix}
+\xrightarrow{L_2\leftarrow L_2-xL_1}
+\begin{pmatrix}1&0\\0&x^2-x\end{pmatrix}.
+\end{align*}
+La última diagonal cumple $1\mid x^2-x$ y es una \emph{forma normal de Smith} de $A$. En consecuencia,
+\[
+M\cong R/(1)\oplus R/(x^2-x)\cong R/(x^2-x),
+\]
+que exhibe su único factor invariante no trivial. Como $x^2-x=x(x-1)$ y los ideales $(x)$ y $(x-1)$ son comaximales, la descomposición en divisores elementales es
+\[
+M\cong R/(x)\oplus R/(x-1).
+\]
+El argumento funciona en cualquier característica, pues $x-(x-1)=1$. Para justificar la conservación del módulo presentado, si $A'=PAQ$ con $P,Q$ invertibles, entonces $\im A'=P(\im A)$; el automorfismo $P$ del codominio induce el isomorfismo de cocientes. Así se completa la interpretación de las operaciones utilizadas.

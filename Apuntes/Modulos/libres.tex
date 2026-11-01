@@ -1,0 +1,61 @@
+\section{Módulos libres, generación y propiedades universales}\label{sec:modulos-libres}
+
+\subsection{Construcción de módulos libres y generación}\label{tema:14-3-1}\label{tema:15-1-1a}
+\begin{defi}
+Un \emph{módulo libre sobre un conjunto $A$} es un módulo $F^R(A)$ con una función $j:A\to F^R(A)$ tal que toda función $f:A\to M$ se extiende de manera única a un morfismo de módulos $\varphi:F^R(A)\to M$, con $\varphi j=f$.
+\end{defi}
+Si existen dos objetos así, los mediadores correspondientes a sus funciones de generadores dan morfismos en ambos sentidos. Sus composiciones fijan los generadores; por unicidad son las identidades. Por ello el objeto libre es único salvo el isomorfismo que respeta esos generadores.
+
+Para un módulo $N$ y un conjunto $A$, definimos
+\[
+N^{\oplus A}=\set{u:A\to N\given\supp u\text{ es finito}},
+\qquad \supp u=\set{a\in A\given u(a)\ne0}.
+\]
+Con suma y escalares puntuales es módulo: el soporte de una suma está contenido en la unión de los soportes y el de $ru$ está contenido en el de $u$.
+
+\begin{prop}\label{prop:C14-libre}
+El módulo $R^{\oplus A}$ es libre sobre $A$, con $j(a)=e_a$, donde $e_a(x)=1_R$ si $x=a$ y $e_a(x)=0$ si $x\ne a$.
+\end{prop}
+\begin{proof}
+Toda $u\in R^{\oplus A}$ tiene una expresión finita
+\[
+u=\sum_{a\in A}u(a)e_a.
+\]
+Una extensión lineal de $f:A\to M$ está forzada a satisfacer
+\[
+\varphi(u)=\sum_{a\in A}u(a)f(a).
+\]
+La fórmula está definida porque el soporte es finito. Preserva sumas por distributividad y, para $r\in R$, $\varphi(ru)=\sum(ru(a))f(a)=r\sum u(a)f(a)$. También $\varphi(e_a)=f(a)$. Esto prueba existencia y unicidad, sin suponer conmutatividad de $R$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+R^{\oplus A}\arrow[r,dashed,destacado,"\exists!\,\varphi"]&M\\
+A\arrow[u,"j"]\arrow[ur,"f"']&
+\end{tikzcd}
+\qedhere
+\]
+\end{proof}
+Si $A=\{1,\ldots,n\}$, se obtiene $R^{\oplus A}=R^n$ y $e_i$ tiene un uno en la coordenada $i$ y ceros en las demás. Para $A$ vacío, el módulo libre es cero.
+
+\begin{ejer}[Inyectividad de los generadores libres]\label{ejer:C14-generadores}
+Suponiendo $R\ne0$, comprobar que la función $j$ de un módulo libre es inyectiva. Examinar también el caso del anillo cero.
+\end{ejer}
+\begin{sol}
+En el modelo construido, si $a\ne b$, entonces $e_a(a)=1_R\ne0=e_b(a)$, luego $e_a\ne e_b$. La unicidad del objeto libre transporta la inyectividad a cualquier otro modelo. También se deduce directamente de la propiedad universal eligiendo $f:A\to R$ con $f(a)=1_R$, $f(b)=0$: si $j(a)=j(b)$, toda extensión daría $f(a)=f(b)$, contradicción.
+
+Si $R=0$, cualquier módulo unitario es cero, porque $m=1_Rm=0_Rm=0$. El módulo libre sigue existiendo y es cero para cualquier $A$. En ese caso, $j$ es inyectiva exactamente cuando $|A|\leq1$.
+\end{sol}
+\begin{obs}
+La construcción libre también vale para $R=0$. En ese caso $R^{\oplus A}=0$, y la función de generadores $j:A\to0$ sólo es inyectiva cuando $|A|\leq1$.
+\end{obs}
+
+Si $A\subseteq M$, la inclusión de conjuntos se extiende de manera única a un morfismo $\varphi_A:R^{\oplus A}\to M$. Su imagen es el \emph{submódulo generado por $A$}, denotado $\ang{A}$:
+\[
+\ang{A}=\set*{\sum_{a\in A}r_aa\given
+ r_a\in R,\ r_a=0\text{ salvo para finitos }a}.
+\]
+Contiene $A$, porque $a=1_Ra$, y todo submódulo que contiene $A$ contiene todas esas combinaciones. Es, por tanto, el menor submódulo con esa propiedad. Para $A=\varnothing$ se obtiene cero.
+
+\begin{defi}
+Un módulo $M$ es \emph{finitamente generado} si $M=\ang{a_1,\ldots,a_n}$ para alguna familia finita. Equivalentemente, existe un homomorfismo sobreyectivo $R^n\to M$ para algún $n\geq0$.
+\end{defi}
+La equivalencia se sigue de la fórmula del mediador libre: $(r_1,\ldots,r_n)\mapsto\sum_i r_ia_i$. Recíprocamente, las imágenes de los vectores coordenados generan la imagen de todo morfismo desde $R^n$.

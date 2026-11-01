@@ -1,0 +1,103 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAPÍTULOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Vaciamos encabezados y pies de pagina
+\makeatletter
+\patchcmd{\chapter}
+  {\thispagestyle{plain}}
+  {\thispagestyle{empty}}
+  {}{}
+\makeatother
+
+% Caja para el número del capítulo
+\newsavebox{\felinechapternumber}
+
+% Marcador: "CAPÍTULO" vertical + número
+\newcommand{\felinechaptermarker}{%
+    \sbox{\felinechapternumber}{%
+        \begingroup
+        \setlength{\fboxsep}{4pt}%
+        \colorbox{rojoCIMAT}{%
+            \resizebox{!}{4.9cm}{%
+                \normalfont
+                \bfseries
+                \color{white}%
+                \thechapter
+            }%
+        }%
+        \endgroup
+    }%
+    \makebox[\textwidth][r]{%
+        {%
+            \normalfont
+            \rmfamily
+            \mdseries
+            \color{black}%
+            \rotatebox{90}{%
+                \resizebox{%
+                    \heightof{\usebox{\felinechapternumber}}%
+                    +\depthof{\usebox{\felinechapternumber}}%
+                }{!}{%
+                    \scshape\so{CAPÍTULO}%
+                }%
+            }%
+        }%
+        \hspace{0.35em}%
+        \raisebox{\depthof{\usebox{\felinechapternumber}}}{%
+            \usebox{\felinechapternumber}%
+        }%
+    }%
+}
+
+
+% Espaciado de los capítulos
+\titlespacing*{\chapter}
+    {0pt}
+    {-5em}
+    {3em}
+
+% Formato de los capítulos
+\titleformat{\chapter}[display]
+    {\Huge\bfseries\color{grisCIMAT!80!black}\raggedleft}
+    {
+    \begin{minipage}[t]{\textwidth}
+        \smash{\raisebox{-0.95cm}{\includegraphics[height=1.5cm]{Portada/escudo_cimat.pdf}}} %\hfill
+        {\Large\color{rojoCIMAT}\normalfont\bfseries{Centro de Investigación}}
+        \vspace{-0.95em}\\
+        {\color{rojoCIMAT}\hspace{1.4cm}\rule{\dimexpr\textwidth-10.45cm\relax}{1.3pt}}
+        \vspace{-0.55em}\\
+        {\Large\color{rojoCIMAT}\normalfont\bfseries\hspace{1.4cm}en Matemáticas, A.C.}
+    \end{minipage}\\
+    \vspace{4.9cm}
+    \felinechaptermarker
+    }
+    {1.5em}
+    {\parbox{\textwidth}{\raggedleft{\normalfont#1}\\\abvMateria}}
+    [%
+    \input{Portada/banner}%
+    \clearpage%
+    ]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\titleformat{\section}
+    {\normalfont\Large\bfseries}
+    {\textcolor{rojoCIMAT}{\thesection.}}{1em}{#1}
+
+% Títulos de subsecciones
+\titleformat{\subsection}
+    {\normalfont\large\scshape\color{grisCIMAT}}
+    {\begingroup\setlength{\fboxsep}{2pt}%
+      \colorbox{grisCIMAT}{\textcolor{white}{%
+        \raisebox{0pt}[\dimexpr\height+.4pt\relax][\dimexpr\depth+.4pt\relax]{\bfseries\thesubsection}}}%
+      \endgroup}{.7em}{#1}[]
+\titleformat{name=\chapter,numberless}[display]
+  {\Huge\bfseries\color{grisCIMAT!80!black}\raggedleft}
+  {\includegraphics[height=2cm]{Portada/escudo_cimat.pdf}\\[5cm]}
+  {1em}{\parbox{\textwidth}{\raggedleft#1}}
+  [\input{Portada/banner}\clearpage]
+
+% Formato del título de referencias.
+\newcommand{\formatoTituloListado}{%
+  \titleformat{name=\chapter,numberless}[display]
+    {\centering\Huge\scshape\color{grisCIMAT}}{}{0pt}{##1}%
+}

@@ -1,8 +1,4 @@
 % Pie de portada: lugar, fecha de compilación y contacto.
-\newsavebox{\RangoClasesPortada}
-\newlength{\AnchoClasesPortada}
-\newlength{\SeparacionRangoPortada}
-\setlength{\SeparacionRangoPortada}{2cm}
 \fancypagestyle{firststyle}{%
 \renewcommand{\headrulewidth}{0pt}
 \fancyhf{}
@@ -24,30 +20,14 @@ Guanajuato, Gto., \today. E-mail:
 \end{flushright}
 \end{minipage}
 \par\vspace{.1cm}{\color{rojoCIMAT}\hrule height1.3pt}
-\vspace{2.2cm}
+\vspace{1.8cm}
 \begin{center}
 {\Huge\scshape\Materia}\\[.45cm]
 {\Large Apuntes de clase}\\[.3cm]
-{\large\Periodo\enspace\textbullet\enspace\ClaveCurso}\\[\SeparacionRangoPortada]
-% Ancho mínimo original; crece con el rango sin reducir sus numerales.
-\setlength{\fboxrule}{1.5pt}
-\setlength{\fboxsep}{3pt}
-\sbox{\RangoClasesPortada}{%
-\color{white}\fontsize{49}{49}\selectfont
-\textbf{1\textordfeminine}%
-\kern.08em\mbox{\normalfont\bfseries-}\kern.08em%
-\textbf{\NumClases\textordfeminine}}
-\setlength{\AnchoClasesPortada}{\dimexpr\wd\RangoClasesPortada+2\fboxsep\relax}
-\ifdim\AnchoClasesPortada<4cm
-  \setlength{\AnchoClasesPortada}{4cm}
-\fi
-\colorbox{rojoCIMAT}{%
-\makebox[\dimexpr\AnchoClasesPortada+2\fboxrule\relax][c]{%
-\color{white}\usebox{\RangoClasesPortada}}}\\[-.1cm]
-\fcolorbox{rojoCIMAT}{white}{%
-\makebox[\AnchoClasesPortada][c]{\Huge\scshape\so{clases}}}\\[\SeparacionRangoPortada]
+{\large\Periodo\enspace\textbullet\enspace\ClaveCurso}\\[1.2cm]
+\input{Figuras/ArbolTresRegular.tex}\\[1.2cm]
 {\Large\bfseries Docente:}\\[.2cm]
-{\Large\Docente}\\[.7cm]
+{\Large\Docente}\\[.5cm]
 {\Large\bfseries Alumno:}\\[.2cm]
 {\Large\Alumno}
 \end{center}

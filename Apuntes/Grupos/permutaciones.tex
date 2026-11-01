@@ -1,0 +1,201 @@
+\section{Permutaciones, ciclos, signo y grupos alternantes}\label{sec:grupos-permutaciones}
+
+\subsection{Acciones y simetrías del triángulo}\label{tema:3-1-1b}
+\begin{defi}
+Una \emph{acción} de un grupo $G$ sobre un objeto $A$ de una categoría $\mathcal C$ es un homomorfismo $\alpha:G\to\Aut_{\mathcal C}(A)$. Si $\alpha_g=\alpha(g)$, la condición es $\alpha_{hg}=\alpha_h\circ\alpha_g$ y $\alpha_e=1_A$.
+\end{defi}
+Cuando $A=X$ es un conjunto, podemos expresar una acción izquierda como una función
+\[
+G\times X\to X,\qquad (g,x)\mapsto g\cdot x,
+\]
+con $e\cdot x=x$ y $h\cdot(g\cdot x)=(hg)\cdot x$. En efecto, cada función $\alpha_g(x)=g\cdot x$ es biyectiva, con inversa $\alpha_{g^{-1}}$; la segunda igualdad garantiza que $g\mapsto\alpha_g$ sea un homomorfismo hacia $\Sym(X)$.
+
+\begin{ejem}
+Etiquetemos los vértices de un triángulo equilátero por $X=\{1,2,3\}$, con $1$ abajo a la izquierda, $2$ abajo a la derecha y $3$ arriba. Cada simetría de $D_6$ permuta los vértices. Si $r$ es el giro de $120^\circ$ que envía $1$ a $2$, entonces
+\[
+e\longmapsto\begin{pmatrix}1&2&3\\1&2&3\end{pmatrix},\quad
+r\longmapsto\begin{pmatrix}1&2&3\\2&3&1\end{pmatrix},\quad
+r^2\longmapsto\begin{pmatrix}1&2&3\\3&1&2\end{pmatrix}.
+\]
+Las tres reflexiones inducen las transposiciones $(2\ 3)$, $(1\ 3)$ y $(1\ 2)$, según el vértice que dejen fijo. La \cref{fig:triangulo} muestra las seis configuraciones de las etiquetas y los tres ejes correspondientes.
+\figuraApuntes{Figuras/Triangulo}{fig:triangulo}{Simetrías del triángulo equilátero.}
+\end{ejem}
+
+\subsection{Descomposición en ciclos disjuntos}\label{tema:9-1-1}
+Dada $\sigma\in S_n$, restringimos la acción natural a $\ang{\sigma}$. Sus órbitas particionan $\{1,\ldots,n\}$: dos elementos están relacionados si $a=\sigma^k(b)$ para algún entero $k$.
+\begin{defi}
+Un \emph{ciclo no trivial} es una permutación con una sola órbita no trivial. Si $a_1,\ldots,a_r$ son distintos, el ciclo $(a_1\,a_2\,\cdots\,a_r)$ envía $a_i$ a $a_{i+1}$, envía $a_r$ a $a_1$ y fija los demás elementos. Su longitud es $r$. Dos ciclos son \emph{disjuntos} si sus órbitas no triviales son disjuntas.
+\end{defi}
+Las escrituras de un ciclo obtenidas por rotación cíclica coinciden, por ejemplo
+\[
+(1\,2\,3)=(2\,3\,1)=(3\,1\,2).
+\]
+Cuando convenga registrar puntos fijos, utilizaremos también ciclos de longitud uno.
+\begin{ejem}
+La permutación
+\[
+\sigma=\begin{pmatrix}1&2&3&4&5\\2&3&1&5&4\end{pmatrix}
+\]
+tiene órbitas $\{1,2,3\}$ y $\{4,5\}$. Sus recorridos bajo $\sigma$ son
+\[
+1\mapsto2\mapsto3\mapsto1,
+\qquad 4\mapsto5\mapsto4.
+\]
+Por tanto $\sigma=(1\,2\,3)(4\,5)$.
+\end{ejem}
+
+\begin{lema}\label{lema:C9-ciclos}
+Los ciclos disjuntos conmutan. Toda permutación distinta de la identidad es producto de ciclos no triviales disjuntos; la descomposición es única salvo el orden de los factores y las rotaciones de la escritura de cada ciclo.
+\end{lema}
+\begin{proof}
+Si dos ciclos son disjuntos, un punto pertenece al soporte de uno de ellos o de ninguno. En cada caso aplicar los dos en cualquier orden da el mismo resultado: el otro ciclo fija tanto el punto como su imagen. Por tanto conmutan.
+
+Para construir la descomposición tomamos las órbitas no triviales de $\ang{\sigma}$. En una órbita, partimos de $a$ y listamos $a,\sigma(a),\ldots,\sigma^{r-1}(a)$ hasta el primer retorno a $a$. No hay repeticiones anteriores: si $\sigma^i(a)=\sigma^j(a)$, aplicar una potencia inversa daría un retorno anterior. El ciclo así formado coincide con $\sigma$ en esa órbita. El producto de los ciclos coincide con $\sigma$ en todas las órbitas y fija sus puntos fijos. La unicidad se comprueba en el ejercicio siguiente.
+\end{proof}
+\begin{ejer}[Unicidad de los ciclos disjuntos]\label{ejer:C9-unicidad}
+Demostrar la unicidad de la descomposición del \cref{lema:C9-ciclos}.
+\end{ejer}
+\begin{sol}
+En cualquier producto de ciclos disjuntos, la órbita de un punto movido es exactamente el conjunto de entradas del único ciclo que lo mueve. Por ello dos descomposiciones de $\sigma$ deben utilizar los mismos conjuntos de entradas, ya que las órbitas de $\sigma$ están determinadas por su acción.
+
+Emparejemos dos ciclos con el mismo conjunto. Si uno empieza por $a$, sus entradas sucesivas son obligatoriamente $a,\sigma(a),\sigma^2(a),\ldots$. El otro puede escribirse empezando por $a$, tras una rotación cíclica; a partir de ahí sus entradas coinciden una por una. Los ciclos son entonces la misma permutación. Sólo pueden cambiar el orden de los factores y el punto elegido para empezar a escribirlos.
+\end{sol}
+
+\begin{defi}
+Una \emph{partición} de $n>0$ es una lista $\lambda_1\ge\cdots\ge\lambda_r>0$ cuya suma es $n$. El \emph{tipo} de $\sigma\in S_n$ es la partición dada por las longitudes de todas sus órbitas, incluidos los puntos fijos.
+\end{defi}
+Las siete particiones de $5$ son
+\[
+[1,1,1,1,1],\ [2,1,1,1],\ [2,2,1],\ [3,1,1],\ [3,2],\ [4,1],\ [5].
+\]
+Sus diagramas de Young tienen una fila de $\lambda_i$ casillas por cada parte. Se dibujan más adelante, junto con su signo. Como ejemplo en $S_8$, $(1\,8\,6\,3\,2)(4\,7)$ tiene tipo $[5,2,1]$; el punto fijo es $5$.
+
+\subsection{Conjugación y recuentos en el grupo simétrico}\label{tema:9-1-2}
+\begin{prop}\label{prop:C9-conjugacion}
+Conjugar por $\tau\in S_n$ reemplaza cada entrada $a$ de un ciclo por $\tau(a)$:
+\[
+\tau(a_1\,\cdots\,a_r)\tau^{-1}
+=(\tau(a_1)\,\cdots\,\tau(a_r)).
+\]
+Dos permutaciones de $S_n$ son conjugadas si y sólo si tienen el mismo tipo.
+\end{prop}
+\begin{proof}
+Si $\sigma(i)=j$, entonces $(\tau\sigma\tau^{-1})(\tau(i))=\tau(j)$. Esto determina el recorrido de cada ciclo y los puntos fijos, y demuestra la fórmula. En particular, la conjugación conserva las longitudes.
+
+Recíprocamente, escribamos dos permutaciones del mismo tipo con sus ciclos ordenados por longitud y añadamos los ciclos de longitud uno. Las dos listas completas de entradas contienen cada entero del $1$ al $n$ exactamente una vez. Definimos $\tau$ enviando cada entrada de la primera lista a la entrada correspondiente de la segunda. Es una biyección, y la fórmula de conjugación muestra que transforma la primera permutación en la segunda.
+\end{proof}
+\begin{ejem}
+Para $\sigma=(1\,2)(3\,4\,5)(6\,7\,8\,9)$ y $\tau=(1\,3\,5\,7)(2\,4\,6\,8)$, la sustitución de entradas da
+\[
+\tau\sigma\tau^{-1}=(3\,4)(5\,6\,7)(8\,1\,2\,9)
+=(1\,2\,9\,8)(3\,4)(5\,6\,7).
+\]
+También puede comprobarse la conjugación siguiendo cada punto a través de los tres factores; por ejemplo, se obtiene el recorrido $1\mapsto2\mapsto9\mapsto8\mapsto1$.
+
+Para $\sigma_1=(1)(3\,5)(8\,9)(2\,4\,7\,6)$ y $\sigma_2=(3)(4\,7)(8\,1)(5\,2\,6\,9)$, las listas emparejadas son
+\[
+\begin{pmatrix}1&3&5&8&9&2&4&7&6\\3&4&7&8&1&5&2&6&9\end{pmatrix}.
+\]
+Así, $\tau=(1\,3\,4\,2\,5\,7\,6\,9)$, que fija $8$, satisface $\tau\sigma_1\tau^{-1}=\sigma_2$.
+\end{ejem}
+\begin{coro}
+El número de clases de conjugación de $S_n$ es el número de particiones de $n$.
+\end{coro}
+\begin{proof}
+El tipo es constante en cada clase y distingue clases por la proposición. Toda partición se realiza formando ciclos disjuntos de sus longitudes sobre bloques consecutivos de $\{1,\ldots,n\}$. Por tanto hay una biyección entre clases y particiones.
+\end{proof}
+
+\begin{ejem}[La ecuación de clases de $S_5$]\label{ejem:C9-S5}
+El recuento por tipos es
+\begingroup
+\renewcommand{\arraystretch}{1.4}
+\[
+\begin{array}{c|c|c}
+\text{tipo}&\text{representante}&\text{cardinal de la clase}\\\hline
+{[1,1,1,1,1]}&e&1\\
+{[2,1,1,1]}&(1\,2)&\binom52=10\\
+{[2,2,1]}&(1\,2)(3\,4)&\binom52\binom32/2=15\\
+{[3,1,1]}&(1\,2\,3)&\binom53\,2!=20\\
+{[3,2]}&(1\,2\,3)(4\,5)&\binom53\,2!=20\\
+{[4,1]}&(1\,2\,3\,4)&\binom54\,3!=30\\
+{[5]}&(1\,2\,3\,4\,5)&4!=24
+\end{array}
+\]
+\endgroup
+Para un ciclo de longitud $r$ sobre un conjunto fijado hay $(r-1)!$ posibilidades: fijamos su primera entrada y ordenamos las restantes. En el tipo $[2,2,1]$ dividimos entre $2$ porque intercambiar las transposiciones no cambia la permutación. La ecuación resultante es
+\[
+120=1+10+15+20+20+30+24.
+\]
+No existe un subgrupo normal de orden $30$ en $S_5$. Sería unión de clases e incluiría al neutro, así que $29$ sería suma de algunos de $10,15,20,20,30,24$. Sin $24$, todas las sumas son múltiplos de $5$; con $24$ faltaría $5$, menor que cualquier sumando disponible. Ninguna posibilidad sirve.
+\end{ejem}
+
+\subsection{Signo y grupo alternante}\label{tema:9-2-0}
+Consideramos el polinomio formal
+\[
+\Delta_n=\prod_{1\le i<j\le n}(x_i-x_j)\in\mathbb Z[x_1,\ldots,x_n].
+\]
+Aquí sólo usamos polinomios con coeficientes enteros y sustitución de variables; no se fijan convenciones generales de anillos. Para $n=1$ el producto vacío es $\Delta_1=1$. Los primeros casos son
+\begin{align*}
+\Delta_2&=x_1-x_2,\\
+\Delta_3&=(x_1-x_2)(x_1-x_3)(x_2-x_3),\\
+\Delta_4&=(x_1-x_2)(x_1-x_3)(x_1-x_4)
+ (x_2-x_3)(x_2-x_4)(x_3-x_4).
+\end{align*}
+Definimos una acción por la izquierda mediante $\sigma\cdot x_i=x_{\sigma(i)}$, extendida por sustitución a los polinomios. Entonces $\tau\cdot(\sigma\cdot f)=(\tau\sigma)\cdot f$, de acuerdo con nuestra composición de funciones.
+
+\begin{defi}
+El \emph{signo} $\varepsilon(\sigma)\in\{1,-1\}$ está determinado por
+\[
+\sigma\cdot\Delta_n=\varepsilon(\sigma)\Delta_n.
+\]
+La permutación es \emph{par} si su signo es $1$ e \emph{impar} si es $-1$.
+\end{defi}
+La definición tiene sentido: $\sigma$ permuta los pares no ordenados de índices; al reordenar cada diferencia aparecen sólo factores $-1$. Así el producto es $\Delta_n$ o $-\Delta_n$, y estos polinomios son distintos. Por ejemplo,
+\[
+(1\,2\,3\,4)\cdot\Delta_4
+=(x_2-x_3)(x_2-x_4)(x_2-x_1)(x_3-x_4)(x_3-x_1)(x_4-x_1)
+=-\Delta_4.
+\]
+\begin{prop}\label{prop:C9-signo}
+El signo $\varepsilon:S_n\to\{1,-1\}$ es un homomorfismo. Las transposiciones generan $S_n$ y tienen signo $-1$. Por tanto, un producto de $r$ transposiciones tiene signo $(-1)^r$.
+\end{prop}
+\begin{proof}
+Aplicar sucesivamente las sustituciones da
+\[
+(\tau\sigma)\cdot\Delta_n
+=\tau\cdot(\varepsilon(\sigma)\Delta_n)
+=\varepsilon(\sigma)\varepsilon(\tau)\Delta_n.
+\]
+La unicidad del signo y la conmutatividad de $\{1,-1\}$ prueban la propiedad de homomorfismo.
+
+Cada ciclo se expresa como
+\begin{equation}\label{eq:C9-transposiciones}
+(a_1\,a_2\,\cdots\,a_r)
+=(a_1\,a_r)(a_1\,a_{r-1})\cdots(a_1\,a_2).
+\end{equation}
+La comprobación se desarrolla a continuación. Junto con la descomposición en ciclos, esto prueba que las transposiciones generan $S_n$.
+
+Para $(i\,j)$ con $i<j$, el factor $x_i-x_j$ cambia de signo. Los pares de factores que involucran un índice $k$ entre $i$ y $j$ producen dos cambios de signo; los que tienen $k$ fuera de ese intervalo se intercambian sin cambio neto. En total aparecen $1+2(j-i-1)$ cambios, un número impar. Así, $\varepsilon((i\,j))=-1$. La fórmula para un producto sigue del carácter homomorfo.
+\end{proof}
+\begin{ejer}[Descomposición de un ciclo en transposiciones]
+Comprobar la identidad \eqref{eq:C9-transposiciones} verificando la imagen de cada punto.
+\end{ejer}
+\begin{sol}
+El factor derecho actúa primero. El punto $a_1$ pasa a $a_2$ por el primer factor aplicado y los demás lo fijan. Para $2\le j<r$, los factores anteriores a $(a_1\,a_j)$ fijan $a_j$; ese factor lo envía a $a_1$ y el siguiente, $(a_1\,a_{j+1})$, lo envía a $a_{j+1}$. Los posteriores lo fijan. Finalmente, $a_r$ permanece fijo hasta el factor izquierdo $(a_1\,a_r)$, que lo envía a $a_1$. Todos los puntos ajenos a la lista quedan fijos. Es exactamente el ciclo del lado izquierdo.
+\end{sol}
+\begin{obs}
+Las permutaciones actúan por la izquierda y el factor derecho se aplica primero.
+\end{obs}
+
+\begin{defi}
+El \emph{grupo alternante} es $A_n=\ker\varepsilon$, el subgrupo de las permutaciones pares.
+\end{defi}
+Para $n\ge2$ existe una transposición y el signo es sobreyectivo. Luego $A_n\trianglelefteq S_n$, $S_n/A_n\cong C_2$ y $|A_n|=n!/2$. Para $n=1$ tenemos $A_1=S_1=\{e\}$.
+
+Un ciclo de longitud $k$ tiene signo $(-1)^{k-1}$. Si el tipo de $\sigma$ tiene $r$ partes, contando los puntos fijos, entonces
+\[
+\varepsilon(\sigma)=\prod_{i=1}^r(-1)^{\lambda_i-1}=(-1)^{n-r}.
+\]
+Así, $\sigma$ es par exactamente cuando $n$ y el número de filas de su diagrama de Young tienen la misma paridad. La \cref{fig:particiones-cinco} reúne las siete particiones de $5$:
+\figuraApuntes{Figuras/ParticionesCinco}{fig:particiones-cinco}{Particiones de $5$ y paridad de los tipos de ciclos.}
+Los cuatro diagramas con signo positivo representan los tipos pares de $S_5$. Sus cardinales suman $1+15+20+24=60$, de acuerdo con $|A_5|=60$.

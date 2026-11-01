@@ -1,0 +1,130 @@
+\section{Clasificación de los grupos abelianos finitos}\label{sec:grupos-abelianos}
+
+\subsection{Separación de los primos y de un factor cíclico}\label{tema:10-3-1}
+A partir de aquí usamos notación aditiva para los grupos abelianos: el neutro es $0$, la suma de subgrupos es $H+K$ y los productos directos finitos se escriben también como sumas directas $H\oplus K$. Los órdenes de los elementos se denotan $\ord(g)$, para distinguirlos del orden de un grupo.
+
+\begin{lema}\label{lema:C10-coprimos}
+Si $H,K$ son subgrupos finitos de un grupo abeliano y sus órdenes son coprimos, entonces $H+K\cong H\oplus K$.
+\end{lema}
+\begin{proof}
+Lagrange implica que $|H\cap K|$ divide a ambos órdenes, así que $H\cap K=\{0\}$. Los dos subgrupos son normales por conmutatividad. La \cref{prop:C10-directo}, escrita aditivamente, da el isomorfismo $(h,k)\mapsto h+k$.
+\end{proof}
+
+\begin{coro}\label{coro:C10-primarios}
+Un grupo abeliano finito es la suma directa de sus subgrupos de Sylow no triviales.
+\end{coro}
+\begin{proof}
+Todo subgrupo de Sylow es normal por conmutatividad y, por el \cref{coro:C7-conjugados}, es único para su primo. Sus órdenes son las potencias primas de la factorización de $|G|$. Sumando sucesivamente, el lema anterior muestra que la suma es directa y su orden es el producto de esos órdenes, es decir, $|G|$. Por tanto la suma es todo $G$. Para el grupo trivial utilizamos la suma vacía.
+\end{proof}
+
+\begin{lema}\label{lema:C10-auxiliar}
+Sea $G$ abeliano no cíclico de orden $p^{r+1}$, con $r\ge1$, y sea $g$ de orden $p^r$. Existe $h\notin\ang{g}$ de orden $p$.
+\end{lema}
+\begin{proof}
+Sea $K=\ang{g}$ y elijamos $h'\notin K$. Como $G/K$ tiene orden $p$, se cumple $ph'\in K$. Ningún elemento de $G$ tiene orden $p^{r+1}$, pues generaría $G$, contra la hipótesis. Por Lagrange, $\ord(h')$ es entonces a lo sumo $p^r$, y $p^{r-1}(ph')=0$.
+
+En el grupo cíclico $K$, los elementos anulados por $p^{r-1}$ son exactamente los múltiplos de $pg$: si $k=ag$ y $p^{r-1}k=0$, entonces $p^r\mid p^{r-1}a$ y $p\mid a$. Así, $ph'=pmg$ para algún entero $m$. Tomamos $h=h'-mg$. Tenemos $ph=0$, pero $h\notin K$, pues de lo contrario $h'=h+mg\in K$. En particular $h\ne0$ y su orden es exactamente $p$.
+\end{proof}
+
+\begin{lema}\label{lema:C10-factor-maximo}
+Sea $G$ un $p$-grupo abeliano finito y $g\in G$ un elemento de orden máximo. Existe $L\le G$ con
+\[
+G=\ang{g}+L,\qquad \ang{g}\cap L=\{0\}.
+\]
+En particular, $G\cong\ang{g}\oplus L$ y la sucesión $0\to\ang{g}\to G\to G/\ang{g}\to0$ se escinde.
+\end{lema}
+\begin{proof}
+Hacemos inducción sobre $|G|$. Si $G$ es trivial o $G=K=\ang{g}$, basta tomar $L=\{0\}$. Supongamos $G\ne K$ y $\ord(g)=p^r$, con $r\ge1$. El cociente $G/K$ es un $p$-grupo no trivial. Por Cauchy contiene un subgrupo de orden $p$, cuya preimagen $G_0$ tiene orden $p^{r+1}$ y contiene a $K$.
+
+El grupo $G_0$ no es cíclico: un generador tendría orden $p^{r+1}$, contradiciendo la elección de $g$ en todo $G$. Por el lema anterior existe $h\in G_0\setminus K$ de orden $p$. Sea $H=\ang{h}$. Su intersección con $K$ es trivial: si compartieran un elemento no nulo, éste generaría $H$, por tener orden primo, y entonces $h\in K$.
+
+En $G/H$, el subgrupo $K'=(K+H)/H=\ang{g+H}$ es isomorfo a $K/(K\cap H)\cong K$, luego $g+H$ tiene orden $p^r$. Es de orden máximo, porque para todo $x\in G$ el orden de $x+H$ divide al de $x$, que es a lo sumo $p^r$. Como $|G/H|<|G|$, la inducción produce $L'\le G/H$ con
+\[
+G/H=K'+L',\qquad K'\cap L'=\{H\}.
+\]
+Sea $L$ la preimagen de $L'$; en particular $H\subseteq L$. Si $a\in G$, podemos escribir $a+H=mg+H+l+H$ con $l\in L$. Entonces $a-mg-l\in H\subseteq L$, de donde $a\in K+L$. Si $a\in K\cap L$, su imagen está en $K'\cap L'$, luego $a\in H$. Así $a\in K\cap H=\{0\}$. Concluimos la descomposición y la escisión por el \cref{lema:C10-escision}, en notación aditiva.
+\end{proof}
+El diagrama de cocientes empleado en la inducción puede reunirse así:
+\[
+\begin{tikzcd}[column sep=large]
+K \arrow[r,hook] \arrow[d,"\cong"'] & G \arrow[d,two heads,"\pi"] & L \arrow[l,hook'] \arrow[d,two heads] \\
+K' \arrow[r,hook] & G/H & L' \arrow[l,hook'].
+\end{tikzcd}
+\]
+
+\begin{coro}\label{coro:C10-existencia-ciclicos}
+Todo grupo abeliano finito es suma directa de grupos cíclicos, que pueden elegirse de orden potencia de primo.
+\end{coro}
+\begin{proof}
+Por el \cref{coro:C10-primarios} basta tratar un $p$-grupo $P$. Hacemos inducción sobre su orden. Para $P=\{0\}$ usamos la suma vacía. En otro caso elegimos $g$ de orden máximo. El lema anterior da $P\cong\ang{g}\oplus L$, donde $\ang{g}$ es un grupo cíclico no trivial de orden potencia de $p$ y $|L|<|P|$. Por inducción, $L$ es suma directa de cíclicos de órdenes potencias de $p$, lo que completa la prueba.
+\end{proof}
+
+\subsection{Divisores elementales, factores invariantes y unicidad}\label{tema:10-3-2}
+\begin{teo}[Clasificación de grupos abelianos finitos]\label{teo:C10-clasificacion}
+Todo grupo abeliano finito no trivial admite las dos formas siguientes:
+\begin{enumerate}
+\item Una suma directa de grupos $\mathbb Z/p^{a}\mathbb Z$, con $p$ primo y $a\ge1$. Las potencias primas que aparecen, con sus multiplicidades, se llaman \emph{divisores elementales} y están determinadas por $G$.
+\item Una suma directa
+\[
+G\cong\mathbb Z/d_1\mathbb Z\oplus\cdots\oplus\mathbb Z/d_s\mathbb Z,
+\qquad 1<d_1\mid d_2\mid\cdots\mid d_s.
+\]
+Los números $d_i$, llamados \emph{factores invariantes}, también están determinados por $G$.
+\end{enumerate}
+En ambas formas, el producto de los órdenes de los sumandos es $|G|$.
+\end{teo}
+\begin{proof}
+La existencia de la primera forma está probada en el corolario anterior. Explicamos su unicidad. Para cada primo $p$, el Sylow $P$ de $G$ es único. Intrínsecamente,
+\[
+P=\set{x\in G\given p^k x=0\text{ para algún }k\ge0}.
+\]
+Una inclusión es Lagrange; para la otra, $\ang{x}$ es un $p$-subgrupo y está contenido en el único Sylow. Por ello todo isomorfismo de grupos identifica estas partes para cada primo.
+
+Supongamos $P\cong\bigoplus_j\mathbb Z/p^{a_j}\mathbb Z$. Para $k\ge1$, definimos $p^kP=\set{p^kx\given x\in P}$. En un factor de exponente $a$, el cociente $p^{k-1}C_{p^a}/p^kC_{p^a}$ tiene orden $p$ si $a\ge k$ y orden uno en otro caso. Por productos de cardinales,
+\[
+|p^{k-1}P/p^kP|=p^{b_k},\qquad
+b_k=\#\set{j\given a_j\ge k}.
+\]
+El cardinal del lado izquierdo depende sólo de $P$, así que también $b_k$. El número de factores con exponente exactamente $k$ es $b_k-b_{k+1}$. Se recuperan todos los exponentes y multiplicidades, probando la unicidad de los divisores elementales.
+
+Para construir los factores invariantes, ordenamos de menor a mayor los exponentes para cada primo y completamos las listas con ceros \emph{a la izquierda} hasta darles una longitud común $s$, igual a la máxima cantidad de factores de una parte primaria. Sean $a_{p,1}\le\cdots\le a_{p,s}$ esas listas, y pongamos
+\[
+d_j=\prod_p p^{a_{p,j}}.
+\]
+Entonces $d_j\mid d_{j+1}$ y todos los $d_j$ son mayores que uno, pues al menos una lista tiene $s$ exponentes positivos. Reagrupamos los factores por columnas. Para órdenes coprimos $a,b$, el homomorfismo
+\[
+\mathbb Z/ab\mathbb Z\longrightarrow
+\mathbb Z/a\mathbb Z\oplus\mathbb Z/b\mathbb Z,
+\qquad [x]_{ab}\longmapsto([x]_a,[x]_b)
+\]
+es inyectivo: su núcleo exige $a\mid x$ y $b\mid x$, y por coprimalidad $ab\mid x$. Ambos grupos tienen orden $ab$, luego es un isomorfismo. Aplicándolo sucesivamente a cada columna, su suma directa es $\mathbb Z/d_j\mathbb Z$.
+
+Por último, cualquier lista de factores invariantes puede descomponerse por sus potencias primas usando el mismo isomorfismo. La divisibilidad obliga a que, para cada primo, los exponentes estén ordenados de menor a mayor; los ceros sólo pueden preceder a los positivos. Como $d_1>1$, algún primo aparece en todos los $s$ factores, así que $s$ es necesariamente la máxima longitud de las listas primarias. La unicidad ya probada de esas listas determina cada columna y, por tanto, cada $d_j$.
+\end{proof}
+\begin{obs}[Sentido de la unicidad]
+La unicidad determina los tipos de isomorfismo de los factores y sus multiplicidades. Los subgrupos concretos elegidos para una descomposición no tienen por qué ser únicos.
+\end{obs}
+
+\begin{ejem}[Los seis grupos abelianos de orden $360$]
+Como $360=2^3\cdot3^2\cdot5$, los exponentes para la parte de $2$ tienen las tres particiones $[3]$, $[2,1]$, $[1,1,1]$; para la de $3$, las dos particiones $[2]$, $[1,1]$; para la de $5$ sólo está $[1]$. Hay, pues, $3\cdot2\cdot1=6$ posibilidades. La tabla reúne las seis posibilidades y sus factores invariantes:
+\begingroup
+\renewcommand{\arraystretch}{1.2}
+\[
+\begin{array}{c|c|c|c}
+\text{parte de }2&\text{parte de }3&\text{parte de }5&\text{factores invariantes}\\[2pt]\hline
+2^3&3^2&5&360\\
+2,2^2&3^2&5&2,180\\
+2,2,2&3^2&5&2,2,90\\
+2^3&3,3&5&3,120\\
+2,2^2&3,3&5&6,60\\
+2,2,2&3,3&5&2,6,30
+\end{array}
+\]
+\endgroup
+Por ejemplo, al alinear las listas $(1,1,1)$ para $2$, $(0,1,1)$ para $3$ y $(0,0,1)$ para $5$, se obtienen $2,6,30$. Los seis grupos, sin repeticiones por la unicidad del teorema, son
+\begin{gather*}
+C_{360},\qquad C_2\oplus C_{180},\qquad C_2\oplus C_2\oplus C_{90},\\
+C_3\oplus C_{120},\qquad C_6\oplus C_{60},\qquad C_2\oplus C_6\oplus C_{30}.
+\end{gather*}
+Cada lista tiene producto $360$ y cada término divide al siguiente.
+\end{ejem}

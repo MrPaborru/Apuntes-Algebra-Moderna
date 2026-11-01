@@ -1,0 +1,178 @@
+\section{Ideales, cocientes, característica y teoremas de isomorfismo}\label{sec:anillos-ideales}
+
+\subsection{Absorción e imágenes inversas}\label{tema:12-2-1}
+\begin{defi}
+Un subgrupo aditivo $I\subseteq R$ es \emph{ideal izquierdo} si $ra\in I$ para todo $r\in R$, $a\in I$; es \emph{ideal derecho} si $ar\in I$ para todos esos elementos. Es \emph{ideal bilateral} si cumple ambas condiciones. Cuando se diga simplemente ideal se entenderá bilateral.
+\end{defi}
+Los ideales están cerrados bajo sus propios productos, pero no se les exige contener $1_R$. Si un ideal izquierdo contiene $1_R$, entonces $r=r1_R\in I$ para todo $r$; para un ideal derecho se usa $r=1_Rr$. En ambos casos $I=R$. Por ello un ideal propio no es un subanillo unitario de $R$.
+
+\begin{ejem}
+El núcleo de cualquier homomorfismo $\varphi:R\to S$ es un ideal bilateral. Ya es subgrupo aditivo y, para $a\in\ker\varphi$, $r\in R$,
+\[
+\varphi(ra)=\varphi(r)\varphi(a)=\varphi(r)0=0,
+\qquad
+\varphi(ar)=0\varphi(r)=0.
+\]
+En particular, $\{0\}$ y $R$ son ideales de $R$.
+\end{ejem}
+
+\begin{ejer}[Preimagen de un ideal]\label{ejer:C12-preimagen}
+Si $\varphi:R\to S$ es homomorfismo y $J$ es ideal de $S$, probar que $\varphi^{-1}(J)$ es ideal de $R$.
+\end{ejer}
+\begin{sol}
+La preimagen contiene cero y, si $a,b$ pertenecen a ella, $\varphi(a-b)=\varphi(a)-\varphi(b)\in J$. Así es subgrupo aditivo. Para $r\in R$ y $a\in\varphi^{-1}(J)$,
+\[
+\varphi(ra)=\varphi(r)\varphi(a)\in J,\qquad
+\varphi(ar)=\varphi(a)\varphi(r)\in J.
+\]
+Esto da las dos absorciones. La misma prueba conserva sólo el lado correspondiente si $J$ es unilateral. Tomando $J=\{0_S\}$ se recupera el ejemplo del núcleo.
+\end{sol}
+
+\subsection{Multiplicación de clases y característica}\label{tema:12-2-2}
+Para un subgrupo aditivo $I$ de $R$, existe el grupo cociente $(R,+)/I$, porque el grupo es abeliano. Sus elementos son las clases $r+I$, con proyección aditiva $\pi:r\mapsto r+I$.
+
+\begin{prop}\label{prop:C12-cociente}
+La regla $(r+I)(s+I)=rs+I$ está bien definida si y sólo si $I$ es ideal bilateral. En ese caso hace de $R/I$ un anillo con unidad $1_R+I$ y convierte a $\pi:R\to R/I$ en un homomorfismo sobreyectivo de núcleo $I$.
+\end{prop}
+\begin{proof}
+Supongamos que $I$ es ideal. Si $r-r'\in I$ y $s-s'\in I$, entonces
+\[
+rs-r's'=r(s-s')+(r-r')s'\in I.
+\]
+Por tanto, la clase del producto no depende de los representantes. La asociatividad, las distributivas y la identidad se heredan de $R$, y la proyección preserva ambas operaciones y la unidad.
+
+Recíprocamente, si la regla está bien definida y $a\in I$, entonces $a+I=0+I$. Multiplicar esta igualdad por $r+I$ a cada lado da $ra+I=I=ar+I$. Así, $ra,ar\in I$ y $I$ es bilateral. Finalmente, $\pi(r)=I$ si y sólo si $r\in I$.
+\end{proof}
+\begin{obs}
+El grupo aditivo de $R/I$ es un grupo cociente. No se identifica en general con un subgrupo o un subanillo de $R$.
+\end{obs}
+
+\begin{defi}
+Sea $\iota_R:\mathbb Z\to R$ el morfismo inicial. Su núcleo es $n\mathbb Z$ para un único entero $n\geq0$. Se llama \emph{característica} de $R$ a ese entero, denotado $\operatorname{char}R$.
+\end{defi}
+Si $1_R$ tiene orden aditivo finito, la característica es ese orden: es el menor entero positivo $n$ con $n1_R=0$. Si tiene orden infinito, la característica es cero. En particular, el anillo cero tiene característica uno, $\mathbb Z$ tiene característica cero y $\mathbb Z/n\mathbb Z$ tiene característica $n$ para $n\geq1$.
+\begin{obs}
+El núcleo de $\iota_R$ puede ser trivial. Por eso el generador de ese subgrupo de $\mathbb Z$ es un entero $n\geq0$; el caso $n=0$ corresponde a característica cero.
+\end{obs}
+
+\subsection{Propiedad universal e isomorfismos}\label{tema:12-2-3}
+\begin{teo}\label{teo:C12-universal}
+Sea $I$ un ideal de $R$. Si $\varphi:R\to S$ es homomorfismo y $I\subseteq\ker\varphi$, existe un único homomorfismo $\widetilde\varphi:R/I\to S$ con $\widetilde\varphi\pi=\varphi$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+R\arrow[r,"\varphi"]\arrow[dr,"\pi"']&S\\
+&R/I\arrow[u,dashed,destacado,"\exists!\,\widetilde\varphi"'].
+\end{tikzcd}
+\]
+\end{teo}
+\begin{proof}
+La propiedad universal del cociente aditivo proporciona la única aplicación aditiva $\widetilde\varphi(r+I)=\varphi(r)$. También se comprueba directamente: $r-r'\in I$ implica $\varphi(r)=\varphi(r')$. Para el producto,
+\[
+\widetilde\varphi((r+I)(s+I))=\varphi(rs)
+=\varphi(r)\varphi(s)
+=\widetilde\varphi(r+I)\widetilde\varphi(s+I).
+\]
+Además, $\widetilde\varphi(1_R+I)=\varphi(1_R)=1_S$. La conmutatividad fuerza su valor sobre cada clase, de modo que la unicidad aditiva también es unicidad como morfismo de anillos.
+\end{proof}
+
+\begin{teo}[Primer teorema de isomorfismo]\label{teo:C12-primer-iso}
+Todo homomorfismo de anillos $\varphi:R\to S$ se factoriza como
+\[
+\begin{tikzcd}[column sep=large]
+R\arrow[r,two heads,"\pi"]\arrow[rrr,bend left=24,"\varphi"]
+&R/\ker\varphi\arrow[r,destacado,"\widetilde\varphi","\sim"']
+&\im\varphi\arrow[r,hook]&S,
+\end{tikzcd}
+\]
+donde $\widetilde\varphi(r+\ker\varphi)=\varphi(r)$. En particular, si $\varphi$ es sobreyectiva, $R/\ker\varphi\cong S$.
+\end{teo}
+\begin{proof}
+La imagen es subanillo: es subgrupo aditivo, está cerrada bajo productos y contiene $1_S$. El \cref{teo:C12-universal} da el morfismo indicado con ese destino, y es sobreyectivo por definición de imagen. Su núcleo es trivial, porque $\varphi(r)=0$ equivale a $r\in\ker\varphi$. Por la \cref{prop:C11-mono} es inyectivo. La inversa de un homomorfismo biyectivo preserva las operaciones y la unidad al tomar preimágenes, así que es un isomorfismo de anillos.
+\end{proof}
+
+\begin{prop}[Cocientes sucesivos]\label{prop:C12-tercer-iso}
+Si $I\subseteq J$ son ideales de $R$, entonces $J/I$ es ideal de $R/I$ y
+\[
+(R/I)/(J/I)\cong R/J.
+\]
+\end{prop}
+\begin{proof}
+La proyección $R\to R/J$ anula $I$, por lo que induce el homomorfismo sobreyectivo $q:R/I\to R/J$, $r+I\mapsto r+J$. Su núcleo es
+\[
+\ker q=\set{r+I\given r\in J}=J/I.
+\]
+Es un ideal por ser núcleo, y el \cref{teo:C12-primer-iso} produce el isomorfismo. El triángulo de factorización es el del \cref{teo:C12-universal}, con $S=R/J$.
+\end{proof}
+
+\begin{lema}[Correspondencia de ideales]\label{lema:C12-correspondencia}
+Los ideales de $R/I$ corresponden, preservando inclusiones, a los ideales de $R$ que contienen $I$, mediante $J\mapsto J/I$ y $K\mapsto\pi^{-1}(K)$.
+\end{lema}
+\begin{proof}
+Este detalle se usará en el criterio de maximalidad de la \cref{prop:C13-criterios}. La preimagen es ideal por el \cref{ejer:C12-preimagen} y contiene $I=\ker\pi$. Para $J\supseteq I$, la imagen $\pi(J)$ es $J/I$ y es ideal por la proposición anterior. Se tiene $\pi^{-1}(J/I)=J$: si $r+I=j+I$ con $j\in J$, entonces $r-j\in I\subseteq J$. Por la sobreyectividad de $\pi$, también $\pi(\pi^{-1}(K))=K$. Las dos operaciones respetan inclusiones, y son inversas.
+\end{proof}
+
+\subsection{Operaciones con ideales y teorema chino del resto}\label{tema:12-3-1}\label{tema:21-2-2a}
+Para $a\in R$, $Ra=\set{ra\given r\in R}$ es ideal izquierdo y $aR$ es ideal derecho: son subgrupos aditivos, y la absorción se sigue de $s(ra)=(sr)a$ y $(ar)s=a(rs)$. Si $R$ es conmutativo, coinciden y se denotan $(a)$, el \emph{ideal principal generado por $a$}. En particular, $(0)=\{0\}$ y $(1)=R$.
+
+\begin{ejer}[Suma de ideales]\label{ejer:C12-suma}
+Para una familia $(I_\alpha)_{\alpha\in A}$ de ideales de un anillo $R$, probar que su suma es un ideal.
+\end{ejer}
+\begin{sol}
+Definimos la suma mediante \emph{sumas finitas} de elementos de los ideales:
+\[
+\sum_{\alpha\in A}I_\alpha
+=\set*{a_1+\cdots+a_k\given
+ k\geq0,\ a_i\in I_{\alpha_i},\ \alpha_i\in A}.
+\]
+La suma vacía es cero. Sumar dos expresiones concatena las listas, y negar una expresión niega cada sumando. Así es subgrupo aditivo. Multiplicar por cualquier $r\in R$ a la izquierda o a la derecha deja cada sumando en su ideal original, por lo que la suma es bilateral. Contiene a cada $I_\alpha$, y cualquier ideal que los contenga incluye todas esas sumas finitas. Es, por tanto, el menor ideal con esa propiedad. Para $A$ vacío se obtiene $(0)$.
+\end{sol}
+
+Si $R$ es conmutativo y $(a_\alpha)_{\alpha\in A}$ es una familia de elementos, definimos el \emph{ideal generado} por ellos como $\sum_{\alpha\in A}(a_\alpha)$. Para una familia finita,
+\[
+(a_1,\ldots,a_n)
+=\set{r_1a_1+\cdots+r_na_n\given r_1,\ldots,r_n\in R}.
+\]
+Es el menor ideal que contiene todos los generadores. Un ideal es \emph{finitamente generado} si admite una expresión de este tipo.
+
+\begin{ejem}[Añadir una relación después de formar un cociente]
+Para $R$ conmutativo, $a,b\in R$ y $\bar b=b+(a)$, se tiene
+\[
+(R/(a))/(\bar b)\cong R/(a,b).
+\]
+En efecto, en $R/(a)$,
+\[
+(\bar b)=\set{zb+(a)\given z\in R}=(a,b)/(a).
+\]
+La última igualdad se debe a que $ua+vb+(a)=vb+(a)$: añadir un múltiplo de $a$ no cambia la clase. Aplicamos la \cref{prop:C12-tercer-iso} a $(a)\subseteq(a,b)$.
+\end{ejem}
+
+La intersección $\bigcap_{\alpha\in A}I_\alpha$ es el mayor ideal contenido en cada $I_\alpha$: las condiciones de subgrupo y absorción se comprueban en todos ellos. Si la familia es vacía, su intersección es $R$.
+
+El \emph{producto de ideales} $IJ$ es el ideal generado por los productos $ab$ con $a\in I$, $b\in J$. Para ideales bilaterales de un anillo cualquiera consiste en las sumas finitas de tales productos: al multiplicarlas por un elemento de $R$, la absorción se aplica al primer o al segundo factor. Más generalmente, $I_1\cdots I_n$ es generado por los productos $a_1\cdots a_n$, $a_k\in I_k$. Esta notación no designa sólo el conjunto de productos individuales, a diferencia del producto de subgrupos empleado antes.
+
+\Needspace{6\baselineskip}
+\begin{ejer}[Teorema chino del resto]\label{ejer:C21-chino}
+Para una familia finita de ideales comaximales dos a dos de un anillo conmutativo, demostrar que su producto es su intersección y que el cociente por ésta es el producto de sus cocientes.
+\end{ejer}
+\begin{sol}
+Primero sean $I+J=R$. Escribamos $u+v=1$ con $u\in I$, $v\in J$. Siempre $IJ\subseteq I\cap J$. Si $z\in I\cap J$, entonces $z=zu+zv\in IJ$, luego hay igualdad. El mapa $R\to R/I\oplus R/J$ que toma las dos clases tiene núcleo $I\cap J$ y es sobreyectivo: para obtener $(a+I,b+J)$ usamos $av+bu$. El primer isomorfismo prueba el caso de dos ideales.
+
+Para pasar a una familia finita, observemos que si cada $I_i$ es comaximal con $J$, podemos elegir $u_i\in I_i$ con $u_i\equiv1\pmod J$. Su producto pertenece a $\prod_iI_i$ y sigue siendo congruente con $1$ módulo $J$, por lo que $(\prod_iI_i)+J=R$. Aplicando sucesivamente el caso de dos ideales obtenemos tanto $\prod_iI_i=\bigcap_iI_i$ como el isomorfismo de cocientes. Para una familia de un elemento la afirmación es inmediata; para la vacía, el ideal es $R$ y el cociente y la suma de cocientes son cero.
+\end{sol}
+
+\Needspace{6\baselineskip}
+\subsection{Álgebras sobre los enteros y cocientes}\label{tema:13-3-1f}
+\begin{ejer}[Álgebras sobre los enteros]\label{ejer:C13-Zalg}
+Explicar por qué $\mathbb Z\text{-}\mathbf{Alg}$ se identifica con $\Ring$.
+\end{ejer}
+\begin{sol}
+Para cualquier anillo $S$, el único homomorfismo $\iota_S:\mathbb Z\to S$ envía $n$ a $n1_S$. Estos elementos son centrales, pues
+\[
+(n1_S)s=ns=s(n1_S).
+\]
+Para $n>0$ ambas igualdades se obtienen por distributividad sobre $n$ sumandos, y se extienden a cero y negativos. Así, cada anillo admite exactamente una estructura de $\mathbb Z$-álgebra.
+
+Si $f:S\to T$ es cualquier homomorfismo de anillos, entonces $f(n1_S)=n1_T$, de modo que $f\iota_S=\iota_T$. Es automáticamente morfismo de esas álgebras. Por ello coinciden tanto los objetos, con su estructura única, como los morfismos.
+\end{sol}
+
+Para $R$ conmutativo, los anillos $R[x_1,\ldots,x_n]$ son $R$-álgebras conmutativas mediante la inclusión de constantes. Sus cocientes por cualquier ideal también lo son, usando la composición de esa inclusión con la proyección. Sobre un campo algebraicamente cerrado, estos cocientes son ejemplos de álgebras que aparecen en geometría algebraica afín.

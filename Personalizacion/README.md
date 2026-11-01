@@ -4,9 +4,11 @@
 
 El texto utiliza NewTX a 12 puntos, papel carta y márgenes de una pulgada. La matemática principal se compone con NewTX, opción `libertine`; `\mathbb` utiliza la familia `lmsb` de **LXfonts** y `\mathcal`, la caligráfica Euler de **eucal**.
 
-Los capítulos corresponden a clases fechadas. El índice fluye continuamente y los encabezados indican la clase y el total de capítulos. Los resultados comparten una numeración global; las definiciones y los ejemplos se numeran por sección. Los ejercicios tienen numeración global, recuadro burdeos y solución inmediata. Las observaciones no llevan número. La bibliografía utiliza natbib y BibTeX, con estilo `plainnat`.
+Los cinco capítulos numerados corresponden a preliminares, grupos, anillos, módulos y campos con teoría de Galois. El índice fluye continuamente y destaca cada capítulo con su número en un recuadro claro y su título centrado en una franja burdeos. Los encabezados indican el capítulo. Teoremas, proposiciones, lemas y corolarios comparten un contador por capítulo; las definiciones y los ejemplos se numeran por sección. Los ejercicios tienen su propio contador por capítulo, recuadro burdeos y solución inmediata. Las observaciones no llevan número. La bibliografía utiliza natbib y BibTeX, con estilo `plainnat`.
 
-La portada incluye el título, el periodo del curso, su clave, el docente y el autor. El rango de clases utiliza numerales de 49 puntos y dos recuadros unidos de ancho adaptable, con un mínimo de 4 cm, borde de 1.5 puntos y relleno de 3 puntos. La longitud `\SeparacionRangoPortada=2cm` determina la misma separación por encima y por debajo del bloque. El pie contiene la fecha de compilación y el correo enlazado.
+La portada incluye el título, el periodo del curso, su clave, el grafo de Cayley dibujado en TikZ, el docente y el autor. El índice tiene su título centrado y franjas de capítulo sin folio. En el texto, los números de sección son burdeos; los títulos de subsección son grises, con el número blanco sobre un recuadro gris. Los separadores admiten títulos largos en varias líneas y conservan el escudo, la paleta y el banner. El pie de portada contiene la fecha de compilación y el correo enlazado.
+
+Las aperturas de capítulo incluyen sus secciones numeradas en dos columnas abiertas bajo el título, a todo el ancho del texto, sin folios y con enlaces al texto. El título se alinea a la izquierda y encabeza el miniíndice; una línea fina separa ambos. Los números burdeos y el texto gris conservan la paleta institucional. `IndiceCapitulo.tex` obtiene estas entradas automáticamente del índice general; `latexmk` mantiene actualizada la lista. El marcador del capítulo se eleva 1 cm y queda separado del bloque formado por el título y las secciones. El diseño original está respaldado en `Respaldos/Titulos-2026-10-31/`, junto con una muestra PDF de las cinco aperturas.
 
 ## Paleta y diagramas
 
@@ -23,6 +25,8 @@ La portada incluye el título, el periodo del curso, su clave, el docente y el a
 Las flechas son **negras por defecto**. El estilo `estructura` usa negro; `destacado` usa `rojoDiagramaCIMAT`. El énfasis señala una relación matemática concreta y se acompaña de etiquetas o trazos que permiten reconocerla también sin color.
 
 Azul, verde y ocre son colores auxiliares para distinguir los sectores del hexágono. Los ejes y el recorrido del árbol usan rojo, las demás aristas son negras y los triángulos tienen relleno gris claro. Los rótulos se separan de los trazos para mantener legibles bases y exponentes.
+
+Las ilustraciones independientes se insertan con `\figuraApuntes{Figuras/archivo}{fig:etiqueta}{Título breve}`, definido en `Figuras.tex`. Pueden colocarse aquí o en los extremos de una página cercana para que el texto aproveche el espacio disponible. Los pies numerados y las referencias en el texto permiten identificarlas. Las aperturas de capítulo vacían las figuras pendientes; las secciones permiten continuar el texto, para no forzar páginas incompletas cuando una ilustración acaba de pasar a la siguiente. Los diagramas integrados en las demostraciones permanecen en su posición matemática y conservan su tamaño. Las reservas de espacio antes de ejercicios se limitan a seis líneas para evitar huecos innecesarios.
 
 La identidad gráfica toma como referencia el [Manual Básico de Imagen del CIMAT](https://www.cimat.mx/wp-content/uploads/2022/09/Manual-ba%CC%81sico-de-logotipo.pdf). La definición de los colores utilizados está en `Paleta.tex`.
 

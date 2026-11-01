@@ -1,0 +1,29 @@
+% Ilustraciones independientes: aquí si caben; de lo contrario, arriba o
+% abajo de una página cercana. Los capítulos vacían las figuras pendientes;
+% las secciones dejan continuar el texto para no crear huecos al vaciarlas.
+% Los diagramas de las demostraciones permanecen en el flujo matemático.
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{3}
+\renewcommand{\topfraction}{.9}
+\renewcommand{\bottomfraction}{.85}
+\renewcommand{\textfraction}{.1}
+\renewcommand{\floatpagefraction}{.7}
+\setlength{\textfloatsep}{14pt plus 3pt minus 2pt}
+\setlength{\intextsep}{12pt plus 2pt minus 2pt}
+\setlength{\floatsep}{12pt plus 2pt minus 2pt}
+\captionsetup[figure]{font=small,labelfont={bf,color=rojoCIMAT},
+  textfont={color=grisCIMAT!80!black},labelsep=period,skip=7pt}
+\crefname{figure}{figura}{figuras}
+\Crefname{figure}{Figura}{Figuras}
+
+% Uso: \figuraApuntes{Figuras/archivo}{fig:etiqueta}{Título breve}
+\newcommand{\figuraApuntes}[3]{%
+  \par
+  \begin{figure}[!htbp]
+    \centering
+    \input{#1}%
+    \caption{#3}\label{#2}%
+  \end{figure}%
+  \par
+}

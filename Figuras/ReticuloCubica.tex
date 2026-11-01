@@ -1,5 +1,7 @@
-\begin{center}
+
 \begin{tikzpicture}[x=1cm,y=1cm]
+% Ancho común; los rótulos determinan la altura natural del esquema.
+\path (-1.3,0) rectangle (10.6,2.7);
 \node (L) at (4.65,2.7) {$L=\mathbb Q(a,\omega)$};
 \node (E0) at (0,1.35) {$\mathbb Q(\omega)$};
 \node (E1) at (3.1,1.35) {$\mathbb Q(a)$};
@@ -9,8 +11,9 @@
 \foreach \j in {0,1,2,3}{\draw (L)--(E\j)--(Q);}
 \end{tikzpicture}
 
-\medskip
+\par\vspace{10pt}\noindent
 \begin{tikzpicture}[x=1cm,y=1cm]
+\path (-1.3,0) rectangle (10.6,2.7);
 \node (one) at (4.65,2.7) {$\{\id\}$};
 \node (H0) at (0,1.35) {$\ang{\sigma}=A_3$};
 \node (H1) at (3.1,1.35) {$\ang{\tau}$};
@@ -19,4 +22,3 @@
 \node (G) at (4.65,0) {$\ang{\sigma,\tau}=S_3$};
 \foreach \j in {0,1,2,3}{\draw (one)--(H\j)--(G);}
 \end{tikzpicture}
-\end{center}

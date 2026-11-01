@@ -1,0 +1,17 @@
+\section{Relaciones de equivalencia y conjuntos cociente}\label{sec:preliminares-equivalencias}
+
+\subsection{Equivalencias y conjuntos cociente}\label{tema:1-1-3}
+Una \emph{relación} sobre un conjunto $S$ es un subconjunto $R\subseteq S\times S$. Escribimos $a\sim_R b$ cuando $(a,b)\in R$.
+\begin{defi}
+Una relación $\sim$ en $S$ es de \emph{equivalencia} si es reflexiva, simétrica y transitiva; esto es, para todos $a,b,c\in S$,
+\[
+a\sim a,\qquad a\sim b\Rightarrow b\sim a,
+\qquad (a\sim b\land b\sim c)\Rightarrow a\sim c.
+\]
+La \emph{clase de equivalencia} de $a$ y el \emph{conjunto cociente} son
+\[
+[a]_R=\set{b\in S\given b\sim_R a},\qquad
+S/{\sim_R}=\set{[a]_R\given a\in S}.
+\]
+\end{defi}
+La simetría permite escribir indistintamente $b\sim a$ o $a\sim b$ en la definición de $[a]$. Dos clases son iguales o disjuntas: si $c\in[a]\cap[b]$, entonces $a\sim c\sim b$, y la transitividad muestra que todo elemento relacionado con $a$ también está relacionado con $b$, y recíprocamente.

@@ -1,0 +1,101 @@
+\section{Dominios de ideales principales y algoritmo de Euclides}\label{sec:anillos-euclidianos}
+
+\subsection{Los dominios de ideales principales son factoriales}\label{tema:16-3-2}
+Recordemos que un DIP es noetheriano y que $\mathbb Z$ y $K[x]$, para $K$ campo, son DIP. Para $K[x]$ la comprobación sugerida como ejercicio III.4.4 ya se resolvió en el \cref{ejer:C13-Kx}.
+
+En un DIP, $d$ es máximo común divisor de $a,b$ si y sólo si $(a,b)=(d)$. En efecto, escribimos $(a,b)=(c)$; este generador divide a $a,b$, y cualquier divisor común $e$ hace que $(a,b)\subseteq(e)$, luego $e\mid c$. Así $c$ es un máximo común divisor, y cualquier otro es asociado. En particular, se obtiene una identidad de Bézout $d=ra+sb$.
+
+\begin{prop}\label{prop:C16-DIP}
+Todo dominio de ideales principales es DFU.
+\end{prop}
+\begin{proof}
+Por noetherianidad satisface la condición de cadena ascendente. Sea $a$ irreducible. El \cref{ejer:C15-irreducible} muestra que $(a)$ es maximal entre ideales principales propios. Como \emph{todos} los ideales son principales, es un ideal maximal de $R$. Todo maximal es primo, así que $a$ es primo. Aplicamos el \cref{teo:C16-criterio}.
+\end{proof}
+En particular, $\mathbb Z$ y $K[x]$ son DFU. También recordamos la \cref{prop:C13-primo-maximal}: en un DIP todo ideal primo no nulo es maximal. No hay conflicto con el ideal cero, que puede ser primo sin ser maximal.
+
+\subsection{Dominios euclidianos}\label{tema:16-3-3}
+\begin{defi}
+Una \emph{función euclidiana} en un dominio $R$ es una función $v:R\setminus\{0\}\to\mathbb Z_{\geq0}$ tal que, para todo $a\in R$ y $b\ne0$, existen $q,r\in R$ con
+\[
+a=qb+r,\qquad r=0\ \text{o}\ v(r)<v(b).
+\]
+Un dominio que admite esa función es \emph{euclidiano}. Los elementos $q,r$ se llaman cociente y resto de esa división.
+\end{defi}
+La función de tamaño $v$ sólo debe satisfacer la propiedad de división indicada. No se evalúa $v(0)$ ni se exige unicidad del cociente o del resto.
+
+\begin{ejem}
+En $\mathbb Z$ sirve $v(n)=|n|$. La división entera da $a=qb+r$ con $0\leq r<|b|$, incluso para $b<0$ ajustando el signo del cociente. Si $r\ne0$, $v(r)<v(b)$.
+
+En $K[x]$ sirve $v(f)=\deg f$. Para dividir por $b\ne0$, multiplicamos $b$ por el inverso de su coeficiente principal y obtenemos un mónico. La \cref{prop:C12-division} produce un resto de grado menor que $\deg b$; ajustar el cociente por esa constante da $a=qb+r$. Así, $K[x]$ es euclidiano. Un campo mismo también lo es con función constante cero, tomando $q=ab^{-1}$ y resto cero.
+\end{ejem}
+
+\begin{prop}\label{prop:C16-euclidiano}
+Todo dominio euclidiano es un dominio de ideales principales.
+\end{prop}
+\begin{proof}
+El ideal cero es principal. Para un ideal $I\ne0$, los tamaños $v(b)$ de sus elementos no nulos forman un conjunto no vacío de enteros no negativos. Elegimos $b\in I\setminus\{0\}$ con tamaño mínimo. Entonces $(b)\subseteq I$.
+
+Para $a\in I$, dividimos $a=qb+r$, con $r=0$ o $v(r)<v(b)$. El resto $r=a-qb$ pertenece a $I$. Si fuera no nulo, su tamaño contradiría la minimalidad de $v(b)$. Luego $r=0$ y $a\in(b)$. Esto demuestra $I=(b)$.
+\end{proof}
+Quedan probadas las inclusiones
+\[
+\text{campos}\ \subseteq\ \text{dominios euclidianos}
+\ \subseteq\ \text{DIP}\ \subseteq\ \text{DFU},
+\]
+junto con la noetherianidad de los DIP y la existencia de factorizaciones en los dominios noetherianos. Son las relaciones desarrolladas en este bloque del esquema de la sección~\ref{tema:15-3-1}.
+
+\subsection{Algoritmo de Euclides y cálculo del máximo común divisor}\label{tema:17-1-1}\label{tema:17-1-2}
+Recordemos que un dominio euclidiano admite una función $v:R\setminus\{0\}\to\mathbb Z_{\geq0}$ para la cual toda división por $b\ne0$ tiene la forma
+\[
+a=bq+r,\qquad r=0\quad\text{o}\quad v(r)<v(b).
+\]
+No se compara directamente $r$ con $b$ mediante un orden del anillo: se comparan sus tamaños. Como se probó en la \cref{prop:C16-euclidiano}, estos dominios son DIP: un elemento no nulo de tamaño mínimo en un ideal lo genera, porque todo resto en ese ideal debe ser cero. Esto incluye $\mathbb Z$, con $v(n)=|n|$, y $K[x]$, con $v(f)=\deg f$, para un campo $K$.
+
+\begin{lema}\label{lema:C17-resto}
+En un anillo conmutativo, si $a=bq+r$, entonces $(a,b)=(b,r)$.
+\end{lema}
+\begin{proof}
+Como $r=a-bq$, los generadores $b,r$ pertenecen a $(a,b)$. Recíprocamente, $a=bq+r$ pertenece a $(b,r)$ y también $b$. Esto prueba las dos inclusiones.
+\end{proof}
+\begin{coro}\label{coro:C17-mcd-resto}
+En un dominio, los pares $a,b$ y $b,r$ tienen los mismos divisores comunes. En particular, uno tiene máximo común divisor si y sólo si lo tiene el otro, y sus máximos comunes divisores son asociados.
+\end{coro}
+\begin{proof}
+Un elemento $c$ divide a ambos generadores de un ideal si y sólo si ese ideal está contenido en $(c)$. Por el lema, esta condición es la misma para los dos pares. También lo es, por tanto, la propiedad que define al máximo común divisor.
+\end{proof}
+Las igualdades entre máximos comunes divisores se entienden salvo asociados, o tras elegir representantes compatibles.
+
+Sean $a,b\in R$, con $b\ne0$, y pongamos $r_{-1}=a$, $r_0=b$. Mientras $r_{i-1}\ne0$, hacemos una división
+\[
+r_{i-2}=q_i r_{i-1}+r_i.
+\]
+\begin{prop}[Algoritmo de Euclides]\label{prop:C17-Euclides}
+El procedimiento termina con un resto cero. Si $r_N=0$ es el primero, entonces $r_{N-1}$ es un máximo común divisor de $a,b$.
+\end{prop}
+\begin{proof}
+Si nunca apareciera cero, tendríamos una sucesión estrictamente decreciente
+\[
+v(r_0)>v(r_1)>v(r_2)>\cdots
+\]
+de enteros no negativos. Es imposible, así que existe ese $N$. El último paso dice $r_{N-2}=q_Nr_{N-1}$, de donde $(r_{N-2},r_{N-1})=(r_{N-1})$. Aplicando el \cref{lema:C17-resto} a cada división obtenemos
+\[
+(a,b)=(r_0,r_1)=\cdots=(r_{N-2},r_{N-1})=(r_{N-1}).
+\]
+Su generador es un máximo común divisor. Si $N=1$, la misma conclusión proviene directamente de $a=q_1b$.
+\end{proof}
+Si $b=0$, un máximo común divisor es $a$; si ambos elementos son cero, se puede tomar cero. En un campo toda división por un elemento no nulo tiene resto cero, por lo que cualquier función de tamaño cumple la condición euclidiana.
+
+\begin{ejem}
+En $\mathbb Q[x]$, sean
+\[
+a=x^3-x^2-4x+4,\qquad b=x^3+x^2-4x-4.
+\]
+Las divisiones son
+\[
+\begin{aligned}
+a&=b+(-2x^2+8),\\
+b&=(-2x^2+8)\left(-\frac{x}{2}-\frac12\right).
+\end{aligned}
+\]
+El último resto no nulo es $-2x^2+8$. Por tanto, es un máximo común divisor. Su asociado mónico es $x^2-4$, que también sirve como representante.
+\end{ejem}

@@ -1,89 +1,66 @@
+% Índice continuo con títulos temáticos y números visibles.
 \setcounter{tocdepth}{2}
+\setlength{\cftbeforechapskip}{1.1em}
+\setlength{\cftchapnumwidth}{2em}
+\renewcommand{\cftchapfont}{\bfseries\color{rojoCIMAT}}
+\renewcommand{\cftchappagefont}{\bfseries\color{rojoCIMAT}}
+\setlength{\cftsecindent}{1em}
+\setlength{\cftsecnumwidth}{3em}
+\setlength{\cftbeforesecskip}{.35em}
+\renewcommand{\cftsecfont}{\color{rojoCIMAT}}
+\renewcommand{\cftsecpagefont}{\color{rojoCIMAT}}
+\renewcommand{\cftsecleader}{\normalfont\color{rojoCIMAT}\cftdotfill{\cftsecdotsep}}
+\setlength{\cftsubsecindent}{4em}
+\setlength{\cftsubsecnumwidth}{4.1em}
+\setlength{\cftbeforesubsecskip}{.06em}
+\renewcommand{\cftsubsecfont}{\small}
+\renewcommand{\cftsubsecpagefont}{\small}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TITULO TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\setlength{\cftbeforetoctitleskip}{0em}
-% \setlength{\cftaftertoctitleskip}{7em}
-\renewcommand{\cfttoctitlefont}{\hfill\fontfamily{lmr}\selectfont\resizebox{!}{1.2cm}}
-\renewcommand{\cftaftertoctitle}{
-    \resizebox{!}{1.2cm}{\,\colorbox{rojoCIMAT}{\!\vphantom{I}\!}}
-}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEPARACIÓN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Capitulos
-\setlength{\cftchapnumwidth}{2.5em}
-\setlength{\cftbeforechapskip}{0.55em} % arriba, flujo continuo
-\renewcommand{\cftchapafterpnum}{\vspace{0.35em}} % abajo
-% Secciones
-\setlength{\cftsecnumwidth}{\cftchapnumwidth}
-\setlength{\cftsecindent}{0em}
-\setlength{\cftbeforesecskip}{0.1em} % arriba
-\renewcommand{\cftsecafterpnum}{\vspace{0.05em}} % abajo
-% Subsecciones
-\setlength{\cftsubsecnumwidth}{4em} % hueco para tres números «5.14.1»
-\setlength{\cftsubsecindent}{\dimexpr\cftsecindent+\cftsecnumwidth\relax} % indentado
-\setlength{\cftbeforesubsecskip}{0.1em}
-% Subsubsecciones
-\setlength{\cftsubsubsecnumwidth}{3.6em}
-\setlength{\cftsubsubsecindent}{\dimexpr\cftsubsecindent+\cftsubsecnumwidth\relax}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAPÍTULOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\cftpagenumbersoff{chap}
-
-% Contorno del renglón
-\newcommand{\chaptertocbox}{%
-    \makebox[0pt][l]{%
-        \tikz[remember picture,overlay]{%
-            \draw[color=grisCIMAT, line width=1pt]
-                ([yshift=-0.27em]0,0)
-                rectangle
-                ++(\textwidth,1.22em);
-        }%
-    }%
-}
-
-% Recuadro del número, de ancho automático
-\newcommand{\chaptertocnumberline}[1]{%
-    \makebox[\cftchapnumwidth][l]{%
-        \begingroup
-        \setlength{\fboxsep}{0pt}%
-        \colorbox{grisCIMAT}{%
-            \hspace{0.15em}%
-            \rule[-0.27em]{0pt}{1.22em}%
-            \bfseries\color{white}#1\textordfeminine
-            \hspace{0.15em}%
-        }%
-        \endgroup
-    }%
-    {Clase:\enspace}%
-}
-
-% Formato de las entradas
-\renewcommand{\cftchapfont}{\color{grisCIMAT!75!black}\large\chaptertocbox}
-% \renewcommand{\cftchapaftersnumb}{%
-%     {\color{grisCIMAT!80!black}Clase:\enspace}%
-% }
-
-% Aplicamos el formato únicamente a los capítulos
+% Capítulos: número en recuadro claro y título centrado sobre una franja.
+% Los títulos conservan el enlace aunque no se muestre el folio del capítulo.
+\hypersetup{linktoc=section}
 \makeatletter
-\let\oldl@chapter\l@chapter
-\renewcommand{\l@chapter}[2]{%
-    \begingroup
-    \let\numberline\chaptertocnumberline
-    \oldl@chapter{#1}{#2}%
-    \endgroup
+\newif\iftocprimerchapter
+% Título centrado, con mayor tamaño y aire vertical propio del índice.
+\renewcommand{\@cftmaketoctitle}{%
+  \titleformat{name=\chapter,numberless}[display]
+    {\centering\fontsize{32}{38}\selectfont\scshape\color{grisCIMAT}}{}{0pt}{##1}%
+  \titlespacing*{\chapter}{0pt}{-3em}{4.5em}%
+  \chapter*{\contentsname}%
+  \@cftpagestyle
+  \cftmarktoc
+  \tocprimerchaptertrue
 }
+\let\tocchapterplain\l@chapter
+\renewcommand{\l@chapter}[2]{%
+  \gdef\tocchapternumber{}%
+  \begingroup
+    \def\numberline##1{\gdef\tocchapternumber{##1}}%
+    \setbox\z@\hbox{#1}%
+  \endgroup
+  \ifx\tocchapternumber\@empty
+    \tocchapterplain{#1}{#2}%
+  \else
+    \addpenalty{-\@highpenalty}%
+    \iftocprimerchapter
+      \tocprimerchapterfalse
+    \else
+      \addvspace{1.4em}%
+    \fi
+    \begingroup
+      \parindent\z@\parskip\z@
+      \setlength{\fboxsep}{0pt}%
+      \def\numberline##1{}%
+      \noindent
+      \colorbox{rojoCIMAT!15}{%
+        \parbox[c][2em][c]{2.5em}{\centering
+          \Large\color{rojoCIMAT}\tocchapternumber}}%
+      \hspace{.6em}%
+      \colorbox{rojoCIMAT}{%
+        \parbox[c][2em][c]{\dimexpr\linewidth-3.1em\relax}{%
+          \centering\color{white}\Large\scshape#1}}%
+      \par\nobreak\vskip .5em
+    \endgroup
+  \fi}
 \makeatother
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\cftpagenumbersoff{sec}
-\renewcommand{\cftsecfont}{\fontfamily{bch}\selectfont\color{rojoCIMAT!100!black}}
-\renewcommand{\cftsecpresnum}{\color{white}}
-
-\renewcommand{\cftsubsecfont}{\fontfamily{bch}\selectfont\color{grisCIMAT!0!black}}
-\renewcommand{\cftsubsecaftersnum}{.}
-
-% \renewcommand{\cftsubsubsecfont}{\small\fontfamily{cmss}\selectfont}
+\cftpagenumbersoff{chapter}

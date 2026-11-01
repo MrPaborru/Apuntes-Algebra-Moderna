@@ -1,0 +1,156 @@
+\section{Separabilidad, derivada formal, Frobenius y campos perfectos}\label{sec:campos-separabilidad}
+
+\subsection{Un irreducible con una sola raíz distinta}\label{tema:25-2-1}
+Sobre $\mathbb R$, los irreducibles se descomponen con raíces distintas en $\mathbb C$: tienen grado uno, o grado dos y discriminante negativo. Sin embargo, en característica positiva un irreducible puede tener raíces múltiples.
+
+\begin{ejem}\label{ejem:C25-inseparable}
+Sea $p$ primo y consideremos $k=\mathbb F_p(t)$, el campo de fracciones de $\mathbb F_p[t]$. El polinomio
+\[
+f(x)=x^p-t\in k[x]
+\]
+es irreducible. En efecto, $R=\mathbb F_p[t]$ es un dominio factorial y $(t)$ es un ideal primo. El coeficiente principal $1$ no pertenece a $(t)$, todos los demás pertenecen a $(t)$ y el término constante $-t$ no pertenece a $(t)^2$. Por Eisenstein, el polinomio mónico $f$ es irreducible en $R[x]$ y, por Gauss, también en su campo de fracciones $k[x]$.
+
+Si $u$ es una raíz en una extensión $L/k$, entonces $u^p=t$ y
+\[
+x^p-t=(x-u)^p\quad\text{en }L[x].
+\]
+Así $u$ es la única raíz distinta, con multiplicidad $p$, aunque su mínimo sobre $k$ tiene grado $p$.
+\end{ejem}
+
+\begin{ejer}[La identidad binomial en característica prima]\label{ejer:C25-binomial}
+Justificar la identidad del ejemplo anterior probando que, en característica $p$,
+\[
+(x-u)^p=x^p-u^p.
+\]
+\end{ejer}
+\begin{sol}
+Para $0<j<p$, el entero $\binom pj$ es divisible por $p$: el numerador $p!$ contiene un factor $p$, mientras que $j!(p-j)!$ no contiene ninguno. Esos coeficientes son cero en característica $p$. Por la fórmula binomial sólo quedan $x^p+(-u)^p=x^p-u^p$. Si $p=2$, la última igualdad usa que el opuesto coincide con el propio elemento. Como $u^p=t$, obtenemos la factorización indicada.
+\end{sol}
+Ninguna potencia $(x-u)^m$ con $0<m<p$ puede pertenecer a $k[x]$: sería un factor propio no constante de $x^p-t$, contradiciendo su irreducibilidad. Pasar a un campo mayor revela la raíz repetida sin cambiar el grado del mínimo sobre $k$.
+
+\begin{defi}
+Un polinomio no nulo $f\in k[x]$ es \emph{separable} si en un campo de descomposición no tiene raíces múltiples. Si tiene alguna raíz múltiple, es \emph{inseparable}.
+\end{defi}
+Con esta definición, $x^p-t$ es inseparable. Los polinomios constantes no nulos son separables, pues no tienen raíces.
+
+\begin{ejer}[Independencia del campo de descomposición]\label{ejer:C25-multiplicidades}
+Probar que la separabilidad puede comprobarse en cualquier extensión en la que el polinomio se descomponga en factores lineales.
+\end{ejer}
+\begin{sol}
+Si $L/k$ contiene una factorización completa de $f$, el subcampo $E\subseteq L$ generado por sus raíces es un campo de descomposición. Cualquier otro campo de descomposición es $k$-isomorfo a $E$, por la \cref{prop:C24-descomposicion}. El isomorfismo transforma las raíces y conserva sus multiplicidades: una divisibilidad $(x-\alpha)^m\mid f$ se transforma en la correspondiente divisibilidad por $(x-\sigma(\alpha))^m$.
+
+Además, una factorización lineal en $E[x]$ sigue siendo una factorización en $L[x]$ con los mismos factores y exponentes. Por unicidad de la factorización en $L[x]$, no cambian las multiplicidades. Así el criterio no depende de ninguna de esas elecciones.
+\end{sol}
+
+\subsection{El criterio del máximo común divisor}\label{tema:25-2-2}
+Para $f(x)=\sum_{i=0}^n a_ix^i\in k[x]$, definimos su \emph{derivada formal} por
+\[
+f'(x)=\sum_{i=1}^n i a_i x^{i-1}.
+\]
+El entero $i$ actúa como un escalar del campo; por eso algunos términos pueden desaparecer en característica positiva. La operación es $k$-lineal y satisface $(fg)'=f'g+fg'$. La regla del producto se comprueba primero en monomios mediante $(x^{r+s})'=(r+s)x^{r+s-1}$ y se extiende a sumas finitas por distributividad.
+
+\begin{lema}\label{lema:C25-derivada}
+Un polinomio no nulo $f\in k[x]$ es separable si y sólo si $\mcd(f,f')=1$, tomando el máximo común divisor mónico.
+\end{lema}
+\begin{proof}
+El algoritmo de Euclides para dos polinomios de $k[x]$ realiza las mismas divisiones al extender coeficientes. Conserva los cocientes, los restos y el último resto mónico. En consecuencia, el mcd es el mismo en $k[x]$ y en un campo de descomposición $F$.
+
+Si $\alpha$ es una raíz múltiple, escribimos $f=(x-\alpha)^m g$ con $m\geq2$. La regla del producto da
+\[
+f'=m(x-\alpha)^{m-1}g+(x-\alpha)^m g'.
+\]
+Ambos sumandos son divisibles por $x-\alpha$, incluso si el escalar $m$ es cero en el campo. Así $f$ y $f'$ tienen un factor común no constante.
+
+Recíprocamente, si el mcd no es uno, en $F[x]$ hay un factor lineal $x-\alpha$ que divide a ambos. Escribamos $f=(x-\alpha)h$. Entonces
+\[
+f'=h+(x-\alpha)h'.
+\]
+Como $x-\alpha$ divide a $f'$, divide también a $h$, y por tanto $(x-\alpha)^2\mid f$. La raíz $\alpha$ es múltiple.
+\end{proof}
+Por ejemplo, para $f=x^p-t$ la derivada es $px^{p-1}=0$ y $\mcd(f,0)=f\ne1$. Podemos detectar así la inseparabilidad sin construir su campo de descomposición.
+
+\begin{lema}\label{lema:C25-irred-derivada}
+Un polinomio irreducible $f\in k[x]$ es inseparable si y sólo si $f'=0$.
+\end{lema}
+\begin{proof}
+Si es inseparable, $f$ y $f'$ tienen un factor irreducible común $q$. Como $f$ es irreducible, $q$ es asociado a $f$. Si $f'\ne0$, tendríamos $\deg q=\deg f>\deg f'$, incompatible con $q\mid f'$. Luego $f'=0$. A la inversa, si $f'=0$, el mcd es el asociado mónico de $f$, que tiene grado positivo; el criterio anterior da inseparabilidad.
+\end{proof}
+
+\begin{coro}\label{coro:C25-caracteristica-cero}
+Sobre un campo de característica cero, todo polinomio irreducible es separable.
+\end{coro}
+\begin{proof}
+Si $f$ tiene grado $n>0$ y coeficiente principal $a_n\ne0$, su derivada tiene término principal $na_nx^{n-1}\ne0$. Aplicamos el lema.
+\end{proof}
+
+\subsection{Frobenius y campos perfectos}\label{tema:25-3-1}\label{tema:25-3-2}
+En característica $p>0$, la igualdad $f'=0$ equivale a $ia_i=0$ para cada $i\geq1$. Si $p\nmid i$, el escalar $i$ es no nulo e invertible, de modo que $a_i=0$. Si $p\mid i$, el coeficiente de la derivada es automáticamente cero. Por tanto
+\[
+f'=0\quad\Longleftrightarrow\quad
+f(x)=a_0+a_px^p+a_{2p}x^{2p}+\cdots\in k[x^p].
+\]
+En particular, un irreducible inseparable sólo contiene exponentes múltiplos de la característica.
+
+\begin{defi}
+Para un campo $k$ de característica $p>0$, el \emph{homomorfismo de Frobenius} es
+\[
+\operatorname{Frob}_k:k\longrightarrow k,\qquad a\longmapsto a^p.
+\]
+\end{defi}
+Es un homomorfismo: preserva $1$, satisface $(ab)^p=a^pb^p$ y, por la misma cancelación de coeficientes binomiales del \cref{ejer:C25-binomial}, cumple $(a+b)^p=a^p+b^p$. Es inyectivo por ser un homomorfismo de campos, aunque puede no ser sobreyectivo.
+
+\begin{defi}
+Un campo de característica cero es \emph{perfecto}. En característica $p>0$, se llama \emph{perfecto} si Frobenius es sobreyectivo, es decir, si todos sus elementos tienen raíz $p$-ésima.
+\end{defi}
+
+\Needspace{6\baselineskip}
+\begin{ejer}[Un elemento fuera de la imagen de Frobenius]\label{ejer:C25-no-perfecto}
+Sea $k$ de característica $p>0$ y sea $a\in k$ que no tiene raíz $p$-ésima en $k$. Probar que $x^p-a$ es irreducible e inseparable sobre $k$. Deducir que si todos los irreducibles de $k[x]$ son separables, entonces $k$ es perfecto.
+\end{ejer}
+\begin{sol}
+Tomemos una raíz $\beta$ de $x^p-a$ en una extensión. Como $a\ne0$, también $\beta\ne0$, y la identidad binomial da $x^p-a=(x-\beta)^p$. Si hubiera un factor propio mónico $g\in k[x]$ de grado $m$ con $0<m<p$, su factorización en esa extensión sería $g=(x-\beta)^m$, ya que no hay otra raíz. El término constante muestra que $\beta^m\in k$. También $\beta^p=a\in k$.
+
+Como $p$ es primo y $0<m<p$, hay enteros $r,s$ con $rm+sp=1$. Podemos usar potencias negativas porque $\beta\ne0$, y obtenemos
+\[
+\beta=(\beta^m)^r(\beta^p)^s=(\beta^m)^r a^s\in k,
+\]
+contradicción. Por tanto $x^p-a$ es irreducible; es inseparable porque en su campo de descomposición tiene una sola raíz de multiplicidad $p$.
+
+Si todos los irreducibles son separables, no puede existir tal $a$, luego Frobenius es sobreyectivo. Junto con la inclusión de los campos de característica cero en la definición, esto da la conclusión.
+\end{sol}
+
+\begin{prop}\label{prop:C25-perfecto}
+Un campo $k$ es perfecto si y sólo si todos los irreducibles de $k[x]$ son separables.
+\end{prop}
+\begin{proof}
+En característica cero ya lo sabemos. Si $k$ es perfecto de característica $p>0$ y existiera un irreducible inseparable, el \cref{lema:C25-irred-derivada} y la descripción de los exponentes darían
+\[
+f(x)=\sum_{i=0}^m a_i x^{pi}.
+\]
+Por la sobreyectividad de Frobenius, elegimos $b_i\in k$ con $b_i^p=a_i$. Su propiedad de homomorfismo implica
+\[
+f(x)=\sum_i(b_ix^i)^p=\left(\sum_i b_ix^i\right)^p.
+\]
+El polinomio entre paréntesis tiene grado positivo y menor que $\deg f$, de modo que se obtiene una factorización en no unidades, contradiciendo irreducibilidad. La recíproca es la conclusión del ejercicio anterior.
+\end{proof}
+
+\begin{coro}
+Todo campo finito es perfecto; sobre él, todos los irreducibles son separables.
+\end{coro}
+\begin{proof}
+Un campo finito tiene característica prima $p>0$, pues en característica cero contendría al campo infinito $\mathbb Q$. Su Frobenius es inyectivo y, al ser una aplicación de un conjunto finito en sí mismo, también es sobreyectivo. Aplicamos la proposición.
+\end{proof}
+El campo $\mathbb F_p(t)$ del \cref{ejem:C25-inseparable} es infinito y no es perfecto: su polinomio $x^p-t$ es irreducible inseparable, y $t$ no tiene raíz $p$-ésima en ese campo.
+
+\subsection{Extensiones separables}\label{tema:25-3-3a}
+\begin{defi}
+Un elemento algebraico $\alpha$ sobre $k$ es \emph{separable sobre $k$} si su polinomio mínimo es separable; de lo contrario, es \emph{inseparable}. Una extensión algebraica $F/k$ es \emph{separable} si todos sus elementos lo son sobre $k$.
+\end{defi}
+
+\begin{prop}
+Un campo $k$ es perfecto si y sólo si toda extensión algebraica de $k$ es separable.
+\end{prop}
+\begin{proof}
+Si $k$ es perfecto, todos los polinomios mínimos de elementos algebraicos son separables por la \cref{prop:C25-perfecto}. Recíprocamente, sea $f\in k[x]$ irreducible y sea $\alpha=x+(f)$ en la extensión algebraica $k[x]/(f)$. Si toda extensión algebraica es separable, el mínimo de $\alpha$, que es el asociado mónico de $f$, es separable. Así lo son todos los irreducibles y $k$ es perfecto.
+\end{proof}
+En particular, las extensiones algebraicas de $\mathbb Q$, de cualquier campo de característica cero y de cualquier campo finito son separables.

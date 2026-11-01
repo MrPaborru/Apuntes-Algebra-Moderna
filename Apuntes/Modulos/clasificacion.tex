@@ -1,0 +1,129 @@
+\section{Clasificación, factores invariantes y divisores elementales}\label{sec:modulos-clasificacion}
+
+\subsection{Factores invariantes y divisores elementales}\label{tema:21-2-2b}
+\begin{teo}[Clasificación sobre un DIP]\label{teo:C21-clasificacion}
+Sea $M$ un módulo finitamente generado sobre un DIP $R$, y sea $r=\rk_R M$. Existen elementos no nulos y no unidades $a_1,\ldots,a_m$, con $a_1\mid\cdots\mid a_m$, tales que
+\[
+M\cong R^r\oplus R/(a_1)\oplus\cdots\oplus R/(a_m).
+\]
+Ésta es la descomposición en \emph{factores invariantes}. También existen primos no nulos $q_1,\ldots,q_t$, dos a dos no asociados, y exponentes positivos $e_{ij}$ tales que
+\[
+M\cong R^r\oplus\bigoplus_{i,j}R/(q_i^{e_{ij}}).
+\]
+Ésta es la descomposición en \emph{divisores elementales}. Las sumas son finitas y se permiten sumas vacías. Ambas descomposiciones son únicas: quedan determinados $r$, los ideales $(a_j)$ en su orden de divisibilidad y, para cada ideal primo $(q_i)$, el multiconjunto de exponentes.
+\end{teo}
+\begin{proof}[Existencia]
+Elijamos $n$ generadores de $M$ y la sobreyección $\pi:R^n\to M$. Por el \cref{coro:C21-bases-compatibles}, existen una base $x_1,\ldots,x_n$ de $R^n$ y elementos no nulos $b_1\mid\cdots\mid b_s$ tales que $b_1x_1,\ldots,b_sx_s$ forman una base de $\ker\pi$. El primer teorema de isomorfismo da
+\[
+M\cong\frac{Rx_1\oplus\cdots\oplus Rx_n}
+ {Rb_1x_1\oplus\cdots\oplus Rb_sx_s\oplus0\oplus\cdots\oplus0}.
+\]
+Para módulos $N_i\subseteq M_i$, el mapa coordenado
+\[
+\bigoplus_i M_i\longrightarrow\bigoplus_i M_i/N_i,
+\qquad (m_i)_i\longmapsto(m_i+N_i)_i
+\]
+es sobreyectivo y tiene núcleo $\bigoplus_i N_i$. Obtenemos la identificación de cocientes:
+\[
+M\cong R/(b_1)\oplus\cdots\oplus R/(b_s)\oplus R^{n-s}.
+\]
+Si algún $b_i$ es unidad, su cociente es cero y se omite. Las unidades forman un segmento inicial de la cadena, por lo que los factores restantes conservan la divisibilidad; los llamamos $a_1,\ldots,a_m$.
+
+La suma $T=\bigoplus_jR/(a_j)$ es de torsión: el producto no nulo $h=\prod_j a_j$ la anula; si no hay factores, tomamos $h=1$. La parte $R^{n-s}$ es libre de torsión, así que $\operatorname{Tor}_R(M)$ corresponde precisamente a $0\oplus T$. Además, el rango de esta descomposición es $n-s$. En efecto, las coordenadas libres dan esa cantidad de vectores independientes. Si $m_1,\ldots,m_u$ son independientes en $M$, sus proyecciones a $R^{n-s}$ lo son: una relación entre esas proyecciones produciría $\sum c_im_i\in T$; al multiplicar por $h$ se obtiene $\sum hc_im_i=0$, luego $hc_i=0$ y $c_i=0$. Por tanto $u\leq n-s$ y concluimos $r=n-s$.
+
+Para la segunda descomposición usamos que un DIP es DFU. Cada $a_j$ se factoriza, salvo unidad, como producto de potencias de primos distintos. Para un $j$ fijo, los ideales $(q_i^{e_{ij}})$ que aparecen son comaximales dos a dos, porque sus generadores tienen mcd igual a uno. Su producto coincide con su intersección y el \cref{ejer:C21-chino} da
+\[
+R/(a_j)\cong
+R/\!\left(\bigcap_i(q_i^{e_{ij}})\right)
+\cong\bigoplus_iR/(q_i^{e_{ij}}).
+\]
+Juntando los sumandos obtenemos los divisores elementales. Los primos que no dividen un $a_j$ simplemente no aportan un sumando.
+\end{proof}
+Resta demostrar la unicidad de ambas descomposiciones.
+
+\subsection{Módulos cíclicos y anuladores}\label{tema:21-3-1}
+Las definiciones siguientes tienen sentido sobre cualquier anillo conmutativo.
+\begin{defi}
+Un módulo es \emph{cíclico} si está generado por un elemento. El \emph{anulador} de $M$ es
+\[
+\operatorname{Ann}_R(M)
+=\set{a\in R\given am=0\text{ para todo }m\in M}.
+\]
+\end{defi}
+Si $M=Rm$, el homomorfismo $R\to M$, $a\mapsto am$, es sobreyectivo; por el primer isomorfismo $M\cong R/I$, con $I$ su núcleo. Recíprocamente, $R/I$ está generado por $1+I$.
+
+\begin{ejer}[Anuladores y torsión]\label{ejer:C21-anulador}
+Probar que $\operatorname{Ann}_R(M)$ es un ideal. Si $R$ es un dominio y $M$ es finitamente generado, probar que $M$ es de torsión si y sólo si $\operatorname{Ann}_R(M)\ne(0)$.
+\end{ejer}
+\begin{sol}
+El cero anula a $M$. Si $a,b$ lo anulan, entonces $(a-b)m=am-bm=0$ para todo $m$. Si $c\in R$, también $(ca)m=c(am)=0$. Esto verifica las condiciones de ideal.
+
+Si $M$ está generado por $m_1,\ldots,m_u$ y es de torsión, elegimos $a_i\ne0$ con $a_im_i=0$. El producto $a=a_1\cdots a_u$ es no nulo porque $R$ es dominio y anula a todos los generadores, luego a todo $M$. Si la familia es vacía, $M=0$ y el producto vacío $1$ lo anula. En sentido contrario, un elemento no nulo del anulador sirve como testigo de torsión para cada elemento de $M$, incluso sin generación finita.
+\end{sol}
+
+\begin{lema}\label{lema:C21-anuladores}
+Se tiene $\operatorname{Ann}_R(R/I)=I$ y
+\[
+\operatorname{Ann}_R(M_1\oplus M_2)
+=\operatorname{Ann}_R(M_1)\cap\operatorname{Ann}_R(M_2).
+\]
+\end{lema}
+\begin{proof}
+Si $a$ anula a $R/I$, entonces $a(1+I)=0$, luego $a\in I$. Si $a\in I$, para todo $b$ se cumple $ab\in I$ y $a(b+I)=0$. Para la suma directa, un escalar anula todos los pares si y sólo si anula por separado los pares $(m_1,0)$ y $(0,m_2)$, que es exactamente la pertenencia a ambos anuladores. La misma prueba se aplica a sumas finitas por inducción.
+\end{proof}
+
+\begin{lema}\label{lema:C21-primos-anulador}
+Sea $0\ne T$ un módulo de torsión finitamente generado sobre un DIP, expresado en las formas del \cref{teo:C21-clasificacion}. Entonces $\operatorname{Ann}_R(T)=(a_m)$, y los ideales primos que contienen ese anulador son exactamente los $(q_i)$ que aparecen en sus divisores elementales.
+\end{lema}
+\begin{proof}
+Por el lema anterior y la cadena de divisibilidad,
+\[
+\operatorname{Ann}_R(T)=(a_1)\cap\cdots\cap(a_m)=(a_m).
+\]
+También se puede expresar esa intersección como el ideal del mcm, que aquí es $(a_m)$. Un primo $q_i$ que aparece en algún $a_j$ divide a $a_m$; por tanto $(a_m)\subseteq(q_i)$. Recíprocamente, si un ideal primo $\mathfrak p$ contiene a $(a_m)$, es no nulo. Al ser $R$ DIP, $\mathfrak p=(q)$ con $q$ primo no nulo. La inclusión equivale a $q\mid a_m$, así que $q$ es asociado a uno de los $q_i$ de la factorización.
+\end{proof}
+Para $T=0$, su anulador es $R$, ningún primo propio lo contiene y la lista elemental es vacía. La fórmula con $a_m$ se reserva para $T\ne0$, cuando existe un último factor.
+
+\subsection{Recuperación de los exponentes}\label{tema:21-3-2}
+\begin{proof}[Unicidad en el \cref{teo:C21-clasificacion}]
+El submódulo $T=\operatorname{Tor}_R(M)$ se define a partir de $M$ y todo isomorfismo lo preserva, junto con su anulador. El cociente $M/T\cong R^r$ recupera la parte libre; su rango y, por tanto, $r$ son intrínsecos. Por el \cref{lema:C21-primos-anulador}, también queda determinada la lista de ideales primos que intervienen en $T$.
+
+Fijemos uno de sus generadores primos $q$. Consideremos el submódulo
+\[
+T_q=\set{m\in T\given q^um=0\text{ para algún entero }u\geq1}.
+\]
+Es cerrado bajo suma usando la mayor de dos potencias y bajo escalares por conmutatividad. Todo isomorfismo lleva $T_q$ sobre el submódulo correspondiente. En la descomposición elemental, $T_q$ es exactamente la suma de los factores de potencias de $q$: éstos quedan anulados por una potencia común. En un factor $R/(p^e)$ con $p$ no asociado a $q$, la identidad de Bézout para $q^u$ y $p^e$ muestra que la multiplicación por $q^u$ es invertible; por tanto no hay elementos no nulos anulados por ella. Así,
+\[
+T_q\cong\bigoplus_{j=1}^{v}R/(q^{e_j}).
+\]
+El cociente $T_q/qT_q$ es un espacio vectorial sobre el campo $k_q=R/(q)$, y cada factor anterior aporta una copia de $k_q$. En particular, $\dim_{k_q}(T_q/qT_q)=v$ recupera el número de factores.
+
+Para recuperar los exponentes, usamos todas las \emph{capas sucesivas}
+\[
+d_\ell=\dim_{k_q}\left(q^{\ell-1}T_q/q^\ell T_q\right),
+\qquad \ell\geq1.
+\]
+Estas capas sí están anuladas por $q$. En un factor $R/(q^e)$, la capa es cero si $e<\ell$; si $e\geq\ell$, el homomorfismo
+\[
+R\longrightarrow q^{\ell-1}(R/(q^e))/q^\ell(R/(q^e)),
+\qquad a\longmapsto aq^{\ell-1}+q^\ell(R/(q^e))
+\]
+es sobreyectivo y tiene núcleo $(q)$: la pertenencia del representante a $(q^\ell)$, módulo $(q^e)$, equivale a $q\mid a$, cancelando $q^{\ell-1}$ en el dominio. Por ello la capa es una copia de $k_q$. Concluimos
+\[
+d_\ell=\#\set{j\given e_j\geq\ell},\qquad
+d_\ell-d_{\ell+1}=\#\set{j\given e_j=\ell}.
+\]
+Los números intrínsecos $d_\ell$ determinan el multiconjunto completo de exponentes. Esto demuestra la unicidad de los divisores elementales.
+
+Finalmente recuperamos los factores invariantes. Para cada primo, ordenamos sus exponentes de menor a mayor. El número $m$ de factores invariantes no unidades es la mayor cantidad de factores elementales que aparece para un primo: no puede superarla, y un primo que divide a $a_1$ divide a todos los $a_j$, por lo que la alcanza. Completamos cada lista de exponentes hasta longitud $m$ añadiendo ceros al principio, y multiplicamos las potencias alineadas en cada posición. La cadena $a_1\mid\cdots\mid a_m$ fuerza exactamente esa alineación, así que determina cada ideal $(a_j)$. Si $T=0$, $m=0$ y no hay listas que reconstruir. Queda probada toda la unicidad.
+\end{proof}
+
+\begin{obs}[Capas y potencias]
+Las capas $q^{\ell-1}T_q/q^\ell T_q$ son espacios vectoriales sobre $R/(q)$ porque están anuladas por $q$. El cociente $T_q/q^\ell T_q$ puede no tener esa propiedad: en $\mathbb Z/4\mathbb Z$, la multiplicación por $2$ no es cero.
+
+Por otra parte,
+\[
+q^i\bigl(R/(q^e)\bigr)\cong R/(q^{e-i})\quad(0\leq i<e),
+\]
+mediante $a\mapsto aq^i$, cuyo núcleo es $(q^{e-i})$. Para $i\geq e$ la imagen es cero.
+\end{obs}

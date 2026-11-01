@@ -1,0 +1,108 @@
+\section{Campos primos, extensiones y adjunción de raíces}\label{sec:campos-extensiones}
+
+\subsection{Morfismos y campos primos}\label{tema:22-1-1}
+Todo homomorfismo de campos $i:k\to K$ es inyectivo, como se comprobó en el \cref{ejer:C18-morfismo-campos}: su núcleo es un ideal de $k$ y no contiene a $1$. Así, $i$ identifica $k$ con un subcampo de $K$ y define una \emph{extensión de campos}. Escribiremos $k\subseteq K$, recordando que la inclusión representa un homomorfismo concreto; puede haber más de una forma de incluir el mismo campo abstracto. El símbolo $K/k$, cuando se usa para una extensión, no denota un cociente de anillos.
+
+El único homomorfismo unitario $j:\mathbb Z\to k$ viene dado por $j(n)=n1_k$. La característica $\operatorname{char}k$ es el generador no negativo de $\ker j$. Como la imagen es un subanillo del dominio $k$, ese núcleo es primo, luego es $(0)$ o $(p)$ para un primo positivo $p$. Así, la característica de un campo es cero o un primo. Por ejemplo,
+\[
+\operatorname{char}\mathbb Q=0,\qquad
+\operatorname{char}\mathbb F_p=p,\qquad
+\mathbb F_p=\mathbb Z/p\mathbb Z.
+\]
+La característica se conserva al extender campos. En efecto, en el cuadrado
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathbb Z\arrow[r,"\id"]\arrow[d,"j"']&\mathbb Z\arrow[d,"j'"]\\
+k\arrow[r,hook,"i"']&K,
+\end{tikzcd}
+\]
+se tiene $j'=i\circ j$; la inyectividad de $i$ implica $\ker j'=\ker j$.
+
+\begin{prop}\label{prop:C22-campo-primo}
+Todo campo de característica cero contiene una única copia de $\mathbb Q$ compatible con la unidad; todo campo de característica $p$ contiene una única copia de $\mathbb F_p$. Estos campos son los objetos iniciales en las categorías de campos de su respectiva característica.
+\end{prop}
+\begin{proof}
+Si $\operatorname{char}F=0$, el homomorfismo $\mathbb Z\to F$ es inyectivo. Por la propiedad universal del campo de fracciones se extiende de manera única a $\mathbb Q\to F$, mediante $a/b\mapsto j(a)j(b)^{-1}$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\mathbb Q\arrow[r,hook,"\widetilde j",destacado]&F\\
+\mathbb Z\arrow[u,hook]\arrow[ur,"j"']&
+\end{tikzcd}
+\]
+Si $\operatorname{char}F=p$, el primer isomorfismo induce $\mathbb Z/(p)\cong\im j\subseteq F$. La aplicación está determinada por $1\mapsto1$, así que es única. En ambos casos es inyectiva por ser un homomorfismo de campos.
+\end{proof}
+Escribimos $\mathbf{Fld}_c$ para la categoría de campos de característica $c$, donde $c=0$ o $c=p$ primo. La proposición expresa que $\mathbb Q$ es inicial en $\mathbf{Fld}_0$ y $\mathbb F_p$ en $\mathbf{Fld}_p$. La copia correspondiente dentro de $F$ se llama su \emph{campo primo}.
+
+\subsection{Extensiones mediante un cociente}\label{tema:19-2-1}
+Una \emph{extensión de campos} es un homomorfismo unitario $i:k\to F$. Por el \cref{ejer:C18-morfismo-campos}, es necesariamente inyectivo. Tras identificar $k$ con su imagen escribimos $k\subseteq F$.
+
+\begin{prop}\label{prop:C19-adjuntar}
+Sean $k$ un campo y $f(t)\in k[t]$ irreducible. Entonces $F=k[t]/(f)$ es una extensión de $k$, y la clase $\alpha$ de $t$ es una raíz de $f$ en $F$. Para cualquier extensión $j:k\hookrightarrow K$ y raíz $u\in K$ de $f$, existe un único homomorfismo $\widetilde\varphi_u:F\hookrightarrow K$ que extiende $j$ y envía $\alpha$ a $u$.
+\end{prop}
+\begin{proof}
+Como $k[t]$ es DIP, el ideal de un irreducible es maximal; por tanto, $F$ es campo. La composición $k\hookrightarrow k[t]\twoheadrightarrow F$ es unitaria y es inyectiva por ser un homomorfismo entre campos. Aplicando la proyección a los coeficientes y a las potencias de $t$,
+\[
+f(\alpha)=a_0+a_1\alpha+\cdots+a_n\alpha^n
+=\overline{f(t)}=0.
+\]
+Los coeficientes se entienden mediante la inclusión de $k$.
+
+La propiedad universal de polinomios da la evaluación
+\[
+\varphi_u:k[t]\longrightarrow K,\qquad
+\sum_i a_it^i\longmapsto\sum_i j(a_i)u^i.
+\]
+Como $f(u)=0$, $(f)\subseteq\ker\varphi_u$. La propiedad universal del cociente induce el único homomorfismo $\widetilde\varphi_u$ que cumple el diagrama:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+k[t]\arrow[r,"\varphi_u"]\arrow[d,two heads,"\pi"']&K\\
+F\arrow[ur,dashed,destacado,"\exists!\,\widetilde\varphi_u"']&
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=large,row sep=large]
+k\arrow[r,hook,"j"]\arrow[d,hook,"i"']&K\\
+F\arrow[ur,hook,"\widetilde\varphi_u"']&
+\end{tikzcd}
+\]
+Es inyectivo por ser un homomorfismo entre campos. La elección de $u$ determina los valores sobre todas las clases de polinomios, de donde resulta la unicidad con esa imagen de $\alpha$.
+\end{proof}
+\begin{obs}
+La evaluación $\varphi_u$ queda determinada al fijar los coeficientes de $k$ y la imagen $t\mapsto u$. El morfismo inducido desde $F$ también depende de la raíz elegida, y raíces distintas pueden dar morfismos distintos.
+\end{obs}
+
+\begin{ejem}
+Para $k=\mathbb R$ y $f=t^2+1$, se recupera $\mathbb C$ con la construcción de la sección~\ref{tema:13-1-1}. Para $k=\mathbb Q$ y $f=t^2-2$, el polinomio es irreducible: una raíz reducida tendría denominador que divide a $1$ y numerador que divide a $2$, y ninguno de $\pm1,\pm2$ es raíz. El cociente es, pues, un campo con una raíz de $t^2-2$.
+
+Hay exactamente dos inclusiones de ese cociente en $\mathbb R$ que fijan $\mathbb Q$, dadas por
+\[
+\overline{a+bt}\longmapsto a+b\sqrt2,
+\qquad
+\overline{a+bt}\longmapsto a-b\sqrt2.
+\]
+Son distintas y cualquier otra debe enviar la clase de $t$ a una de las dos raíces reales. Esto ilustra por qué no hay unicidad sin elegir la raíz.
+\end{ejem}
+
+\subsection{Grado de una extensión y ejemplos finitos}\label{tema:22-1-2}\label{tema:19-1-2b}
+\begin{defi}
+Una extensión $k\subseteq F$ es \emph{finita de grado $n$} si $F$, como espacio vectorial sobre $k$, tiene dimensión finita $n$. Escribimos $[F:k]=n$. Si la dimensión es infinita, la extensión es \emph{infinita} y escribimos $[F:k]=\infty$.
+\end{defi}
+El grado mide la dimensión, no el número de elementos del campo. La estructura vectorial proviene de la multiplicación de $F$ restringida a escalares de $k$.
+
+\begin{prop}\label{prop:C22-grado-cociente}
+Si $f\in k[t]$ es irreducible y $n=\deg f\geq1$, entonces $F=k[t]/(f)$ es un campo y la inclusión $k\to F$ define una extensión de grado $n$. Si $\alpha=t+(f)$, una base es $1,\alpha,\ldots,\alpha^{n-1}$.
+\end{prop}
+\begin{proof}
+El anillo $k[t]$ es euclidiano, luego DIP. Por ello el ideal generado por el irreducible $f$ es maximal y su cociente es campo. Los elementos constantes se incluyen inyectivamente: un múltiplo no nulo de $f$ no puede ser una constante. Al dividir por $f$, cada clase tiene un representante único de grado menor que $n$, por lo que se expresa de manera única como combinación de las potencias indicadas. Esto prueba tanto generación como independencia.
+\end{proof}
+En particular, $\mathbb C\cong\mathbb R[t]/(t^2+1)$ da $[\mathbb C:\mathbb R]=2$. La construcción produce extensiones concretas, pero no afirma que toda extensión sea un cociente de esta forma.
+
+\begin{ejem}
+En $\mathbb F_2[t]$, el polinomio $t^2+t+1$ toma el valor $1$ en $0$ y en $1$. Es irreducible, su ideal es maximal y
+\[
+F=\mathbb F_2[t]/(t^2+t+1)
+\]
+es un campo con cuatro elementos. Si $\alpha$ es la clase de $t$, cada elemento se escribe de manera única $a+b\alpha$, con $a,b\in\mathbb F_2$. Son $0,1,\alpha,1+\alpha$, y $\alpha^2=\alpha+1$. En particular, $\alpha(\alpha+1)=1$.
+\end{ejem}
+\begin{obs}
+La identificación de $F$ con $\mathbb F_2^{\oplus2}$ mediante los coeficientes del resto es un isomorfismo de espacios vectoriales. El producto coordenado de anillos es distinto: $F$ es campo, mientras que $(1,0)(0,1)=(0,0)$ en ese producto. Para multiplicar restos hay que reducir de nuevo usando $\alpha^2=\alpha+1$.
+\end{obs}

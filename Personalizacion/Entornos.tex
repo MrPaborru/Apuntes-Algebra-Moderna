@@ -1,4 +1,4 @@
-\newtheorem{teo}{Teorema}
+\newtheorem{teo}{Teorema}[chapter]
 % Contador compartido y tipos propios para que \cref distinga cada resultado.
 \newaliascnt{prop}{teo}
 \newtheorem{prop}[prop]{Proposición}
@@ -12,9 +12,10 @@
 \theoremstyle{definition}
 \newtheorem{defi}{Definición}[section]
 \newtheorem{ejem}{Ejemplo}[section]
-\newcounter{ejercicio}
+\newcounter{ejercicio}[chapter]
+\renewcommand{\theejercicio}{\thechapter.\arabic{ejercicio}}
 \newenvironment{ejer}[1][]{\refstepcounter{ejercicio}%
-  \begin{tcolorbox}[enhanced,breakable,colback=rojoCIMAT!3,
+  \begin{tcolorbox}[enhanced,breakable,lines before break=4,colback=rojoCIMAT!3,
     colframe=rojoCIMAT,colbacktitle=rojoCIMAT,coltitle=white,
     fonttitle=\bfseries,boxrule=.8pt,
     title={Ejercicio \theejercicio\if\relax\detokenize{#1}\relax\else\ (#1)\fi}]}{\end{tcolorbox}}

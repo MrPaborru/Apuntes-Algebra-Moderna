@@ -1,0 +1,119 @@
+\section{Álgebras finitas y de tipo finito; teorema de la base de Hilbert}\label{sec:modulos-hilbert}
+
+\subsection{Finita como módulo y de tipo finito como álgebra}\label{tema:15-2-1}
+En este apartado $R$ y la $R$-álgebra $S$ son conmutativos, con homomorfismo estructural $\alpha:R\to S$.
+\begin{defi}
+Se dice que $S$ es una \emph{$R$-álgebra finita} si es finitamente generada como $R$-módulo, es decir, si existe una sobreyección lineal $R^n\twoheadrightarrow S$. Es \emph{de tipo finito} si es finitamente generada como álgebra, es decir, si existe un homomorfismo sobreyectivo de $R$-álgebras $R[x_1,\ldots,x_n]\twoheadrightarrow S$.
+\end{defi}
+La palabra «finita» se refiere aquí a la generación del módulo, no a la cardinalidad del conjunto. Usamos álgebras conmutativas para que la presentación por los polinomios conmutativos tenga la propiedad universal de la \cref{prop:C14-algebra-libre}.
+
+\begin{prop}
+Toda $R$-álgebra conmutativa finita es de tipo finito.
+\end{prop}
+\begin{proof}
+Si $a_1,\ldots,a_n$ generan $S$ como módulo, la propiedad universal da el morfismo
+\[
+\varphi:R[x_1,\ldots,x_n]\longrightarrow S,\qquad\varphi(x_i)=a_i.
+\]
+Todo $s\in S$ se escribe $s=\sum_i\alpha(r_i)a_i=\varphi(\sum_i r_ix_i)$, así que $\varphi$ es sobreyectiva.
+\end{proof}
+
+\begin{ejem}
+Si $R\ne0$, $R[x]$ es de tipo finito, generado como álgebra por $x$, pero no es finito como módulo. Si unos polinomios $f_1,\ldots,f_s$ lo generaran como módulo, habría una cota $d$ para sus grados. Toda combinación con coeficientes en $R$ tendría grado a lo sumo $d$, mientras que $x^{d+1}$ tiene coeficiente principal $1_R\ne0$. No se puede generar así. Si no hubiera generadores no nulos, ni siquiera se generaría $1_R$.
+\end{ejem}
+\begin{obs}
+Si $R=0$, también $R[x]=0$ y es finitamente generado como módulo. La hipótesis $R\ne0$ es necesaria para el ejemplo anterior.
+\end{obs}
+
+\subsection{Teorema de la base de Hilbert}\label{tema:15-2-2}\label{tema:15-2-3}
+Volvemos a anillos conmutativos $R$ arbitrarios. Para un ideal $I\subseteq R[x]$, sea
+\[
+A=\{0\}\cup\set{a\in R\given
+a\text{ es coeficiente principal de algún }f\in I,\ f\ne0}.
+\]
+\begin{ejer}[Coeficientes principales de un ideal]\label{ejer:C15-principales}
+Probar que $A$ es un ideal de $R$.
+\end{ejer}
+\begin{sol}
+Contiene cero. Si $a,b\ne0$ son coeficientes principales de $f,g\in I$ de grados $m,n$, elegimos $d=\max(m,n)$. El polinomio $x^{d-m}f-x^{d-n}g$ pertenece a $I$ y su coeficiente de grado $d$ es $a-b$. Si éste no es cero, es su coeficiente principal; si es cero, ya pertenece a $A$ por definición. Cuando uno de $a,b$ es cero se usa $f$ o $-g$. Así, $A$ es subgrupo aditivo.
+
+Para $r\in R$, si $ra\ne0$, el polinomio $rf$ tiene ese coeficiente principal y pertenece a $I$. Si $ra=0$, el resultado pertenece a $A$ sin necesidad de afirmar nada sobre el grado de $rf$. Por tanto, $rA\subseteq A$ y $A$ es ideal, aun cuando $R$ tenga divisores de cero.
+\end{sol}
+
+\begin{teo}[Teorema de la base de Hilbert]\label{teo:C15-Hilbert}
+Si $R$ es un anillo conmutativo noetheriano, también lo es $R[x]$. En consecuencia, toda $R$-álgebra conmutativa de tipo finito es noetheriana.
+\end{teo}
+\begin{proof}
+Sea $I$ un ideal de $R[x]$. Si $I=0$, ya es principal. En otro caso, el ideal $A$ del ejercicio anterior es no nulo y, por noetherianidad, admite generadores no nulos $a_1,\ldots,a_t$. Elegimos $f_i\in I$ con coeficiente principal $a_i$, ponemos $d_i=\deg f_i$ y $d=\max_i d_i$.
+
+El módulo $L=\ang{1,x,\ldots,x^{d-1}}\subseteq R[x]$ consiste en los polinomios de grado menor que $d$. Es finitamente generado y, por el \cref{coro:C15-finito-noetheriano}, es noetheriano como $R$-módulo. Por tanto, $L\cap I$ tiene generadores $g_1,\ldots,g_s$ como módulo. Si $d=0$, $L=0$ y esta lista es vacía. Afirmamos que
+\[
+I=(f_1,\ldots,f_t,g_1,\ldots,g_s)
+\]
+como ideal de $R[x]$.
+
+Una inclusión es inmediata, pues todos esos elementos están en $I$. Para la otra, tomemos $h\ne0$ en $I$. Si $e=\deg h\geq d$, su coeficiente principal $a$ pertenece a $A$, de modo que $a=\sum_i b_ia_i$, con $b_i\in R$. Como $e\geq d_i$, el polinomio
+\[
+h-\sum_i b_ix^{e-d_i}f_i
+\]
+pertenece a $I$ y tiene grado menor que $e$, o es cero: su coeficiente de grado $e$ es $a-\sum_i b_ia_i=0$. Iteramos. El descenso estricto del grado garantiza que terminamos con
+\[
+h-\sum_i\beta_i(x)f_i\in L\cap I.
+\]
+El resultado es una combinación $\sum_j c_jg_j$ con $c_j\in R$, por lo que $h$ pertenece al ideal afirmado. El mismo argumento cubre los $h$ de grado menor que $d$ desde el principio, y cero pertenece automáticamente. Así, todo ideal es finitamente generado.
+
+Aplicamos la primera parte sucesivamente para obtener que $R[x_1,\ldots,x_n]$ es noetheriano. Si $S$ es de tipo finito, es isomorfo a un cociente de ese anillo. Los ideales de un cociente corresponden a los ideales que contienen al núcleo y sus generadores proyectan a generadores del ideal cociente. Por ello $S$ es noetheriano como anillo.
+\end{proof}
+La última afirmación no dice que $S$ sea noetheriano como $R$-módulo: por ejemplo, sobre un campo no nulo $K$, $K[x]$ es un anillo noetheriano, pero no es finitamente generado como $K$-módulo.
+
+\Needspace{6\baselineskip}
+\subsection{Factorización con infinitas variables}\label{tema:16-1-2b}
+\begin{ejer}[Factorización sin noetherianidad]\label{ejer:C16-infinitas}
+Comprobar que $B=\mathbb Z[x_1,x_2,\ldots]$ satisface la condición de cadena ascendente para ideales principales y, por tanto, tiene factorizaciones, aunque no es noetheriano.
+\end{ejer}
+\begin{sol}
+Cada polinomio no nulo $f$ pertenece a algún $B_n=\mathbb Z[x_1,\ldots,x_n]$. Todo divisor suyo en $B$ pertenece al mismo $B_n$: si $f=gh$, para una variable $x_j$ con $j>n$ el grado en $x_j$ satisface
+\[
+0=\deg_{x_j}f=\deg_{x_j}g+\deg_{x_j}h.
+\]
+Esta igualdad vale porque los coeficientes pertenecen a un dominio; por tanto, ninguno de los factores utiliza $x_j$. El argumento se aplica a cada variable exterior que aparezca en ellos. Los anillos de polinomios considerados son dominios por el producto de coeficientes principales, iterado sobre las finitas variables de cada expresión.
+
+En una cadena $(f_1)\subseteq(f_2)\subseteq\cdots$, si todos los $f_i$ son cero no hay nada que probar. En otro caso descartamos los términos iniciales nulos y fijamos un primer $f_k\ne0$ en algún $B_n$. Todos los $f_i$ posteriores dividen a $f_k$, de modo que están en $B_n$. Los cocientes que expresan $f_i=f_{i+1}h_i$ también están en $B_n$ por el mismo argumento de grados. La cadena es, por tanto, una cadena de ideales principales en $B_n$.
+
+Por Hilbert y porque $\mathbb Z$ es noetheriano, $B_n$ es noetheriano y la cadena se estabiliza allí. Las igualdades de ideales se conservan al generar ideales en $B$. Así se estabiliza la cadena original. La \cref{prop:C16-existencia} da las factorizaciones. Por el \cref{ejer:C15-infinitas}, $B$ tiene un ideal no finitamente generado y no es noetheriano.
+\end{sol}
+El ejemplo justifica la inclusión propia de los dominios noetherianos entre los dominios con factorización en el esquema de la sección~\ref{tema:15-3-1}.
+
+\subsection{Ejemplos de factorialidad y noetherianidad}\label{tema:16-2-3}\label{tema:18-3-2b}
+\begin{ejem}\label{ejem:C16-determinante}
+Consideremos $T=\mathbb C[x,y,z,\omega]/(x\omega-yz)$ y denotemos las clases de las variables con las mismas letras. Es un dominio noetheriano, pero no es DFU: $x,y,z,\omega$ son irreducibles no asociados dos a dos y
+\[
+x\omega=yz\ne0
+\]
+da dos factorizaciones distintas salvo orden y asociados.
+\end{ejem}
+\begin{proof}
+La noetherianidad se sigue de Hilbert: es un cociente de un anillo de polinomios sobre el campo $\mathbb C$. Para justificar también que es dominio, consideremos
+\[
+\theta:\mathbb C[x,y,z,\omega]\longrightarrow\mathbb C[s,t,u,v],
+\quad x\mapsto su,\ y\mapsto sv,\ z\mapsto tu,\ \omega\mapsto tv.
+\]
+Anula $x\omega-yz$, por lo que induce un homomorfismo desde $T$. Mostraremos que es inyectivo. Usando $x\omega=yz$, todo monomio tiene en $T$ un representante $x^ay^bz^c\omega^d$ con $\min(a,d)=0$: se reemplazan parejas $x\omega$ hasta que uno de los exponentes se anule. Su imagen es
+\[
+s^{a+b}t^{c+d}u^{a+c}v^{b+d}.
+\]
+Si dos monomios de esa forma tuvieran la misma imagen, la diferencia de sus cuádruplas de exponentes sería $(k,-k,-k,k)$. Si $k>0$, la primera cuádrupla tendría sus exponentes de $x$ y $\omega$ positivos; si $k<0$, los tendría la segunda. Ambos casos contradicen la forma elegida. Por tanto, $k=0$ y son el mismo monomio.
+
+Las imágenes de los monomios reducidos son monomios distintos de un anillo de polinomios, luego son linealmente independientes sobre $\mathbb C$. Si una clase tiene imagen cero, su expresión reducida tiene todos los coeficientes cero. La aplicación inducida es inyectiva y $T$ se identifica con un subanillo de un dominio. Así, $T$ es dominio y el producto $x\omega$, cuya imagen es $stuv$, es no nulo.
+
+La relación es homogénea de grado dos, por lo que el cociente conserva una graduación por grado total: las componentes de grados distintos no se identifican entre sí. En este dominio graduado el grado máximo de un producto no nulo es la suma de los grados máximos: el producto de sus componentes superiores no se anula. En consecuencia, una factorización de cualquiera de las cuatro variables, que tienen grado uno, tiene un factor de grado cero, es decir, una constante compleja no nula y por tanto una unidad. Las variables no son unidades, pues una inversa tendría que hacer que un producto de grado positivo tuviera grado cero. Son irreducibles.
+
+El mismo argumento muestra que todas las unidades son constantes no nulas. Las clases de $x,y,z,\omega$ son linealmente independientes en grado uno: el ideal generado por la relación de grado dos no contiene un polinomio lineal no nulo. Ninguna es múltiplo constante de otra, así que no son asociadas. Las dos factorizaciones indicadas son diferentes y $T$ no es DFU.
+\end{proof}
+
+\begin{ejem}\label{ejem:infinitas-DFU}
+Aplicando repetidamente el \cref{teo:C18-polinomios-DFU}, los anillos $\mathbb Z[x_1,\ldots,x_n]$ y $\mathbb C[x_1,\ldots,x_n]$ son DFU. También lo es $B=\mathbb Z[x_1,x_2,\ldots]$, aunque no sea noetheriano.
+
+En el último caso, todo $f\ne0$ pertenece a algún $B_n=\mathbb Z[x_1,\ldots,x_n]$. Sus divisores en $B$ ya pertenecen a $B_n$: al escribir $f=gh$, el grado en una variable exterior cumple $0=\deg_{x_j}g+\deg_{x_j}h$, pues los anillos considerados son dominios. Éste es el argumento del \cref{ejer:C16-infinitas}. Una factorización en irreducibles en $B_n$ sigue siendo irreducible en $B$, y dos factorizaciones en $B$ están en ese mismo anillo por la propiedad de los divisores. La unicidad allí da unicidad en $B$. Las unidades son $\pm1$ por el mismo argumento de grados. Finalmente, el \cref{ejer:C15-infinitas} ya mostró un ideal no finitamente generado, así que $B$ no es noetheriano.
+\end{ejem}
+Este ejemplo distingue las regiones DFU y noetheriana del esquema de la sección~\ref{tema:15-3-1}.

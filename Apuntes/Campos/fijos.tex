@@ -1,0 +1,167 @@
+\section{Campos fijos y correspondencia de Galois}\label{sec:campos-fijos}
+
+\subsection{Correspondencia de Galois y campos fijos}\label{tema:26-3-1}\label{tema:26-3-2}
+\begin{defi}
+Sea $F/k$ una extensión y $G\leq\Aut_k(F)$. El \emph{campo fijo} de $G$ es
+\[
+F^G=\set{\alpha\in F\given g(\alpha)=\alpha\text{ para todo }g\in G}.
+\]
+\end{defi}
+Es un subcampo que contiene a $k$: los automorfismos fijan a $0$ y $1$, y preservan sumas, productos, opuestos e inversos. Así los elementos fijados simultáneamente por todos ellos son estables bajo esas operaciones.
+
+\begin{defi}
+La \emph{correspondencia de Galois} de $F/k$ consiste en las aplicaciones
+\[
+\begin{aligned}
+\set{E\given k\subseteq E\subseteq F}&\longrightarrow
+\set{G\given G\leq\Aut_k(F)},& E&\longmapsto\Aut_E(F),\\
+\set{G\given G\leq\Aut_k(F)}&\longrightarrow
+\set{E\given k\subseteq E\subseteq F},& G&\longmapsto F^G.
+\end{aligned}
+\]
+\end{defi}
+El grupo $\Aut_E(F)$ está formado por los automorfismos que fijan a $E$ punto por punto; es un subgrupo de $\Aut_k(F)$. Estas aplicaciones existen sin suponer finitud, normalidad ni separabilidad. Todavía no se afirma que sean inversas.
+
+\begin{lema}\label{lema:C26-correspondencia}
+La correspondencia de Galois invierte inclusiones:
+\[
+E_1\subseteq E_2\ \Longrightarrow\ \Aut_{E_2}(F)\subseteq\Aut_{E_1}(F),
+\qquad
+G_1\subseteq G_2\ \Longrightarrow\ F^{G_2}\subseteq F^{G_1}.
+\]
+Además,
+\[
+E\subseteq F^{\Aut_E(F)},\qquad G\subseteq\Aut_{F^G}(F).
+\]
+Si $E_1E_2$ es el subcampo de $F$ generado por $E_1$ y $E_2$, entonces
+\[
+\Aut_{E_1E_2}(F)=\Aut_{E_1}(F)\cap\Aut_{E_2}(F),
+\qquad
+F^{\ang{G_1,G_2}}=F^{G_1}\cap F^{G_2}.
+\]
+\end{lema}
+\begin{proof}
+Un automorfismo que fija a $E_2$ fija a cualquier subcampo $E_1\subseteq E_2$. Un elemento fijado por todo $G_2$ está fijado por todos los elementos de un subgrupo $G_1\subseteq G_2$. Esto prueba la inversión de inclusiones. Por definición, todos los automorfismos de $\Aut_E(F)$ fijan a cada elemento de $E$, y todos los elementos de $G$ fijan a $F^G$; resultan las otras dos inclusiones.
+
+Un automorfismo fija a $E_1E_2$ si y sólo si fija a ambos campos: en la dirección no inmediata, todo elemento del campo generado es una expresión obtenida mediante sumas, productos y cocientes de elementos de $E_1$ y $E_2$. Por ello pertenece a ambos grupos de automorfismos exactamente cuando pertenece al de su compuesto.
+
+Finalmente, si $x$ está fijado por $\ang{G_1,G_2}$, lo está por $G_1$ y $G_2$. Recíprocamente, si ambos subgrupos fijan a $x$, también lo hacen sus inversos y todos los productos de sus elementos. Como esas palabras generan $\ang{G_1,G_2}$, $x$ pertenece a su campo fijo.
+\end{proof}
+
+\begin{ejem}\label{ejem:C26-cubica-real}
+Sea $a=\sqrt[3]{2}$ la raíz real y $F=\mathbb Q(a)$. Eisenstein con $2$ da $[F:\mathbb Q]=3$. Por la fórmula de la torre, un campo intermedio tiene grado uno o tres sobre $\mathbb Q$; las únicas posibilidades son el campo base y el campo completo.
+
+El campo $F$ está contenido en $\mathbb R$ y $t^3-2$ tiene allí una sola raíz, $a$. Todo automorfismo sobre $\mathbb Q$ debe fijarla; como genera $F$, el grupo $\Aut_{\mathbb Q}(F)$ es trivial. Los dos campos intermedios se envían al mismo subgrupo $\{\id\}$, mientras que el campo fijo de éste es $F$:
+\[
+\begin{array}{c|c}
+E&\Aut_E(F)\\\hline
+\mathbb Q&\{\id\}\\
+F&\{\id\}
+\end{array}
+\qquad F^{\{\id\}}=F.
+\]
+La aplicación de campos a subgrupos no es inyectiva, y la de subgrupos a campos no alcanza a $\mathbb Q$. Esta extensión es separable, por ser de característica cero, pero no es normal.
+\end{ejem}
+
+\subsection{El grado sobre un campo fijo}\label{tema:27-1-1}
+El \cref{ejem:C26-cubica-real} muestra que la correspondencia de Galois no siempre es biyectiva: los campos $\mathbb Q$ y $\mathbb Q(\sqrt[3]{2})$ tienen el mismo grupo de automorfismos sobre ellos. En cambio, para extensiones finitas, cada subgrupo sí se recupera a partir de su campo fijo.
+
+\begin{lema}\label{lema:C27-campo-fijo}
+Sea $F/k$ finita y $G\leq\Aut_k(F)$. Entonces $F/F^G$ es finita, simple, normal y separable.
+\end{lema}
+\begin{proof}
+Como $k\subseteq F^G\subseteq F$, la fórmula de la torre da $[F:F^G]\leq[F:k]<\infty$. Para $\alpha\in F$, su órbita
+\[
+\mathcal O_\alpha=\set{g(\alpha)\given g\in G}=\{\alpha_1,\ldots,\alpha_m\}
+\]
+es finita: está contenida en el conjunto de raíces en $F$ del mínimo de $\alpha$ sobre $k$. Tomamos los $\alpha_i$ distintos y definimos
+\[
+q_\alpha(t)=\prod_{i=1}^m(t-\alpha_i).
+\]
+Cada $g\in G$ permuta la órbita, de modo que su acción sobre los coeficientes satisface
+\[
+g(q_\alpha)(t)=\prod_{i=1}^m(t-g(\alpha_i))=q_\alpha(t).
+\]
+Todos sus coeficientes pertenecen, pues, a $F^G$. El mínimo de $\alpha$ sobre $F^G$ divide a $q_\alpha$, que se descompone en raíces distintas en $F$. Así cada elemento de $F$ es separable sobre $F^G$.
+
+La extensión es finita y separable, luego el \cref{prop:C26-primitivo} permite escribir $F=F^G(\alpha)$. El polinomio $q_\alpha$ se descompone en $F$ y sus raíces generan $F$ sobre $F^G$, pues una de ellas es $\alpha$. Por tanto $F$ es su campo de descomposición y es normal por el \cref{teo:C24-normal}.
+\end{proof}
+
+\begin{prop}\label{prop:C27-artin}
+Si $F/k$ es finita y $G\leq\Aut_k(F)$, entonces
+\[
+|G|=[F:F^G],\qquad G=\Aut_{F^G}(F).
+\]
+En particular, la aplicación $E\mapsto\Aut_E(F)$ de campos intermedios a subgrupos es sobreyectiva.
+\end{prop}
+\begin{proof}
+Primero, $\Aut_k(F)$ es finito: una familia finita de generadores algebraicos determina cada automorfismo, y cada generador tiene sólo finitas imágenes posibles entre las raíces de su mínimo. En consecuencia, también $G$ es finito.
+
+El \cref{lema:C26-correspondencia} da $G\subseteq\Aut_{F^G}(F)$. Por el lema anterior, escribamos $F=F^G(\alpha)$, con mínimo $p_\alpha$ sobre $F^G$. La normalidad y separabilidad, junto con el \cref{coro:C26-aut-normal}, dan
+\[
+|\Aut_{F^G}(F)|=[F:F^G]=\deg p_\alpha.
+\]
+El polinomio de la órbita de la prueba anterior satisface $p_\alpha\mid q_\alpha$, y su grado es a lo sumo $|G|$. Luego
+\[
+|G|\leq|\Aut_{F^G}(F)|=\deg p_\alpha
+\leq\deg q_\alpha\leq|G|.
+\]
+Todas las desigualdades son igualdades, y la inclusión entre los grupos finitos es una igualdad. Así todo $G$ es la imagen del campo intermedio $F^G$.
+\end{proof}
+
+\Needspace{6\baselineskip}
+\subsection{Caracterizaciones de la condición de Galois}\label{tema:27-1-2}
+\begin{ejer}[Normalidad e invariancia del campo]\label{ejer:C27-normal-invariante}
+Sea $F=k(\alpha)$ una extensión algebraica simple. Probar que $F/k$ es normal si y sólo si, para toda extensión algebraica $K/F$ y todo $\sigma\in\Aut_k(K)$, se cumple $\sigma(F)=F$.
+\end{ejer}
+\begin{sol}
+Supongamos que $F/k$ es normal. Si $p$ es el mínimo de $\alpha$ sobre $k$, todas sus raíces pertenecen a $F$. Para $\sigma\in\Aut_k(K)$, $\sigma(\alpha)$ es una de esas raíces, luego
+\[
+\sigma(F)=k(\sigma(\alpha))\subseteq F.
+\]
+La restricción $\sigma:F\to\sigma(F)$ es un isomorfismo sobre $k$. Como $F/k$ es finita, la inclusión entre campos de la misma dimensión es una igualdad.
+
+Recíprocamente, incluyamos $F$ en una clausura $\overline k$ y sea $\beta$ cualquier raíz de $p$ en ella. Existe un isomorfismo $k(\alpha)\to k(\beta)$ que fija a $k$ y envía $\alpha$ a $\beta$. Por prolongación mediante Zorn se extiende a un homomorfismo $\overline k\to\overline k$ sobre $k$. Su imagen es algebraicamente cerrada, y $\overline k$ es algebraico sobre ella; por el \cref{lema:C24-cerrado}, es un automorfismo $\sigma$.
+
+La hipótesis aplicada a $K=\overline k$ da $\sigma(F)=F$, así que $\beta=\sigma(\alpha)\in F$. Todas las raíces de $p$ pertenecen a $F$, y $F$ es su campo de descomposición. El \cref{teo:C24-normal} prueba la normalidad.
+\end{sol}
+
+\begin{teo}\label{teo:C27-galois}
+Para una extensión finita $F/k$ son equivalentes las condiciones siguientes:
+\begin{enumerate}[label=(\arabic*),nosep]
+\item $F$ es el campo de descomposición sobre $k$ de un polinomio separable no nulo;
+\item $F/k$ es normal y separable;
+\item $|\Aut_k(F)|=[F:k]$;
+\item $F^{\Aut_k(F)}=k$;
+\item las dos aplicaciones de la correspondencia de Galois son biyecciones inversas;
+\item $F/k$ es separable y, para toda extensión algebraica $K/F$ y todo $\sigma\in\Aut_k(K)$, se tiene $\sigma(F)=F$.
+\end{enumerate}
+\end{teo}
+\begin{proof}
+$(1)\Rightarrow(2)$: el \cref{teo:C24-normal} da la normalidad. Las raíces que generan $F$ son separables sobre $k$, pues sus mínimos dividen al polinomio separable. Por la \cref{prop:C26-separable-generadores}, $F/k$ es separable.
+
+$(2)\Rightarrow(1)$: elijamos un elemento primitivo $\alpha$. Su mínimo es separable y, por normalidad, se descompone en $F$. Como $\alpha$ genera $F$, éste es su campo de descomposición. El \cref{coro:C26-aut-normal} prueba también $(2)\Rightarrow(3)$.
+
+$(3)\Leftrightarrow(4)$: sea $G=\Aut_k(F)$. La \cref{prop:C27-artin} y la fórmula de la torre dan
+\[
+|G|=[F:F^G],\qquad [F:k]=[F:F^G][F^G:k].
+\]
+Como los grados son finitos y positivos, $|G|=[F:k]$ equivale a $[F^G:k]=1$, es decir, a $F^G=k$. Además, $(4)\Rightarrow(2)$ por el \cref{lema:C27-campo-fijo}, aplicado a este $G$.
+
+$(1)\Rightarrow(5)$: ya sabemos que $G=\Aut_{F^G}(F)$ para todo subgrupo. Falta probar $E=F^{\Aut_E(F)}$ para cada campo intermedio. Si $F$ es el campo de descomposición de $f\in k[t]$, también lo es de $f$ considerado en $E[t]$. Su separabilidad se conserva al ampliar coeficientes, pues no cambian las multiplicidades de las raíces. Aplicando $(1)\Rightarrow(2)\Rightarrow(3)\Rightarrow(4)$ a $F/E$, obtenemos la igualdad requerida. Ambas composiciones son la identidad.
+
+$(5)\Rightarrow(4)$: la aplicación de campos a subgrupos envía a $k$ a $G=\Aut_k(F)$ y también envía a $F^G$ a $G$, por la \cref{prop:C27-artin}. Su inyectividad obliga a que $k=F^G$.
+
+Por último, bajo la hipótesis de separabilidad, el elemento primitivo y el ejercicio anterior identifican normalidad con la invariancia indicada. Esto prueba $(2)\Leftrightarrow(6)$ y cierra todas las equivalencias.
+\end{proof}
+
+\begin{defi}
+Una extensión finita que satisface estas condiciones es una \emph{extensión de Galois}. Su \emph{grupo de Galois} es
+\[
+\gal(F/k)=\Aut_k(F).
+\]
+\end{defi}
+En lo que sigue, las extensiones de Galois son finitas. La notación $F/k$ y la inclusión $k\subseteq F$ describen la misma extensión; la barra no representa aquí un cociente de anillos.
+
+La condición de invariancia permite visualizar la normalidad. En un campo ambiente puede haber varias imágenes conjugadas de un subcampo; cuando la extensión es de Galois, todas coinciden con el campo inicial. Los primeros dos esquemas de la \cref{fig:campos-conjugados} representan estas situaciones y el tercero muestra las tres imágenes de la extensión cúbica real, con $a=\sqrt[3]{2}$ y $\omega=e^{2\pi i/3}$:
+\figuraApuntes{Figuras/CamposConjugados}{fig:campos-conjugados}{Imágenes conjugadas y normalidad.}

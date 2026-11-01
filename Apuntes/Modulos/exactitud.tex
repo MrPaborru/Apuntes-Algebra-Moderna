@@ -1,0 +1,88 @@
+\Needspace{8\baselineskip}
+\section{Sumas directas, núcleos, conúcleos y sucesiones exactas}\label{sec:modulos-exactitud}
+
+\subsection{Producto y coproducto finitos}\label{tema:14-2-1}
+La suma directa de dos módulos es $M\oplus N=M\times N$ con suma y acción por componentes: $r(m,n)=(rm,rn)$. Sus proyecciones e inclusiones lineales son
+\[
+\begin{aligned}
+\pi_M(m,n)&=m,&\pi_N(m,n)&=n,\\
+i_M(m)&=(m,0),&i_N(n)&=(0,n).
+\end{aligned}
+\]
+\begin{prop}\label{prop:C14-biproducto}
+La suma directa $M\oplus N$ es producto y coproducto de $M,N$ en $R\text{-}\mathbf{Mod}$.
+\end{prop}
+\begin{proof}
+Dados $f_M:P\to M$ y $f_N:P\to N$, el único mediador al producto es $f(p)=(f_M(p),f_N(p))$. Es lineal por las operaciones por componentes.
+
+Dados $g_M:M\to P$ y $g_N:N\to P$, el mediador desde el coproducto debe satisfacer
+\[
+g(m,n)=g((m,0)+(0,n))=g_M(m)+g_N(n).
+\]
+Esta fórmula es aditiva porque $P$ es abeliano, y es compatible con escalares porque lo son $g_M,g_N$. Las condiciones sobre las inclusiones fuerzan la fórmula y dan unicidad. Las propiedades universales se expresan mediante los diagramas
+\[
+\begin{tikzcd}[column sep=large]
+&M\\
+P\arrow[ur,bend left=18,"f_M"]\arrow[r,dashed,destacado,"\exists!\,f"]
+\arrow[dr,bend right=18,"f_N"']&M\oplus N\arrow[u,"\pi_M"']\arrow[d,"\pi_N"]\\
+&N
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=large]
+M\arrow[d,"i_M"']\arrow[dr,bend left=18,"g_M"]&\\
+M\oplus N\arrow[r,dashed,destacado,"\exists!\,g"]&P\\
+N\arrow[u,"i_N"]\arrow[ur,bend right=18,"g_N"']&
+\end{tikzcd}
+\qedhere
+\]
+\end{proof}
+Iterar la construcción da productos y coproductos para cualquier familia finita. Para una familia arbitraria $(M_\alpha)$, el producto $\prod_\alpha M_\alpha$ admite todas las coordenadas, mientras que la suma directa $\bigoplus_\alpha M_\alpha$ sólo admite familias de soporte finito. Las operaciones siguen siendo coordenadas. Dados $f_\alpha:P\to M_\alpha$, el mediador al producto es $p\mapsto(f_\alpha(p))_\alpha$. Dados $g_\alpha:M_\alpha\to P$, el mediador desde la suma directa es $(m_\alpha)_\alpha\mapsto\sum_\alpha g_\alpha(m_\alpha)$; la suma es finita. Ambas reglas son lineales y las proyecciones o inclusiones fuerzan sus valores, respectivamente. Esta diferencia de soporte reaparecerá al construir módulos libres.
+
+\subsection{Núcleos, conúcleos y sucesiones exactas}\label{tema:14-2-2}\label{tema:15-1-2b}
+\begin{prop}\label{prop:C14-nucleo-conucleo}
+Para $f:M\to N$, la inclusión $i:\ker f\hookrightarrow M$ es universal para los morfismos $a:P\to M$ con $fa=0$. La proyección $\pi:N\to N/\im f$ es universal para los morfismos $b:N\to P$ con $bf=0$. El módulo $N/\im f$, junto con esa proyección, se llama \emph{conúcleo} y se denota $\coker f$.
+\end{prop}
+\begin{proof}
+Si $fa=0$, cada $a(p)$ pertenece a $\ker f$. La misma regla, con ese destino, define el único morfismo $\bar a:P\to\ker f$ con $i\bar a=a$. Si $bf=0$, entonces $\im f\subseteq\ker b$ y el \cref{teo:C14-universal} da el único $\bar b:N/\im f\to P$ con $\bar b\pi=b$. Esto demuestra ambos diagramas, conservando la flecha cero entre los extremos:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+P\arrow[r,"a"]\arrow[rr,bend left=22,"0"]\arrow[dr,dashed,destacado,"\exists!\,\bar a"']
+&M\arrow[r,"f"]&N\\
+&\ker f\arrow[u,hook,"i"]&
+\end{tikzcd}
+\]
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+M\arrow[r,"f"]\arrow[rr,bend left=22,"0"]&N\arrow[r,"b"]\arrow[d,two heads,"\pi"']&P\\
+&\coker f\arrow[ur,dashed,destacado,"\exists!\,\bar b"']&
+\end{tikzcd}
+\qedhere
+\]
+\end{proof}
+
+\begin{prop}\label{prop:C14-mono-epi}
+Un morfismo de módulos es mono si y sólo si su núcleo es cero, si y sólo si es inyectivo. Es epi si y sólo si su conúcleo es cero, si y sólo si es sobreyectivo.
+\end{prop}
+\begin{proof}
+Si $f$ es mono, $fi=f0$ para $i:\ker f\to M$ implica $i=0$ y, como es inclusión, $\ker f=0$. Núcleo trivial equivale a inyectividad por el argumento aditivo: $f(m)=f(m')$ equivale a $m-m'\in\ker f$. Toda función inyectiva permite cancelar por la izquierda, luego es mono.
+
+Si $f$ es epi, la proyección $\pi:N\to\coker f$ satisface $\pi f=0f$. Cancelar $f$ da $\pi=0$. Como $\pi$ es sobreyectiva, $\coker f=0$. Esto equivale a $\im f=N$, es decir, a sobreyectividad. Toda función sobreyectiva permite cancelar por la derecha: si $uf=vf$, para $n=f(m)$ se tiene $u(n)=u(f(m))=v(f(m))=v(n)$.
+\end{proof}
+
+Todo submódulo $L\subseteq M$ es el núcleo de $M\to M/L$. Más precisamente, si $a:P\to M$ tiene imagen en $L$, la única factorización por la inclusión es $p\mapsto a(p)$ considerado como elemento de $L$, que sigue siendo lineal. La factorización se expresa en el diagrama:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+L\arrow[r,hook,"i"]&M\arrow[r,"\pi"]&M/L\\
+P\arrow[u,dashed,destacado,"\exists!\,\bar a"]\arrow[ur,"a"']&&
+\end{tikzcd}
+\]
+Todo monomorfismo se identifica así con un núcleo mediante el isomorfismo entre su dominio y su imagen. Dualmente, todo epimorfismo se identifica con el conúcleo de la inclusión de su núcleo, por el primer teorema de isomorfismo.
+
+Los conjuntos $\Hom_R(M,N)$ son grupos abelianos y la composición es distributiva respecto de la suma puntual. Junto con el objeto cero y los productos/coproductos finitos, esto hace de $R\text{-}\mathbf{Mod}$ una \emph{categoría aditiva}. Además, todo monomorfismo es un núcleo y todo epimorfismo es un conúcleo, por lo que es una \emph{categoría abeliana}.
+
+Una sucesión de módulos es \emph{exacta} en un término cuando la imagen de la flecha que llega coincide con el núcleo de la que sale. En una sucesión exacta corta
+\[
+0\longrightarrow N\xrightarrow{\varphi}M
+\xrightarrow{\psi}P\longrightarrow0,
+\]
+$\varphi$ es inyectivo, $\psi$ es sobreyectivo y $\im\varphi=\ker\psi$. Por el primer isomorfismo, $N\cong\im\varphi$ y $P\cong M/\im\varphi$. Así, la \cref{prop:C15-extension}, que se demostrará al estudiar módulos noetherianos, equivale a que $M$ sea noetheriano si y sólo si lo son los dos extremos $N,P$.

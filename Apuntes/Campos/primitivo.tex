@@ -1,0 +1,193 @@
+\section{Grado separable y teorema del elemento primitivo}\label{sec:campos-primitivo}
+
+\subsection{Grado separable e inmersiones de extensiones simples}\label{tema:25-3-3b}\label{tema:26-1-1}
+\begin{defi}
+Para una extensión finita $F/k$ y una clausura algebraica $\overline k$, el \emph{grado separable} es
+\[
+[F:k]_s=\card\Hom_k(F,\overline k),
+\]
+donde $\Hom_k(F,\overline k)$ reúne los homomorfismos de campos que fijan a $k$.
+\end{defi}
+Estos homomorfismos son inyectivos. Existe al menos uno por el \cref{lema:C24-inmersion}. Su número es finito: una familia finita de generadores algebraicos determina cada homomorfismo, y cada generador debe enviarse a una de las finitas raíces de su mínimo. El número no depende de la clausura elegida, pues componer con un isomorfismo entre dos clausuras que fija a $k$ da una biyección entre los conjuntos de homomorfismos.
+
+Fijemos una clausura algebraica $\overline k$ de $k$. La definición del grado separable de la sección~\ref{tema:25-3-3b} se extiende a cualquier extensión algebraica $F/k$ mediante
+\[
+[F:k]_s=\card\Hom_k(F,\overline k).
+\]
+Ahora esta cardinalidad puede ser infinita. El conjunto no es vacío por el \cref{lema:C24-inmersion}, y cambiar de clausura produce una biyección por composición con un isomorfismo sobre $k$.
+
+\begin{lema}\label{lema:C26-simple-separable}
+Sea $k(\alpha)/k$ una extensión algebraica simple, con polinomio mínimo $p$. Entonces $[k(\alpha):k]_s$ es el número de raíces distintas de $p$ en $\overline k$. En particular,
+\[
+[k(\alpha):k]_s\leq[k(\alpha):k],
+\]
+con igualdad si y sólo si $\alpha$ es separable sobre $k$.
+\end{lema}
+\begin{proof}
+Sean $\alpha_1,\ldots,\alpha_s$ las raíces distintas de $p$. Consideremos
+\[
+\begin{aligned}
+\Phi:\Hom_k(k(\alpha),\overline k)&\longrightarrow\{\alpha_1,\ldots,\alpha_s\},\\
+i&\longmapsto i(\alpha).
+\end{aligned}
+\]
+Está bien definida porque $p(i(\alpha))=i(p(\alpha))=0$: $i$ fija todos los coeficientes de $p$. Todo elemento de $k(\alpha)$ es una expresión polinómica en $\alpha$ con coeficientes de $k$, de modo que dos homomorfismos con la misma imagen de $\alpha$ coinciden en todo el campo. Así $\Phi$ es inyectiva.
+
+Para cada raíz $\beta$ de $p$, el isomorfismo de extensiones simples de la \cref{prop:C22-extender-iso} envía $\alpha$ a $\beta$ y fija a $k$. Su composición con la inclusión en $\overline k$ es una preimagen de $\beta$ bajo $\Phi$. Los diagramas de evaluación y de transporte son
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+k[t]\arrow[r,"\epsilon_\alpha"]\arrow[d,two heads]&
+k(\alpha)\arrow[r,"i"]&\overline k\\
+k[t]/(p)\arrow[ur,"\sim"']&&
+\end{tikzcd}
+\qquad
+\begin{tikzcd}[column sep=large,row sep=large]
+&k(\alpha)\arrow[dd,"\sim"]\arrow[dr,"i",destacado]&\\
+k\arrow[ur,hook]\arrow[dr,hook]&&\overline k\\
+&k(\beta)\arrow[ur,hook]&
+\end{tikzcd}
+\]
+La biyección da $[k(\alpha):k]_s=s\leq\deg p=[k(\alpha):k]$. La igualdad equivale a que todas las raíces de $p$ sean distintas.
+\end{proof}
+
+\subsection{La fórmula de la torre para el grado separable}\label{tema:26-1-2}
+\begin{lema}\label{lema:C26-torre-separable}
+Sean $k\subseteq E\subseteq F$ extensiones algebraicas. El grado $[F:k]_s$ es finito si y sólo si lo son $[F:E]_s$ y $[E:k]_s$. En ese caso,
+\[
+[F:k]_s=[F:E]_s[E:k]_s.
+\]
+\end{lema}
+\begin{proof}
+Incluyamos $F$ en $\overline k$. Este último campo es también una clausura algebraica de $E$: es algebraico sobre $E$ y algebraicamente cerrado. La restricción define
+\[
+R:\Hom_k(F,\overline k)\longrightarrow\Hom_k(E,\overline k),
+\qquad i\longmapsto\restr{i}{E}.
+\]
+Es sobreyectiva. En efecto, si $j:E\to\overline k$ fija a $k$, el argumento de prolongación mediante Zorn del \cref{lema:C24-inmersion}, con el homomorfismo inicial $j$, lo extiende a un homomorfismo $F\to\overline k$. El esquema es
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+F\arrow[dr,dashed,"i",destacado]&\\
+E\arrow[u,hook]\arrow[r,"j"']&\overline k\\
+k\arrow[u,hook]\arrow[ur,hook]&
+\end{tikzcd}
+\]
+Todas las fibras de $R$ tienen cardinalidad $[F:E]_s$. Para verlo, prolongamos $j$ a un homomorfismo $\tau:\overline k\to\overline k$ que fija a $k$. Es un automorfismo: su imagen es algebraicamente cerrada, y $\overline k$ es algebraico sobre ella porque ya es algebraico sobre $k$. El \cref{lema:C24-cerrado} obliga a que la imagen sea todo $\overline k$. Por tanto
+\[
+\Hom_E(F,\overline k)\longrightarrow R^{-1}(j),
+\qquad h\longmapsto\tau\circ h
+\]
+es una biyección, con inversa $i\mapsto\tau^{-1}\circ i$.
+
+Si $\Hom_k(E,\overline k)$ es infinito, la sobreyectividad hace infinito al dominio de $R$. Si una fibra es infinita, también lo es el dominio. Si ambos grados del enunciado son finitos, contamos las fibras mediante la regla del producto y obtenemos la fórmula.
+\end{proof}
+
+\begin{prop}\label{prop:C26-separable-generadores}
+Sea $F/k$ finita. Entonces $[F:k]_s\leq[F:k]$, y son equivalentes:
+\begin{enumerate}[nosep]
+\item $F=k(\alpha_1,\ldots,\alpha_r)$, donde cada $\alpha_i$ es separable sobre $k$;
+\item $F/k$ es separable;
+\item $[F:k]_s=[F:k]$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Una base vectorial finita genera $F$ como campo. Para cualquier familia finita de generadores, pongamos $K_0=k$ y $K_i=k(\alpha_1,\ldots,\alpha_i)$. Las dos fórmulas de la torre y el lema para extensiones simples dan
+\[
+[F:k]_s=\prod_{i=1}^r[K_i:K_{i-1}]_s
+\leq\prod_{i=1}^r[K_i:K_{i-1}]=[F:k].
+\]
+Si cada $\alpha_i$ es separable sobre $k$, también lo es sobre $K_{i-1}$. En efecto, su mínimo sobre $K_{i-1}$ divide al mínimo sobre $k$, que no tiene raíces múltiples. Todos los factores de la desigualdad son entonces iguales, lo que prueba $(1)\Rightarrow(3)$.
+
+Supongamos (3) y tomemos $\alpha\in F$. En la torre $k\subseteq k(\alpha)\subseteq F$ tenemos
+\[
+[F:k]_s=[F:k(\alpha)]_s[k(\alpha):k]_s,
+\qquad
+[F:k]=[F:k(\alpha)][k(\alpha):k].
+\]
+Cada factor de la primera igualdad es positivo y menor o igual que el correspondiente de la segunda. La igualdad de los productos obliga a la igualdad de cada pareja. Así $[k(\alpha):k]_s=[k(\alpha):k]$, y el \cref{lema:C26-simple-separable} muestra que $\alpha$ es separable. Esto prueba $(3)\Rightarrow(2)$. Por último, si la extensión es separable, cualquier familia finita de generadores satisface (1).
+\end{proof}
+
+\Needspace{6\baselineskip}
+\subsection{Finitud de los campos intermedios}\label{tema:26-2-1}
+\begin{ejer}[Extensiones finitas de campos finitos]\label{ejer:C26-campo-finito-simple}
+Probar que toda extensión finita de un campo finito es simple.
+\end{ejer}
+\begin{sol}
+Sea $F/k$ finita, con $k$ finito. Una base muestra que $F$ es un conjunto finito. Probaremos la ciclicidad del grupo multiplicativo.
+
+Sea $m$ el mínimo común múltiplo de los órdenes de sus elementos. Para cada primo $\ell$ que divide a $m$, elijamos un elemento cuyo orden tenga la máxima potencia $\ell^{a_\ell}$ presente en $m$. Elevándolo a la parte de su orden coprima con $\ell$, obtenemos un elemento $v_\ell$ de orden $\ell^{a_\ell}$. Los $v_\ell$ conmutan y sus órdenes son coprimos dos a dos. Para dos elementos $a,b$ de órdenes coprimos, $(ab)^t=e$ implica $a^t=b^{-t}\in\ang{a}\cap\ang{b}$. Por Lagrange, esa intersección es trivial; por tanto, ambos órdenes dividen a $t$ y también lo hace su producto. A la inversa, elevar $ab$ al producto de los órdenes da $e$. Iterando este argumento, el producto $v$ de los $v_\ell$ tiene orden $m$.
+
+Todo elemento de $F^\times$ satisface $x^m=1$. Como un polinomio no nulo de grado $m$ tiene a lo sumo $m$ raíces, $|F^\times|\leq m$. La inclusión $\ang{v}\subseteq F^\times$ da la desigualdad opuesta, luego $F^\times=\ang{v}$. El campo $k(v)$ contiene todas las potencias de $v$ y a cero, por lo que coincide con $F$.
+\end{sol}
+
+\begin{prop}\label{prop:C26-intermedios-simple}
+Una extensión algebraica $F/k$ es simple si y sólo si tiene un número finito de campos intermedios $k\subseteq E\subseteq F$.
+\end{prop}
+\begin{proof}
+Supongamos $F=k(\alpha)$ y sea $q_k$ el mínimo de $\alpha$ sobre $k$. Para un campo intermedio $E$, sea $q_E$ el mínimo de $\alpha$ sobre $E$ y sea $E'$ el campo generado sobre $k$ por los coeficientes de $q_E$. Entonces
+\[
+k\subseteq E'\subseteq E\subseteq F,
+\qquad q_E\in E'[t],\qquad q_E\mid q_k\quad\text{en }E[t].
+\]
+El polinomio $q_E$ sigue siendo irreducible sobre $E'$, pues una factorización allí también lo sería sobre $E$. Como $E'(\alpha)=E(\alpha)=F$, resulta
+\[
+[F:E']=[F:E]=\deg q_E.
+\]
+La torre da $[E:E']=1$, luego $E=E'$. Por tanto $q_E$ determina a $E$. Todos los $q_E$ son divisores mónicos de $q_k$ en el anillo $F[t]$, que es un DFU; un polinomio fijo tiene sólo finitos divisores mónicos. Hay, pues, finitos campos intermedios. Las relaciones utilizadas se resumen en
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+F\arrow[r,equal]&k(\alpha)\\
+E\arrow[u,hook]\arrow[r,hook]&E(\alpha)\arrow[u,equal]\\
+k\arrow[u,hook]\arrow[r,hook]&k(\alpha)\arrow[u,equal]
+\end{tikzcd}
+\]
+
+Recíprocamente, supongamos que hay finitos campos intermedios. Entre los subcampos de $F$ finitamente generados sobre $k$, elijamos uno maximal $K$, lo que es posible por esa finitud. Para todo $\beta\in F$, el campo $K(\beta)$ sigue siendo finitamente generado y contiene a $K$, de modo que $K(\beta)=K$. Así $F=K$ es finitamente generado y, por ser algebraico, es finito sobre $k$.
+
+Si $k$ es finito, aplicamos el ejercicio anterior. Si $k$ es infinito, basta reducir una familia finita de generadores a uno, de dos en dos. Para $k(\alpha,\beta)$, los infinitos elementos $c\in k$ producen sólo finitos campos $k(c\alpha+\beta)$. Existen $c\ne c'$ tales que
+\[
+E=k(c\alpha+\beta)=k(c'\alpha+\beta).
+\]
+Entonces
+\[
+\alpha=\frac{(c'\alpha+\beta)-(c\alpha+\beta)}{c'-c}\in E,
+\qquad \beta=(c\alpha+\beta)-c\alpha\in E.
+\]
+Por tanto $k(\alpha,\beta)=k(c\alpha+\beta)$. La misma propiedad de finitud vale dentro de cada campo generado por parte de la familia original. Por inducción, si $k(\alpha_1,\ldots,\alpha_{r-1})=k(u)$, podemos escribir $F=k(u,\alpha_r)=k(cu+\alpha_r)$ para algún $c\in k$.
+\end{proof}
+
+\subsection{Extensiones finitas separables y automorfismos}\label{tema:26-2-2}
+\begin{prop}[Elemento primitivo]\label{prop:C26-primitivo}
+Toda extensión finita separable $F/k$ es simple.
+\end{prop}
+\begin{proof}
+Si $k$ es finito, el \cref{ejer:C26-campo-finito-simple} da el resultado. Supongamos que $k$ es infinito. Como $F$ tiene finitos generadores, basta probar que $F=k(\alpha,\beta)$ es simple y después proceder por inducción. Los campos intermedios son separables sobre $k$ por estar contenidos en $F$.
+
+Sea $\mathcal I=\Hom_k(F,\overline k)$. Es finito, de cardinalidad $[F:k]_s$. Para $i\ne j$ en $\mathcal I$, los polinomios lineales
+\[
+i(\alpha)t+i(\beta),\qquad j(\alpha)t+j(\beta)
+\]
+son distintos: si coincidieran, $i$ y $j$ coincidirían en los generadores y en $k$, luego en todo $F$. Por ello
+\[
+P(t)=\prod_{\substack{i,j\in\mathcal I\\i\ne j}}
+\bigl((i(\alpha)-j(\alpha))t+i(\beta)-j(\beta)\bigr)
+\in\overline k[t]
+\]
+es no nulo. Si no hay parejas distintas, el producto es uno. El polinomio tiene finitas raíces y $k$ es infinito, así que podemos elegir $c\in k$ con $P(c)\ne0$.
+
+Para $\gamma=c\alpha+\beta$, las imágenes $i(\gamma)$ son distintas cuando $i$ varía en $\mathcal I$. Todas son raíces del mínimo de $\gamma$ sobre $k$. En consecuencia,
+\[
+[F:k]_s\leq[k(\gamma):k]\leq[F:k].
+\]
+La separabilidad da $[F:k]_s=[F:k]$, por la \cref{prop:C26-separable-generadores}. Así $k(\gamma)$ y $F$ tienen la misma dimensión finita sobre $k$; la inclusión entre ellos obliga a que sean iguales.
+\end{proof}
+
+\begin{coro}\label{coro:C26-aut-normal}
+Si $F/k$ es finita y separable, entonces
+\[
+|\Aut_k(F)|\leq[F:k],
+\]
+con igualdad si y sólo si $F/k$ es normal.
+\end{coro}
+\begin{proof}
+Por el elemento primitivo, $F=k(\alpha)$. El \cref{coro:C22-automorfismos} identifica sus automorfismos con las raíces del mínimo $p$ de $\alpha$ que pertenecen a $F$. De ahí la desigualdad. Como $p$ es separable, la igualdad significa que todas sus raíces pertenecen a $F$; entonces $F$ es su campo de descomposición y es normal por el \cref{teo:C24-normal}. A la inversa, la normalidad hace que $p$ se descomponga en $F$, y la separabilidad da exactamente $\deg p=[F:k]$ raíces distintas.
+\end{proof}

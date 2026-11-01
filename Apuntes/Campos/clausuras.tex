@@ -1,0 +1,161 @@
+\section{Campos algebraicamente cerrados y clausuras algebraicas}\label{sec:campos-clausuras}
+
+\subsection{Campos algebraicamente cerrados y clausuras}\label{tema:19-2-2}\label{tema:24-1-1}
+\begin{defi}
+Un campo $k$ es \emph{algebraicamente cerrado} si todos los polinomios irreducibles de $k[x]$ tienen grado uno.
+\end{defi}
+\begin{lema}\label{lema:C19-cerrado}
+Para un campo $k$, son equivalentes:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $k$ es algebraicamente cerrado.
+\item Todo polinomio no constante de $k[x]$ es producto de factores lineales.
+\item Todo polinomio no constante de $k[x]$ tiene una raíz en $k$.
+\end{enumerate}
+\end{lema}
+\begin{proof}
+Para (i)$\Rightarrow$(ii), $k[x]$ es DFU, así que un polinomio no constante es producto de irreducibles. Por (i), cada uno tiene grado uno. Reuniendo los coeficientes principales se escribe $f=a\prod_{i=1}^n(x-r_i)$, con $a\in k^\times$.
+
+Para (ii)$\Rightarrow$(iii), hay al menos un factor lineal porque el grado es positivo, y su raíz es raíz de $f$.
+
+Para (iii)$\Rightarrow$(i), sea $f$ irreducible. No es constante, pues las constantes no nulas son unidades y el cero no es irreducible. Por (iii), tiene una raíz $r$, de modo que $f=(x-r)g$. La irreducibilidad hace que $g$ sea unidad, luego constante no nula, y $\deg f=1$.
+\end{proof}
+
+\begin{prop}\label{prop:C19-infinito}
+Todo campo algebraicamente cerrado es infinito.
+\end{prop}
+\begin{proof}
+Si $k=\{c_1,\ldots,c_N\}$ fuera finito, el polinomio
+\[
+P(x)=\prod_{i=1}^N(x-c_i)+1
+\]
+tendría grado $N>0$ y satisfaría $P(c)=1\ne0$ para todo $c\in k$. Contradice el \cref{lema:C19-cerrado}.
+\end{proof}
+
+Recordemos que un campo $K$ es algebraicamente cerrado si todos los irreducibles de $K[t]$ tienen grado uno; equivalentemente, todo polinomio no constante tiene una raíz en $K$ y se descompone en factores lineales. También equivale a que los ideales maximales de $K[t]$ sean todos de la forma $(t-c)$, con $c\in K$: este anillo es un DIP y sus ideales maximales están generados por irreducibles. Es el mismo argumento aplicado a $\mathbb C$ en el \cref{ejer:C13-complejos}.
+
+\begin{lema}\label{lema:C24-cerrado}
+Para un campo $K$ son equivalentes:
+\begin{enumerate}[nosep]
+\item $K$ es algebraicamente cerrado;
+\item toda extensión algebraica de $K$ coincide con $K$;
+\item si $K\subseteq L$ es cualquier extensión y $\alpha\in L$ es algebraico sobre $K$, entonces $\alpha\in K$.
+\end{enumerate}
+\end{lema}
+\begin{proof}
+Si $K$ es algebraicamente cerrado y $L/K$ es algebraica, el mínimo de cada $\alpha\in L$ es lineal: tiene la forma $t-c$, con $c\in K$. Por tanto $\alpha=c$ y $L=K$.
+
+La segunda condición aplicada a la extensión algebraica $K(\alpha)/K$ da la tercera. Finalmente, sea $f\in K[t]$ irreducible. En el campo $K[t]/(f)$, la clase $\alpha=t+(f)$ es una raíz algebraica de $f$. Por la tercera condición pertenece a $K$, luego $t-\alpha$ divide a $f$ en $K[t]$ y su irreducibilidad obliga a que tenga grado uno.
+\end{proof}
+
+\begin{defi}
+Una \emph{clausura algebraica} de un campo $k$ es una extensión algebraica $k\subseteq\overline k$ en la que $\overline k$ es algebraicamente cerrado.
+\end{defi}
+Así, no sólo se descomponen los polinomios de $k[t]$, sino también los que tienen coeficientes en $\overline k$. La condición de algebraicidad impone una minimalidad: si $k\subseteq E\subsetneq\overline k$, entonces $E$ no puede ser algebraicamente cerrado, pues $\overline k/E$ sería una extensión algebraica propia.
+
+\begin{ejer}[Las raíces generan la clausura]\label{ejer:C24-raices-clausura}
+Sea $k\subseteq\overline k$ una clausura algebraica. Probar que si un subcampo $E\subseteq\overline k$ contiene a $k$ y a todas las raíces, en $\overline k$, de todos los polinomios no constantes de $k[t]$, entonces $E=\overline k$.
+\end{ejer}
+\begin{sol}
+Todo $\alpha\in\overline k$ es algebraico sobre $k$, por lo que es raíz de su mínimo no constante en $k[t]$. La hipótesis exige que esa raíz pertenezca a $E$. Así $\overline k\subseteq E$, y la otra inclusión ya estaba dada.
+\end{sol}
+
+\subsection{Adjunción simultánea de raíces}\label{tema:24-2-1}
+\begin{lema}\label{lema:C24-raiz-simultanea}
+Para todo campo $k$ existe una extensión $k\subseteq K$ en la que cada polinomio no constante de $k[t]$ tiene al menos una raíz.
+\end{lema}
+\begin{proof}
+Sea $\mathcal P$ el conjunto de polinomios mónicos no constantes de $k[t]$. Introducimos una indeterminada $t_f$ por cada $f\in\mathcal P$ y formamos
+\[
+\mathcal T=\set{t_f\given f\in\mathcal P},\qquad A=k[\mathcal T],\qquad
+I=\sum_{f\in\mathcal P}(f(t_f))\subseteq A.
+\]
+El anillo de polinomios puede tener infinitas indeterminadas, pero cada polinomio usa sólo finitas y cada elemento del ideal es una suma finita de múltiplos de sus generadores.
+
+El ideal $I$ es propio. De lo contrario existiría una identidad
+\[
+1=\sum_{i=1}^n a_i f_i(t_{f_i}),\qquad a_i\in A,
+\]
+con los $f_i$ distintos. Adjuntando sucesivamente una raíz de un factor irreducible de cada $f_i$, construimos una extensión $k\subseteq E$ con raíces $\alpha_i$ de todos ellos. Existe una evaluación $A\to E$ que envía $t_{f_i}$ a $\alpha_i$ y las demás indeterminadas a cero. Aplicada a la identidad da $1=0$, contradicción.
+
+Por la \cref{prop:C17-maximales}, hay un maximal $\mathfrak m\supseteq I$. El cociente $K=A/\mathfrak m$ es un campo y el mapa de constantes $k\to K$ es inyectivo: su núcleo es un ideal propio del campo $k$. Para cada $f\in\mathcal P$, la clase de $t_f$ es una raíz, pues $f(t_f)\in\mathfrak m$. Dividir cualquier polinomio no constante por su coeficiente principal lo vuelve mónico sin cambiar sus raíces.
+\end{proof}
+
+La construcción proporciona raíces de los polinomios del campo de partida. En la extensión aparecen también polinomios con coeficientes nuevos: sobre $k=\mathbb Q$ podemos tener elementos $a,b$ con $a^2=2$ y $b^4=3$, y considerar ahora $t^2-a$. El lema por sí solo no afirma que todos los polinomios con esos nuevos coeficientes tengan raíz. Por eso iteramos el procedimiento:
+\[
+K_0=k\subseteq K_1\subseteq K_2\subseteq\cdots,
+\qquad L=\bigcup_{n\geq0}K_n,
+\]
+donde cada polinomio no constante de $K_n[t]$ tiene una raíz en $K_{n+1}$.
+
+\begin{prop}\label{prop:C24-union-cerrada}
+La unión $L$ de esta cadena es un campo algebraicamente cerrado.
+\end{prop}
+\begin{proof}
+Dos elementos de $L$ pertenecen simultáneamente a algún $K_n$. Su suma y producto se calculan allí, y el inverso de un elemento no nulo también pertenece a ese campo. Las inclusiones garantizan que las operaciones son compatibles, por lo que $L$ es un campo.
+
+Si $f\in L[t]$ es no constante, sus finitos coeficientes pertenecen simultáneamente a algún $K_n$. Entonces $f$ tiene una raíz en $K_{n+1}\subseteq L$. Esto caracteriza a los campos algebraicamente cerrados.
+\end{proof}
+
+\begin{lema}\label{lema:C24-parte-algebraica}
+Si $k\subseteq L$ y $L$ es algebraicamente cerrado, entonces
+\[
+\overline k=\set{\alpha\in L\given \alpha\text{ es algebraico sobre }k}
+\]
+es una clausura algebraica de $k$.
+\end{lema}
+\begin{proof}
+El \cref{coro:C23-campo-algebraicos} muestra que $\overline k$ es un campo, algebraico sobre $k$ por su definición. Sea $\overline k\subseteq\overline k(\alpha)$ una extensión simple algebraica y sea $p$ el mínimo de $\alpha$. Como $L$ es algebraicamente cerrado, $p$ tiene una raíz $\beta\in L$. La adjunción de una raíz induce un homomorfismo
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\overline k\arrow[r,hook]\arrow[d,hook]&L\\
+\overline k[t]/(p)\arrow[ur,hook,"\epsilon_\beta"',destacado]&
+\end{tikzcd}
+\]
+que permite identificar $\overline k(\alpha)$ con $\overline k(\beta)\subseteq L$. La torre $k\subseteq\overline k\subseteq\overline k(\beta)$ es algebraica por el \cref{coro:C23-torre-algebraica}. Así $\beta$ es algebraico sobre $k$ y pertenece a $\overline k$, de donde la extensión simple inicial es trivial. Por el \cref{lema:C24-cerrado}, $\overline k$ es algebraicamente cerrado.
+\end{proof}
+El homomorfismo del diagrama queda determinado una vez elegida la raíz $\beta$. Sin fijar esa imagen puede haber varios homomorfismos que extiendan la inclusión del campo base. La unicidad de una clausura será salvo isomorfismo, sin exigir que el isomorfismo sea único.
+
+\subsection{Prolongación de homomorfismos mediante Zorn}\label{tema:24-2-2}
+\begin{lema}\label{lema:C24-inmersion}
+Si $F/k$ es algebraica y $L$ es un campo algebraicamente cerrado que contiene a $k$, existe un homomorfismo $F\to L$ que restringe a la identidad de $k$.
+\end{lema}
+\begin{proof}
+Consideremos el conjunto
+\[
+\mathcal Z=\set{(K,i_K)\given k\subseteq K\subseteq F,
+\ i_K:K\to L,\ \restr{i_K}{k}=\id_k}.
+\]
+Es no vacío porque contiene la inclusión de $k$. Lo ordenamos por prolongación: $(K,i_K)\preceq(K',i_{K'})$ si $K\subseteq K'$ y $\restr{i_{K'}}{K}=i_K$.
+
+Para una cadena no vacía, sea $K_C$ la unión de sus campos. Es un campo y las aplicaciones se reúnen en un homomorfismo $i_C:K_C\to L$: el valor de un elemento se calcula en cualquier miembro que lo contenga, y la compatibilidad asegura que es independiente de la elección. Para comprobar suma y producto basta tomar un miembro que contenga los dos elementos. Esta aplicación es una cota superior de la cadena. La cadena vacía admite como cota la inclusión de $k$. El esquema de compatibilidad es
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+&L&\\
+K\arrow[r,hook]\arrow[ur,"i_K"]&
+K'\arrow[r,hook]\arrow[u,"i_{K'}"']&
+K_C\arrow[ul,dashed,"i_C"',destacado].
+\end{tikzcd}
+\]
+Por Zorn existe un elemento maximal $(G,i_G)$. Sea $H=i_G(G)$; el mapa $i_G:G\to H$ es un isomorfismo porque todo homomorfismo de campos es inyectivo.
+
+Si $G\ne F$, elijamos $\alpha\in F\setminus G$. Es algebraico sobre $G$, pues ya lo es sobre $k$. Su mínimo $g\in G[t]$ se transforma mediante el isomorfismo de coeficientes en un irreducible $h\in H[t]$. El campo $L$ contiene una raíz $\beta$ de $h$. Por el transporte de extensiones simples de la \cref{prop:C22-extender-iso}, $i_G$ se prolonga a un isomorfismo $G(\alpha)\to H(\beta)\subseteq L$ que envía $\alpha$ a $\beta$:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+G\arrow[r,"i_G","\sim"']\arrow[d,hook]&
+H\arrow[d,hook]\\
+G(\alpha)\arrow[r,dashed,"\widetilde i_G","\sim"',destacado]&
+H(\beta)\arrow[r,hook]&L.
+\end{tikzcd}
+\]
+Como $G(\alpha)\subseteq F$ contiene propiamente a $G$, contradice la maximalidad. Luego $G=F$.
+\end{proof}
+
+\begin{teo}\label{teo:C24-clausura}
+Todo campo admite una clausura algebraica. Dos clausuras de $k$ son isomorfas mediante un isomorfismo que fija a $k$.
+\end{teo}
+\begin{proof}
+Para la existencia, construimos un campo algebraicamente cerrado $L\supseteq k$ mediante la cadena anterior y tomamos su parte algebraica sobre $k$, que es una clausura por el \cref{lema:C24-parte-algebraica}.
+
+Si $\overline k_1$ y $\overline k_2$ son dos clausuras, el \cref{lema:C24-inmersion} proporciona un homomorfismo $i:\overline k_1\to\overline k_2$ que fija a $k$. Su imagen $H$ es algebraicamente cerrada, por ser isomorfa a $\overline k_1$. La extensión $\overline k_2/H$ es algebraica: cada elemento ya es algebraico sobre $k\subseteq H$. El \cref{lema:C24-cerrado} obliga a que $H=\overline k_2$, de modo que $i$ es sobreyectivo y es un isomorfismo.
+\end{proof}
+En particular, $\overline{\mathbb Q}$ es una clausura algebraica del campo racional.

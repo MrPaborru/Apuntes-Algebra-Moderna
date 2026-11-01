@@ -1,0 +1,101 @@
+\section{Ideales principales y división por polinomios mónicos}\label{sec:anillos-principales}
+
+\subsection{Anillos noetherianos y dominios de ideales principales}\label{tema:12-3-2}
+\begin{defi}
+Un anillo conmutativo es \emph{noetheriano} si todos sus ideales son finitamente generados. Un \emph{dominio de ideales principales}, abreviado DIP, es un dominio entero cuyos ideales son todos principales.
+\end{defi}
+Todo DIP es noetheriano, ya que un generador es una familia finita.
+
+\begin{prop}\label{prop:C12-ZDIP}
+El anillo $\mathbb Z$ es un dominio de ideales principales.
+\end{prop}
+\begin{proof}
+Es dominio. Cada ideal es subgrupo aditivo de $\mathbb Z$, luego es $n\mathbb Z$ para algún $n\geq0$, por la clasificación de subgrupos de un grupo cíclico. Pero $n\mathbb Z=(n)$, así que es principal.
+\end{proof}
+
+\begin{ejem}[Máximo común divisor]
+En $\mathbb Z$, $(m,n)=(d)$ con $d\geq0$. Como $m,n\in(d)$, $d$ divide a ambos. Como $d\in(m,n)$, existen $a,b\in\mathbb Z$ con $d=am+bn$. Todo divisor común $d'$ divide esa combinación, luego divide a $d$. Por tanto, $d=\mcd(m,n)$ y la descripción del ideal produce la identidad de Bézout. Si $m=n=0$, se toma $d=0$.
+\end{ejem}
+
+\begin{ejem}\label{ejem:C12-noDIP}
+El anillo $\mathbb Z[x]$ no es un DIP: el ideal $(2,x)$ no es principal. Primero, $(2,x)$ es propio, porque el término constante de $2a(x)+xb(x)$ es par y, por tanto, $1$ no pertenece al ideal.
+
+Si $(2,x)=(f)$, entonces $f$ divide a $x$ y a $2$. En $\mathbb Z[x]$ el grado de un producto no nulo es la suma de los grados, porque el producto de sus coeficientes principales no se anula. La igualdad $x=fg$ obliga a que $f=\pm1$ o $f=\pm x$: uno de los factores es constante y la igualdad de coeficientes principales exige constantes unidades. La primera posibilidad contradice que el ideal sea propio; la segunda contradice que $2\in(f)$, pues un múltiplo de $x$ tiene término constante cero.
+\end{ejem}
+\begin{obs}
+En $(2,x)\subseteq\mathbb Z[x]$, los coeficientes de una combinación $2a+bx$ pertenecen a $\mathbb Z[x]$. Por ejemplo, $x^2$ pertenece al ideal.
+\end{obs}
+
+\subsection{División por un polinomio mónico}\label{tema:12-3-3}
+En este apartado $R$ es conmutativo y no nulo. El grado de un polinomio no nulo es el mayor exponente con coeficiente no nulo; convenimos que $\deg0=-\infty$. Un polinomio es \emph{mónico} si su coeficiente principal es $1_R$.
+
+\begin{lema}\label{lema:C12-monico}
+Si $f$ es mónico de grado $d$ y $h\ne0$, entonces $fh\ne0$ y $\deg(fh)=d+\deg h$. En particular, $f$ no es divisor de cero. Si
+\[
+fq_1+r_1=fq_2+r_2,\qquad \deg r_1,\deg r_2<d,
+\]
+entonces $q_1=q_2$ y $r_1=r_2$.
+\end{lema}
+\begin{proof}
+Si el término principal de $h$ es $cx^m$, con $c\ne0$, el coeficiente de $x^{d+m}$ en $fh$ es $1_Rc=c\ne0$. Esto demuestra la primera afirmación incluso si $R$ tiene divisores de cero.
+
+Para la segunda, $f(q_1-q_2)=r_2-r_1$. Si $q_1-q_2\ne0$, el lado izquierdo tiene grado al menos $d$, mientras que el derecho tiene grado menor que $d$ o es cero. La contradicción da $q_1=q_2$, de donde se sigue $r_1=r_2$.
+\end{proof}
+
+
+\begin{prop}[División por un mónico]\label{prop:C12-division}
+Para $g\in R[x]$ y $f$ mónico de grado $d$, existen únicos $q,r\in R[x]$ tales que $g=fq+r$ y $\deg r<d$.
+\end{prop}
+\begin{proof}
+La unicidad es el \cref{lema:C12-monico}. Aplicamos el algoritmo de división. Si $g=0$ o $\deg g<d$, tomamos $q=0$, $r=g$. Si el término principal de $g$ es $cx^m$ con $m\geq d$, restamos $cx^{m-d}f$: el término de grado $m$ desaparece, por lo que el nuevo polinomio tiene grado menor o es cero. Repetimos el procedimiento. El grado desciende estrictamente en cada paso no trivial, de modo que termina y las cantidades restadas reúnen el cociente $q$. Para $d=0$, $f=1$ y la única posibilidad es $q=g$, $r=0$.
+\end{proof}
+
+
+\begin{prop}\label{prop:C12-restos}
+Si $f\in R[x]$ es mónico de grado $d$, cada clase de $R[x]/(f)$ tiene un único representante de grado menor que $d$. Sus coeficientes inducen un isomorfismo de grupos abelianos
+\[
+R[x]/(f)\cong R^{\oplus d}.
+\]
+\end{prop}
+\begin{proof}
+La división $g=fq+r$ da $g+(f)=r+(f)$. Si dos restos representan la misma clase, su diferencia es múltiplo de $f$ y tiene grado menor que $d$; el \cref{lema:C12-monico} obliga a que sea cero.
+
+Identificamos $r=a_0+a_1x+\cdots+a_{d-1}x^{d-1}$ con $(a_0,\ldots,a_{d-1})$. La aplicación que asigna a $g$ ese vector es aditiva: si $g_i=fq_i+r_i$, entonces $g_1+g_2=f(q_1+q_2)+(r_1+r_2)$, y la suma de restos sigue teniendo grado menor que $d$. Es sobreyectiva, porque todo vector determina un resto. Su núcleo es $(f)$, pues el resto es cero exactamente para los múltiplos de $f$. El primer teorema de isomorfismo de \emph{grupos aditivos} da el resultado. Para $d=0$, ambos lados son el grupo cero.
+\end{proof}
+Este isomorfismo describe la suma. Para multiplicar clases se multiplican sus representantes y se toma el resto del producto; en general, esto difiere del producto por componentes.
+
+\subsection{Evaluación y la construcción de los complejos}\label{tema:13-1-1}
+En esta sección los anillos son conmutativos. La \cref{prop:C12-restos}, identifica el grupo aditivo de un cociente por un mónico con los coeficientes de sus restos. La multiplicación depende del polinomio usado para reducirlos.
+
+\begin{ejem}[El resto al dividir por $x-a$]\label{ejem:C13-evaluacion}
+Para $a\in R$, la división por $x-a$ tiene resto constante:
+\[
+g(x)=(x-a)q(x)+r.
+\]
+Evaluando en $a$, $g(a)=(a-a)q(a)+r=r$. Por tanto, $g(a)=0$ si y sólo si $g\in(x-a)$. La evaluación $\ev_a:R[x]\to R$ preserva suma, producto y unidad y es sobreyectiva, porque todo elemento es valor de un polinomio constante. Su núcleo es $(x-a)$, de modo que
+\[
+R[x]/(x-a)\cong R
+\]
+como \emph{anillos}, por el \cref{teo:C12-primer-iso}.
+\end{ejem}
+
+\begin{ejem}[El cociente por $x^2+1$]
+Todo elemento de $R[x]/(x^2+1)$ tiene un único representante $a_0+a_1x$. Para calcular el producto escribimos
+\[
+\begin{aligned}
+(a_0+a_1x)(b_0+b_1x)
+&=a_0b_0+(a_0b_1+a_1b_0)x+a_1b_1x^2\\
+&=a_1b_1(x^2+1)+(a_0b_0-a_1b_1)+(a_0b_1+a_1b_0)x.
+\end{aligned}
+\]
+Así, al transportar el producto al grupo $R\oplus R$, se obtiene
+\[
+(a_0,a_1)\cdot(b_0,b_1)
+=(a_0b_0-a_1b_1,\ a_0b_1+a_1b_0).
+\]
+Para $R=\mathbb R$, la correspondencia $(a_0,a_1)\mapsto a_0+a_1i$ respeta exactamente la multiplicación usual de complejos y es biyectiva. Por ello
+\[
+\mathbb R[x]/(x^2+1)\cong\mathbb C
+\]
+como anillos. En particular, la relación $x^2=-1$ en el cociente produce esa estructura a partir de polinomios reales.
+\end{ejem}

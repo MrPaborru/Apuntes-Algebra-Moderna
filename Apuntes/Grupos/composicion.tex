@@ -1,0 +1,361 @@
+\section{Series de composición, simplicidad y resolubilidad}\label{sec:grupos-composicion}
+
+\subsection{Series de composición: definición y existencia}\label{tema:8-1-1a}\label{tema:8-1-1c}
+\begin{defi}
+Una \emph{serie normal} finita de $G$ es una cadena
+\[
+G=G_0\supseteq G_1\supseteq\cdots\supseteq G_n,
+\qquad G_{i+1}\trianglelefteq G_i.
+\]
+Su longitud es el número de inclusiones estrictas. Es una \emph{serie de composición} si termina en $\{e\}$, todas las inclusiones son estrictas y cada factor $G_i/G_{i+1}$ es simple. La normalidad exigida es en el término anterior, no necesariamente en todo $G$.
+\end{defi}
+Para un grupo finito, denotamos por $\ell(G)$ la máxima longitud de una serie normal. Existe ese máximo porque cada inclusión estricta disminuye el orden. Así, $\ell(G)=0$ equivale a $G=\{e\}$ y $\ell(G)=1$ equivale a que $G$ sea simple.
+
+\begin{prop}\label{prop:C8-existencia}
+Todo grupo finito tiene una serie de composición. Además, toda serie normal de longitud máxima es de composición.
+\end{prop}
+\begin{proof}
+Para la existencia hacemos inducción sobre $|G|$. El grupo trivial tiene la serie de longitud cero. Si $G$ es simple, sirve $G>\{e\}$. En otro caso elegimos un subgrupo normal propio $M$ maximal entre los normales propios de $G$. Existe por finitud. El cociente $G/M$ es simple: un normal propio no trivial del cociente se levantaría a un normal estrictamente entre $M$ y $G$, contradiciendo la elección. Por inducción, $M$ admite una serie de composición; anteponer $G$ produce la deseada.
+
+Sea ahora una serie de longitud máxima. Su último término debe ser trivial, pues de otro modo podríamos añadir $\{e\}$ y aumentar la longitud. Quitamos repeticiones. Si $G_i/G_{i+1}$ no fuera simple, un normal propio no trivial de este cociente tendría una preimagen $L$ con
+\[
+G_i>L>G_{i+1},\qquad L\trianglelefteq G_i,
+\quad G_{i+1}\trianglelefteq L.
+\]
+Insertar $L$ daría una serie normal más larga. Por tanto todos sus factores son simples.
+\end{proof}
+
+\subsection{Unicidad de los factores}\label{tema:8-1-2}
+\begin{defi}
+Dos series normales estrictas que terminan en el grupo trivial son \emph{equivalentes} si tienen la misma longitud y sus factores son isomorfos después de una permutación. Los \emph{factores de composición} son los tipos de isomorfismo de los factores de una serie de composición, contados con sus multiplicidades.
+\end{defi}
+
+\begin{lema}\label{lema:C8-intersecciones}
+Si $G=G_0>\cdots>G_n=\{e\}$ es una serie de composición y $N\trianglelefteq G$, la cadena $N\cap G_i$, después de eliminar repeticiones, es una serie de composición de $N$.
+\end{lema}
+\begin{proof}
+Es una serie normal: conjugar $N\cap G_{i+1}$ por un elemento de $N\cap G_i$ conserva ambos conjuntos. Consideremos
+\[
+\begin{tikzcd}[column sep=large]
+N\cap G_i \arrow[r,hook] \arrow[dr,destacado,"\varphi_i"'] & G_i \arrow[d,two heads] \\
+& G_i/G_{i+1}.
+\end{tikzcd}
+\]
+El núcleo de $\varphi_i$ es $N\cap G_{i+1}$. Su imagen es normal en $G_i/G_{i+1}$, porque $N\cap G_i\trianglelefteq G_i$. Por simplicidad, esa imagen es trivial o todo el cociente. En consecuencia,
+\[
+(N\cap G_i)/(N\cap G_{i+1})\cong\im\varphi_i
+\]
+es trivial o simple. Al suprimir igualdades, todos los factores restantes son simples; los extremos son $N$ y $\{e\}$.
+\end{proof}
+
+\begin{teo}[Jordan--Hölder]\label{teo:C8-jh}
+Dos series de composición de un mismo grupo son equivalentes.
+\end{teo}
+\begin{proof}
+Escribamos las dos series como
+\[
+G=G_0>G_1>\cdots>G_n=\{e\},\qquad
+G=G'_0>G'_1>\cdots>G'_m=\{e\}.
+\]
+Hacemos inducción sobre $n$, simultáneamente para todos los grupos que tengan una serie de esa longitud. Para $n=0$, el grupo es trivial y también $m=0$.
+
+Si $G_1=G'_1$, la hipótesis inductiva compara las dos colas de las series. Al añadir el factor común $G/G_1$ obtenemos la equivalencia.
+
+Supongamos $G_1\ne G'_1$. Ambos son normales propios maximales de $G$, por la simplicidad de sus cocientes. No puede contener uno al otro: una inclusión estricta contradiría esa maximalidad. Así $G_1G'_1$ es normal y contiene estrictamente a $G_1$, luego $G_1G'_1=G$. Sea $K=G_1\cap G'_1$. Por el lema anterior, $K$ tiene una serie de composición $K=K_0>K_1>\cdots>K_r=\{e\}$. El segundo teorema de isomorfismo da
+\[
+G_1/K\cong G/G'_1,\qquad G'_1/K\cong G/G_1.
+\]
+Son factores simples. Si $r=0$, las series terminan en $K=\{e\}$; para $r>0$, tienen la forma
+\[
+\begin{tikzcd}[column sep=1.1em,row sep=large]
+G \arrow[r,phantom,"{>}" ] \arrow[d,equal] & G_1 \arrow[r,phantom,"{>}" ] & K \arrow[r,phantom,"{>}" ] \arrow[d,equal] & K_1 \arrow[r,phantom,"\cdots" ] \arrow[d,equal] & \{e\} \arrow[d,equal] \\
+G \arrow[r,phantom,"{>}" ] & G'_1 \arrow[r,phantom,"{>}" ] & K \arrow[r,phantom,"{>}" ] & K_1 \arrow[r,phantom,"\cdots" ] & \{e\}.
+\end{tikzcd}
+\]
+Sus dos primeros factores están intercambiados hasta isomorfismo; los restantes coinciden.
+
+En $G_1$, comparamos la cola original, de longitud $n-1$, con $G_1>K>\cdots>\{e\}$. Por inducción son equivalentes, y $n-1=r+1$. En particular $r+1<n$, así que podemos aplicar la misma hipótesis en $G'_1$, comparando su serie a través de $K$, de longitud $r+1$, con la cola de la segunda serie original. Resulta $m-1=r+1=n-1$, y los factores coinciden con sus multiplicidades. El intercambio de los dos primeros factores completa la comparación en $G$.
+\end{proof}
+\begin{obs}
+La equivalencia de series compara sus factores salvo isomorfismo y reordenamiento; no exige que sus subgrupos sean iguales.
+\end{obs}
+En un grupo finito, la \cref{prop:C8-existencia} y Jordan--Hölder muestran que todas las series de composición tienen longitud $\ell(G)$. Si un grupo cualquiera admite una serie de composición, también escribiremos $\ell(G)$ para su longitud, bien definida por el teorema.
+
+\subsection{Subgrupos normales, cocientes y refinamientos}\label{tema:8-2-0}
+\begin{ejem}
+En notación aditiva, $G=\mathbb Z/6\mathbb Z$ tiene la serie
+\[
+G>\{[0],[3]\}>\{[0]\},
+\]
+con factores $C_3$ y $C_2$. Tomemos $N=\{[0],[2],[4]\}$. Las intersecciones con $N$ dan $N>\{[0]\}=\{[0]\}$; al suprimir la repetición queda el factor $C_3$. En el cociente, las imágenes son
+\[
+G/N=\{N,[1]+N\}=\{N,[3]+N\}>\{N\},
+\]
+pues $[3]+N=[1]+N$. Sólo queda el factor $C_2$. Así, los factores de $N$ y $G/N$ recuperan los de $G$, con sus multiplicidades.
+\end{ejem}
+
+\begin{prop}\label{prop:C8-factores-normal}
+Sea $N\trianglelefteq G$. El grupo $G$ admite una serie de composición si y sólo si la admiten $N$ y $G/N$. En ese caso,
+\[
+\ell(G)=\ell(N)+\ell(G/N),
+\]
+y los factores de $G$ son los de $N$ y los de $G/N$, reunidos con multiplicidades.
+\end{prop}
+\begin{proof}
+Supongamos primero que $N$ y $G/N$ tienen series de composición. Levantemos la del cociente por $\pi:G\to G/N$:
+\[
+G/N=\bar K_0>\cdots>\bar K_m=\{N\},
+\qquad K_i=\pi^{-1}(\bar K_i).
+\]
+La correspondencia da $G=K_0>\cdots>K_m=N$ y normalidad sucesiva. Por el tercer teorema de isomorfismo,
+\[
+K_i/K_{i+1}\cong(K_i/N)/(K_{i+1}/N)
+=\bar K_i/\bar K_{i+1}.
+\]
+Todos estos factores son simples. Concatenamos con una serie de composición de $N$; resulta una de $G$, cuyos factores son precisamente los de las dos series utilizadas.
+
+Recíprocamente, dada una serie $G=G_0>\cdots>G_n=\{e\}$, el \cref{lema:C8-intersecciones} produce una serie de composición de $N$. En $G/N$ tomamos las imágenes
+\[
+G_iN/N=\pi(G_i).
+\]
+La imagen de un normal por un homomorfismo es normal en la imagen del grupo ambiente: si $x\in G_i$ y $y\in G_{i+1}$, entonces $\pi(x)\pi(y)\pi(x)^{-1}=\pi(xyx^{-1})\in\pi(G_{i+1})$. Por tanto forman una serie normal. Sus factores se identifican con $G_iN/G_{i+1}N$. La aplicación
+\[
+\psi_i:G_i\longrightarrow G_iN/G_{i+1}N,
+\qquad g\longmapsto gG_{i+1}N
+\]
+es sobreyectiva: todo $gn\in G_iN$ tiene la misma clase que $g$, pues $n\in N\subseteq G_{i+1}N$. Su núcleo contiene a $G_{i+1}$, por lo que se factoriza como
+\[
+\begin{tikzcd}[column sep=large]
+G_i \arrow[r,two heads,"\psi_i"] \arrow[d,two heads] & G_iN/G_{i+1}N \\
+G_i/G_{i+1} \arrow[ur,dashed,two heads,destacado,"\bar\psi_i"'] &
+\end{tikzcd}
+\]
+El dominio de $\bar\psi_i$ es simple. Su núcleo es todo el dominio o trivial; por ello el factor de las imágenes es trivial o simple. Al quitar repeticiones obtenemos una serie de composición de $G/N$.
+
+Aplicando ahora la primera parte a las series obtenidas, construimos una serie de $G$ cuyos factores son la unión de ambas listas. Jordan--Hölder la compara con la serie original y da tanto la igualdad de longitudes como la afirmación sobre los factores.
+\end{proof}
+\begin{obs}
+La inclusión $G_{i+1}\subseteq\ker\psi_i$ permite factorizar $\psi_i$ por $G_i/G_{i+1}$ mediante la propiedad universal del cociente.
+\end{obs}
+
+\begin{defi}
+Un \emph{refinamiento} de una serie normal se obtiene insertando subgrupos, conservando los términos originales y la normalidad sucesiva.
+\end{defi}
+\begin{prop}
+Dos series normales de un grupo finito, ambas terminadas en $\{e\}$, admiten refinamientos equivalentes.
+\end{prop}
+\begin{proof}
+Quitamos repeticiones. Para cada factor $G_i/G_{i+1}$ elegimos una serie de composición, que existe por finitud. Levantamos sus términos a $G_i$ mediante la correspondencia. Al hacerlo en cada intervalo refinamos la serie original a una de composición. Hacemos lo mismo con la otra serie y aplicamos Jordan--Hölder a los dos refinamientos.
+\end{proof}
+
+\subsection{El mayor cociente abeliano}\label{tema:8-3-1}
+\begin{defi}
+El \emph{conmutador} de $g,h\in G$ es $[g,h]=ghg^{-1}h^{-1}$. El \emph{subgrupo conmutador} es
+\[
+G'=[G,G]=\ang{[g,h]\given g,h\in G}.
+\]
+Un subgrupo es \emph{característico} si lo preserva todo automorfismo de $G$; es \emph{plenamente invariante} si lo preserva todo endomorfismo de $G$.
+\end{defi}
+La igualdad $[g,h]=e$ equivale a $gh=hg$. En particular, $G$ es abeliano si y sólo si $G'=\{e\}$.
+\begin{obs}
+El conmutador $G'$ es el subgrupo generado por los conmutadores, por lo que contiene sus productos finitos e inversos. Un subgrupo es característico si lo preservan todos los automorfismos; si lo preservan todos los endomorfismos, es plenamente invariante. Ambas propiedades implican normalidad, pues incluyen las conjugaciones internas.
+\end{obs}
+
+\begin{lema}\label{lema:C8-conmutadores}
+Para un homomorfismo $\varphi:G\to H$ se cumple
+\[
+\varphi([g,h])=[\varphi(g),\varphi(h)],\qquad
+\varphi(G')\subseteq H'.
+\]
+En particular $G'$ es plenamente invariante y, por tanto, normal en $G$.
+\end{lema}
+\begin{proof}
+Aplicamos $\varphi$ al producto $ghg^{-1}h^{-1}$ y usamos que preserva productos e inversos. Las imágenes de los generadores de $G'$ pertenecen a $H'$, así que sus productos e inversos también. Para endomorfismos resulta $\varphi(G')\subseteq G'$. En particular, $gG'g^{-1}\subseteq G'$ para todo $g$; aplicando también la conjugación por $g^{-1}$ obtenemos igualdad.
+\end{proof}
+
+\begin{prop}[Abelianización]\label{prop:C8-abelianizacion}
+El cociente $G^{\mathrm{ab}}=G/G'$ es abeliano. Todo homomorfismo $\alpha:G\to A$ hacia un grupo abeliano satisface $G'\subseteq\ker\alpha$ y se factoriza de manera única por la proyección $\pi:G\to G^{\mathrm{ab}}$.
+\end{prop}
+\begin{proof}
+En el cociente, $[gG',hG']=[g,h]G'=G'$, luego cualesquiera dos clases conmutan. Si $A$ es abeliano, el lema anterior da $\alpha(G')\subseteq A'=\{e\}$. La propiedad universal del cociente produce un único homomorfismo $\bar\alpha$ con $\bar\alpha\pi=\alpha$:
+\[
+\begin{tikzcd}[column sep=large]
+& G \arrow[dl,two heads,"\pi"'] \arrow[dr,"\alpha"] & \\
+G^{\mathrm{ab}} \arrow[rr,dashed,destacado,"\bar\alpha"'] && A.
+\end{tikzcd}
+\]
+Explícitamente, $\bar\alpha(gG')=\alpha(g)$; la inclusión del núcleo asegura que no depende del representante y la sobreyectividad de $\pi$ asegura su unicidad.
+\end{proof}
+Consideremos la categoría cuyos objetos son los homomorfismos $\alpha:G\to A$ con $A$ abeliano, y cuyas flechas $\varphi:A\to B$ satisfacen $\varphi\alpha=\beta$. Sus triángulos tienen la forma
+\[
+\begin{tikzcd}[column sep=large]
+& G \arrow[dl,"\alpha"'] \arrow[dr,"\beta"] & \\
+A \arrow[rr,"\varphi"'] && B.
+\end{tikzcd}
+\]
+La proyección $G\to G^{\mathrm{ab}}$, junto con su codominio, es un objeto inicial de esta categoría.
+
+\subsection{Serie derivada y criterios de resolubilidad}\label{tema:8-3-2}
+\begin{defi}
+La \emph{serie derivada} se define por $G^{(0)}=G$ y $G^{(i+1)}=(G^{(i)})'$. El grupo es \emph{resoluble} si $G^{(r)}=\{e\}$ para algún $r\ge0$. Una serie normal es \emph{cíclica} o \emph{abeliana} cuando todos sus factores tienen esa propiedad.
+\end{defi}
+La serie derivada es normal y todos sus factores son abelianos. Si $G$ es abeliano, $G'=\{e\}$, así que es resoluble. Si $G$ es simple no abeliano, $G'$ es un normal no trivial, luego $G'=G$ y la serie permanece constante; ese grupo no es resoluble.
+
+\begin{prop}\label{prop:C8-resoluble}
+Para un grupo finito $G$ son equivalentes:
+\begin{enumerate}[nosep]
+\item todos sus factores de composición son cíclicos;
+\item admite una serie cíclica terminada en $\{e\}$;
+\item admite una serie abeliana terminada en $\{e\}$;
+\item es resoluble.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+La primera condición implica la segunda tomando una serie de composición, y la segunda implica la tercera porque todo grupo cíclico es abeliano.
+
+Para pasar de la tercera a la primera refinamos cada factor abeliano finito a una serie de composición y levantamos los términos. Sus factores siguen siendo abelianos, pues subgrupos y cocientes de abelianos son abelianos. Un grupo simple abeliano es cíclico de orden primo: si $a\ne e$, el subgrupo $\ang{a}$ es normal no trivial, luego es todo el grupo; un grupo cíclico de orden compuesto tiene un subgrupo propio no trivial. Por Jordan--Hölder, todos los factores de composición de $G$ son esos grupos cíclicos.
+
+La cuarta condición implica la tercera tomando la serie derivada hasta el término trivial. Recíprocamente, sea $G=G_0\supseteq\cdots\supseteq G_n=\{e\}$ una serie abeliana. Probamos inductivamente $G^{(i)}\subseteq G_i$. El caso $i=0$ es inmediato. Como $G_i/G_{i+1}$ es abeliano, la proyección anula todos los conmutadores y $G_i'\subseteq G_{i+1}$. Así,
+\[
+G^{(i+1)}=(G^{(i)})'\subseteq G_i'\subseteq G_{i+1}.
+\]
+Concluimos $G^{(n)}\subseteq G_n=\{e\}$. Este último argumento no necesita finitud.
+\end{proof}
+
+\begin{ejem}
+Todo $p$-grupo finito es resoluble. Sus factores de composición son $p$-grupos simples. El centro de un $p$-grupo no trivial es no trivial; si además es simple, su centro debe ser todo el grupo. Es entonces simple abeliano, y por el argumento anterior tiene orden $p$. Todos los factores son, por tanto, cíclicos.
+\end{ejem}
+
+
+\begin{coro}\label{coro:C8-extension-resoluble}
+Si $N\trianglelefteq G$, entonces $G$ es resoluble si y sólo si lo son $N$ y $G/N$. Todo subgrupo de un grupo resoluble es resoluble.
+\end{coro}
+\begin{proof}
+En el caso finito bastan la \cref{prop:C8-factores-normal} y el criterio de factores cíclicos. Para el caso general, sea $\pi:G\to G/N$ la proyección. Como todo conmutador del cociente se levanta a uno de $G$, se tiene $\pi(G')=(G/N)'$ e, inductivamente, $\pi(G^{(i)})=(G/N)^{(i)}$. Para $H\le G$, la inclusión da $H^{(i)}\subseteq G^{(i)}$. Por tanto, si $G$ es resoluble, también lo son $G/N$ y todo $H$, incluido $N$.
+
+Si $(G/N)^{(a)}=\{e\}$ y $N^{(b)}=\{e\}$, la igualdad de imágenes da $G^{(a)}\subseteq N$. Por consiguiente $G^{(a+b)}\subseteq N^{(b)}=\{e\}$, y $G$ es resoluble.
+\end{proof}
+\begin{obs}[Teorema de Feit--Thompson]
+Todo grupo finito de orden impar es resoluble. Enunciamos este teorema sin demostración.
+\end{obs}
+
+\subsection{Cuándo se divide una clase de conjugación}\label{tema:9-3-1}
+Para una permutación par $\sigma$, denotamos sus clases de conjugación por $[\sigma]_{S_n}$ y $[\sigma]_{A_n}$.
+\begin{lema}\label{lema:C9-centralizador}
+Para $n\ge2$ y $\sigma\in A_n$, si $Z_{S_n}(\sigma)\not\subseteq A_n$, entonces $[\sigma]_{A_n}=[\sigma]_{S_n}$. Si $Z_{S_n}(\sigma)\subseteq A_n$, la primera clase tiene la mitad del cardinal de la segunda y la clase de $S_n$ se divide en dos clases de $A_n$.
+\end{lema}
+\begin{proof}
+Sea $Z=Z_{S_n}(\sigma)$. Tenemos $Z_{A_n}(\sigma)=A_n\cap Z$. Si $Z\subseteq A_n$, la multiplicatividad de índices da
+\[
+|[\sigma]_{S_n}|=[S_n:Z]
+=2[A_n:Z]=2|[\sigma]_{A_n}|.
+\]
+Si $Z\not\subseteq A_n$, el producto $A_nZ$ es subgrupo y contiene estrictamente a $A_n$. Como el índice de $A_n$ es dos, $A_nZ=S_n$. La aplicación de conjuntos de clases izquierdas
+\[
+\begin{gathered}
+\begin{tikzcd}[column sep=large]
+A_n/(A_n\cap Z) \arrow[r,destacado,"\eta"] & S_n/Z
+\end{tikzcd}\\[4pt]
+\eta\bigl(a(A_n\cap Z)\bigr)=aZ
+\end{gathered}
+\]
+es biyectiva: es inyectiva por el criterio de igualdad de clases y sobreyectiva porque todo $g\in S_n$ es $az$. Por tanto los cardinales de las clases de conjugación coinciden, y la inclusión de una en otra implica igualdad. Estos cocientes son conjuntos de clases, sin suponer normalidad de $Z$.
+
+Para justificar la división, fijemos una permutación impar $t$. Como $S_n=A_n\cup tA_n$, la clase en $S_n$ es la unión de la clase de $\sigma$ en $A_n$ y la de $t\sigma t^{-1}$. Conjugar por $t$ da una biyección entre ellas. Si cada una tiene la mitad del cardinal total, son dos clases distintas.
+\end{proof}
+
+\begin{prop}\label{prop:C9-division}
+La clase de $\sigma\in A_n$ en $S_n$ se divide en dos clases de $A_n$ si y sólo si todas las partes de su tipo son impares y distintas, incluidas las partes iguales a uno.
+\end{prop}
+\begin{proof}
+Supongamos que las longitudes son impares y distintas. Si $\tau$ centraliza a $\sigma$, lleva cada órbita a una órbita de la misma longitud, pues $\tau\sigma^k=\sigma^k\tau$. Las longitudes distintas obligan a preservar cada órbita. En una órbita cíclica, la imagen de un punto determina las de todos los demás; por tanto la restricción de $\tau$ es una potencia del ciclo correspondiente. Todo ciclo de longitud impar es par, y también sus potencias. Así $\tau$ es par y $Z_{S_n}(\sigma)\subseteq A_n$.
+
+Si el tipo contiene un ciclo de longitud par, ese ciclo es una permutación impar que conmuta con todos los ciclos disjuntos de $\sigma$, luego pertenece a su centralizador. Si no hay longitudes pares pero dos ciclos tienen la misma longitud impar $r$, escribámoslos $(a_1\,\ldots\,a_r)$ y $(b_1\,\ldots\,b_r)$. La permutación
+\[
+\tau=(a_1\,b_1)\cdots(a_r\,b_r)
+\]
+intercambia esos dos ciclos por conjugación y fija los demás, así que centraliza a $\sigma$. Es impar porque es producto de $r$ transposiciones disjuntas. El argumento incluye $r=1$, es decir, dos puntos fijos. En ambos casos el centralizador contiene una permutación impar, y el lema anterior concluye la equivalencia.
+\end{proof}
+
+\begin{ejem}
+En $A_5$, sólo el tipo $[5]$ entre los tipos pares tiene partes impares distintas. Por ello las clases tienen tamaños $1,15,20,12,12$, y
+\[
+60=1+15+20+12+12.
+\]
+El grupo $A_5$ es simple: un normal contiene el neutro y es unión de clases. Los posibles órdenes de esas uniones son
+\begingroup
+\renewcommand{\arraystretch}{1.2}
+\[
+\begin{array}{c|l}
+\text{clases de tamaños 15 y 20 elegidas}&\text{órdenes al añadir 0, 1 o 2 clases de tamaño 12}\\[2pt]\hline
+\text{ninguna}&1,13,25\\
+15&16,28,40\\
+20&21,33,45\\
+15\text{ y }20&36,48,60
+\end{array}
+\]
+\endgroup
+Sólo $1$ y $60$ dividen a $60$, como exige Lagrange. Además es no abeliano: $(1\,2\,3)$ y $(1\,2\,4)$ dan imágenes distintas de $1$ al componerse en los dos órdenes, respectivamente $3$ y $4$.
+\end{ejem}
+
+\subsection{Generadores, caso base y simplicidad general}\label{tema:9-3-2}
+\begin{lema}\label{lema:C9-tres-ciclos}
+El grupo $A_n$ está generado por los $3$-ciclos. Para $n\ge5$, todos ellos son conjugados en $A_n$; por tanto, un normal que contenga uno de ellos es todo $A_n$.
+\end{lema}
+\begin{proof}
+Toda permutación par es producto de un número par de transposiciones, que agrupamos de dos en dos. Si dos transposiciones coinciden, su producto es la identidad. Si comparten un punto, podemos escribirlas $(a\,b)(a\,d)=(a\,d\,b)$. Si son disjuntas,
+\[
+(a\,b)(c\,d)=(a\,d\,c)(a\,b\,c).
+\]
+La última identidad se verifica sobre $a,b,c,d$: ambos lados intercambian $a,b$ e intercambian $c,d$, fijando los demás puntos. Así cada pareja es producto de $3$-ciclos. Recíprocamente, todos los $3$-ciclos son pares.
+
+Para $n\ge5$, su tipo $[3,1,\ldots,1]$ contiene al menos dos partes iguales a uno. Por la \cref{prop:C9-division}, su clase de $S_n$ no se divide en $A_n$, de modo que todos son conjugados allí. Un normal que contiene uno contiene todos sus conjugados y, por generación, todo el grupo.
+\end{proof}
+
+\begin{lema}\label{lema:C9-centro}
+Si $n\ge4$, entonces $Z(A_n)=\{e\}$.
+\end{lema}
+\begin{proof}
+Sea $\sigma\ne e$ y elijamos $i$ con $\sigma(i)=j\ne i$. Como $n\ge4$, existen dos puntos distintos $k,l$ fuera de $\{i,j\}$. El $3$-ciclo $c=(j\,k\,l)$ fija $i$. Así $(\sigma c)(i)=j$, mientras que $(c\sigma)(i)=k$. Luego $\sigma$ no conmuta con $c$ y no es central.
+\end{proof}
+
+\begin{lema}[Simplicidad de $A_6$]\label{lema:C9-A6}
+El grupo $A_6$ es simple.
+\end{lema}
+\begin{proof}
+Los tipos pares de $S_6$ y sus cardinales son
+\begingroup
+\renewcommand{\arraystretch}{1.2}
+\[
+\begin{array}{c|rrrrrr}
+\text{tipo}&[1^6]&[3,1,1,1]&[3,3]&[2,2,1,1]&[4,2]&[5,1]\\[2pt]\hline
+\text{cardinal en }S_6&1&40&40&45&90&144.
+\end{array}
+\]
+\endgroup
+En $[1^6]$ el exponente indica seis partes iguales a uno. Los recuentos son, respectivamente, $1$, $\binom63\,2!=40$, $\binom63(2!)^2/2=40$, $\binom62\binom42/2=45$, $\binom64\,3!=90$ y $\binom65\,4!=144$. Sólo $[5,1]$ tiene partes impares distintas, luego se divide en dos clases de $72$. Por tanto
+\[
+360=1+40+40+45+90+72+72.
+\]
+Un normal tendría orden $1+40a+45b+90c+72d$, con $a,d\in\{0,1,2\}$ y $b,c\in\{0,1\}$. Si es propio, ese orden divide a $360$ y es a lo sumo $180$.
+
+Si $d=0$, el orden es congruente con $1$ módulo $5$; los únicos divisores posibles son $1,6,36$, y toda suma no nula añadida a $1$ vale al menos $40$. Sólo sirve $1$. Si $d=1$, los divisores congruentes con $3$ módulo $5$ son $3,8,18$, menores que $73$. Si $d=2$, el orden es $145$ o al menos $185$; el primero no divide a $360$ y el segundo supera $180$. Quedan excluidos todos los normales propios no triviales.
+\end{proof}
+
+\begin{teo}\label{teo:C9-simple}
+El grupo $A_n$ es simple para todo $n\ge5$.
+\end{teo}
+\begin{proof}
+Los casos $5$ y $6$ ya están probados. Sea $n\ge7$ y $N\trianglelefteq A_n$ un normal no trivial. Elijamos $\tau\in N$, $\tau\ne e$. Por la prueba del \cref{lema:C9-centro}, existe un $3$-ciclo $\sigma$ que no conmuta con $\tau$. Entonces
+\[
+\rho=[\tau,\sigma]=(\tau\sigma\tau^{-1})\sigma^{-1}\ne e.
+\]
+Por normalidad, $\rho=\tau(\sigma\tau^{-1}\sigma^{-1})\in N$. Es producto de dos $3$-ciclos y mueve a lo sumo seis puntos. Completamos su soporte a un conjunto $T$ de seis puntos. El subgrupo $A(T)\cong A_6$ fija el complemento de $T$, y $N\cap A(T)$ es normal no trivial porque contiene a $\rho$. La simplicidad de $A_6$ implica $A(T)\subseteq N$. Así $N$ contiene un $3$-ciclo y, por el \cref{lema:C9-tres-ciclos}, $N=A_n$.
+\end{proof}
+
+\begin{coro}
+Para $n\ge5$, el grupo $S_n$ no es resoluble.
+\end{coro}
+\begin{proof}
+La cadena $S_n>A_n>\{e\}$ es una serie de composición: el primer factor es $C_2$ y el segundo es el grupo simple $A_n$. Este último no es cíclico; por ejemplo, los $3$-ciclos $(1\,2\,3)$ y $(1\,2\,4)$ no conmutan. El criterio de la \cref{prop:C8-resoluble} excluye la resolubilidad de $S_n$.
+\end{proof}

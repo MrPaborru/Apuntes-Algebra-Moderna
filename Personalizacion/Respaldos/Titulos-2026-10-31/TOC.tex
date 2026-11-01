@@ -1,0 +1,66 @@
+% Índice continuo con títulos temáticos y números visibles.
+\setcounter{tocdepth}{2}
+\setlength{\cftbeforechapskip}{1.1em}
+\setlength{\cftchapnumwidth}{2em}
+\renewcommand{\cftchapfont}{\bfseries\color{rojoCIMAT}}
+\renewcommand{\cftchappagefont}{\bfseries\color{rojoCIMAT}}
+\setlength{\cftsecindent}{1em}
+\setlength{\cftsecnumwidth}{3em}
+\setlength{\cftbeforesecskip}{.35em}
+\renewcommand{\cftsecfont}{\color{rojoCIMAT}}
+\renewcommand{\cftsecpagefont}{\color{rojoCIMAT}}
+\renewcommand{\cftsecleader}{\normalfont\color{rojoCIMAT}\cftdotfill{\cftsecdotsep}}
+\setlength{\cftsubsecindent}{4em}
+\setlength{\cftsubsecnumwidth}{4.1em}
+\setlength{\cftbeforesubsecskip}{.06em}
+\renewcommand{\cftsubsecfont}{\small}
+\renewcommand{\cftsubsecpagefont}{\small}
+
+% Capítulos: número en recuadro claro y título centrado sobre una franja.
+% Los títulos conservan el enlace aunque no se muestre el folio del capítulo.
+\hypersetup{linktoc=section}
+\makeatletter
+\newif\iftocprimerchapter
+% Título centrado, con mayor tamaño y aire vertical propio del índice.
+\renewcommand{\@cftmaketoctitle}{%
+  \titleformat{name=\chapter,numberless}[display]
+    {\centering\fontsize{32}{38}\selectfont\scshape\color{grisCIMAT}}{}{0pt}{##1}%
+  \titlespacing*{\chapter}{0pt}{-3em}{4.5em}%
+  \chapter*{\contentsname}%
+  \@cftpagestyle
+  \cftmarktoc
+  \tocprimerchaptertrue
+}
+\let\tocchapterplain\l@chapter
+\renewcommand{\l@chapter}[2]{%
+  \gdef\tocchapternumber{}%
+  \begingroup
+    \def\numberline##1{\gdef\tocchapternumber{##1}}%
+    \setbox\z@\hbox{#1}%
+  \endgroup
+  \ifx\tocchapternumber\@empty
+    \tocchapterplain{#1}{#2}%
+  \else
+    \addpenalty{-\@highpenalty}%
+    \iftocprimerchapter
+      \tocprimerchapterfalse
+    \else
+      \addvspace{1.4em}%
+    \fi
+    \begingroup
+      \parindent\z@\parskip\z@
+      \setlength{\fboxsep}{0pt}%
+      \def\numberline##1{}%
+      \noindent
+      \colorbox{rojoCIMAT!15}{%
+        \parbox[c][2em][c]{2.5em}{\centering
+          \Large\color{rojoCIMAT}\tocchapternumber}}%
+      \hspace{.6em}%
+      \colorbox{rojoCIMAT}{%
+        \parbox[c][2em][c]{\dimexpr\linewidth-3.1em\relax}{%
+          \centering\color{white}\Large\scshape#1}}%
+      \par\nobreak\vskip .5em
+    \endgroup
+  \fi}
+\makeatother
+\cftpagenumbersoff{chapter}

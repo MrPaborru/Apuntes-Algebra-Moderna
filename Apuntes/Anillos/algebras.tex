@@ -1,0 +1,105 @@
+\section{Álgebras y anillos de polinomios: construcción y propiedades universales}\label{sec:anillos-algebras}
+
+\subsection{Álgebras, morfismos y polinomios formales}\label{tema:13-3-1b}\label{tema:13-3-1d}\label{tema:11-2-1}
+El \emph{centro multiplicativo} del anillo es
+\[
+Z(S)=\set{s\in S\given st=ts\text{ para todo }t\in S}.
+\]
+\begin{defi}
+Sea $R$ conmutativo. Una \emph{$R$-álgebra} es un anillo $S$ junto con un homomorfismo $\alpha:R\to S$ cuya imagen está contenida en $Z(S)$.
+\end{defi}
+No se exige que $S$ sea conmutativo.
+
+En la categoría $R\text{-}\mathbf{Alg}$, un morfismo de $R$-álgebras $(S,\alpha)\to(T,\beta)$ es un homomorfismo de anillos $f:S\to T$ con $f\alpha=\beta$.
+
+\begin{defi}
+Un \emph{polinomio formal} con coeficientes en $R$ es una expresión
+\[
+f(x)=\sum_{i\geq0}a_ix^i,
+\qquad a_i\in R,\quad a_i=0\text{ para todo }i\text{ suficientemente grande}.
+\]
+Dos polinomios son iguales si coinciden todos sus coeficientes. Su conjunto se denota $R[x]$.
+\end{defi}
+Como grupo aditivo, $R[x]$ es la suma directa de copias de $(R,+)$ indexadas por los enteros no negativos: cada polinomio es una sucesión de soporte finito. La suma y el producto se definen por
+\[
+\sum_i a_ix^i+\sum_i b_ix^i=\sum_i(a_i+b_i)x^i,
+\qquad
+\left(\sum_i a_ix^i\right)\left(\sum_j b_jx^j\right)
+=\sum_{k\geq0}\left(\sum_{i+j=k}a_ib_j\right)x^k.
+\]
+En particular, los primeros coeficientes del producto son
+\[
+a_0b_0+(a_0b_1+a_1b_0)x
+ +(a_0b_2+a_1b_1+a_2b_0)x^2
+ +(a_0b_3+a_1b_2+a_2b_1+a_3b_0)x^3+\cdots.
+\]
+Sólo aparecen finitamente muchos términos no nulos. La unidad es el polinomio constante $1_R$, y $x$ conmuta con los coeficientes aun cuando $R$ no sea conmutativo. La asociatividad del producto resulta de comparar el coeficiente de $x^k$ en ambos agrupamientos: es la suma finita de $a_ib_jc_\ell$ para $i+j+\ell=k$. Las distributivas se comprueban coeficiente a coeficiente. Así, $R[x]$ es un anillo, conmutativo cuando lo es $R$.
+
+Se pueden añadir varias indeterminadas iterando la construcción:
+\[
+R[x,y,z]=R[x][y][z].
+\]
+Las nuevas indeterminadas conmutan con todos los coeficientes anteriores y, por tanto, entre sí. La igualdad de polinomios es formal, no una igualdad de sus posibles valores como funciones.
+
+\subsection{Propiedades universales de los anillos de polinomios}\label{tema:11-2-2b}\label{tema:14-3-2a}\label{tema:14-3-2c}
+Sea $A=\{a_1,\ldots,a_n\}$. Consideremos la categoría $\mathcal R_A$ cuyos objetos son funciones $j:A\to R$ con $R$ un anillo \emph{conmutativo}. Un morfismo $(j_1,R_1)\to(j_2,R_2)$ es un homomorfismo $\varphi$ que hace conmutar
+\[
+\begin{tikzcd}[column sep=large]
+R_1\arrow[r,"\varphi"]&R_2\\
+A\arrow[u,"j_1"]\arrow[ur,"j_2"']&
+\end{tikzcd}
+\]
+\begin{prop}\label{prop:C11-polinomio-universal}
+El objeto $(i,\mathbb Z[x_1,\ldots,x_n])$, con $i(a_k)=x_k$, es inicial en $\mathcal R_A$.
+\end{prop}
+\begin{proof}
+Para un objeto $(j,R)$, la conmutatividad exige $\varphi(x_k)=j(a_k)$. El único homomorfismo posible sobre los coeficientes es $\iota_R$, por la \cref{prop:C11-inicial}. Por tanto, todo monomio y toda suma finita están forzados:
+\[
+\varphi\left(\sum_{\boldsymbol\nu}m_{\boldsymbol\nu}
+ x_1^{\nu_1}\cdots x_n^{\nu_n}\right)
+=\sum_{\boldsymbol\nu}\iota_R(m_{\boldsymbol\nu})
+ j(a_1)^{\nu_1}\cdots j(a_n)^{\nu_n}.
+\]
+Esto prueba unicidad. La fórmula define una función que preserva suma, unidad y producto: al multiplicar, la distributividad reúne los términos de exponentes cuya suma es la misma, y la conmutatividad de $R$ permite ordenar los factores. Además, envía cada $x_k$ a $j(a_k)$. Es, pues, el mediador requerido:
+\[
+\begin{tikzcd}[column sep=large]
+\mathbb Z[x_1,\ldots,x_n]\arrow[r,destacado,"\exists!\,\varphi"]&R\\
+A\arrow[u,"i"]\arrow[ur,"j"']&
+\end{tikzcd}
+\qedhere
+\]
+\end{proof}
+
+Supongamos $R$ conmutativo y $A=\{1,\ldots,n\}$. Ponemos $R[A]=R[x_1,\ldots,x_n]$ y $j(i)=x_i$.
+\begin{prop}\label{prop:C14-algebra-libre}
+Para toda $R$-álgebra \emph{conmutativa} $(S,\alpha)$ y función $f:A\to S$, existe un único homomorfismo de $R$-álgebras $\varphi:R[A]\to S$ con $\varphi(x_i)=f(i)$.
+\end{prop}
+\begin{proof}
+Extendemos el homomorfismo sucesivamente. Primero, la fórmula
+\[
+\varphi_1\left(\sum_k r_kx_1^k\right)=\sum_k\alpha(r_k)f(1)^k
+\]
+extiende $\alpha$ a $R[x_1]$: preserva suma, producto y unidad porque $f(1)$ conmuta con los coeficientes. Es única porque fija los coeficientes y envía $x_1$ a $f(1)$. La compatibilidad con el producto se comprueba expandiendo:
+\[
+\varphi_1(r_0+r_1x_1^{k_1})=\alpha(r_0)+\alpha(r_1)f(1)^{k_1}.
+\]
+Después extendemos a $R[x_1][x_2]$, enviando $x_2$ a $f(2)$; este elemento conmuta con toda la imagen anterior porque $S$ es conmutativo. Continuamos hasta $x_n$. Cada extensión es única y la fórmula resultante es
+\[
+\varphi\left(\sum_{\boldsymbol\nu}r_{\boldsymbol\nu}
+x_1^{\nu_1}\cdots x_n^{\nu_n}\right)
+=\sum_{\boldsymbol\nu}\alpha(r_{\boldsymbol\nu})
+f(1)^{\nu_1}\cdots f(n)^{\nu_n}.
+\]
+Su restricción a las constantes es $\alpha$, así que es morfismo de $R$-álgebras. Los triángulos sucesivos se reúnen en el siguiente, conservando las imágenes de todos los generadores:
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+R[A]\arrow[r,dashed,destacado,"\exists!\,\varphi"]&S\\
+A\arrow[u,"j"]\arrow[ur,"f"']&
+\end{tikzcd}
+\qedhere
+\]
+\end{proof}
+
+\begin{obs}
+El homomorfismo estructural $\alpha:R\to S$ no tiene por qué ser inyectivo: la condición central es $\alpha(R)\subseteq Z(S)$. Para evaluar varias indeterminadas, sus imágenes deben conmutar entre sí. Por eso la propiedad universal de $R[A]$ se formula aquí para álgebras conmutativas.
+\end{obs}

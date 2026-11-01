@@ -1,0 +1,108 @@
+\section{Módulos sobre dominios de ideales principales}\label{sec:modulos-principales}
+
+\subsection{Separación de sumandos y libertad de submódulos}\label{tema:20-3-2}\label{tema:21-1-1}
+\begin{lema}[Separación de un sumando]\label{lema:C20-separacion}
+Sea $R$ un DIP, $F$ un módulo libre finitamente generado y $0\ne M\subseteq F$. Existen $a\ne0$, $x\in F$, $y=ax\in M\setminus\{0\}$ y submódulos $F'\subseteq F$, $M'=F'\cap M$ tales que
+\[
+F=Rx\oplus F',\qquad M=Ry\oplus M'.
+\]
+\end{lema}
+\begin{proof}
+Para $\varphi\in\Hom_R(F,R)$, la imagen $\varphi(M)$ es un ideal de $R$. La colección
+\[
+\mathcal I=\set{\varphi(M)\given \varphi\in\Hom_R(F,R)}
+\]
+es no vacía e incluye un ideal no nulo: tomando un elemento no nulo de $M$ y una coordenada no nula en una base de $F$, la proyección correspondiente tiene imagen no nula. Como $R$ es noetheriano, $\mathcal I$ tiene un elemento maximal por inclusión, digamos $\alpha(M)=(a)$, necesariamente no nulo. Elegimos $y\in M$ con $\alpha(y)=a\ne0$.
+
+Veamos que $a\mid\varphi(y)$ para toda $\varphi:F\to R$. Como $R$ es DIP, escribimos
+\[
+(a,\varphi(y))=(b),\qquad b=ra+s\varphi(y),
+\]
+y definimos $\psi=r\alpha+s\varphi$. Entonces $\psi(y)=b$, por lo que
+\[
+\alpha(M)=(a)\subseteq(b)\subseteq\psi(M).
+\]
+La maximalidad de $\alpha(M)$ en $\mathcal I$ da igualdad de los extremos y, por tanto, $(a)=(b)$. De aquí $\varphi(y)\in(a)$.
+
+Identifiquemos $F$ con $R^n$. Aplicando lo anterior a las proyecciones coordenadas, todas las coordenadas de $y$ son divisibles por $a$. Existe entonces $x\in F$ con $y=ax$. La igualdad
+\[
+a=\alpha(y)=a\alpha(x)
+\]
+implica $\alpha(x)=1$, pues $R$ es dominio y $a\ne0$.
+
+Tomemos $F'=\ker\alpha$ y $M'=M\cap F'$. Todo $z\in F$ se escribe
+\[
+z=\alpha(z)x+\bigl(z-\alpha(z)x\bigr),\qquad
+\alpha\bigl(z-\alpha(z)x\bigr)=0.
+\]
+Además, si $rx\in F'$, entonces $0=\alpha(rx)=r$. Así, $F=Rx\oplus F'$.
+
+Si $z\in M$, tenemos $\alpha(z)=ca$ para algún $c\in R$ y entonces
+\[
+\alpha(z)x=cy\in Ry,\qquad z-cy\in M\cap\ker\alpha=M'.
+\]
+Por ello $M=Ry+M'$. Finalmente, si $dy\in M'$, se cumple $0=\alpha(dy)=da$. Como $a\ne0$, resulta $d=0$, y la suma también es directa.
+\end{proof}
+
+En esta sección $R$ es un dominio de ideales principales, salvo cuando se indique una hipótesis más general. Por el \cref{lema:C20-separacion}, si $0\ne M\subseteq F$, con $F$ libre finitamente generado, podemos encontrar $y=ax\ne0$ y escribir
+\[
+F=Rx\oplus F',\qquad M=Ry\oplus(M\cap F').
+\]
+Usaremos también la elección de $a$ mediante una imagen maximal del submódulo $M$ en $R$.
+
+\begin{prop}\label{prop:C21-submodulo-libre}
+Si $F$ es libre de rango finito sobre un DIP y $M\subseteq F$ es un submódulo, entonces $M$ es libre de rango a lo sumo $\rk_R F$.
+\end{prop}
+\begin{proof}
+Sea $n=\rk_R F$. Si $M=0$, la base es vacía. En caso contrario, el lema da $y_1\ne0$ y $M^{(1)}\subseteq M$ tales que $M=Ry_1\oplus M^{(1)}$. Si $M^{(1)}\ne0$, aplicamos otra vez el lema a $M^{(1)}\subseteq F$, y obtenemos
+\[
+M=Ry_1\oplus Ry_2\oplus M^{(2)}.
+\]
+Continuamos mientras el último submódulo sea no nulo. Como $F$ es libre de torsión, cada $Ry_i$ es libre con base $y_i$; la suma directa asegura que los $y_i$ son independientes. La \cref{prop:C20-cardinal} impide obtener más de $n$ elementos independientes dentro de $F$. Si después de $n$ pasos quedara un submódulo no nulo, el lema produciría uno más, contradicción. Por tanto, en algún paso $m\leq n$ se tiene $M^{(m)}=0$, y
+\[
+M=Ry_1\oplus\cdots\oplus Ry_m.
+\]
+Los elementos $y_1,\ldots,y_m$ forman la base buscada.
+\end{proof}
+En cada paso se aplica el lema dentro del mismo módulo libre $F$; así no es necesario suponer previamente que los complementos sean libres.
+
+\subsection{Una base del ambiente adaptada al submódulo}\label{tema:21-1-2}
+\begin{coro}\label{coro:C21-bases-compatibles}
+Sea $M\subseteq F$, con $F$ libre de rango $n$ sobre un DIP. Existen una base $x_1,\ldots,x_n$ de $F$, un entero $0\leq m\leq n$ y elementos no nulos $a_1,\ldots,a_m$ tales que
+\[
+a_1x_1,\ldots,a_mx_m\text{ es una base de }M,
+\qquad a_1\mid a_2\mid\cdots\mid a_m.
+\]
+\end{coro}
+\begin{proof}
+Procedemos por inducción sobre $n$, incluyendo $n=0$. Si $M=0$, cualquier base de $F$ sirve, con $m=0$. Para $M\ne0$, aplicamos el lema de separación y escribimos
+\[
+F=Rx_1\oplus F',\qquad M=Ra_1x_1\oplus M',\qquad
+M'=M\cap F',
+\]
+donde $(a_1)=\alpha(M)$ fue elegido maximal entre las imágenes $\varphi(M)$ para $\varphi:F\to R$. Por la proposición, $F'\subseteq F$ es libre de rango finito. Si $E'$ es una base de $F'$, la familia $\{x_1\}\cup E'$ es una base de $F$, de modo que $|E'|=n-1$ por la invariancia del número de base.
+
+La inducción aplicada a $M'\subseteq F'$ da una base $x_2,\ldots,x_n$ y una base $a_2x_2,\ldots,a_mx_m$ de $M'$, con $a_2\mid\cdots\mid a_m$. Junto con $x_1$ y $a_1x_1$ obtenemos las bases requeridas. Falta, si $m\geq2$, probar $a_1\mid a_2$.
+
+Definamos $\varphi:F\to R$ por $\varphi(x_1)=\varphi(x_2)=1$ y $\varphi(x_i)=0$ para $i>2$. Como $\varphi(a_1x_1)=a_1$,
+\[
+(a_1)\subseteq\varphi(M).
+\]
+La maximalidad da igualdad. Entonces $a_2=\varphi(a_2x_2)\in(a_1)$, es decir, $a_1\mid a_2$, como se quería.
+\end{proof}
+
+\subsection{Caracterización mediante resoluciones libres}\label{tema:21-1-3}
+\begin{prop}\label{prop:C21-resoluciones}
+Un dominio $R$ es DIP si y sólo si, para todo módulo finitamente generado $M$ y toda sobreyección $\pi_0:R^{m_0}\to M$, existe una sucesión exacta
+\[
+\begin{tikzcd}[column sep=large]
+0\arrow[r]&R^{m_1}\arrow[r,"\pi_1"]&R^{m_0}\arrow[r,"\pi_0"]&M\arrow[r]&0
+\end{tikzcd}
+\]
+con $m_1$ finito.
+\end{prop}
+\begin{proof}
+Si $R$ es DIP, el núcleo de $\pi_0$ es libre de rango finito por la \cref{prop:C21-submodulo-libre}. Elegimos un isomorfismo $R^{m_1}\to\ker\pi_0$ y lo componemos con la inclusión en $R^{m_0}$. Así se obtiene $\pi_1$, inyectivo y con imagen exactamente $\ker\pi_0$. La sobreyectividad de $\pi_0$ asegura la exactitud restante.
+
+A la inversa, sea $I$ un ideal cualquiera de $R$. El módulo $R/I$ es cíclico, luego finitamente generado. Aplicamos la hipótesis a la proyección $R\to R/I$. Su núcleo $I$ es isomorfo a un módulo libre $R^{m_1}$. Una base de $I\subseteq R$ es independiente en $R$, así que tiene a lo sumo un elemento por la \cref{prop:C20-cardinal}, válida para cualquier dominio. Por tanto $I=0$ o $I$ está generado por un solo elemento. Todos los ideales son principales.
+\end{proof}

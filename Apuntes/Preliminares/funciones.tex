@@ -1,0 +1,96 @@
+\section{Funciones, inversas y factorización por las fibras}\label{sec:preliminares-funciones}
+
+\subsection{Funciones, composición e inversas por un lado}\label{tema:1-2-1}\label{tema:1-2-2}
+\begin{defi}
+Una función $f:A\to B$ es una relación $f\subseteq A\times B$ tal que para cada $a\in A$ existe un único $b\in B$ con $(a,b)\in f$. Este elemento se denota $f(a)$. El conjunto de funciones de $A$ en $B$ se denota $B^A$.
+\end{defi}
+Podemos especificar una función mediante su regla de asignación. Por ejemplo,
+\[
+|\cdot|:\mathbb R\to\mathbb R,\qquad
+|x|=\begin{cases}x,&x\ge0,\\-x,&x<0.\end{cases}
+\]
+Para $f:A\to B$ y $g:B\to C$, su composición es
+\[
+g\circ f:A\to C,\qquad (g\circ f)(a)=g(f(a)).
+\]
+Es asociativa, pues ambas funciones $h\circ(g\circ f)$ y $(h\circ g)\circ f$ envían $a$ a $h(g(f(a)))$. La identidad $1_A$ envía cada $a$ a sí mismo.
+
+\begin{defi}
+La función $f:A\to B$ es \emph{inyectiva} si $f(a)=f(a')$ implica $a=a'$; equivalentemente, $a\ne a'$ implica $f(a)\ne f(a')$. Es \emph{sobreyectiva} si para cada $b\in B$ existe $a\in A$ con $f(a)=b$, es decir, $\im f=B$. Es \emph{biyectiva} si satisface ambas condiciones.
+\end{defi}
+
+\begin{obs}
+La definición de función exige existencia y unicidad de la imagen de cada elemento del dominio. La unicidad aislada permite relaciones que dejan elementos sin imagen.
+\end{obs}
+
+\begin{prop}\label{prop:C1-inversas}
+Sea $f:A\to B$, con $A\ne\varnothing$.
+\begin{enumerate}[label=\alph*)]
+\item Existe $g:B\to A$ con $g\circ f=1_A$ si y sólo si $f$ es inyectiva.
+\item Existe $s:B\to A$ con $f\circ s=1_B$ si y sólo si $f$ es sobreyectiva, usando el axioma de elección para la implicación de derecha a izquierda.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Si $g\circ f=1_A$ y $f(a)=f(a')$, aplicamos $g$ y obtenemos $a=a'$. Recíprocamente, si $f$ es inyectiva, fijamos $a_0\in A$ y definimos $g(b)$ como el único $a$ con $f(a)=b$ cuando $b\in\im f$, y como $a_0$ cuando $b\notin\im f$. Entonces $g(f(a))=a$.
+
+Si $f\circ s=1_B$, para todo $b\in B$ tenemos $b=f(s(b))$, de modo que $f$ es sobreyectiva. A la inversa, si todas las fibras $f^{-1}(\{b\})$ son no vacías, elegimos en cada una un elemento $s(b)$; esta elección satisface $f(s(b))=b$.
+\end{proof}
+
+\begin{obs}
+La hipótesis $A\ne\varnothing$ importa en el primer inciso: la función $\varnothing\to\{1\}$ es inyectiva, pero no tiene inversa izquierda porque no existe función $\{1\}\to\varnothing$. El segundo inciso sigue siendo válido cuando $A=\varnothing$: una función de ese dominio es sobreyectiva exactamente cuando también $B=\varnothing$.
+\end{obs}
+\begin{obs}
+La selección de preimágenes para construir una inversa por la derecha utiliza el axioma de elección. Para una biyección no se necesita elegir entre varias: cada preimagen es única y determina su inversa bilateral.
+\end{obs}
+
+\subsection{Monomorfismos, epimorfismos y factorización por fibras}\label{tema:1-2-3}\label{tema:1-2-4}
+\begin{defi}
+Una función $f:A\to B$ es un \emph{monomorfismo} si para todo conjunto $Z$ y cualesquiera $\alpha',\alpha'':Z\to A$,
+\[
+f\circ\alpha'=f\circ\alpha''\quad\Rightarrow\quad\alpha'=\alpha''.
+\]
+Es un \emph{epimorfismo} si para todo conjunto $Z$ y cualesquiera $\beta',\beta'':B\to Z$,
+\[
+\beta'\circ f=\beta''\circ f\quad\Rightarrow\quad\beta'=\beta''.
+\]
+\end{defi}
+
+\begin{prop}\label{prop:C1-monoepi}
+En conjuntos, los monomorfismos son exactamente las funciones inyectivas y los epimorfismos son exactamente las funciones sobreyectivas.
+\end{prop}
+\begin{proof}
+Supongamos primero $A\ne\varnothing$ y $f$ inyectiva. Por la proposición~\ref{prop:C1-inversas} tiene inversa izquierda $g$. Si $f\alpha'=f\alpha''$, entonces
+\[
+\alpha'=g(f\alpha')=g(f\alpha'')=\alpha''.
+\]
+Si $A=\varnothing$, siempre hay a lo sumo una función $Z\to A$, y la cancelación también se cumple. Recíprocamente, si $f$ es mono y $f(a)=f(a')$, las funciones $\{*\}\to A$ que toman los valores $a$ y $a'$ tienen el mismo compuesto con $f$. Deben ser iguales; luego $a=a'$.
+
+Para la segunda equivalencia, si $f$ no es sobreyectiva, fijamos $b_0\in B\setminus\im f$ y definimos
+\[
+\beta'(b)=0,\qquad
+\beta''(b)=\begin{cases}1,&b=b_0,\\0,&b\ne b_0.\end{cases}
+\]
+Son funciones $B\to\{0,1\}$ distintas con $\beta'f=\beta''f$. Por tanto, $f$ no es epi.
+
+Si $f$ es sobreyectiva y $A\ne\varnothing$, una inversa derecha $s$ permite cancelar:
+\[
+\beta'=(\beta'f)s=(\beta''f)s=\beta''.
+\]
+Si $A=\varnothing$, la sobreyectividad obliga a $B=\varnothing$ y sólo existe una función $B\to Z$. Esto termina la prueba. También puede evitarse elección en esta última dirección: para cada $b$ usamos cualquier $a$ con $f(a)=b$ y obtenemos $\beta'(b)=\beta''(b)$.
+\end{proof}
+
+Para una función $f:A\to B$, definimos $a\sim a'$ si $f(a)=f(a')$. La igualdad de imágenes hace que esta relación sea reflexiva, simétrica y transitiva.
+\begin{teo}\label{teo:C1-factorizacion}
+Toda función se factoriza como una sobreyección, una biyección y una inclusión:
+\[
+\begin{tikzcd}[column sep=large]
+A\arrow[r,two heads,"q"]\arrow[rrr,bend left=25,"f"]
+&A/{\sim}\arrow[r,"\widetilde f","\simeq"']
+&\im f\arrow[r,hook,"i"]&B.
+\end{tikzcd}
+\]
+Aquí $q(a)=[a]$ y $\widetilde f([a])=f(a)$.
+\end{teo}
+\begin{proof}
+La proyección $q$ es sobreyectiva por definición del cociente. La regla de $\widetilde f$ está bien definida porque representantes equivalentes tienen igual imagen. Es sobreyectiva sobre $\im f$; es inyectiva porque $f(a)=f(a')$ implica $[a]=[a']$. La inclusión $i$ es inyectiva y $i\widetilde f q(a)=f(a)$ para todo $a$.
+\end{proof}
